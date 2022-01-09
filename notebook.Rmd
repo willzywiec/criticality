@@ -1,0 +1,101 @@
+---
+title : 'R Notebook'
+output : html_notebook
+---
+
+# notebook.Rmd
+#
+# William Zywiec
+
+```{r, include = FALSE, warning = FALSE}
+
+# initialize environment
+if (!is.null(dev.list())) dev.off()
+rm(list = ls())
+cat('\014')
+
+```
+
+```{r, warning = FALSE}
+
+# set variables
+code <- 'mcnp'
+external.dir <- 'D:/7.8M' # 'D:/Apricorn'
+source.dir <- 'D:/Dropbox/GWU/R/source'
+data.dir <- paste0(external.dir, '/data')
+
+# load function
+source(paste0(source.dir, '/tabulate.R'))
+
+# tabulate data
+dataset <- Tabulate(code, data.dir, source.dir)
+
+```
+
+```{r, warning = FALSE}
+
+# set variables
+batch.size <- 8192
+ensemble.size <- 5 # 15
+epochs <- 1500
+layers <- '8192-256-256-256-256-16'
+loss <- 'sse'
+opt.alg <- 'adamax'
+learning.rate <- 0.00075
+val.split <- 0.2
+replot <- FALSE
+test.dir <- paste0(external.dir, '/test/', layers, '/', learning.rate)
+
+# load function
+source(paste0(source.dir, '/split.R'))
+
+# build metamodel
+metamodel <- Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, source.dir, test.dir)
+
+# build metamodel
+# metamodel <- NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, source.dir, test.dir)
+
+```
+
+```{r, warning = FALSE}
+
+# set variables
+dist <- 'gamma'
+facility <- 'b332'
+facility.data <- read.csv(paste0(data.dir, '/', facility, '.csv'))
+keff.cutoff <- 0.9
+risk.pool <- 100
+dist.dir <- 'D:/dist'
+
+if (keff.cutoff > 0) {
+  if (dist == 'normal') {
+    keff.cutoff <- 0.7
+    sample.size <- 1e+10 # 1e+09
+  } else if (dist == 'gamma' || dist == 'weibull') {
+    sample.size <- 1e+08
+  } else if (dist == 'log-normal') {
+    sample.size <- 1e+07
+  } else {
+    sample.size <- 1e+08
+  }
+} else {
+  sample.size <- 1e+04 # 1e+06
+}
+
+# load functions
+source(paste0(source.dir, '/bn.R'))
+source(paste0(source.dir, '/risk.R'))
+
+# build Bayesian network
+bn <- BN(facility, data.dir)
+
+# estimate risk
+risk <- Risk(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, source.dir, test.dir)
+
+```
+
+```{r}
+
+# end
+
+```
