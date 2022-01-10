@@ -72,10 +72,10 @@ Test <- function(
   
   write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = 'test-mae.csv', row.names = FALSE)
 
-  cat(paste0('Mean Training MAE = ', mean(training.mae) %>% sprintf('%.6f', .), '\n'))
-  cat(paste0('Mean Cross-Validation MAE = ', mean(val.mae) %>% sprintf('%.6f', .), '\n'))
-  cat(paste0('Mean Test MAE = ', mean(test.mae) %>% sprintf('%.6f', .), '\n\n'))
-  cat(paste0('Ensemble Test MAE = ', avg[meta.len] %>% sprintf('%.6f', .), '\n'))
+  cat('Mean Training MAE = ', mean(training.mae) %>% sprintf('%.6f', .), '\n', sep = '')
+  cat('Mean Cross-Validation MAE = ', mean(val.mae) %>% sprintf('%.6f', .), '\n', sep = '')
+  cat('Mean Test MAE = ', mean(test.mae) %>% sprintf('%.6f', .), '\n\n', sep = '')
+  cat('Ensemble Test MAE = ', avg[meta.len] %>% sprintf('%.6f', .), '\n', sep = '')
 
   if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] == sa[meta.len]) {
     cat.str <- ' (Nelder-Mead, BFGS, SA)\n'
@@ -93,7 +93,7 @@ Test <- function(
     cat.str <- ' (SA)\n'
   }
 
-  cat(paste0('Ensemble Test MAE = ', nm[meta.len] %>% sprintf('%.6f', .), cat.str))
+  cat('Ensemble Test MAE = ', nm[meta.len] %>% sprintf('%.6f', .), cat.str, sep = '')
 
   test.min <- min(c(avg[which.min(avg)], nm[which.min(nm)], bfgs[which.min(bfgs)], sa[which.min(sa)]))
 
@@ -112,12 +112,12 @@ Test <- function(
   if (wt.len < meta.len && wt[[1]][1] != 0) {
 
     if (wt.len == 1) {
-      cat(paste0('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network\n\n'))
+      cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network\n\n', sep = '')
     } else {
-      cat(paste0('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n'))
+      cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
     }
 
-    cat(paste0('Ensemble Test MAE = ', avg[wt.len] %>% sprintf('%.6f', .), '\n'))
+    cat('Ensemble Test MAE = ', avg[wt.len] %>% sprintf('%.6f', .), '\n', sep = '')
 
     if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] == sa[wt.len]) {
       cat.str <- ' (Nelder-Mead, BFGS, SA)\n'
@@ -135,7 +135,7 @@ Test <- function(
       cat.str <- ' (SA)\n'
     }
 
-    cat(paste0('Ensemble Test MAE = ', nm[meta.len] %>% sprintf('%.6f', .), cat.str))
+    cat('Ensemble Test MAE = ', nm[meta.len] %>% sprintf('%.6f', .), cat.str, sep = '')
     
   }
 

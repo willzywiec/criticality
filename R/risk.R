@@ -33,14 +33,11 @@ Risk <- function(
 
   library(dplyr)
 
-  test.dir <- paste0(ext.dir, '/test/', layers, '/', learning.rate)
-  dir.create(test.dir, recursive = TRUE, showWarnings = FALSE)
-
   if (keff.cutoff > 0) {
-    risk.dir <- paste0(test.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
+    risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
     dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
   } else {
-    risk.dir <- paste0(test.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
+    risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0))
     dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
   }
 
@@ -56,8 +53,8 @@ Risk <- function(
 
     bn.data <- readRDS('bn-data.RData')
     risk <- read.csv('risk.csv', fileEncoding = 'UTF-8-BOM')
-    cat(paste0('Risk = ', formatC(mean(risk$risk), format = 'e', digits = 3), '\n'))
-    cat(paste0('SD = ', formatC(sd(risk$risk), format = 'e', digits = 3), '\n'))
+    cat('Risk = ', formatC(mean(risk$risk), format = 'e', digits = 3), '\n', sep = '')
+    cat('SD = ', formatC(sd(risk$risk), format = 'e', digits = 3), '\n', sep = '')
 
   } else {
 
@@ -65,7 +62,7 @@ Risk <- function(
     risk <- pooled.risk <- numeric()
 
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, test.dir, risk.dir)
+      bn.data[[i]] <- Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= 0.95]) / sample.size # USL = 0.95
       if (i == 1) {
         cat('\n', sep = '')
@@ -90,8 +87,8 @@ Risk <- function(
   
     saveRDS(bn.data, file = 'bn-data.RData')
     write.csv(as.data.frame(risk, col.names = 'risk'), file = 'risk.csv', row.names = FALSE)
-    cat(paste0('\nRisk = ', formatC(mean(risk), format = 'e', digits = 3), '\n'))
-    cat(paste0('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n'))
+    cat('\nRisk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
+    cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
 
   }
 
