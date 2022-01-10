@@ -1,8 +1,39 @@
 # nn.R
 #
 # William Zywiec
+#
+#' NN Function
+#'
+#' This function ties the Model, Fit, Plot, and Test functions together to build, train, and test a deep neural network metamodel.
+#' @param dataset Training and test data
+#' @param batch.size Batch size
+#' @param ensemble.size Number of deep neural networks to train for the ensemble
+#' @param epochs Number of training epochs
+#' @param layers String that defines the deep neural network architecture (e.g., '64-64')
+#' @param loss Loss function
+#' @param opt.alg Optimization algorithm
+#' @param learning.rate Learning rate
+#' @param val.split Validation split
+#' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
+#' @param source.dir Source directory
+#' @param test.dir Test directory
+#' @export
+#' @examples
+#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, source.dir, test.dir)
 
-NN <- function(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, source.dir, test.dir) {
+NN <- function(
+  dataset,
+  batch.size = 8192,
+  ensemble.size = 5,
+  epochs = 1500,
+  layers = '8192-256-256-256-256-16',
+  loss = 'sse',
+  opt.alg = 'adamax',
+  learning.rate = 0.00075,
+  val.split = 0.2,
+  replot = TRUE,
+  source.dir,
+  test.dir) {
 
   library(keras)
   library(magrittr)

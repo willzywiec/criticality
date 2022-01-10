@@ -1,8 +1,19 @@
 # plot.R
 #
 # William Zywiec
+#
+#' Plot Function
+#'
+#' This function generates and saves plots and data.
+#' @param x Model number
+#' @param history Training history
+#' @export
+#' @examples
+#' Plot(x, history)
 
-Plot <- function(x, history) {
+Plot <- function(
+  x,
+  history) {
 
   library(ggplot2)
   # library(magrittr)

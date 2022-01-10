@@ -1,8 +1,21 @@
 # tabulate.R
 #
 # William Zywiec
+#
+#' Tabulate Function
+#'
+#' This function imports the Scale function and loads/saves training and test data.
+#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param data.dir Data directory
+#' @param source.dir Source directory
+#' @export
+#' @examples
+#' Tabulate(code, data.dir, source.dir)
 
-Tabulate <- function(code, data.dir, source.dir) {
+Tabulate <- function(
+  code = 'mcnp',
+  data.dir,
+  source.dir) {
 
   library(magrittr)
 

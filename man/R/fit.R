@@ -1,8 +1,29 @@
 # fit.R
 #
 # William Zywiec
+#
+#' Fit Function
+#'
+#' This function trains an existing deep neural network metamodel.
+#' @param dataset Training and test data
+#' @param model Keras model
+#' @param batch.size Batch size
+#' @param epochs Number of training epochs
+#' @param val.split Validation split
+#' @param remodel.dir Directory that contains model files that are saved after every epoch
+#' @param x Model number
+#' @export
+#' @examples
+#' Fit(dataset, model, batch.size, epochs, val.split, remodel.dir, x)
 
-Fit <- function(dataset, model, batch.size, epochs, val.split, remodel.dir, x) {
+Fit <- function(
+  dataset,
+  model,
+  batch.size = 8192,
+  epochs = 1500,
+  val.split = 0.2,
+  remodel.dir,
+  x) {
 
   # library(keras)
   # library(magrittr)

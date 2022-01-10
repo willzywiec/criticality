@@ -1,8 +1,19 @@
 # scale.R
 #
 # William Zywiec
+#
+#' Scale Function
+#'
+#' This function centers, scales, and one-hot encodes categorical variables.
+#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param output Processed output from Monte Carlo radiation transport code simulations
+#' @export
+#' @examples
+#' Scale(code, output)
 
-Scale <- function(code, output) {
+Scale <- function(
+  code = 'mcnp',
+  output) {
 
   library(caret)
   library(dplyr)

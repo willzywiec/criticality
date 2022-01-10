@@ -1,8 +1,19 @@
 # bn.R
 #
 # William Zywiec
+#
+#' BN Function
+#'
+#' This function creates a Bayesian network from nuclear facility data.
+#' @param facility Facility name or building number (.csv file name)
+#' @param data.dir Data directory
+#' @export
+#' @examples
+#' BN(facility, data.dir)
 
-BN <- function(facility, data.dir) {
+BN <- function(
+  facility,
+  data.dir) {
 	
 	library(bnlearn)
   library(dplyr)

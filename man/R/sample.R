@@ -1,8 +1,33 @@
 # sample.R
 #
 # William Zywiec
+#
+#' Sample Function
+#'
+#' This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.
+#' @param bn Bayesian network object
+#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param dataset Training and test data
+#' @param keff.cutoff keff cutoff value (e.g., 0.95)
+#' @param metamodel List of deep neural network metamodels and weights
+#' @param sample.size Number of samples used to calculate risk
+#' @param source.dir Source directory
+#' @param test.dir Test directory
+#' @param risk.dir Risk directory
+#' @export
+#' @examples
+#' Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, source.dir, test.dir, risk.dir)
 
-Sample <- function(bn, code, dataset, keff.cutoff, metamodel, sample.size, source.dir, test.dir, risk.dir) {
+Sample <- function(
+  bn,
+  code = 'mcnp',
+  dataset,
+  keff.cutoff = 0.9,
+  metamodel,
+  sample.size = 1e+09,
+  source.dir,
+  test.dir,
+  risk.dir) {
 
   library(bnlearn)
   library(magrittr)

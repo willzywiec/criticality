@@ -1,8 +1,37 @@
 # risk.R
 #
 # William Zywiec
+#
+#' Risk Function
+#'
+#' This function imports the Sample function and estimates process criticality accident risk.
+#' @param bn Bayesian network object
+#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param dataset Training and test data
+#' @param dist Truncated probability distribution (e.g., 'gamma', 'normal')
+#' @param facility Facility name or building number (.csv file name)
+#' @param keff.cutoff keff cutoff value (e.g., 0.95)
+#' @param metamodel List of deep neural network metamodels and weights
+#' @param risk.pool Number of times risk is calculated
+#' @param sample.size Number of samples used to calculate risk
+#' @param source.dir Source directory
+#' @param test.dir Test directory
+#' @export
+#' @examples
+#' Risk(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, source.dir, test.dir)
 
-Risk <- function(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, source.dir, test.dir) {
+Risk <- function(
+  bn,
+  code = 'mcnp',
+  dataset,
+  dist = 'gamma',
+  facility,
+  keff.cutoff = 0.9,
+  metamodel,
+  risk.pool = 100,
+  sample.size = 1e+09,
+  source.dir,
+  test.dir) {
 
   library(dplyr)
 

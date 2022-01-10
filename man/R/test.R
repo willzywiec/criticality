@@ -1,8 +1,25 @@
 # test.R
 #
 # William Zywiec
+#
+#' Test Function
+#'
+#' This function optimizes an existing deep neural network metamodel and generates .csv predictions for all training and test data.
+#' @param dataset Training and test data
+#' @param metamodel List of deep neural network metamodels
+#' @param training.mae Training data mean absolute errors
+#' @param val.mae Cross-validation data mean absolute errors
+#' @param test.dir Test directory
+#' @export
+#' @examples
+#' Test(dataset, metamodel, training.mae, val.mae, test.dir)
 
-Test <- function(dataset, metamodel, training.mae, val.mae, test.dir) {
+Test <- function(
+  dataset,
+  metamodel,
+  training.mae,
+  val.mae,
+  test.dir) {
 
   # library(keras)
   # library(magrittr)

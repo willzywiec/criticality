@@ -1,8 +1,25 @@
 # model.R
 #
 # William Zywiec
+#
+#' Model Function
+#'
+#' This function builds a deep neural network metamodel.
+#' @param dataset Training and test data
+#' @param layers String that defines the deep neural network architecture (e.g., '64-64')
+#' @param loss Loss function
+#' @param opt.alg Optimization algorithm
+#' @param learning.rate Learning rate
+#' @export
+#' @examples
+#' Model(dataset, layers, loss, opt.alg, learning.rate)
 
-Model <- function(dataset, layers, loss, opt.alg, learning.rate) {
+Model <- function(
+  dataset,
+  layers = '8192-256-256-256-256-16',
+  loss = 'sse',
+  opt.alg = 'adamax',
+  learning.rate = 0.00075) {
 
   # library(keras)
   # library(magrittr)
