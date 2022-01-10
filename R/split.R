@@ -37,9 +37,6 @@ Split <- function(
 
   form <- names(table(dataset$output$form))
 
-  training.dir <- paste0(ext.dir, '/test/', form[i])
-  dir.create(training.dir, recursive = TRUE, showWarnings = FALSE)
-
   output <- training.data <- training.df <- test.data <- test.df <- list()
 
   for (i in 1:length(form)) {
@@ -70,7 +67,9 @@ Split <- function(
 
   metamodel <- list()
 
-  for (i in 1:length(dataset)) {
+  for (i in 1:length(form)) {
+    training.dir <- paste0(ext.dir, '/test/', form[i])
+    dir.create(training.dir, recursive = TRUE, showWarnings = FALSE)
     metamodel[[i]] <- NN(dataset[[i]], batch.size, ensemble.size, epochs, layers, loss ,opt.alg, learning.rate, val.split, replot, training.dir)
   }
 
