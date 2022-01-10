@@ -9,22 +9,22 @@
 #' @param metamodel List of deep neural network metamodels
 #' @param training.mae Training data mean absolute errors
 #' @param val.mae Cross-validation data mean absolute errors
-#' @param test.dir Test directory
+#' @param training.dir Training directory
 #' @export
 #' @examples
-#' Test(dataset, metamodel, training.mae, val.mae, test.dir)
+#' Test(dataset, metamodel, training.mae, val.mae, training.dir)
 
 Test <- function(
   dataset,
   metamodel,
   training.mae,
   val.mae,
-  test.dir) {
+  training.dir) {
 
   # library(keras)
   # library(magrittr)
 
-  setwd(test.dir)
+  setwd(training.dir)
 
   meta.len <- length(metamodel)
 
@@ -116,7 +116,7 @@ Test <- function(
     } else {
       cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
     }
-    
+
     cat('Ensemble Test MAE = ', avg[wt.len] %>% sprintf('%.6f', .), '\n', sep = '')
 
     if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] == sa[wt.len]) {

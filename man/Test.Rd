@@ -4,7 +4,7 @@
 \alias{Test}
 \title{Test Function}
 \usage{
-Test(dataset, metamodel, training.mae, val.mae, test.dir)
+Test(dataset, metamodel, training.mae, val.mae, training.dir)
 }
 \arguments{
 \item{dataset}{Training and test data}
@@ -15,11 +15,11 @@ Test(dataset, metamodel, training.mae, val.mae, test.dir)
 
 \item{val.mae}{Cross-validation data mean absolute errors}
 
-\item{test.dir}{Test directory}
+\item{training.dir}{Training directory}
 }
 \description{
 This function optimizes an existing deep neural network metamodel and generates .csv predictions for all training and test data.
 }
 \examples{
-Test(dataset, metamodel, training.mae, val.mae, test.dir)
+Test(dataset, metamodel, training.mae, val.mae, training.dir)
 }

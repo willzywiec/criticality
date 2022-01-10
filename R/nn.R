@@ -15,10 +15,10 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
-#' @param ext.dir External directory
+#' @param training.dir Training directory
 #' @export
 #' @examples
-#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, ext.dir)
+#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, training.dir)
 
 NN <- function(
   dataset,
@@ -36,10 +36,7 @@ NN <- function(
   library(keras)
   library(magrittr)
 
-  test.dir <- paste0(ext.dir, '/test/', layers, '/', learning.rate)
-  dir.create(test.dir, recursive = TRUE, showWarnings = FALSE)
-
-  model.dir <- paste0(test.dir, '/model')
+  model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
 
   setwd(model.dir)
@@ -68,7 +65,7 @@ NN <- function(
   for (i in 1:ensemble.size) metamodel[[i]] <- load_model_hdf5(model.files[i], custom_objects = c(loss = loss))
 
   # retrain metamodel
-  remodel.dir <- paste0(test.dir, '/remodel')
+  remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, showWarnings = FALSE)
   
   setwd(remodel.dir)
@@ -101,7 +98,7 @@ NN <- function(
     metamodel[[i]] <- load_model_hdf5(paste0(i, '-', metrics$epoch[which.min(metrics$mae + metrics$val.mae)], '.h5'), custom_objects = c(loss = loss))
   }
   
-  wt <- Test(dataset, metamodel, training.mae, val.mae, test.dir)
+  wt <- Test(dataset, metamodel, training.mae, val.mae, training.dir)
   
   return(list(metamodel, wt))
 
