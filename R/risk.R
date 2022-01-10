@@ -33,6 +33,8 @@ Risk <- function(
 
   library(dplyr)
 
+  code <- enc2utf8(code) # R package incosistently throws an error due to UTF-8 encoding
+
   if (keff.cutoff > 0) {
     risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
     dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)

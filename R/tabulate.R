@@ -17,6 +17,8 @@ Tabulate <- function(
 
   library(magrittr)
 
+  code <- enc2utf8(code) # R package incosistently throws an error due to UTF-8 encoding
+
   data.dir <- paste0(ext.dir, '/data')
   dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
 
