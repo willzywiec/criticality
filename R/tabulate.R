@@ -25,7 +25,7 @@ Tabulate <- function(
   if (file.exists(paste0(code, '-dataset.RData'))) {
 
     dataset <- readRDS(paste0(code, '-dataset.RData'))
-    cat('Loaded ', code, '-dataset.RData\n', sep = '')
+    cat(paste0('Loaded ', code, '-dataset.RData\n'))
 
   } else {
 
@@ -39,7 +39,7 @@ Tabulate <- function(
       if (nrow(output) >= length(output.files)) {
         output <- output[sample(nrow(output)), ]
         dataset <- Scale(code, output)
-        cat('Loaded ', code, '-dataset.RData\n', sep = '')
+        cat(paste0('Loaded ', code, '-dataset.RData\n'))
       } else {
         remove(output)
       }
@@ -119,7 +119,7 @@ Tabulate <- function(
       write.csv(output, file = paste0(code, '-output.csv'), row.names = FALSE)
       
       dataset <- Scale(code, output)
-      cat('Loaded ', code, '-dataset.RData\n', sep = '')
+      cat(paste0('Loaded ', code, '-dataset.RData\n'))
 
     } 
 
