@@ -33,9 +33,6 @@ Sample <- function(
   library(magrittr)
   library(parallel)
 
-  # load function
-  source(paste0(source.dir, '/scale.R'))
-
   cluster <- makeCluster((detectCores() / 2), type = 'SOCK')
 
   # sample conditional probability tables

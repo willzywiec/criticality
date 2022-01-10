@@ -35,9 +35,6 @@ Risk <- function(
 
   library(dplyr)
 
-  # load function
-  source(paste0(source.dir, '/sample.R'))
-
   if (keff.cutoff > 0) {
     risk.dir <- paste0(test.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
     dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)

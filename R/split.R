@@ -37,9 +37,6 @@ Split <- function(
 
   # library(magrittr)
 
-  # load function
-  source(paste0(source.dir, '/nn.R'))
-
   form <- names(table(dataset$output$form))
 
   output <- training.data <- training.df <- test.data <- test.df <- list()

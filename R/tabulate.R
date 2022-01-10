@@ -28,9 +28,6 @@ Tabulate <- function(
 
   } else {
 
-    # load function
-    source(paste0(source.dir, '/scale.R'))
-
     output.files <- list.files(pattern = '\\.o$')
 
     # load output

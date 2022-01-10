@@ -38,12 +38,6 @@ NN <- function(
   library(keras)
   library(magrittr)
 
-  # load functions
-  source(paste0(source.dir, '/model.R'))
-  source(paste0(source.dir, '/fit.R'))
-  source(paste0(source.dir, '/plot.R'))
-  source(paste0(source.dir, '/test.R'))
-
   # build custom loss function
   if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
 
