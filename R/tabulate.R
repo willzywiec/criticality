@@ -5,8 +5,8 @@
 #' Tabulate Function
 #'
 #' This function imports the Scale function and loads/saves training and test data.
-#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp').
-#' @param ext.dir External directory.
+#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param ext.dir External directory
 #' @export
 #' @examples
 #' Tabulate(code, ext.dir)
