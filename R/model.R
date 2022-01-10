@@ -36,32 +36,32 @@ Model <- function(dataset, layers, loss, opt.alg, learning.rate) {
   if (opt.alg == 'adadelta') {
     model %>% compile(
       loss = loss,
-      optimizer = optimizer_adadelta(lr = learning.rate),
+      optimizer = optimizer_adadelta(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
   } else if (opt.alg == 'adagrad') {
     model %>% compile(
       loss = loss,
-      optimizer = optimizer_adagrad(lr = learning.rate),
+      optimizer = optimizer_adagrad(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
   } else if (opt.alg == 'adam') {
     model %>% compile(
       loss = loss,
-      optimizer = optimizer_adam(lr = learning.rate),
+      optimizer = optimizer_adam(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
   } else if (opt.alg == 'adamax') {
     model %>% compile(
       loss = loss,
-      optimizer = optimizer_adamax(lr = learning.rate),
+      optimizer = optimizer_adamax(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
   } else if (opt.alg == 'nadam') {
     model %>% compile(
       loss = loss,
-      optimizer = optimizer_nadam(lr = learning.rate),
+      optimizer = optimizer_nadam(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
   } else if (opt.alg == 'rmsprop') {
     model %>% compile(
       loss = loss,
-      optimizer = optimizer_rmsprop(lr = learning.rate),
+      optimizer = optimizer_rmsprop(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
   }
 
