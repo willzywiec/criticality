@@ -11,10 +11,10 @@
 #' @param epochs Number of training epochs
 #' @param val.split Validation split
 #' @param remodel.dir Directory that contains model files that are saved after every epoch
-#' @param x Model number
+#' @param i Model number
 #' @export
 #' @examples
-#' Fit(dataset, model, batch.size, epochs, val.split, remodel.dir, x)
+#' Fit(dataset, model, batch.size, epochs, val.split, remodel.dir, i)
 
 Fit <- function(
   dataset,
@@ -23,12 +23,12 @@ Fit <- function(
   epochs = 1500,
   val.split = 0.2,
   remodel.dir,
-  x) {
+  i) {
 
   # library(keras)
   # library(magrittr)
 
-  if (missing(x)) {
+  if (missing(i)) {
     model %>% fit(
       dataset$training.df,
       dataset$training.data$keff,

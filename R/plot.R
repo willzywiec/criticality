@@ -5,14 +5,14 @@
 #' Plot Function
 #'
 #' This function generates and saves plots and data.
-#' @param x Model number
+#' @param i Model number
 #' @param history Training history
 #' @export
 #' @examples
-#' Plot(x, history)
+#' Plot(i, history)
 
 Plot <- function(
-  x,
+  i,
   history) {
 
   library(ggplot2)
@@ -24,7 +24,7 @@ Plot <- function(
   theme_set(new.theme)
 
   if (missing('history')) {
-    history <- read.csv(paste0(x, '.csv'), header = TRUE)
+    history <- read.csv(paste0(i, '.csv'), header = TRUE)
   } else {
     history <- data.frame(
       epoch = 1:length(history$metrics$val_loss),
@@ -32,7 +32,7 @@ Plot <- function(
       val.mae = history$metrics$val_mean_absolute_error,
       loss = history$metrics$loss,
       mae = history$metrics$mean_absolute_error)
-    write.csv(history, file = paste0(x, '.csv'), row.names = FALSE)
+    write.csv(history, file = paste0(i, '.csv'), row.names = FALSE)
   }
 
   ggplot(history, aes(x = epoch)) +
@@ -59,6 +59,6 @@ Plot <- function(
     family = 'serif',
     size = 3.5)
 
-  ggsave(paste0(x, '.png'), dpi = 1000, height = 4, width = 6.5) %>% suppressMessages()
+  ggsave(paste0(i, '.png'), dpi = 1000, height = 4, width = 6.5) %>% suppressMessages()
 
 }

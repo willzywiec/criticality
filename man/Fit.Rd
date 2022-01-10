@@ -11,7 +11,7 @@ Fit(
   epochs = 1500,
   val.split = 0.2,
   remodel.dir,
-  x
+  i
 )
 }
 \arguments{
@@ -27,11 +27,11 @@ Fit(
 
 \item{remodel.dir}{Directory that contains model files that are saved after every epoch}
 
-\item{x}{Model number}
+\item{i}{Model number}
 }
 \description{
 This function trains an existing deep neural network metamodel.
 }
 \examples{
-Fit(dataset, model, batch.size, epochs, val.split, remodel.dir, x)
+Fit(dataset, model, batch.size, epochs, val.split, remodel.dir, i)
 }

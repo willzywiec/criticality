@@ -4,10 +4,10 @@
 \alias{Plot}
 \title{Plot Function}
 \usage{
-Plot(x, history)
+Plot(i, history)
 }
 \arguments{
-\item{x}{Model number}
+\item{i}{Model number}
 
 \item{history}{Training history}
 }
@@ -15,5 +15,5 @@ Plot(x, history)
 This function generates and saves plots and data.
 }
 \examples{
-Plot(x, history)
+Plot(i, history)
 }
