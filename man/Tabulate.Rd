@@ -4,18 +4,16 @@
 \alias{Tabulate}
 \title{Tabulate Function}
 \usage{
-Tabulate(code = "mcnp", data.dir, source.dir)
+Tabulate(code = "mcnp", ext.dir)
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')}
 
-\item{data.dir}{Data directory}
-
-\item{source.dir}{Source directory}
+\item{ext.dir}{External directory}
 }
 \description{
 This function imports the Scale function and loads/saves training and test data.
 }
 \examples{
-Tabulate(code, data.dir, source.dir)
+Tabulate(code, ext.dir)
 }

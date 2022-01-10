@@ -15,11 +15,10 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
-#' @param source.dir Source directory
-#' @param test.dir Test directory
+#' @param ext.dir External directory
 #' @export
 #' @examples
-#' Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, source.dir, test.dir)
+#' Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, ext.dir)
 
 Split <- function(
   dataset,
@@ -32,10 +31,12 @@ Split <- function(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
-  source.dir,
-  test.dir) {
+  ext.dir) {
 
   # library(magrittr)
+
+  test.dir <- paste0(ext.dir, '/test/', layers, '/', learning.rate)
+  dir.create(test.dir, recursive = TRUE, showWarnings = FALSE)
 
   form <- names(table(dataset$output$form))
 
@@ -70,7 +71,7 @@ Split <- function(
   metamodel <- list()
 
   for (i in 1:length(dataset)) {
-    metamodel[[i]] <- NN(dataset[[i]], batch.size, ensemble.size, epochs, layers, loss ,opt.alg, learning.rate, val.split, replot, source.dir, paste0(test.dir, '/', form[i]))
+    metamodel[[i]] <- NN(dataset[[i]], batch.size, ensemble.size, epochs, layers, loss ,opt.alg, learning.rate, val.split, replot, ext.dir)
   }
 
   names(metamodel) <- form

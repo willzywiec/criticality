@@ -14,8 +14,7 @@ Risk(
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  source.dir,
-  test.dir
+  ext.dir
 )
 }
 \arguments{
@@ -37,13 +36,11 @@ Risk(
 
 \item{sample.size}{Number of samples used to calculate risk}
 
-\item{source.dir}{Source directory}
-
-\item{test.dir}{Test directory}
+\item{ext.dir}{External directory}
 }
 \description{
 This function imports the Sample function and estimates process criticality accident risk.
 }
 \examples{
-Risk(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, source.dir, test.dir)
+Risk(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, ext.dir)
 }

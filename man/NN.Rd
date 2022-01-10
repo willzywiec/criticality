@@ -15,8 +15,7 @@ NN(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
-  source.dir,
-  test.dir
+  ext.dir
 )
 }
 \arguments{
@@ -40,13 +39,11 @@ NN(
 
 \item{replot}{Boolean (TRUE/FALSE) that determines if plots should be regenerated}
 
-\item{source.dir}{Source directory}
-
-\item{test.dir}{Test directory}
+\item{ext.dir}{External directory}
 }
 \description{
 This function ties the Model, Fit, Plot, and Test functions together to build, train, and test a deep neural network metamodel.
 }
 \examples{
-NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, source.dir, test.dir)
+NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, ext.dir)
 }

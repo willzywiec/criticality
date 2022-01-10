@@ -14,11 +14,10 @@
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param risk.pool Number of times risk is calculated
 #' @param sample.size Number of samples used to calculate risk
-#' @param source.dir Source directory
-#' @param test.dir Test directory
+#' @param ext.dir External directory
 #' @export
 #' @examples
-#' Risk(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, source.dir, test.dir)
+#' Risk(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, ext.dir)
 
 Risk <- function(
   bn,
@@ -30,10 +29,12 @@ Risk <- function(
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  source.dir,
-  test.dir) {
+  ext.dir) {
 
   library(dplyr)
+
+  test.dir <- paste0(ext.dir, '/test/', layers, '/', learning.rate)
+  dir.create(test.dir, recursive = TRUE, showWarnings = FALSE)
 
   if (keff.cutoff > 0) {
     risk.dir <- paste0(test.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
@@ -64,9 +65,10 @@ Risk <- function(
     risk <- pooled.risk <- numeric()
 
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, source.dir, test.dir, risk.dir)
+      bn.data[[i]] <- Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, test.dir, risk.dir)
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= 0.95]) / sample.size # USL = 0.95
       if (i == 1) {
+        cat('\n', sep = '')
         progress.bar <- txtProgressBar(min = 0, max = risk.pool, style = 3)
         setTxtProgressBar(progress.bar, i)
         if (i == risk.pool) {

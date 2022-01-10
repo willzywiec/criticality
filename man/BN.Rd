@@ -4,16 +4,16 @@
 \alias{BN}
 \title{BN Function}
 \usage{
-BN(facility, data.dir)
+BN(facility, ext.dir)
 }
 \arguments{
 \item{facility}{Facility name or building number (.csv file name)}
 
-\item{data.dir}{Data directory}
+\item{ext.dir}{External directory}
 }
 \description{
 This function creates a Bayesian network from nuclear facility data.
 }
 \examples{
-BN(facility, data.dir)
+BN(facility, ext.dir)
 }

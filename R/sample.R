@@ -11,12 +11,11 @@
 #' @param keff.cutoff keff cutoff value (e.g., 0.95)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
-#' @param source.dir Source directory
 #' @param test.dir Test directory
 #' @param risk.dir Risk directory
 #' @export
 #' @examples
-#' Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, source.dir, test.dir, risk.dir)
+#' Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, test.dir, risk.dir)
 
 Sample <- function(
   bn,
@@ -25,7 +24,6 @@ Sample <- function(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  source.dir,
   test.dir,
   risk.dir) {
 

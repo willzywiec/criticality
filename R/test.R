@@ -55,6 +55,7 @@ Test <- function(
     sa[i] <- mean(abs(test.data$keff - rowSums(test.pred * sa.wt[[i]][[1]], na.rm = TRUE)))
 
     if (i == 1) {
+      cat('\n', sep = '')
       progress.bar <- txtProgressBar(min = 0, max = meta.len, style = 3)
       setTxtProgressBar(progress.bar, i)
       if (i == meta.len) {
@@ -110,7 +111,12 @@ Test <- function(
 
   if (wt.len < meta.len && wt[[1]][1] != 0) {
 
-    cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
+    if (wt.len == 1) {
+      cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network\n\n', sep = '')
+    } else {
+      cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
+    }
+    
     cat('Ensemble Test MAE = ', avg[wt.len] %>% sprintf('%.6f', .), '\n', sep = '')
 
     if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] == sa[wt.len]) {

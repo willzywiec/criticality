@@ -6,18 +6,19 @@
 #'
 #' This function imports the Scale function and loads/saves training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
-#' @param data.dir Data directory
-#' @param source.dir Source directory
+#' @param ext.dir External directory
 #' @export
 #' @examples
-#' Tabulate(code, data.dir, source.dir)
+#' Tabulate(code, ext.dir)
 
 Tabulate <- function(
   code = 'mcnp',
-  data.dir,
-  source.dir) {
+  ext.dir) {
 
   library(magrittr)
+
+  data.dir <- paste0(ext.dir, '/data')
+  dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
 
   setwd(data.dir)
 

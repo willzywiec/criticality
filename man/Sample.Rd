@@ -11,7 +11,6 @@ Sample(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  source.dir,
   test.dir,
   risk.dir
 )
@@ -29,8 +28,6 @@ Sample(
 
 \item{sample.size}{Number of samples used to calculate risk}
 
-\item{source.dir}{Source directory}
-
 \item{test.dir}{Test directory}
 
 \item{risk.dir}{Risk directory}
@@ -39,5 +36,5 @@ Sample(
 This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.
 }
 \examples{
-Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, source.dir, test.dir, risk.dir)
+Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, test.dir, risk.dir)
 }

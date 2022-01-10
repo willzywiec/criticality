@@ -15,11 +15,10 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
-#' @param source.dir Source directory
-#' @param test.dir Test directory
+#' @param ext.dir External directory
 #' @export
 #' @examples
-#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, source.dir, test.dir)
+#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, ext.dir)
 
 NN <- function(
   dataset,
@@ -32,19 +31,21 @@ NN <- function(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
-  source.dir,
-  test.dir) {
+  ext.dir) {
 
   library(keras)
   library(magrittr)
 
-  # build custom loss function
-  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
+  test.dir <- paste0(ext.dir, '/test/', layers, '/', learning.rate)
+  dir.create(test.dir, recursive = TRUE, showWarnings = FALSE)
 
   model.dir <- paste0(test.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
 
   setwd(model.dir)
+
+  # build custom loss function
+  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
 
   model.files <- list.files(pattern = '\\.h5$')
 

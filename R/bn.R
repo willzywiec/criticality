@@ -6,20 +6,23 @@
 #'
 #' This function creates a Bayesian network from nuclear facility data.
 #' @param facility Facility name or building number (.csv file name)
-#' @param data.dir Data directory
+#' @param ext.dir External directory
 #' @export
 #' @examples
-#' BN(facility, data.dir)
+#' BN(facility, ext.dir)
 
 BN <- function(
   facility,
-  data.dir) {
+  ext.dir) {
 	
 	library(bnlearn)
   library(dplyr)
   library(evd)
   library(fitdistrplus)
   library(magrittr)
+
+  data.dir <- paste0(ext.dir, '/data')
+  dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
 
   facility.data <- read.csv(paste0(data.dir, '/', facility, '.csv'))
 
