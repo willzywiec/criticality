@@ -18,8 +18,6 @@ Scale <- function(
   library(caret)
   library(dplyr)
 
-  code <- enc2utf8(code) # R package incosistently throws an error due to UTF-8 encoding
-
   if (nrow(output) > 0) {
 
     labels <- c('mass', 'form', 'mod', 'rad', 'ref', 'thk', 'vol', 'conc') # missing 'shape', 'ht', and 'hd'

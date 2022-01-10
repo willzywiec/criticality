@@ -17,8 +17,6 @@ Tabulate <- function(
 
   library(magrittr)
 
-  code <- enc2utf8(code) # R package incosistently throws an error due to UTF-8 encoding
-
   data.dir <- paste0(ext.dir, '/data')
   dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
 
@@ -27,7 +25,7 @@ Tabulate <- function(
   if (file.exists(paste0(code, '-dataset.RData'))) {
 
     dataset <- readRDS(paste0(code, '-dataset.RData'))
-    cat('Loaded ', code, '-dataset.RData\n', sep = '')
+    enc2utf8('Loaded ', code, '-dataset.RData\n', sep = '') %>% cat()
 
   } else {
 
