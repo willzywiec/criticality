@@ -25,7 +25,7 @@ Tabulate <- function(
   if (file.exists(paste0(code, '-dataset.RData'))) {
 
     dataset <- readRDS(paste0(code, '-dataset.RData'))
-    enc2utf8('Loaded ', code, '-dataset.RData\n', sep = '') %>% cat()
+    paste0('Loaded ', code, '-dataset.RData\n') %>% enc2utf8() %>% cat(sep = '')
 
   } else {
 
