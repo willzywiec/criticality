@@ -1,0 +1,84 @@
+---
+title : 'R Notebook'
+output : html_notebook
+---
+
+# notebook.Rmd
+#
+# William Zywiec
+
+```{r, include = FALSE, warning = FALSE}
+
+# initialize environment
+if (!is.null(dev.list())) dev.off()
+rm(list = ls())
+cat('\014')
+
+```
+
+```{r, warning = FALSE}
+
+# set variables
+external.dir <- 'D:/7.8M' # 'D:/Apricorn'
+source.dir <- 'D:/Dropbox/GWU/R/source'
+data.dir <- paste0(external.dir, '/data')
+
+# load function
+source(paste0(source.dir, '/tabulate.R'))
+
+# tabulate data
+dataset <- Tabulate(
+  data.dir = data.dir,
+  source.dir = source.dir)
+
+```
+
+```{r, warning = FALSE}
+
+# set variable
+test.dir <- paste0(external.dir, '/test/', layers, '/', learning.rate)
+
+# load function
+source(paste0(source.dir, '/split.R'))
+
+# build metamodel
+metamodel <- Split(
+  dataset = dataset,
+  replot = FALSE,
+  source.dir = source.dir, 
+  test.dir = test.dir)
+
+```
+
+```{r, warning = FALSE}
+
+# set variables
+facility <- 'b332'
+dist.dir <- 'D:/dist'
+
+# load functions
+source(paste0(source.dir, '/bn.R'))
+source(paste0(source.dir, '/risk.R'))
+
+# build Bayesian network
+bn <- BN(
+  facility = facility,
+  data.dir = data.dir)
+
+# estimate risk
+risk <- Risk(
+  bn = bn,
+  dataset = dataset,
+  dist = 'gamma',
+  facility = facility,
+  metamodel = metamodel,
+  source.dir = source.dir,
+  test.dir = test.dir)
+
+```
+
+```{r}
+
+# end
+
+```
