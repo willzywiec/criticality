@@ -15,7 +15,7 @@ Model(
 \arguments{
 \item{dataset}{Training and test data}
 
-\item{layers}{String that defines the deep neural network architecture (e.g., '64-64')}
+\item{layers}{String that defines the deep neural network architecture (e.g., "64-64")}
 
 \item{loss}{Loss function}
 

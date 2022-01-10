@@ -7,7 +7,7 @@
 Scale(code = "mcnp", output)
 }
 \arguments{
-\item{code}{Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')}
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{output}{Processed output from Monte Carlo radiation transport code simulations}
 }

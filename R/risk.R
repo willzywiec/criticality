@@ -6,9 +6,9 @@
 #'
 #' This function imports the Sample function and estimates process criticality accident risk.
 #' @param bn Bayesian network object
-#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
-#' @param dist Truncated probability distribution (e.g., 'gamma', 'normal')
+#' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param facility Facility name or building number (.csv file name)
 #' @param keff.cutoff keff cutoff value (e.g., 0.95)
 #' @param metamodel List of deep neural network metamodels and weights

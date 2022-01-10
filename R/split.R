@@ -4,12 +4,12 @@
 #
 #' Split Function
 #'
-#' This function is a wrapper for the NN function, which subdivides the deep neural network metamodel based on fissile material form (e.g., 'alpha', 'delta', 'heu').
+#' This function is a wrapper for the NN function, which subdivides the deep neural network metamodel based on fissile material form (e.g., "alpha", "delta", "heu").
 #' @param dataset Training and test data
 #' @param batch.size Batch size
 #' @param ensemble.size Number of deep neural networks to train for the ensemble
 #' @param epochs Number of training epochs
-#' @param layers String that defines the deep neural network architecture (e.g., '64-64')
+#' @param layers String that defines the deep neural network architecture (e.g., "64-64")
 #' @param loss Loss function
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate

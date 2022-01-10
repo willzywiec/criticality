@@ -9,7 +9,7 @@
 #' @param batch.size Batch size
 #' @param ensemble.size Number of deep neural networks to train for the ensemble
 #' @param epochs Number of training epochs
-#' @param layers String that defines the deep neural network architecture (e.g., '64-64')
+#' @param layers String that defines the deep neural network architecture (e.g., "64-64")
 #' @param loss Loss function
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate

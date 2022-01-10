@@ -20,11 +20,11 @@ Risk(
 \arguments{
 \item{bn}{Bayesian network object}
 
-\item{code}{Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')}
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{dataset}{Training and test data}
 
-\item{dist}{Truncated probability distribution (e.g., 'gamma', 'normal')}
+\item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
 \item{facility}{Facility name or building number (.csv file name)}
 

@@ -7,7 +7,7 @@
 Tabulate(code = "mcnp", ext.dir)
 }
 \arguments{
-\item{code}{Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')}
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{ext.dir}{External directory}
 }

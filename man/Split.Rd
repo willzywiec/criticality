@@ -27,7 +27,7 @@ Split(
 
 \item{epochs}{Number of training epochs}
 
-\item{layers}{String that defines the deep neural network architecture (e.g., '64-64')}
+\item{layers}{String that defines the deep neural network architecture (e.g., "64-64")}
 
 \item{loss}{Loss function}
 
@@ -42,7 +42,7 @@ Split(
 \item{ext.dir}{External directory}
 }
 \description{
-This function is a wrapper for the NN function, which subdivides the deep neural network metamodel based on fissile material form (e.g., 'alpha', 'delta', 'heu').
+This function is a wrapper for the NN function, which subdivides the deep neural network metamodel based on fissile material form (e.g., "alpha", "delta", "heu").
 }
 \examples{
 Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, ext.dir)

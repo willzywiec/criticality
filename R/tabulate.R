@@ -5,7 +5,7 @@
 #' Tabulate Function
 #'
 #' This function imports the Scale function and loads/saves training and test data.
-#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param ext.dir External directory
 #' @export
 #' @examples
@@ -25,7 +25,7 @@ Tabulate <- function(
   if (file.exists(paste0(code, '-dataset.RData'))) {
 
     dataset <- readRDS(paste0(code, '-dataset.RData'))
-    cat('Loaded ', as.character(code), '-dataset.RData\n', sep = '')
+    cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
   } else {
 

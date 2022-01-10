@@ -6,7 +6,7 @@
 #'
 #' This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.
 #' @param bn Bayesian network object
-#' @param code Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')
+#' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param keff.cutoff keff cutoff value (e.g., 0.95)
 #' @param metamodel List of deep neural network metamodels and weights

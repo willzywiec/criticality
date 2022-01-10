@@ -18,7 +18,7 @@ Sample(
 \arguments{
 \item{bn}{Bayesian network object}
 
-\item{code}{Monte Carlo radiation transport code (e.g., 'cog', 'mcnp')}
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{dataset}{Training and test data}
 
