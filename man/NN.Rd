@@ -15,7 +15,7 @@ NN(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
-  ext.dir
+  training.dir
 )
 }
 \arguments{
