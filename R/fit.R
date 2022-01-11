@@ -10,11 +10,12 @@
 #' @param batch.size Batch size
 #' @param epochs Number of training epochs
 #' @param val.split Validation split
+#' @param verbose Print TensorFlow output
 #' @param remodel.dir Directory that contains model files that are saved after every epoch
 #' @param i Model number
 #' @export
 #' @examples
-#' Fit(dataset, model, batch.size, epochs, val.split, remodel.dir, i)
+#' Fit(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i)
 
 Fit <- function(
   dataset,
@@ -22,6 +23,7 @@ Fit <- function(
   batch.size = 8192,
   epochs = 1500,
   val.split = 0.2,
+  verbose = TRUE,
   remodel.dir,
   i) {
 
@@ -35,7 +37,7 @@ Fit <- function(
       batch_size = batch.size,
       epochs = epochs,
       validation_split = val.split,
-      verbose = TRUE)
+      verbose = verbose)
   } else {
     checkpoint <- callback_model_checkpoint(paste0(remodel.dir, '/', i, '-{epoch:1d}.h5'), monitor = 'mean_absolute_error')
     model %>% fit(
@@ -44,7 +46,7 @@ Fit <- function(
       batch_size = batch.size,
       epochs = epochs,
       validation_split = val.split,
-      verbose = TRUE,
+      verbose = verbose,
       callbacks = c(checkpoint))
   }
 

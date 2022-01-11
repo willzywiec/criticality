@@ -15,6 +15,7 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
+#'
 #' @param training.dir Training directory
 #' @export
 #' @examples
@@ -31,6 +32,7 @@ NN <- function(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
+  verbose = FALSE,
   training.dir) {
 
   library(keras)

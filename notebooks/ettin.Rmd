@@ -1,0 +1,68 @@
+---
+title : 'Ettin'
+output : html_notebook
+---
+
+```{r, include = FALSE, warning = FALSE}
+
+# initialize environment
+if (!is.null(dev.list())) dev.off()
+rm(list = ls())
+cat('\014')
+
+```
+
+```{r, warning = FALSE}
+
+library(remotes)
+
+install_github('willzywiec/criticality', auth_token = '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', quiet = TRUE)
+
+library(criticality)
+
+# set variables
+ext.dir <- '/Users/will/Dropbox/criticality' # 'D:/7.8M' # 'D:/Apricorn'
+
+# tabulate data
+dataset <- Tabulate(
+  ext.dir = ext.dir)
+
+```
+
+```{r, warning = FALSE}
+
+# build metamodel
+metamodel <- Split(
+  dataset = dataset,
+  replot = FALSE,
+  ext.dir = ext.dir)
+
+```
+
+```{r, warning = FALSE}
+
+# set variables
+facility <- 'b332'
+dist.dir <- 'D:/dist'
+
+# build Bayesian network
+bn <- BN(
+  facility = facility,
+  ext.dir = ext.dir)
+
+# estimate risk
+risk <- Risk(
+  bn = bn,
+  dataset = dataset,
+  dist = 'gamma',
+  facility = facility,
+  metamodel = metamodel,
+  ext.dir = ext.dir)
+
+```
+
+```{r}
+
+# end
+
+```
