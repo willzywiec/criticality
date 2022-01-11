@@ -21,7 +21,7 @@ install_github('willzywiec/criticality', auth_token = 'ghp_6OInrSeNWXocV24lHZWKO
 library(criticality)
 
 # set variables
-ext.dir <- 'D:/7.8M' # 'D:/Apricorn'
+# ext.dir <- 'D:/7.8M' # 'D:/Apricorn'
 
 # tabulate data
 dataset <- Tabulate(
@@ -35,6 +35,7 @@ dataset <- Tabulate(
 metamodel <- Split(
   dataset = dataset,
   replot = FALSE,
+  verbose = TRUE,
   ext.dir = '/Users/will/Desktop/example')
 
 ```

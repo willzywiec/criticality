@@ -219,7 +219,7 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZXNcbmV4dC5kaXIgPC0gJ0Q6LzcuOE0nICMgJ0Q6L0Fwcmljb3JuJ1xuXG4jIHRhYnVsYXRlIGRhdGFcbmRhdGFzZXQgPC0gVGFidWxhdGUoXG4gIGV4dC5kaXIgPSAnL1VzZXJzL3dpbGwvRHJvcGJveC9jcml0aWNhbGl0eScpXG5cbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZXNcbiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZShcbiAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9Ecm9wYm94L2NyaXRpY2FsaXR5JylcbmBgYCJ9 -->
 <pre class="r"><code>
 library(remotes)
 
@@ -228,23 +228,26 @@ install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;ghp_6OInrSeNW
 library(criticality)
 
 # set variables
-ext.dir &lt;- &#39;D:/7.8M&#39; # &#39;D:/Apricorn&#39;
+# ext.dir &lt;- &#39;D:/7.8M&#39; # &#39;D:/Apricorn&#39;
 
 # tabulate data
 dataset &lt;- Tabulate(
-  ext.dir = &#39;/Users/will/Dropbox/criticality&#39;)
-</code></pre>
+  ext.dir = &#39;/Users/will/Dropbox/criticality&#39;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
+<pre><code>Loaded mcnp-dataset.RData</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIFNwbGl0KFxuICBkYXRhc2V0ID0gZGF0YXNldCxcbiAgcmVwbG90ID0gRkFMU0UsXG4gIGV4dC5kaXIgPSAnL1VzZXJzL3dpbGwvRGVza3RvcC9leGFtcGxlJylcblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIFNwbGl0KFxuICBkYXRhc2V0ID0gZGF0YXNldCxcbiAgcmVwbG90ID0gRkFMU0UsXG4gIHZlcmJvc2UgPSBUUlVFLFxuICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpXG5cbmBgYCJ9 -->
 <pre class="r"><code>
 # build metamodel
 metamodel &lt;- Split(
   dataset = dataset,
   replot = FALSE,
+  verbose = TRUE,
   ext.dir = &#39;/Users/will/Desktop/example&#39;)
 </code></pre>
 <!-- rnb-source-end -->
@@ -284,7 +287,7 @@ risk &lt;- Risk(
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKbGlicmFyeShyZW1vdGVzKQoKaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCgpsaWJyYXJ5KGNyaXRpY2FsaXR5KQoKIyBzZXQgdmFyaWFibGVzCmV4dC5kaXIgPC0gJ0Q6LzcuOE0nICMgJ0Q6L0Fwcmljb3JuJwoKIyB0YWJ1bGF0ZSBkYXRhCmRhdGFzZXQgPC0gVGFidWxhdGUoCiAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9Ecm9wYm94L2NyaXRpY2FsaXR5JykKCmBgYAoKYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0KCiMgYnVpbGQgbWV0YW1vZGVsCm1ldGFtb2RlbCA8LSBTcGxpdCgKICBkYXRhc2V0ID0gZGF0YXNldCwKICByZXBsb3QgPSBGQUxTRSwKICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpCgpgYGAKCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9CgojIHNldCB2YXJpYWJsZXMKZmFjaWxpdHkgPC0gJ2IzMzInCmRpc3QuZGlyIDwtICdEOi9kaXN0JwoKIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrCmJuIDwtIEJOKAogIGZhY2lsaXR5ID0gZmFjaWxpdHksCiAgZXh0LmRpciA9IGV4dC5kaXIpCgojIGVzdGltYXRlIHJpc2sKcmlzayA8LSBSaXNrKAogIGJuID0gYm4sCiAgZGF0YXNldCA9IGRhdGFzZXQsCiAgZGlzdCA9ICdnYW1tYScsCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwKICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsCiAgZXh0LmRpciA9IGV4dC5kaXIpCgpgYGAKCmBgYHtyfQoKIyBlbmQKCmBgYA==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKbGlicmFyeShyZW1vdGVzKQoKaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCgpsaWJyYXJ5KGNyaXRpY2FsaXR5KQoKIyBzZXQgdmFyaWFibGVzCiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nCgojIHRhYnVsYXRlIGRhdGEKZGF0YXNldCA8LSBUYWJ1bGF0ZSgKICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Ryb3Bib3gvY3JpdGljYWxpdHknKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKIyBidWlsZCBtZXRhbW9kZWwKbWV0YW1vZGVsIDwtIFNwbGl0KAogIGRhdGFzZXQgPSBkYXRhc2V0LAogIHJlcGxvdCA9IEZBTFNFLAogIHZlcmJvc2UgPSBUUlVFLAogIGV4dC5kaXIgPSAnL1VzZXJzL3dpbGwvRGVza3RvcC9leGFtcGxlJykKCmBgYAoKYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0KCiMgc2V0IHZhcmlhYmxlcwpmYWNpbGl0eSA8LSAnYjMzMicKZGlzdC5kaXIgPC0gJ0Q6L2Rpc3QnCgojIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmsKYm4gPC0gQk4oCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwKICBleHQuZGlyID0gZXh0LmRpcikKCiMgZXN0aW1hdGUgcmlzawpyaXNrIDwtIFJpc2soCiAgYm4gPSBibiwKICBkYXRhc2V0ID0gZGF0YXNldCwKICBkaXN0ID0gJ2dhbW1hJywKICBmYWNpbGl0eSA9IGZhY2lsaXR5LAogIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCwKICBleHQuZGlyID0gZXh0LmRpcikKCmBgYAoKYGBge3J9CgojIGVuZAoKYGBg</div>
 
 
 
