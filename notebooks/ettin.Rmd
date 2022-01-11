@@ -21,11 +21,11 @@ install_github('willzywiec/criticality', auth_token = 'ghp_6OInrSeNWXocV24lHZWKO
 library(criticality)
 
 # set variables
-ext.dir <- '/Users/will/Dropbox/criticality' # 'D:/7.8M' # 'D:/Apricorn'
+ext.dir <- 'D:/7.8M' # 'D:/Apricorn'
 
 # tabulate data
 dataset <- Tabulate(
-  ext.dir = ext.dir)
+  ext.dir = '/Users/will/Dropbox/criticality')
 
 ```
 
@@ -35,7 +35,7 @@ dataset <- Tabulate(
 metamodel <- Split(
   dataset = dataset,
   replot = FALSE,
-  ext.dir = ext.dir)
+  ext.dir = '/Users/will/Desktop/example')
 
 ```
 

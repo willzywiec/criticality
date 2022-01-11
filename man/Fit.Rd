@@ -10,6 +10,7 @@ Fit(
   batch.size = 8192,
   epochs = 1500,
   val.split = 0.2,
+  verbose = TRUE,
   remodel.dir,
   i
 )
@@ -25,6 +26,8 @@ Fit(
 
 \item{val.split}{Validation split}
 
+\item{verbose}{Visualize TensorFlow output}
+
 \item{remodel.dir}{Directory that contains model files that are saved after every epoch}
 
 \item{i}{Model number}
@@ -33,5 +36,5 @@ Fit(
 This function trains an existing deep neural network metamodel.
 }
 \examples{
-Fit(dataset, model, batch.size, epochs, val.split, remodel.dir, i)
+Fit(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i)
 }

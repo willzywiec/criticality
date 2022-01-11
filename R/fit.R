@@ -10,7 +10,7 @@
 #' @param batch.size Batch size
 #' @param epochs Number of training epochs
 #' @param val.split Validation split
-#' @param verbose Print TensorFlow output
+#' @param verbose Visualize TensorFlow output
 #' @param remodel.dir Directory that contains model files that are saved after every epoch
 #' @param i Model number
 #' @export

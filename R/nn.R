@@ -15,11 +15,11 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
-#'
+#' @param verbose Visualize TensorFlow output
 #' @param training.dir Training directory
 #' @export
 #' @examples
-#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, training.dir)
+#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, verbose, training.dir)
 
 NN <- function(
   dataset,
