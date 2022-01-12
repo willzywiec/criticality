@@ -4,7 +4,7 @@
 #
 #' Scale Function
 #'
-#' This function centers, scales, and one-hot encodes categorical variables.
+#' This function centers, scales, and one-hot encodes variables.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param output Processed output from Monte Carlo radiation transport code simulations
 #' @export

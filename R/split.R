@@ -15,10 +15,11 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
+#' @param verbose Visualize TensorFlow output
 #' @param ext.dir External directory
 #' @export
 #' @examples
-#' Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, ext.dir)
+#' Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, verbose, ext.dir)
 
 Split <- function(
   dataset,
@@ -31,6 +32,7 @@ Split <- function(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
+  verbose = TRUE,
   ext.dir) {
 
   # library(magrittr)
@@ -70,7 +72,7 @@ Split <- function(
   for (i in 1:length(form)) {
     training.dir <- paste0(ext.dir, '/training/', form[i])
     dir.create(training.dir, recursive = TRUE, showWarnings = FALSE)
-    metamodel[[i]] <- NN(dataset[[i]], batch.size, ensemble.size, epochs, layers, loss ,opt.alg, learning.rate, val.split, replot, training.dir)
+    metamodel[[i]] <- NN(dataset[[i]], batch.size, ensemble.size, epochs, layers, loss ,opt.alg, learning.rate, val.split, replot, verbose, training.dir)
   }
 
   names(metamodel) <- form

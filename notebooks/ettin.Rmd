@@ -32,11 +32,17 @@ dataset <- Tabulate(
 ```{r, warning = FALSE}
 
 # build metamodel
-metamodel <- Split(
+# metamodel <- Split(
+#   dataset = dataset,
+#   replot = FALSE,
+#   ext.dir = '/Users/will/Desktop/example')
+
+# build metamodel
+metamodel <- NN(
   dataset = dataset,
+  batch.size = 128,
   replot = FALSE,
-  verbose = TRUE,
-  ext.dir = '/Users/will/Desktop/example')
+  training.dir = '/Users/will/Desktop/example')
 
 ```
 
