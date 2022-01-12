@@ -12,7 +12,7 @@ Scale(code = "mcnp", output)
 \item{output}{Processed output from Monte Carlo radiation transport code simulations}
 }
 \description{
-This function centers, scales, and one-hot encodes categorical variables.
+This function centers, scales, and one-hot encodes variables.
 }
 \examples{
 Scale(code, output)

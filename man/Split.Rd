@@ -15,6 +15,7 @@ Split(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
+  verbose = TRUE,
   ext.dir
 )
 }
@@ -39,11 +40,13 @@ Split(
 
 \item{replot}{Boolean (TRUE/FALSE) that determines if plots should be regenerated}
 
+\item{verbose}{Visualize TensorFlow output}
+
 \item{ext.dir}{External directory}
 }
 \description{
 This function is a wrapper for the NN function, which subdivides the deep neural network metamodel based on fissile material form (e.g., "alpha", "delta", "heu").
 }
 \examples{
-Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, ext.dir)
+Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, verbose, ext.dir)
 }
