@@ -54,7 +54,7 @@ NN <- function(
   if (length(model.files) < ensemble.size) {
     for (i in (length(model.files) + 1):ensemble.size) {
       metamodel[[i]] <- Model(dataset, layers, loss, opt.alg, learning.rate)
-      history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split)
+      history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose)
       Plot(i, history[[i]])
       save_model_hdf5(metamodel[[i]], paste0(i, '.h5'))
     }
@@ -80,7 +80,7 @@ NN <- function(
     for (i in 1:ensemble.size) {
       remodel.files <- list.files(pattern = paste0(i, '-.+\\.h5$'))
       if (length(remodel.files) < epochs / 10) {
-        history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs / 10, val.split, remodel.dir, i)
+        history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs / 10, val.split, verbose, remodel.dir, i)
         Plot(i, history[[i]])
       } else {
         Plot(i)
