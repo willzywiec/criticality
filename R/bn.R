@@ -28,14 +28,16 @@ BN <- function(
 
   facility.data <- read.csv(paste0(data.dir, '/', facility, '.csv'))
 
-  # set parameters
-  op <- c('large sample', 'machining', 'metallurgy', 'small sample', 'solution', 'waste')
-  ctrl <- c('A', 'B', 'C', 'D', 'E', 'M', 'P')
+  # set categorical parameters
+  op <- table(facility.data$op) %>% names()
+  ctrl <- table(facility.data$ctrl) %>% names()
+  form <- table(facility.data$form) %>% names()
+  mod <- table(facility.data$mod) %>% names()
+  ref <- table(facility.data$ref) %>% names()
+
+  # set discrete parameters
   mass <- seq(0, 4000, 1)
-  form <- c('alpha', 'puo2')
-  mod <- c('mgo', 'ch2', 'sepiolite', 'h2o', 'none')
   rad <- seq(0, 18, 0.25) * 2.54
-  ref <- c('al', 'be', 'du', 'graphite', 'pb', 'mgo', 'ch2', 'ss304', 'h2o', 'none')
   thk <- seq(0, 11, 0.25) * 2.54
 
   Operation <- function(x) {

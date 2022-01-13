@@ -50,8 +50,9 @@ metamodel <- NN(
 
 ```{r, warning = FALSE}
 
-# set variable
+# set variables
 facility <- 'facility'
+ext.dir <- '/Users/will/Documents/GitHub/criticality/example'
 
 # build Bayesian network
 bn <- BN(

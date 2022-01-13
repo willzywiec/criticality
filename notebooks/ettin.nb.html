@@ -219,40 +219,23 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZXNcbiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZShcbiAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2V4YW1wbGUnKVxuYGBgIn0= -->
 <pre class="r"><code>
-library(remotes)</code></pre>
+library(remotes)
+
+install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
+
+library(criticality)
+
+# set variables
+# ext.dir &lt;- &#39;D:/7.8M&#39; # &#39;D:/Apricorn&#39;
+
+# tabulate data
+dataset &lt;- Tabulate(
+  ext.dir = &#39;/Users/will/Documents/GitHub/criticality/example&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYcmVtb3Rlc+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6ZGV2dG9vbHPigJk6XG5cbiAgICBkZXZfcGFja2FnZV9kZXBzLCBpbnN0YWxsX2Jpb2MsIGluc3RhbGxfYml0YnVja2V0LCBpbnN0YWxsX2NyYW4sXG4gICAgaW5zdGFsbF9kZXBzLCBpbnN0YWxsX2RldiwgaW5zdGFsbF9naXQsIGluc3RhbGxfZ2l0aHViLFxuICAgIGluc3RhbGxfZ2l0bGFiLCBpbnN0YWxsX2xvY2FsLCBpbnN0YWxsX3N2biwgaW5zdGFsbF91cmwsXG4gICAgaW5zdGFsbF92ZXJzaW9uLCB1cGRhdGVfcGFja2FnZXNcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTp1c2V0aGlz4oCZOlxuXG4gICAgZ2l0X2NyZWRlbnRpYWxzXG4ifQ== -->
-<pre><code>
-Attaching package: ‘remotes’
-
-The following objects are masked from ‘package:devtools’:
-
-    dev_package_deps, install_bioc, install_bitbucket, install_cran,
-    install_deps, install_dev, install_git, install_github,
-    install_gitlab, install_local, install_svn, install_url,
-    install_version, update_packages
-
-The following object is masked from ‘package:usethis’:
-
-    git_credentials</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpXG5gYGAifQ== -->
-<pre class="r"><code>install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IEZhaWxlZCB0byBpbnN0YWxsICdjcml0aWNhbGl0eScgZnJvbSBHaXRIdWI6XG4gIFN5c3RlbSBjb21tYW5kICdSJyBmYWlsZWQsIGV4aXQgc3RhdHVzOiAxLCBzdGRvdXQgKyBzdGRlcnI6XG5FPiAqIGNoZWNraW5nIGZvciBmaWxlIOKAmC9wcml2YXRlL3Zhci9mb2xkZXJzL214LzNtanBiMnkxNHgzMDJzbWpsZHpkNWw5ODAwMDBnbi9UL1J0bXBtbFZBQTgvcmVtb3RlczI2OGUxZDgxMDcxMS93aWxsenl3aWVjLWNyaXRpY2FsaXR5LWNhMTg2MWVkZmViNzVkZWYxZjgyNWFlOTkwMWFlMGVkYzQ1YzhhZmIvREVTQ1JJUFRJT07igJkgLi4uIE9LXG5FPiAqIHByZXBhcmluZyDigJhjcml0aWNhbGl0eeKAmTpcbkU+ICogY2hlY2tpbmcgREVTQ1JJUFRJT04gbWV0YS1pbmZvcm1hdGlvbiAuLi5JdCBpcyByZWNvbW1lbmRlZCB0byB1c2Ug4oCYZ2l2ZW7igJkgaW5zdGVhZCBvZiDigJhtaWRkbGXigJkuXG5FPiAgRVJST1JcbkU+IEF1dGhvcnNAUiBmaWVsZCBnaXZlcyBubyBwZXJzb24gd2l0aCBtYWludGFpbmVyIHJvbGUsIHZhbGlkIGVtYWlsXG5FPiBhZGRyZXNzIGFuZCBub24tZW1wdHkgbmFtZS5cbkU+IFxuRT4gU2VlIHNlY3Rpb24gJ1RoZSBERVNDUklQVElPTiBmaWxlJyBpbiB0aGUgJ1dyaXRpbmcgUiBFeHRlbnNpb25zJ1xuRT4gbWFudWFsLlxuIn0= -->
-<pre><code>Error: Failed to install &#39;criticality&#39; from GitHub:
-  System command &#39;R&#39; failed, exit status: 1, stdout + stderr:
-E&gt; * checking for file ‘/private/var/folders/mx/3mjpb2y14x302smjldzd5l980000gn/T/RtmpmlVAA8/remotes268e1d810711/willzywiec-criticality-ca1861edfeb75def1f825ae9901ae0edc45c8afb/DESCRIPTION’ ... OK
-E&gt; * preparing ‘criticality’:
-E&gt; * checking DESCRIPTION meta-information ...It is recommended to use ‘given’ instead of ‘middle’.
-E&gt;  ERROR
-E&gt; Authors@R field gives no person with maintainer role, valid email
-E&gt; address and non-empty name.
-E&gt; 
-E&gt; See section &#39;The DESCRIPTION file&#39; in the &#39;Writing R Extensions&#39;
-E&gt; manual.</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
+<pre><code>Loaded mcnp-dataset.RData</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -275,10 +258,10 @@ metamodel &lt;- NN(
   replot = FALSE,
   training.dir = &#39;/Users/will/Documents/GitHub/criticality/example&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiMjAyMi0wMS0xMyAxMTo1OTowMS40MjE0NDc6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG5Mb2FkZWQgVGVuc29yZmxvdyB2ZXJzaW9uIDIuNy4wXG4ifQ== -->
-<pre><code>2022-01-13 11:59:01.421447: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-Loaded Tensorflow version 2.7.0</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xMyAxMjowOTowNy4xNjcxNTM6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4ifQ== -->
+<pre><code>Loaded Tensorflow version 2.7.0
+2022-01-13 12:09:07.167153: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PXwgMTAwJVxuXG5NZWFuIFRyYWluaW5nIE1BRSA9IDAuMDA5MzY0XG5NZWFuIENyb3NzLVZhbGlkYXRpb24gTUFFID0gMC4wMTA0MjNcbk1lYW4gVGVzdCBNQUUgPSAwLjAxMDQ2MVxuXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwNDYxXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwMjM2IChOZWxkZXItTWVhZCwgQkZHUywgU0EpXG4ifQ== -->
 <pre><code>
@@ -309,12 +292,13 @@ bn &lt;- BN(
   facility = facility,
   ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gbGlicmFyeShibmxlYXJuKSA6IHRoZXJlIGlzIG5vIHBhY2thZ2UgY2FsbGVkIOKAmGJubGVhcm7igJlcbiJ9 -->
-<pre><code>Error in library(bnlearn) : there is no package called ‘bnlearn’</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gbGlicmFyeShmaXRkaXN0cnBsdXMpIDogXG4gIHRoZXJlIGlzIG5vIHBhY2thZ2UgY2FsbGVkIOKAmGZpdGRpc3RycGx1c+KAmVxuIn0= -->
+<pre><code>Error in library(fitdistrplus) : 
+  there is no package called ‘fitdistrplus’</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKbGlicmFyeShyZW1vdGVzKQoKaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCgpsaWJyYXJ5KGNyaXRpY2FsaXR5KQoKIyBzZXQgdmFyaWFibGVzCiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nCgojIHRhYnVsYXRlIGRhdGEKZGF0YXNldCA8LSBUYWJ1bGF0ZSgKICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScpCgpgYGAKCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9CgojIGJ1aWxkIG1ldGFtb2RlbAojIG1ldGFtb2RlbCA8LSBTcGxpdCgKIyAgIGRhdGFzZXQgPSBkYXRhc2V0LAojICAgcmVwbG90ID0gRkFMU0UsCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpCgojIGJ1aWxkIG1ldGFtb2RlbAptZXRhbW9kZWwgPC0gTk4oCiAgZGF0YXNldCA9IGRhdGFzZXQsCiAgYmF0Y2guc2l6ZSA9IDEyOCwKICBlcG9jaHMgPSA1MCwKICBlbnNlbWJsZS5zaXplID0gMSwKICByZXBsb3QgPSBGQUxTRSwKICB0cmFpbmluZy5kaXIgPSAnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9leGFtcGxlJykKCmBgYAoKYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0KCiMgc2V0IHZhcmlhYmxlCmZhY2lsaXR5IDwtICdmYWNpbGl0eScKCiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29yawpibiA8LSBCTigKICBmYWNpbGl0eSA9IGZhY2lsaXR5LAogIGV4dC5kaXIgPSBleHQuZGlyKQoKIyBlc3RpbWF0ZSByaXNrCnJpc2sgPC0gUmlzaygKICBibiA9IGJuLAogIGRhdGFzZXQgPSBkYXRhc2V0LAogIGRpc3QgPSAnZ2FtbWEnLAogIGZhY2lsaXR5ID0gZmFjaWxpdHksCiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLAogIHJpc2sucG9vbCA9IDEsCiAgc2FtcGxlcyA9IDFlKzA3LAogIGV4dC5kaXIgPSBleHQuZGlyKQoKYGBgCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKbGlicmFyeShyZW1vdGVzKQoKaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCgpsaWJyYXJ5KGNyaXRpY2FsaXR5KQoKIyBzZXQgdmFyaWFibGVzCiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nCgojIHRhYnVsYXRlIGRhdGEKZGF0YXNldCA8LSBUYWJ1bGF0ZSgKICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScpCgpgYGAKCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9CgojIGJ1aWxkIG1ldGFtb2RlbAojIG1ldGFtb2RlbCA8LSBTcGxpdCgKIyAgIGRhdGFzZXQgPSBkYXRhc2V0LAojICAgcmVwbG90ID0gRkFMU0UsCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpCgojIGJ1aWxkIG1ldGFtb2RlbAptZXRhbW9kZWwgPC0gTk4oCiAgZGF0YXNldCA9IGRhdGFzZXQsCiAgYmF0Y2guc2l6ZSA9IDEyOCwKICBlcG9jaHMgPSA1MCwKICBlbnNlbWJsZS5zaXplID0gMSwKICByZXBsb3QgPSBGQUxTRSwKICB0cmFpbmluZy5kaXIgPSAnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9leGFtcGxlJykKCmBgYAoKYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0KCiMgc2V0IHZhcmlhYmxlcwpmYWNpbGl0eSA8LSAnZmFjaWxpdHknCmV4dC5kaXIgPC0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScKCiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29yawpibiA8LSBCTigKICBmYWNpbGl0eSA9IGZhY2lsaXR5LAogIGV4dC5kaXIgPSBleHQuZGlyKQoKIyBlc3RpbWF0ZSByaXNrCnJpc2sgPC0gUmlzaygKICBibiA9IGJuLAogIGRhdGFzZXQgPSBkYXRhc2V0LAogIGRpc3QgPSAnZ2FtbWEnLAogIGZhY2lsaXR5ID0gZmFjaWxpdHksCiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLAogIHJpc2sucG9vbCA9IDEsCiAgc2FtcGxlcyA9IDFlKzA3LAogIGV4dC5kaXIgPSBleHQuZGlyKQoKYGBgCg==</div>
 
 
 
