@@ -6,15 +6,18 @@
 #'
 #' This function creates a Bayesian network from nuclear facility data.
 #' @param facility Facility name or building number (.csv file name)
+#' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param ext.dir External directory
 #' @export
 #' @examples
 #' BN(
 #'   facility = "facility",
+#'   dist = "gamma",
 #'   ext.dir = paste0(.libPaths(), "/criticality/example"))
 
 BN <- function(
   facility,
+  dist = 'gamma',
   ext.dir) {
 	
 	library(bnlearn)
