@@ -20,7 +20,7 @@ install_github('willzywiec/criticality', auth_token = 'ghp_6OInrSeNWXocV24lHZWKO
 
 library(criticality)
 
-# set variables
+# set variable
 # ext.dir <- 'D:/7.8M' # 'D:/Apricorn'
 
 # tabulate data
@@ -67,7 +67,7 @@ risk <- Risk(
   facility = facility,
   metamodel = metamodel,
   risk.pool = 1,
-  samples = 1e+07,
+  sample.size = 1e+07,
   ext.dir = ext.dir)
 
 ```

@@ -46,7 +46,7 @@ Sample <- function(
   if (keff.cutoff > 0) {
     bn.data <- cpdist(
       bn,
-      nodes = c('op', 'ctrl', 'mass', 'form', 'mod', 'rad', 'ref', 'thk'),
+      nodes = names(bn),
       evidence = (as.integer(mass) > 120) & (as.integer(rad) > 7),
       batch = sample.size,
       cluster = cluster,
@@ -54,7 +54,7 @@ Sample <- function(
   } else {
     bn.data <- cpdist(
       bn,
-      nodes = c('op', 'ctrl', 'mass', 'form', 'mod', 'rad', 'ref', 'thk'),
+      nodes = names(bn),
       evidence = TRUE,
       batch = sample.size,
       cluster = cluster,
