@@ -95,6 +95,8 @@ Sample <- function(
 
   bn.df <- Scale(code, subset(bn.data, -c(op, ctrl)))
 
+  View(bn.df)
+
   library(keras)
 
   # predict keff values
