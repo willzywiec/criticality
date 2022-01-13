@@ -107,8 +107,6 @@ Test <- function(
     wt <- 0
   }
 
-  cat(as.character(wt))
-
   wt.len <- length(wt)
 
   if (wt.len < meta.len && wt[1] != 0) {
