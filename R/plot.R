@@ -9,7 +9,9 @@
 #' @param history Training history
 #' @export
 #' @examples
-#' Plot(i, history)
+#' Plot(
+#'   i,
+#'   history)
 
 Plot <- function(
   i,

@@ -9,7 +9,9 @@
 #' @param ext.dir External directory
 #' @export
 #' @examples
-#' BN(facility, ext.dir)
+#' BN(
+#'   facility = "facility",
+#'   ext.dir = paste0(.libPaths(), "/criticality/example"))
 
 BN <- function(
   facility,

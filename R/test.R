@@ -12,7 +12,12 @@
 #' @param training.dir Training directory
 #' @export
 #' @examples
-#' Test(dataset, metamodel, training.mae, val.mae, training.dir)
+#' Test(
+#'   dataset,
+#'   metamodel,
+#'   training.mae,
+#'   val.mae,
+#'   training.dir = paste0(.libPaths(), "/criticality/example"))
 
 Test <- function(
   dataset,

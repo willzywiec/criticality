@@ -42,5 +42,15 @@ Risk(
 This function imports the Sample function and estimates process criticality accident risk.
 }
 \examples{
-Risk(bn, code, dataset, dist, facility, keff.cutoff, metamodel, risk.pool, sample.size, ext.dir)
+Risk(
+  bn,
+  code = "mcnp",
+  dataset,
+  dist = "gamma",
+  facility = "facility",
+  keff.cutoff = 0.9,
+  metamodel,
+  risk.pool = 1,
+  sample.size = 1e+07,
+  ext.dir = paste0(.libPaths(), "/criticality/example"))
 }

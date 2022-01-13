@@ -15,7 +15,15 @@
 #' @param i Model number
 #' @export
 #' @examples
-#' Fit(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i)
+#' Fit(
+#'   dataset,
+#'   model,
+#'   batch.size = 128,
+#'   epochs = 50,
+#'   val.split = 0.2,
+#'   verbose = TRUE,
+#'   remodel.dir,
+#'   i)
 
 Fit <- function(
   dataset,

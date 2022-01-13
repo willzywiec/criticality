@@ -19,7 +19,19 @@
 #' @param ext.dir External directory
 #' @export
 #' @examples
-#' Split(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, verbose, ext.dir)
+#' Split(
+#'   dataset,
+#'   batch.size = 128,
+#'   ensemble.size = 3,
+#'   epochs = 50,
+#'   layers = '8192-256-256-256-256-16',
+#'   loss = 'sse',
+#'   opt.alg = 'adamax',
+#'   learning.rate = 0.00075,
+#'   val.split = 0.2,
+#'   replot = TRUE,
+#'   verbose = TRUE,
+#'   ext.dir = paste0(.libPaths(), "/criticality/example"))
 
 Split <- function(
   dataset,

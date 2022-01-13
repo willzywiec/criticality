@@ -9,7 +9,9 @@
 #' @param output Processed output from Monte Carlo radiation transport code simulations
 #' @export
 #' @examples
-#' Scale(code, output)
+#' Scale(
+#'   code = "mcnp",
+#'   output)
 
 Scale <- function(
   code = 'mcnp',

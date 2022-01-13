@@ -12,7 +12,12 @@
 #' @param learning.rate Learning rate
 #' @export
 #' @examples
-#' Model(dataset, layers, loss, opt.alg, learning.rate)
+#' Model(
+#'   dataset,
+#'   layers = '8192-256-256-256-256-16',
+#'   loss = 'sse',
+#'   opt.alg = 'adamax',
+#'   learning.rate = 0.00075)
 
 Model <- function(
   dataset,

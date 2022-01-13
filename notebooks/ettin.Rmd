@@ -25,7 +25,7 @@ library(criticality)
 
 # tabulate data
 dataset <- Tabulate(
-  ext.dir = '/Users/will/Dropbox/criticality')
+  ext.dir = '/Users/will/Documents/GitHub/criticality/example')
 
 ```
 
@@ -41,16 +41,17 @@ dataset <- Tabulate(
 metamodel <- NN(
   dataset = dataset,
   batch.size = 128,
+  epochs = 50,
+  ensemble.size = 1,
   replot = FALSE,
-  training.dir = '/Users/will/Desktop/example')
+  training.dir = '/Users/will/Documents/GitHub/criticality/example')
 
 ```
 
 ```{r, warning = FALSE}
 
-# set variables
-facility <- 'b332'
-dist.dir <- 'D:/dist'
+# set variable
+facility <- 'facility'
 
 # build Bayesian network
 bn <- BN(
@@ -64,12 +65,8 @@ risk <- Risk(
   dist = 'gamma',
   facility = facility,
   metamodel = metamodel,
+  risk.pool = 1,
+  samples = 1e+07,
   ext.dir = ext.dir)
-
-```
-
-```{r}
-
-# end
 
 ```

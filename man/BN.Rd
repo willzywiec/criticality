@@ -15,5 +15,7 @@ BN(facility, ext.dir)
 This function creates a Bayesian network from nuclear facility data.
 }
 \examples{
-BN(facility, ext.dir)
+BN(
+  facility = "facility",
+  ext.dir = paste0(.libPaths(), "/criticality/example"))
 }

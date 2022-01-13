@@ -37,4 +37,13 @@ This function samples a Bayesian network object and uses an existing deep neural
 }
 \examples{
 Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
+Sample(
+  bn,
+  code = "mcnp",
+  dataset,
+  keff.cutoff = 0.9,
+  metamodel,
+  sample.size = 1e+07,
+  ext.dir = paste0(.libPaths(), "/criticality/example"),
+  risk.dir = )
 }

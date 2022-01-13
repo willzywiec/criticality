@@ -219,11 +219,11 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZXNcbiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZShcbiAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9Ecm9wYm94L2NyaXRpY2FsaXR5JylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbiMgaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpXG5cbmxpYnJhcnkoY3JpdGljYWxpdHkpXG5cbiMgc2V0IHZhcmlhYmxlc1xuIyBleHQuZGlyIDwtICdEOi83LjhNJyAjICdEOi9BcHJpY29ybidcblxuIyB0YWJ1bGF0ZSBkYXRhXG5kYXRhc2V0IDwtIFRhYnVsYXRlKFxuICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScpXG5gYGAifQ== -->
 <pre class="r"><code>
 library(remotes)
 
-install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
+# install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
 
 library(criticality)
 
@@ -232,16 +232,36 @@ library(criticality)
 
 # tabulate data
 dataset &lt;- Tabulate(
-  ext.dir = &#39;/Users/will/Dropbox/criticality&#39;)</code></pre>
+  ext.dir = &#39;/Users/will/Documents/GitHub/criticality/example&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
-<pre><code>Loaded mcnp-dataset.RData</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBnZ3Bsb3QyXG5OZWVkIGhlbHAgZ2V0dGluZyBzdGFydGVkPyBUcnkgdGhlIFIgR3JhcGhpY3MgQ29va2Jvb2s6XG5odHRwczovL3ItZ3JhcGhpY3Mub3JnXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGxhdHRpY2VcblJlZ2lzdGVyZWQgUzMgbWV0aG9kIG92ZXJ3cml0dGVuIGJ5ICdkYXRhLnRhYmxlJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LmRhdGEudGFibGUgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>Loading required package: ggplot2
+Need help getting started? Try the R Graphics Cookbook:
+https://r-graphics.org
+Loading required package: lattice
+Registered S3 method overwritten by &#39;data.table&#39;:
+  method           from
+  print.data.table     
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiSm9pbmluZywgYnkgPSBjKFwibWFzc1wiLCBcInJhZFwiLCBcInRoa1wiLCBcInZvbFwiLCBcImNvbmNcIiwgXCJrZWZmXCIsIFwic2RcIilcbkxvYWRlZCBtY25wLWRhdGFzZXQuUkRhdGFcbiJ9 -->
+<pre><code>Joining, by = c(&quot;mass&quot;, &quot;rad&quot;, &quot;thk&quot;, &quot;vol&quot;, &quot;conc&quot;, &quot;keff&quot;, &quot;sd&quot;)
+Loaded mcnp-dataset.RData</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxuIyBtZXRhbW9kZWwgPC0gU3BsaXQoXG4jICAgZGF0YXNldCA9IGRhdGFzZXQsXG4jICAgcmVwbG90ID0gRkFMU0UsXG4jICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKVxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIE5OKFxuICBkYXRhc2V0ID0gZGF0YXNldCxcbiAgYmF0Y2guc2l6ZSA9IDEyOCxcbiAgcmVwbG90ID0gRkFMU0UsXG4gIHRyYWluaW5nLmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxuIyBtZXRhbW9kZWwgPC0gU3BsaXQoXG4jICAgZGF0YXNldCA9IGRhdGFzZXQsXG4jICAgcmVwbG90ID0gRkFMU0UsXG4jICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKVxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIE5OKFxuICBkYXRhc2V0ID0gZGF0YXNldCxcbiAgYmF0Y2guc2l6ZSA9IDEyOCxcbiAgZXBvY2hzID0gNTAsXG4gIGVuc2VtYmxlLnNpemUgPSAxLFxuICByZXBsb3QgPSBGQUxTRSxcbiAgdHJhaW5pbmcuZGlyID0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScpXG5gYGAifQ== -->
 <pre class="r"><code>
 # build metamodel
 # metamodel &lt;- Split(
@@ -253,79 +273,51 @@ dataset &lt;- Tabulate(
 metamodel &lt;- NN(
   dataset = dataset,
   batch.size = 128,
+  epochs = 50,
+  ensemble.size = 1,
   replot = FALSE,
-  training.dir = &#39;/Users/will/Desktop/example&#39;)</code></pre>
+  training.dir = &#39;/Users/will/Documents/GitHub/criticality/example&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xMiAxODowNTo0OS43NzQyMjc6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4ifQ== -->
-<pre><code>Loaded Tensorflow version 2.7.0
-2022-01-12 18:05:49.774227: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiMjAyMi0wMS0xMyAxMTo1OTowMS40MjE0NDc6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG5Mb2FkZWQgVGVuc29yZmxvdyB2ZXJzaW9uIDIuNy4wXG4ifQ== -->
+<pre><code>2022-01-13 11:59:01.421447: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Loaded Tensorflow version 2.7.0</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDIwJVxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gIHw9PT09PT09PT09PT09PT09PT09PT09PT09PT09ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICA0MCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgNjAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gICAgICAgICAgICAgIHwgIDgwJVxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gIHw9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuTWVhbiBUcmFpbmluZyBNQUUgPSAwLjAwMDQ2NlxuTWVhbiBDcm9zcy1WYWxpZGF0aW9uIE1BRSA9IDAuMDAwNDk1XG5NZWFuIFRlc3QgTUFFID0gMC4wMDA0NTBcblxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjAwMDM1MVxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjAwMDM0OSAoTmVsZGVyLU1lYWQsIEJGR1MsIFNBKVxuLVxuVGVzdCBNQUUgcmVhY2hlcyBhIGxvY2FsIG1pbmltdW0gd2l0aCA0IG5ldXJhbCBuZXR3b3Jrc1xuXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDAwMzUwXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDAwMzQ5IChOZWxkZXItTWVhZCwgQkZHUywgU0EpXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PXwgMTAwJVxuXG5NZWFuIFRyYWluaW5nIE1BRSA9IDAuMDA5MzY0XG5NZWFuIENyb3NzLVZhbGlkYXRpb24gTUFFID0gMC4wMTA0MjNcbk1lYW4gVGVzdCBNQUUgPSAwLjAxMDQ2MVxuXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwNDYxXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwMjM2IChOZWxkZXItTWVhZCwgQkZHUywgU0EpXG4ifQ== -->
 <pre><code>
 
   |                                                                           
   |                                                                     |   0%
   |                                                                           
-  |==============                                                       |  20%
-  |                                                                           
-  |============================                                         |  40%
-  |                                                                           
-  |=========================================                            |  60%
-  |                                                                           
-  |=======================================================              |  80%
-  |                                                                           
   |=====================================================================| 100%
 
-Mean Training MAE = 0.000466
-Mean Cross-Validation MAE = 0.000495
-Mean Test MAE = 0.000450
+Mean Training MAE = 0.009364
+Mean Cross-Validation MAE = 0.010423
+Mean Test MAE = 0.010461
 
-Ensemble Test MAE = 0.000351
-Ensemble Test MAE = 0.000349 (Nelder-Mead, BFGS, SA)
--
-Test MAE reaches a local minimum with 4 neural networks
-
-Ensemble Test MAE = 0.000350
-Ensemble Test MAE = 0.000349 (Nelder-Mead, BFGS, SA)</code></pre>
+Ensemble Test MAE = 0.010461
+Ensemble Test MAE = 0.010236 (Nelder-Mead, BFGS, SA)</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZXNcbmZhY2lsaXR5IDwtICdiMzMyJ1xuZGlzdC5kaXIgPC0gJ0Q6L2Rpc3QnXG5cbiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29ya1xuYm4gPC0gQk4oXG4gIGZhY2lsaXR5ID0gZmFjaWxpdHksXG4gIGV4dC5kaXIgPSBleHQuZGlyKVxuXG4jIGVzdGltYXRlIHJpc2tcbnJpc2sgPC0gUmlzayhcbiAgYm4gPSBibixcbiAgZGF0YXNldCA9IGRhdGFzZXQsXG4gIGRpc3QgPSAnZ2FtbWEnLFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsXG4gIGV4dC5kaXIgPSBleHQuZGlyKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
 <pre class="r"><code>
-# set variables
-facility &lt;- &#39;b332&#39;
-dist.dir &lt;- &#39;D:/dist&#39;
+# set variable
+facility &lt;- &#39;facility&#39;
 
 # build Bayesian network
 bn &lt;- BN(
   facility = facility,
-  ext.dir = ext.dir)
-
-# estimate risk
-risk &lt;- Risk(
-  bn = bn,
-  dataset = dataset,
-  dist = &#39;gamma&#39;,
-  facility = facility,
-  metamodel = metamodel,
-  ext.dir = ext.dir)
-</code></pre>
+  ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGVuZFxuXG5gYGAifQ== -->
-<pre class="r"><code>
-# end
-</code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gbGlicmFyeShibmxlYXJuKSA6IHRoZXJlIGlzIG5vIHBhY2thZ2UgY2FsbGVkIOKAmGJubGVhcm7igJlcbiJ9 -->
+<pre><code>Error in library(bnlearn) : there is no package called ‘bnlearn’</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKbGlicmFyeShyZW1vdGVzKQoKaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCgpsaWJyYXJ5KGNyaXRpY2FsaXR5KQoKIyBzZXQgdmFyaWFibGVzCiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nCgojIHRhYnVsYXRlIGRhdGEKZGF0YXNldCA8LSBUYWJ1bGF0ZSgKICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Ryb3Bib3gvY3JpdGljYWxpdHknKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKIyBidWlsZCBtZXRhbW9kZWwKIyBtZXRhbW9kZWwgPC0gU3BsaXQoCiMgICBkYXRhc2V0ID0gZGF0YXNldCwKIyAgIHJlcGxvdCA9IEZBTFNFLAojICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKQoKIyBidWlsZCBtZXRhbW9kZWwKbWV0YW1vZGVsIDwtIE5OKAogIGRhdGFzZXQgPSBkYXRhc2V0LAogIGJhdGNoLnNpemUgPSAxMjgsCiAgcmVwbG90ID0gRkFMU0UsCiAgdHJhaW5pbmcuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpCgpgYGAKCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9CgojIHNldCB2YXJpYWJsZXMKZmFjaWxpdHkgPC0gJ2IzMzInCmRpc3QuZGlyIDwtICdEOi9kaXN0JwoKIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrCmJuIDwtIEJOKAogIGZhY2lsaXR5ID0gZmFjaWxpdHksCiAgZXh0LmRpciA9IGV4dC5kaXIpCgojIGVzdGltYXRlIHJpc2sKcmlzayA8LSBSaXNrKAogIGJuID0gYm4sCiAgZGF0YXNldCA9IGRhdGFzZXQsCiAgZGlzdCA9ICdnYW1tYScsCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwKICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsCiAgZXh0LmRpciA9IGV4dC5kaXIpCgpgYGAKCmBgYHtyfQoKIyBlbmQKCmBgYA==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKbGlicmFyeShyZW1vdGVzKQoKaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCgpsaWJyYXJ5KGNyaXRpY2FsaXR5KQoKIyBzZXQgdmFyaWFibGVzCiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nCgojIHRhYnVsYXRlIGRhdGEKZGF0YXNldCA8LSBUYWJ1bGF0ZSgKICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScpCgpgYGAKCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9CgojIGJ1aWxkIG1ldGFtb2RlbAojIG1ldGFtb2RlbCA8LSBTcGxpdCgKIyAgIGRhdGFzZXQgPSBkYXRhc2V0LAojICAgcmVwbG90ID0gRkFMU0UsCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpCgojIGJ1aWxkIG1ldGFtb2RlbAptZXRhbW9kZWwgPC0gTk4oCiAgZGF0YXNldCA9IGRhdGFzZXQsCiAgYmF0Y2guc2l6ZSA9IDEyOCwKICBlcG9jaHMgPSA1MCwKICBlbnNlbWJsZS5zaXplID0gMSwKICByZXBsb3QgPSBGQUxTRSwKICB0cmFpbmluZy5kaXIgPSAnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9leGFtcGxlJykKCmBgYAoKYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0KCiMgc2V0IHZhcmlhYmxlCmZhY2lsaXR5IDwtICdmYWNpbGl0eScKCiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29yawpibiA8LSBCTigKICBmYWNpbGl0eSA9IGZhY2lsaXR5LAogIGV4dC5kaXIgPSBleHQuZGlyKQoKIyBlc3RpbWF0ZSByaXNrCnJpc2sgPC0gUmlzaygKICBibiA9IGJuLAogIGRhdGFzZXQgPSBkYXRhc2V0LAogIGRpc3QgPSAnZ2FtbWEnLAogIGZhY2lsaXR5ID0gZmFjaWxpdHksCiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLAogIHJpc2sucG9vbCA9IDEsCiAgc2FtcGxlcyA9IDFlKzA3LAogIGV4dC5kaXIgPSBleHQuZGlyKQoKYGBgCg==</div>
 
 
 

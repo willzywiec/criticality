@@ -21,5 +21,10 @@ Test(dataset, metamodel, training.mae, val.mae, training.dir)
 This function optimizes an existing deep neural network metamodel and generates .csv predictions for all training and test data.
 }
 \examples{
-Test(dataset, metamodel, training.mae, val.mae, training.dir)
+Test(
+  dataset,
+  metamodel,
+  training.mae,
+  val.mae,
+  training.dir = paste0(.libPaths(), "/criticality/example"))
 }

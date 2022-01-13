@@ -19,7 +19,19 @@
 #' @param training.dir Training directory
 #' @export
 #' @examples
-#' NN(dataset, batch.size, ensemble.size, epochs, layers, loss, opt.alg, learning.rate, val.split, replot, verbose, training.dir)
+#' NN(
+#'   dataset,
+#'   batch.size = 128,
+#'   ensemble.size = 3,
+#'   epochs = 50,
+#'   layers = '8192-256-256-256-256-16',
+#'   loss = 'sse',
+#'   opt.alg = 'adamax',
+#'   learning.rate = 0.00075,
+#'   val.split = 0.2,
+#'   replot = TRUE,
+#'   verbose = TRUE,
+#'   training.dir = paste0(.libPaths(), "/criticality/example"))
 
 NN <- function(
   dataset,
