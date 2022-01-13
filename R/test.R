@@ -107,7 +107,7 @@ Test <- function(
     wt <- 0
   }
 
-  print(wt)
+  cat(wt)
 
   wt.len <- length(wt)
 
