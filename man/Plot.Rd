@@ -17,5 +17,6 @@ This function generates and saves plots and data.
 \examples{
 Plot(
   i,
-  history)
+  history
+)
 }

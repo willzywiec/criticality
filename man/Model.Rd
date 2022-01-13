@@ -32,5 +32,6 @@ Model(
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
   opt.alg = 'adamax',
-  learning.rate = 0.00075)
+  learning.rate = 0.00075
+)
 }

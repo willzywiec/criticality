@@ -17,5 +17,6 @@ This function centers, scales, and one-hot encodes variables.
 \examples{
 Scale(
   code = "mcnp",
-  output)
+  output
+)
 }

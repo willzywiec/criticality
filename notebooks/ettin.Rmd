@@ -21,11 +21,11 @@ install_github('willzywiec/criticality', auth_token = 'ghp_6OInrSeNWXocV24lHZWKO
 library(criticality)
 
 # set variable
-# ext.dir <- 'D:/7.8M' # 'D:/Apricorn'
+ext.dir <- '/Users/will/Documents/GitHub/criticality/example'
 
 # tabulate data
 dataset <- Tabulate(
-  ext.dir = '/Users/will/Documents/GitHub/criticality/example')
+  ext.dir = ext.dir)
 
 ```
 
@@ -44,15 +44,14 @@ metamodel <- NN(
   epochs = 50,
   ensemble.size = 1,
   replot = FALSE,
-  training.dir = '/Users/will/Documents/GitHub/criticality/example')
+  training.dir = ext.dir)
 
 ```
 
 ```{r, warning = FALSE}
 
-# set variables
+# set variable
 facility <- 'facility'
-ext.dir <- '/Users/will/Documents/GitHub/criticality/example'
 
 # build Bayesian network
 bn <- BN(

@@ -4,10 +4,12 @@
 \alias{BN}
 \title{BN Function}
 \usage{
-BN(facility, ext.dir)
+BN(facility, dist = "gamma", ext.dir)
 }
 \arguments{
 \item{facility}{Facility name or building number (.csv file name)}
+
+\item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
 \item{ext.dir}{External directory}
 }
@@ -17,5 +19,7 @@ This function creates a Bayesian network from nuclear facility data.
 \examples{
 BN(
   facility = "facility",
-  ext.dir = paste0(.libPaths(), "/criticality/example"))
+  dist = "gamma",
+  ext.dir = paste0(.libPaths(), "/criticality/example")
+)
 }
