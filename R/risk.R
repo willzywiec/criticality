@@ -27,7 +27,8 @@
 #'   metamodel,
 #'   risk.pool = 1,
 #'   sample.size = 1e+07,
-#'   ext.dir = paste0(.libPaths(), "/criticality/example"))
+#'   ext.dir = paste0(.libPaths(), "/criticality/example")
+#' )
 
 Risk <- function(
   bn,

@@ -11,7 +11,8 @@
 #' @examples
 #' Plot(
 #'   i,
-#'   history)
+#'   history
+#' )
 
 Plot <- function(
   i,

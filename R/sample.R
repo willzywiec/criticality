@@ -15,7 +15,6 @@
 #' @param risk.dir Risk directory
 #' @export
 #' @examples
-#' Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
 #' Sample(
 #'   bn,
 #'   code = "mcnp",
@@ -24,7 +23,8 @@
 #'   metamodel,
 #'   sample.size = 1e+07,
 #'   ext.dir = paste0(.libPaths(), "/criticality/example"),
-#'   risk.dir = )
+#'   risk.dir
+#' )
 
 Sample <- function(
   bn,
@@ -37,7 +37,6 @@ Sample <- function(
   risk.dir) {
 
   library(bnlearn)
-  library(keras)
   library(magrittr)
   library(parallel)
 
@@ -96,9 +95,11 @@ Sample <- function(
 
   bn.df <- Scale(code, subset(bn.data, -c(op, ctrl)))
 
+  library(keras)
+
   # predict keff values
   if (keff.cutoff > 0) {
-    bn.data$keff <- metamodel[[1]][[1]] %>% keras::predict(bn.df)
+    bn.data$keff <- metamodel[[1]][[1]] %>% predict(bn.df)
     bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff)
     bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
@@ -111,11 +112,11 @@ Sample <- function(
 
   if (typeof(metamodel[[2]]) == 'list') {
     keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
-    for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% keras::predict(bn.df)
+    for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% predict(bn.df)
     bn.data$keff <- rowSums(keff * metamodel[[2]][[1]])
   } else {
     keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
-    for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% keras::predict(bn.df)
+    for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% predict(bn.df)
     bn.data$keff <- rowMeans(keff)
   }
 

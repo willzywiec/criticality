@@ -23,7 +23,8 @@
 #'   val.split = 0.2,
 #'   verbose = TRUE,
 #'   remodel.dir,
-#'   i)
+#'   i
+#' )
 
 Fit <- function(
   dataset,

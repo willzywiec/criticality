@@ -11,7 +11,8 @@
 #' @examples
 #' Tabulate(
 #'   code = "mcnp",
-#'   ext.dir = paste0(.libPaths(), "/criticality/examples"))
+#'   ext.dir = paste0(.libPaths(), "/criticality/examples")
+#' )
 
 Tabulate <- function(
   code = 'mcnp',

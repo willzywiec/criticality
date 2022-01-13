@@ -11,7 +11,8 @@
 #' @examples
 #' Scale(
 #'   code = "mcnp",
-#'   output)
+#'   output
+#' )
 
 Scale <- function(
   code = 'mcnp',

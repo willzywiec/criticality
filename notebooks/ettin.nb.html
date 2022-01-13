@@ -219,12 +219,24 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZVxuIyBleHQuZGlyIDwtICdEOi83LjhNJyAjICdEOi9BcHJpY29ybidcblxuIyB0YWJ1bGF0ZSBkYXRhXG5kYXRhc2V0IDwtIFRhYnVsYXRlKFxuICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScpXG5gYGAifQ== -->
 <pre class="r"><code>
 library(remotes)
 
-install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)</code></pre>
+install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
+
+library(criticality)
+
+# set variable
+# ext.dir &lt;- &#39;D:/7.8M&#39; # &#39;D:/Apricorn&#39;
+
+# tabulate data
+dataset &lt;- Tabulate(
+  ext.dir = &#39;/Users/will/Documents/GitHub/criticality/example&#39;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
+<pre><code>Loaded mcnp-dataset.RData</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -246,31 +258,14 @@ metamodel &lt;- NN(
   replot = FALSE,
   training.dir = &#39;/Users/will/Documents/GitHub/criticality/example&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xMyAxMjozMDoxMy43MDE0Mzc6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4ifQ== -->
-<pre><code>Loaded Tensorflow version 2.7.0
-2022-01-13 12:30:13.701437: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PXwgMTAwJVxuXG5NZWFuIFRyYWluaW5nIE1BRSA9IDAuMDA5MzY0XG5NZWFuIENyb3NzLVZhbGlkYXRpb24gTUFFID0gMC4wMTA0MjNcbk1lYW4gVGVzdCBNQUUgPSAwLjAxMDQ2MVxuXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwNDYxXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwMjM2IChOZWxkZXItTWVhZCwgQkZHUywgU0EpXG4ifQ== -->
-<pre><code>
-
-  |                                                                           
-  |                                                                     |   0%
-  |                                                                           
-  |=====================================================================| 100%
-
-Mean Training MAE = 0.009364
-Mean Cross-Validation MAE = 0.010423
-Mean Test MAE = 0.010461
-
-Ensemble Test MAE = 0.010461
-Ensemble Test MAE = 0.010236 (Nelder-Mead, BFGS, SA)</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gbGlicmFyeShrZXJhcykgOiB0aGVyZSBpcyBubyBwYWNrYWdlIGNhbGxlZCDigJhrZXJhc+KAmVxuIn0= -->
+<pre><code>Error in library(keras) : there is no package called ‘keras’</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZXNcbmZhY2lsaXR5IDwtICdmYWNpbGl0eSdcbmV4dC5kaXIgPC0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZSdcblxuIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrXG5ibiA8LSBCTihcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5cbiMgZXN0aW1hdGUgcmlza1xucmlzayA8LSBSaXNrKFxuICBibiA9IGJuLFxuICBkYXRhc2V0ID0gZGF0YXNldCxcbiAgZGlzdCA9ICdnYW1tYScsXG4gIGZhY2lsaXR5ID0gZmFjaWxpdHksXG4gIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCxcbiAgcmlzay5wb29sID0gMSxcbiAgc2FtcGxlLnNpemUgPSAxZSswNyxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZXNcbmZhY2lsaXR5IDwtICdmYWNpbGl0eSdcbmV4dC5kaXIgPC0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZSdcblxuIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrXG5ibiA8LSBCTihcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
 <pre class="r"><code>
 # set variables
 facility &lt;- &#39;facility&#39;
@@ -279,9 +274,32 @@ ext.dir &lt;- &#39;/Users/will/Documents/GitHub/criticality/example&#39;
 # build Bayesian network
 bn &lt;- BN(
   facility = facility,
-  ext.dir = ext.dir)
+  ext.dir = ext.dir)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IE1BU1NcblxuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmE1BU1PigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTpkcGx5cuKAmTpcblxuICAgIHNlbGVjdFxuXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IHN1cnZpdmFsXG4ifQ== -->
+<pre><code>
+Attaching package: ‘dplyr’
 
-# estimate risk
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: MASS
+
+Attaching package: ‘MASS’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+Loading required package: survival</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBlc3RpbWF0ZSByaXNrXG5yaXNrIDwtIFJpc2soXG4gIGJuID0gYm4sXG4gIGRhdGFzZXQgPSBkYXRhc2V0LFxuICBkaXN0ID0gJ2dhbW1hJyxcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLFxuICByaXNrLnBvb2wgPSAxLFxuICBzYW1wbGUuc2l6ZSA9IDFlKzA3LFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
+<pre class="r"><code># estimate risk
 risk &lt;- Risk(
   bn = bn,
   dataset = dataset,

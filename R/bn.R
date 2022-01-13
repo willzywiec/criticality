@@ -13,7 +13,8 @@
 #' BN(
 #'   facility = "facility",
 #'   dist = "gamma",
-#'   ext.dir = paste0(.libPaths(), "/criticality/example"))
+#'   ext.dir = paste0(.libPaths(), "/criticality/example")
+#' )
 
 BN <- function(
   facility,
