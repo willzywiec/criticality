@@ -109,7 +109,7 @@ Test <- function(
 
   wt.len <- length(wt)
 
-  if (wt.len < meta.len && wt[[1]][1] != 0) {
+  if (wt.len < meta.len && wt[1] != 0) {
 
     if (wt.len == 1) {
       cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network\n\n', sep = '')
