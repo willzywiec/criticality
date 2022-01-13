@@ -37,6 +37,7 @@ Sample <- function(
   risk.dir) {
 
   library(bnlearn)
+  library(keras)
   library(magrittr)
   library(parallel)
 
@@ -94,10 +95,6 @@ Sample <- function(
   bn.data$conc <- conc
 
   bn.df <- Scale(code, subset(bn.data, -c(op, ctrl)))
-
-  View(bn.df)
-
-  library(keras)
 
   # predict keff values
   if (keff.cutoff > 0) {
