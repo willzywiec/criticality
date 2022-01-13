@@ -2,8 +2,8 @@ Package: criticality
 Title: Models Fissile Material Operations
 Version: 0.0.0.9000
 Authors@R: 
-    person("William", "Zywiec", "willzywiec@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("William", "Zywiec", , "willzywiec@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1842-9599"))
 Description: This R package models f
 License: `use_mit_license()`
 Encoding: UTF-8

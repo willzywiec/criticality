@@ -219,43 +219,40 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbiMgaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpXG5cbmxpYnJhcnkoY3JpdGljYWxpdHkpXG5cbiMgc2V0IHZhcmlhYmxlc1xuIyBleHQuZGlyIDwtICdEOi83LjhNJyAjICdEOi9BcHJpY29ybidcblxuIyB0YWJ1bGF0ZSBkYXRhXG5kYXRhc2V0IDwtIFRhYnVsYXRlKFxuICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZXhhbXBsZScpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5gYGAifQ== -->
 <pre class="r"><code>
-library(remotes)
-
-# install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
-
-library(criticality)
-
-# set variables
-# ext.dir &lt;- &#39;D:/7.8M&#39; # &#39;D:/Apricorn&#39;
-
-# tabulate data
-dataset &lt;- Tabulate(
-  ext.dir = &#39;/Users/will/Documents/GitHub/criticality/example&#39;)</code></pre>
+library(remotes)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBnZ3Bsb3QyXG5OZWVkIGhlbHAgZ2V0dGluZyBzdGFydGVkPyBUcnkgdGhlIFIgR3JhcGhpY3MgQ29va2Jvb2s6XG5odHRwczovL3ItZ3JhcGhpY3Mub3JnXG5Mb2FkaW5nIHJlcXVpcmVkIHBhY2thZ2U6IGxhdHRpY2VcblJlZ2lzdGVyZWQgUzMgbWV0aG9kIG92ZXJ3cml0dGVuIGJ5ICdkYXRhLnRhYmxlJzpcbiAgbWV0aG9kICAgICAgICAgICBmcm9tXG4gIHByaW50LmRhdGEudGFibGUgICAgIFxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
-<pre><code>Loading required package: ggplot2
-Need help getting started? Try the R Graphics Cookbook:
-https://r-graphics.org
-Loading required package: lattice
-Registered S3 method overwritten by &#39;data.table&#39;:
-  method           from
-  print.data.table     
+<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYcmVtb3Rlc+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdHMgYXJlIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6ZGV2dG9vbHPigJk6XG5cbiAgICBkZXZfcGFja2FnZV9kZXBzLCBpbnN0YWxsX2Jpb2MsIGluc3RhbGxfYml0YnVja2V0LCBpbnN0YWxsX2NyYW4sXG4gICAgaW5zdGFsbF9kZXBzLCBpbnN0YWxsX2RldiwgaW5zdGFsbF9naXQsIGluc3RhbGxfZ2l0aHViLFxuICAgIGluc3RhbGxfZ2l0bGFiLCBpbnN0YWxsX2xvY2FsLCBpbnN0YWxsX3N2biwgaW5zdGFsbF91cmwsXG4gICAgaW5zdGFsbF92ZXJzaW9uLCB1cGRhdGVfcGFja2FnZXNcblxuVGhlIGZvbGxvd2luZyBvYmplY3QgaXMgbWFza2VkIGZyb20g4oCYcGFja2FnZTp1c2V0aGlz4oCZOlxuXG4gICAgZ2l0X2NyZWRlbnRpYWxzXG4ifQ== -->
+<pre><code>
+Attaching package: ‘remotes’
 
-Attaching package: ‘dplyr’
+The following objects are masked from ‘package:devtools’:
 
-The following objects are masked from ‘package:stats’:
+    dev_package_deps, install_bioc, install_bitbucket, install_cran,
+    install_deps, install_dev, install_git, install_github,
+    install_gitlab, install_local, install_svn, install_url,
+    install_version, update_packages
 
-    filter, lag
+The following object is masked from ‘package:usethis’:
 
-The following objects are masked from ‘package:base’:
-
-    intersect, setdiff, setequal, union</code></pre>
+    git_credentials</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiSm9pbmluZywgYnkgPSBjKFwibWFzc1wiLCBcInJhZFwiLCBcInRoa1wiLCBcInZvbFwiLCBcImNvbmNcIiwgXCJrZWZmXCIsIFwic2RcIilcbkxvYWRlZCBtY25wLWRhdGFzZXQuUkRhdGFcbiJ9 -->
-<pre><code>Joining, by = c(&quot;mass&quot;, &quot;rad&quot;, &quot;thk&quot;, &quot;vol&quot;, &quot;conc&quot;, &quot;keff&quot;, &quot;sd&quot;)
-Loaded mcnp-dataset.RData</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpXG5gYGAifQ== -->
+<pre class="r"><code>install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IEZhaWxlZCB0byBpbnN0YWxsICdjcml0aWNhbGl0eScgZnJvbSBHaXRIdWI6XG4gIFN5c3RlbSBjb21tYW5kICdSJyBmYWlsZWQsIGV4aXQgc3RhdHVzOiAxLCBzdGRvdXQgKyBzdGRlcnI6XG5FPiAqIGNoZWNraW5nIGZvciBmaWxlIOKAmC9wcml2YXRlL3Zhci9mb2xkZXJzL214LzNtanBiMnkxNHgzMDJzbWpsZHpkNWw5ODAwMDBnbi9UL1J0bXBtbFZBQTgvcmVtb3RlczI2OGUxZDgxMDcxMS93aWxsenl3aWVjLWNyaXRpY2FsaXR5LWNhMTg2MWVkZmViNzVkZWYxZjgyNWFlOTkwMWFlMGVkYzQ1YzhhZmIvREVTQ1JJUFRJT07igJkgLi4uIE9LXG5FPiAqIHByZXBhcmluZyDigJhjcml0aWNhbGl0eeKAmTpcbkU+ICogY2hlY2tpbmcgREVTQ1JJUFRJT04gbWV0YS1pbmZvcm1hdGlvbiAuLi5JdCBpcyByZWNvbW1lbmRlZCB0byB1c2Ug4oCYZ2l2ZW7igJkgaW5zdGVhZCBvZiDigJhtaWRkbGXigJkuXG5FPiAgRVJST1JcbkU+IEF1dGhvcnNAUiBmaWVsZCBnaXZlcyBubyBwZXJzb24gd2l0aCBtYWludGFpbmVyIHJvbGUsIHZhbGlkIGVtYWlsXG5FPiBhZGRyZXNzIGFuZCBub24tZW1wdHkgbmFtZS5cbkU+IFxuRT4gU2VlIHNlY3Rpb24gJ1RoZSBERVNDUklQVElPTiBmaWxlJyBpbiB0aGUgJ1dyaXRpbmcgUiBFeHRlbnNpb25zJ1xuRT4gbWFudWFsLlxuIn0= -->
+<pre><code>Error: Failed to install &#39;criticality&#39; from GitHub:
+  System command &#39;R&#39; failed, exit status: 1, stdout + stderr:
+E&gt; * checking for file ‘/private/var/folders/mx/3mjpb2y14x302smjldzd5l980000gn/T/RtmpmlVAA8/remotes268e1d810711/willzywiec-criticality-ca1861edfeb75def1f825ae9901ae0edc45c8afb/DESCRIPTION’ ... OK
+E&gt; * preparing ‘criticality’:
+E&gt; * checking DESCRIPTION meta-information ...It is recommended to use ‘given’ instead of ‘middle’.
+E&gt;  ERROR
+E&gt; Authors@R field gives no person with maintainer role, valid email
+E&gt; address and non-empty name.
+E&gt; 
+E&gt; See section &#39;The DESCRIPTION file&#39; in the &#39;Writing R Extensions&#39;
+E&gt; manual.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
