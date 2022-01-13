@@ -219,23 +219,15 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZXNcbiMgZXh0LmRpciA8LSAnRDovNy44TScgIyAnRDovQXByaWNvcm4nXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZShcbiAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9Ecm9wYm94L2NyaXRpY2FsaXR5JylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuYGBgIn0= -->
 <pre class="r"><code>
 library(remotes)
 
-install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
-
-library(criticality)
-
-# set variables
-# ext.dir &lt;- &#39;D:/7.8M&#39; # &#39;D:/Apricorn&#39;
-
-# tabulate data
-dataset &lt;- Tabulate(
-  ext.dir = &#39;/Users/will/Dropbox/criticality&#39;)</code></pre>
+install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
-<pre><code>Loaded mcnp-dataset.RData</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IEZhaWxlZCB0byBpbnN0YWxsICdjcml0aWNhbGl0eScgZnJvbSBHaXRIdWI6XG4gIENvdWxkIG5vdCByZXNvbHZlIGhvc3Q6IGFwaS5naXRodWIuY29tXG4ifQ== -->
+<pre><code>Error: Failed to install &#39;criticality&#39; from GitHub:
+  Could not resolve host: api.github.com</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -256,9 +248,39 @@ metamodel &lt;- NN(
   replot = FALSE,
   training.dir = &#39;/Users/will/Desktop/example&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
-<pre class="r"><code>NA</code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xMiAwMTo0NzoyNS41NzU0MDA6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4ifQ== -->
+<pre><code>Loaded Tensorflow version 2.7.0
+2022-01-12 01:47:25.575400: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDIwJVxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gIHw9PT09PT09PT09PT09PT09PT09PT09PT09PT09ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICA0MCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgNjAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gICAgICAgICAgICAgIHwgIDgwJVxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gIHw9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuTWVhbiBUcmFpbmluZyBNQUUgPSAwLjAwMDQ2NlxuTWVhbiBDcm9zcy1WYWxpZGF0aW9uIE1BRSA9IDAuMDAwNDk1XG5NZWFuIFRlc3QgTUFFID0gMC4wMDA0NTBcblxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjAwMDM1MVxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjAwMDM0OSAoTmVsZGVyLU1lYWQsIEJGR1MsIFNBKVxuLVxuVGVzdCBNQUUgcmVhY2hlcyBhIGxvY2FsIG1pbmltdW0gd2l0aCAxIG5ldXJhbCBuZXR3b3JrXG5cbkVuc2VtYmxlIFRlc3QgTUFFID0gMC4wMDA0NzFcbkVuc2VtYmxlIFRlc3QgTUFFID0gMC4wMDAzNDkgKE5lbGRlci1NZWFkLCBCRkdTLCBTQSlcbiJ9 -->
+<pre><code>
+
+  |                                                                           
+  |                                                                     |   0%
+  |                                                                           
+  |==============                                                       |  20%
+  |                                                                           
+  |============================                                         |  40%
+  |                                                                           
+  |=========================================                            |  60%
+  |                                                                           
+  |=======================================================              |  80%
+  |                                                                           
+  |=====================================================================| 100%
+
+Mean Training MAE = 0.000466
+Mean Cross-Validation MAE = 0.000495
+Mean Test MAE = 0.000450
+
+Ensemble Test MAE = 0.000351
+Ensemble Test MAE = 0.000349 (Nelder-Mead, BFGS, SA)
+-
+Test MAE reaches a local minimum with 1 neural network
+
+Ensemble Test MAE = 0.000471
+Ensemble Test MAE = 0.000349 (Nelder-Mead, BFGS, SA)</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
