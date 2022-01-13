@@ -107,7 +107,7 @@ Test <- function(
     wt <- 0
   }
 
-  cat(wt)
+  cat(as.character(wt))
 
   wt.len <- length(wt)
 
