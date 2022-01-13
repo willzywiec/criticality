@@ -107,6 +107,8 @@ Test <- function(
     wt <- 0
   }
 
+  print(wt)
+
   wt.len <- length(wt)
 
   if (wt.len < meta.len && wt[1] != 0) {
