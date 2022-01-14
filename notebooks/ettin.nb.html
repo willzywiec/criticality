@@ -258,18 +258,19 @@ metamodel &lt;- NN(
   replot = FALSE,
   training.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xMyAxNDoyMDo1MC45NTQ3NjU6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xMyAyMToyODoxOS40MDYyMzU6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWCBBVlgyXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4yMDIyLTAxLTEzIDIxOjI4OjE5Ljk0ODQzMzogSSB0ZW5zb3JmbG93L2NvcmUvY29tbW9uX3J1bnRpbWUvZ3B1L2dwdV9kZXZpY2UuY2M6MTUyNV0gQ3JlYXRlZCBkZXZpY2UgL2pvYjpsb2NhbGhvc3QvcmVwbGljYTowL3Rhc2s6MC9kZXZpY2U6R1BVOjAgd2l0aCA2NjExIE1CIG1lbW9yeTogIC0+IGRldmljZTogMCwgbmFtZTogTlZJRElBIEdlRm9yY2UgR1RYIDEwODAsIHBjaSBidXMgaWQ6IDAwMDA6MDc6MDAuMCwgY29tcHV0ZSBjYXBhYmlsaXR5OiA2LjFcbiJ9 -->
 <pre><code>Loaded Tensorflow version 2.7.0
-2022-01-13 14:20:50.954765: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
-To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.</code></pre>
+2022-01-13 21:28:19.406235: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-01-13 21:28:19.948433: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6611 MB memory:  -&gt; device: 0, name: NVIDIA GeForce GTX 1080, pci bus id: 0000:07:00.0, compute capability: 6.1</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PXwgMTAwJVxuXG5NZWFuIFRyYWluaW5nIE1BRSA9IDAuMDA5MzY0XG5NZWFuIENyb3NzLVZhbGlkYXRpb24gTUFFID0gMC4wMTA0MjNcbk1lYW4gVGVzdCBNQUUgPSAwLjAxMDQ2MVxuXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwNDYxXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMDEwMjM2IChOZWxkZXItTWVhZCwgQkZHUywgU0EpXG4ifQ== -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuTWVhbiBUcmFpbmluZyBNQUUgPSAwLjAwOTM2NFxuTWVhbiBDcm9zcy1WYWxpZGF0aW9uIE1BRSA9IDAuMDEwNDIzXG5NZWFuIFRlc3QgTUFFID0gMC4wMTA0NjFcblxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjAxMDQ2MVxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjAxMDIzNiAoTmVsZGVyLU1lYWQsIEJGR1MsIFNBKVxuIn0= -->
 <pre><code>
 
-  |                                                                           
-  |                                                                     |   0%
-  |                                                                           
-  |=====================================================================| 100%
+  |                                                                                                                                                                   
+  |                                                                                                                                                             |   0%
+  |                                                                                                                                                                   
+  |=============================================================================================================================================================| 100%
 
 Mean Training MAE = 0.009364
 Mean Cross-Validation MAE = 0.010423
@@ -282,7 +283,7 @@ Ensemble Test MAE = 0.010236 (Nelder-Mead, BFGS, SA)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcblxuIyBlc3RpbWF0ZSByaXNrXG5yaXNrIDwtIFJpc2soXG4gIGJuID0gYm4sXG4gIGRhdGFzZXQgPSBkYXRhc2V0LFxuICBkaXN0ID0gJ2dhbW1hJyxcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLFxuICByaXNrLnBvb2wgPSAxLFxuICBzYW1wbGUuc2l6ZSA9IDFlKzA5LFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcblxuIyBlc3RpbWF0ZSByaXNrXG5yaXNrIDwtIFJpc2soXG4gIGJuID0gYm4sXG4gIGRhdGFzZXQgPSBkYXRhc2V0LFxuICBkaXN0ID0gJ2dhbW1hJyxcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAga2VmZi5jdXRvZmYgPSAwLjUsXG4gIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCxcbiAgcmlzay5wb29sID0gMSxcbiAgc2FtcGxlLnNpemUgPSAxZSswNSxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
 <pre class="r"><code>
 # set variable
 facility &lt;- &#39;facility&#39;
@@ -298,17 +299,19 @@ risk &lt;- Risk(
   dataset = dataset,
   dist = &#39;gamma&#39;,
   facility = facility,
+  keff.cutoff = 0.5,
   metamodel = metamodel,
   risk.pool = 1,
-  sample.size = 1e+09,
+  sample.size = 1e+05,
   ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
-<pre class="r"><code>NA</code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcHlfY2FsbF9pbXBsKGNhbGxhYmxlLCBkb3RzJGFyZ3MsIGRvdHMka2V5d29yZHMpIDogXG4gIFR5cGVFcnJvcjogcHJlZGljdCgpIG1pc3NpbmcgMSByZXF1aXJlZCBwb3NpdGlvbmFsIGFyZ3VtZW50OiAneCdcbiJ9 -->
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords) : 
+  TypeError: predict() missing 1 required positional argument: &#39;x&#39;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKbGlicmFyeShyZW1vdGVzKQoKaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCgpsaWJyYXJ5KGNyaXRpY2FsaXR5KQoKIyBzZXQgdmFyaWFibGUKZXh0LmRpciA8LSAnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9leGFtcGxlJwoKIyB0YWJ1bGF0ZSBkYXRhCmRhdGFzZXQgPC0gVGFidWxhdGUoCiAgZXh0LmRpciA9IGV4dC5kaXIpCgpgYGAKCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9CgojIGJ1aWxkIG1ldGFtb2RlbAojIG1ldGFtb2RlbCA8LSBTcGxpdCgKIyAgIGRhdGFzZXQgPSBkYXRhc2V0LAojICAgcmVwbG90ID0gRkFMU0UsCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpCgojIGJ1aWxkIG1ldGFtb2RlbAptZXRhbW9kZWwgPC0gTk4oCiAgZGF0YXNldCA9IGRhdGFzZXQsCiAgYmF0Y2guc2l6ZSA9IDEyOCwKICBlcG9jaHMgPSA1MCwKICBlbnNlbWJsZS5zaXplID0gMSwKICByZXBsb3QgPSBGQUxTRSwKICB0cmFpbmluZy5kaXIgPSBleHQuZGlyKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKIyBzZXQgdmFyaWFibGUKZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5JwoKIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrCmJuIDwtIEJOKAogIGZhY2lsaXR5ID0gZmFjaWxpdHksCiAgZXh0LmRpciA9IGV4dC5kaXIpCgojIGVzdGltYXRlIHJpc2sKcmlzayA8LSBSaXNrKAogIGJuID0gYm4sCiAgZGF0YXNldCA9IGRhdGFzZXQsCiAgZGlzdCA9ICdnYW1tYScsCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwKICBrZWZmLmN1dG9mZiA9IDAuNSwKICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsCiAgcmlzay5wb29sID0gMSwKICBzYW1wbGUuc2l6ZSA9IDFlKzA1LAogIGV4dC5kaXIgPSBleHQuZGlyKQoKYGBgCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCmxpYnJhcnkocmVtb3RlcykNCg0KaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpDQoNCmxpYnJhcnkoY3JpdGljYWxpdHkpDQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2V4YW1wbGUnDQoNCiMgdGFidWxhdGUgZGF0YQ0KZGF0YXNldCA8LSBUYWJ1bGF0ZSgNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCmBgYA0KDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KIyBtZXRhbW9kZWwgPC0gU3BsaXQoDQojICAgZGF0YXNldCA9IGRhdGFzZXQsDQojICAgcmVwbG90ID0gRkFMU0UsDQojICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KbWV0YW1vZGVsIDwtIE5OKA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgYmF0Y2guc2l6ZSA9IDEyOCwNCiAgZXBvY2hzID0gNTAsDQogIGVuc2VtYmxlLnNpemUgPSAxLA0KICByZXBsb3QgPSBGQUxTRSwNCiAgdHJhaW5pbmcuZGlyID0gZXh0LmRpcikNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgc2V0IHZhcmlhYmxlDQpmYWNpbGl0eSA8LSAnZmFjaWxpdHknDQoNCiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29yaw0KYm4gPC0gQk4oDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGV4dC5kaXIgPSBleHQuZGlyKQ0KDQojIGVzdGltYXRlIHJpc2sNCnJpc2sgPC0gUmlzaygNCiAgYm4gPSBibiwNCiAgZGF0YXNldCA9IGRhdGFzZXQsDQogIGRpc3QgPSAnZ2FtbWEnLA0KICBmYWNpbGl0eSA9IGZhY2lsaXR5LA0KICBrZWZmLmN1dG9mZiA9IDAuMiwNCiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLA0KICByaXNrLnBvb2wgPSAxLA0KICBzYW1wbGUuc2l6ZSA9IDFlKzA1LA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQo=</div>
 
 
 
