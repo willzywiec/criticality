@@ -45,16 +45,16 @@ Scale <- function(
       training.data <- filter(training.data, sd < 0.001)
     } else if (ncol(output) == ncol(dataset$output)) {
       comb.output <- rbind(output, dataset$output)
-      comb.output <- Nullify(comb.output, labels)
+      null.output <- Nullify(comb.output, labels)
       dummy <- dummyVars(~ ., data = dataset$output, sep = '')
-      training.data <- data.frame(predict(dummy, newdata = comb.output))
+      training.data <- data.frame(predict(dummy, newdata = null.output))
       training.data <- training.data[1:nrow(output), ]
       training.data <- filter(training.data, sd < 0.001)
     } else {
       comb.output <- rbind(output, dataset$output[ , 1:(ncol(dataset$output) - 2)])
-      comb.output <- Nullify(comb.output, labels)
+      null.output <- Nullify(comb.output, labels)
       dummy <- dummyVars(~ ., data = dataset$output[ , 1:(ncol(dataset$output) - 2)], sep = '')
-      training.data <- data.frame(predict(dummy, newdata = comb.output))
+      training.data <- data.frame(predict(dummy, newdata = null.output))
       training.data <- training.data[1:nrow(output), ]
     }
 
