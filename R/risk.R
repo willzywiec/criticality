@@ -64,7 +64,14 @@ Risk <- function(
 
     bn.data <- readRDS('bn-data.RData')
     risk <- read.csv('risk.csv', fileEncoding = 'UTF-8-BOM')[ , 1]
-    cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
+
+    if (mean(risk) != 0) {
+      cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
+      cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
+    } else {
+      cat('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 1), '\n', sep = '')
+    }
+
     if (mean(risk) != 0) cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
 
   } else {
@@ -99,8 +106,12 @@ Risk <- function(
     saveRDS(bn.data, file = 'bn-data.RData')
     write.csv(as.data.frame(risk, col.names = 'risk'), file = 'risk.csv', row.names = FALSE)
 
-    cat('\nRisk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
-    if (mean(risk) != 0) cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
+    if (mean(risk) != 0) {
+      cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
+      cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
+    } else {
+      cat('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 1), '\n', sep = '')
+    }
 
 
   }
