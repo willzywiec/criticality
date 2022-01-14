@@ -113,7 +113,6 @@ Risk <- function(
       cat('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 1), '\n', sep = '')
     }
 
-
   }
 
   bn.data <- bind_rows(bn.data)
