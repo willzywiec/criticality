@@ -39,8 +39,7 @@ Scale <- function(
 
     # nullify one-factor variables and one-hot encode categorical variables
     if (!exists('dataset')) {
-      output <- Nullify(output, labels)
-      dummy <- dummyVars(~ ., data = output, sep = '')
+      dummy <- dummyVars(~ ., data = Nullify(output, labels), sep = '')
       training.data <- data.frame(predict(dummy, newdata = output))
       training.data <- filter(training.data, sd < 0.001)
     } else if (ncol(output) == ncol(dataset$output)) {
