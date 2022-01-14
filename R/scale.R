@@ -23,9 +23,9 @@ Scale <- function(
 
   if (nrow(output) > 0) {
 
-    labels <- c('mass', 'form', 'mod', 'rad', 'ref', 'thk', 'vol', 'conc') # missing 'shape', 'ht', and 'hd'
-
     output$shape <- output$ht <- output$hd <- NULL
+
+    labels <- names(output)
 
     Nullify <- function(output, labels) {
       for (i in length(labels):1) {
@@ -39,8 +39,9 @@ Scale <- function(
 
     # nullify one-factor variables and one-hot encode categorical variables
     if (!exists('dataset')) {
-      dummy <- dummyVars(~ ., data = Nullify(output, labels), sep = '')
-      training.data <- data.frame(predict(dummy, newdata = output))
+      null.output <- Nullify(output, labels)
+      dummy <- dummyVars(~ ., data = , sep = '')
+      training.data <- data.frame(predict(dummy, newdata = null.output))
       training.data <- filter(training.data, sd < 0.001)
     } else if (ncol(output) == ncol(dataset$output)) {
       comb.output <- rbind(output, dataset$output)
