@@ -67,7 +67,7 @@ risk <- Risk(
   keff.cutoff = 0.5,
   metamodel = metamodel,
   risk.pool = 1,
-  sample.size = 1e+05,
+  sample.size = 1e+07,
   ext.dir = ext.dir)
 
 ```

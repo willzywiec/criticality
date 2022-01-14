@@ -301,7 +301,7 @@ Ensemble Test MAE = 0.010364 (Nelder-Mead, BFGS, SA)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcblxuIyBlc3RpbWF0ZSByaXNrXG5yaXNrIDwtIFJpc2soXG4gIGJuID0gYm4sXG4gIGRhdGFzZXQgPSBkYXRhc2V0LFxuICBkaXN0ID0gJ2dhbW1hJyxcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAga2VmZi5jdXRvZmYgPSAwLjUsXG4gIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCxcbiAgcmlzay5wb29sID0gMSxcbiAgc2FtcGxlLnNpemUgPSAxZSswNSxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
 <pre class="r"><code>
 # set variable
 facility &lt;- &#39;facility&#39;
@@ -309,52 +309,34 @@ facility &lt;- &#39;facility&#39;
 # build Bayesian network
 bn &lt;- BN(
   facility = facility,
-  ext.dir = ext.dir)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZXZk4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6bGF0dGljZeKAmTpcblxuICAgIHFxXG5cbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogTUFTU1xuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYTUFTU+KAmVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmRwbHly4oCZOlxuXG4gICAgc2VsZWN0XG5cbkxvYWRpbmcgcmVxdWlyZWQgcGFja2FnZTogc3Vydml2YWxcblxuQXR0YWNoaW5nIHBhY2thZ2U6IOKAmHN1cnZpdmFs4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6Y2FyZXTigJk6XG5cbiAgICBjbHVzdGVyXG4ifQ== -->
-<pre><code>
-Attaching package: ‘evd’
+  ext.dir = ext.dir)
 
-The following object is masked from ‘package:lattice’:
-
-    qq
-
-Loading required package: MASS
-
-Attaching package: ‘MASS’
-
-The following object is masked from ‘package:dplyr’:
-
-    select
-
-Loading required package: survival
-
-Attaching package: ‘survival’
-
-The following object is masked from ‘package:caret’:
-
-    cluster</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBlc3RpbWF0ZSByaXNrXG5yaXNrIDwtIFJpc2soXG4gIGJuID0gYm4sXG4gIGRhdGFzZXQgPSBkYXRhc2V0LFxuICBkaXN0ID0gJ2dhbW1hJyxcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAga2VmZi5jdXRvZmYgPSAwLjksXG4gIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCxcbiAgcmlzay5wb29sID0gMSxcbiAgc2FtcGxlLnNpemUgPSAxZSswNSxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
-<pre class="r"><code># estimate risk
+# estimate risk
 risk &lt;- Risk(
   bn = bn,
   dataset = dataset,
   dist = &#39;gamma&#39;,
   facility = facility,
-  keff.cutoff = 0.9,
+  keff.cutoff = 0.5,
   metamodel = metamodel,
   risk.pool = 1,
   sample.size = 1e+05,
   ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gU2FtcGxlKGJuLCBjb2RlLCBkYXRhc2V0LCBrZWZmLmN1dG9mZiwgbWV0YW1vZGVsLCBzYW1wbGUuc2l6ZSwgIDogXG4gIFRoZXJlIHdlcmUgbm8ga2VmZiB2YWx1ZXMgPiAwLjlcbiJ9 -->
-<pre><code>Error in Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size,  : 
-  There were no keff values &gt; 0.9</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuUmlzayA9IDAuMDAwZSswMFxuU0QgPSAgIE5BXG4ifQ== -->
+<pre><code>
+
+  |                                                                                                                                                                   
+  |                                                                                                                                                             |   0%
+  |                                                                                                                                                                   
+  |=============================================================================================================================================================| 100%
+
+Risk = 0.000e+00
+SD =   NA</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCmxpYnJhcnkocmVtb3RlcykNCg0KaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpDQoNCmxpYnJhcnkoY3JpdGljYWxpdHkpDQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2V4YW1wbGUnDQoNCiMgdGFidWxhdGUgZGF0YQ0KZGF0YXNldCA8LSBUYWJ1bGF0ZSgNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCmBgYA0KDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KIyBtZXRhbW9kZWwgPC0gU3BsaXQoDQojICAgZGF0YXNldCA9IGRhdGFzZXQsDQojICAgcmVwbG90ID0gRkFMU0UsDQojICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KbWV0YW1vZGVsIDwtIE5OKA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgYmF0Y2guc2l6ZSA9IDEyOCwNCiAgZXBvY2hzID0gNTAsDQogIGVuc2VtYmxlLnNpemUgPSAxLA0KICByZXBsb3QgPSBGQUxTRSwNCiAgdHJhaW5pbmcuZGlyID0gZXh0LmRpcikNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgc2V0IHZhcmlhYmxlDQpmYWNpbGl0eSA8LSAnZmFjaWxpdHknDQoNCiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29yaw0KYm4gPC0gQk4oDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGV4dC5kaXIgPSBleHQuZGlyKQ0KDQojIGVzdGltYXRlIHJpc2sNCnJpc2sgPC0gUmlzaygNCiAgYm4gPSBibiwNCiAgZGF0YXNldCA9IGRhdGFzZXQsDQogIGRpc3QgPSAnZ2FtbWEnLA0KICBmYWNpbGl0eSA9IGZhY2lsaXR5LA0KICBrZWZmLmN1dG9mZiA9IDAuNSwNCiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLA0KICByaXNrLnBvb2wgPSAxLA0KICBzYW1wbGUuc2l6ZSA9IDFlKzA1LA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCmxpYnJhcnkocmVtb3RlcykNCg0KaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpDQoNCmxpYnJhcnkoY3JpdGljYWxpdHkpDQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2V4YW1wbGUnDQoNCiMgdGFidWxhdGUgZGF0YQ0KZGF0YXNldCA8LSBUYWJ1bGF0ZSgNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCmBgYA0KDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KIyBtZXRhbW9kZWwgPC0gU3BsaXQoDQojICAgZGF0YXNldCA9IGRhdGFzZXQsDQojICAgcmVwbG90ID0gRkFMU0UsDQojICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KbWV0YW1vZGVsIDwtIE5OKA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgYmF0Y2guc2l6ZSA9IDEyOCwNCiAgZXBvY2hzID0gNTAsDQogIGVuc2VtYmxlLnNpemUgPSAxLA0KICByZXBsb3QgPSBGQUxTRSwNCiAgdHJhaW5pbmcuZGlyID0gZXh0LmRpcikNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgc2V0IHZhcmlhYmxlDQpmYWNpbGl0eSA8LSAnZmFjaWxpdHknDQoNCiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29yaw0KYm4gPC0gQk4oDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGV4dC5kaXIgPSBleHQuZGlyKQ0KDQojIGVzdGltYXRlIHJpc2sNCnJpc2sgPC0gUmlzaygNCiAgYm4gPSBibiwNCiAgZGF0YXNldCA9IGRhdGFzZXQsDQogIGRpc3QgPSAnZ2FtbWEnLA0KICBmYWNpbGl0eSA9IGZhY2lsaXR5LA0KICBrZWZmLmN1dG9mZiA9IDAuNSwNCiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLA0KICByaXNrLnBvb2wgPSAxLA0KICBzYW1wbGUuc2l6ZSA9IDFlKzA3LA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQo=</div>
 
 
 
