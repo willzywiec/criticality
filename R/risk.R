@@ -63,9 +63,9 @@ Risk <- function(
   if (file.exists('risk.csv')) {
 
     bn.data <- readRDS('bn-data.RData')
-    risk <- read.csv('risk.csv', fileEncoding = 'UTF-8-BOM')
-    cat('Risk = ', formatC(mean(risk$risk), format = 'e', digits = 3), '\n', sep = '')
-    cat('SD = ', formatC(sd(risk$risk), format = 'e', digits = 3), '\n', sep = '')
+    risk <- read.csv('risk.csv', fileEncoding = 'UTF-8-BOM')[ , 1]
+    cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
+    if (mean(risk) != 0) cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
 
   } else {
 
@@ -98,7 +98,7 @@ Risk <- function(
   
     saveRDS(bn.data, file = 'bn-data.RData')
     write.csv(as.data.frame(risk, col.names = 'risk'), file = 'risk.csv', row.names = FALSE)
-    
+
     cat('\nRisk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
     if (mean(risk) != 0) cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
 
