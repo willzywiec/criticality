@@ -93,9 +93,7 @@ Sample <- function(
   bn.data$vol <- vol
   bn.data$conc <- conc
 
-  bn.df <- Scale(code, subset(bn.data, -c(op, ctrl)))
-
-  View(bn.df)
+  bn.df <- Scale(code, subset(bn.data, select = -c(op, ctrl)))
 
   library(keras)
 
