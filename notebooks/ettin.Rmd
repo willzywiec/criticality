@@ -64,7 +64,7 @@ risk <- Risk(
   dataset = dataset,
   dist = 'gamma',
   facility = facility,
-  keff.cutoff = 0.9,
+  keff.cutoff = 0.5,
   metamodel = metamodel,
   risk.pool = 1,
   sample.size = 1e+05,
