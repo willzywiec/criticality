@@ -98,7 +98,7 @@ Sample <- function(
 
   # predict keff values
   if (keff.cutoff > 0) {
-    bn.data$keff <- metamodel[[1]][[1]] %>% predict(bn.df)
+    bn.data$keff <- metamodel[[1]][[1]] %>% keras::predict(bn.df)
     bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff)
     bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
@@ -111,11 +111,11 @@ Sample <- function(
 
   if (typeof(metamodel[[2]]) == 'list') {
     keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
-    for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% predict(bn.df)
+    for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% keras::predict(bn.df)
     bn.data$keff <- rowSums(keff * metamodel[[2]][[1]])
   } else {
     keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
-    for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% predict(bn.df)
+    for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% keras::predict(bn.df)
     bn.data$keff <- rowMeans(keff)
   }
 
