@@ -48,10 +48,10 @@ Risk(
   dataset,
   dist = "gamma",
   facility = "facility",
-  keff.cutoff = 0.9,
+  keff.cutoff = 0.5,
   metamodel,
-  risk.pool = 1,
-  sample.size = 1e+07,
+  risk.pool = 10,
+  sample.size = 1e+05,
   ext.dir = paste0(.libPaths(), "/criticality/example")
 )
 }

@@ -48,7 +48,7 @@ Split <- function(
   verbose = TRUE,
   ext.dir) {
 
-  # library(magrittr)
+  library(magrittr)
 
   form <- names(table(dataset$output$form))
 

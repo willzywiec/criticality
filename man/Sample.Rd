@@ -22,7 +22,7 @@ Sample(
 
 \item{dataset}{Training and test data}
 
-\item{keff.cutoff}{keff cutoff value (e.g., 0.95)}
+\item{keff.cutoff}{keff cutoff value (e.g., 0.9)}
 
 \item{metamodel}{List of deep neural network metamodels and weights}
 
@@ -40,9 +40,9 @@ Sample(
   bn,
   code = "mcnp",
   dataset,
-  keff.cutoff = 0.9,
+  keff.cutoff = 0.5,
   metamodel,
-  sample.size = 1e+07,
+  sample.size = 1e+05,
   ext.dir = paste0(.libPaths(), "/criticality/example"),
   risk.dir
 )

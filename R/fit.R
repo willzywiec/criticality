@@ -36,8 +36,8 @@ Fit <- function(
   remodel.dir,
   i) {
 
-  # library(keras)
-  # library(magrittr)
+  library(keras)
+  library(magrittr)
 
   if (missing(i)) {
     model %>% fit(

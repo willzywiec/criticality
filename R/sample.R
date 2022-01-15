@@ -8,7 +8,7 @@
 #' @param bn Bayesian network object
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
-#' @param keff.cutoff keff cutoff value (e.g., 0.95)
+#' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
 #' @param ext.dir External directory
@@ -19,9 +19,9 @@
 #'   bn,
 #'   code = "mcnp",
 #'   dataset,
-#'   keff.cutoff = 0.9,
+#'   keff.cutoff = 0.5,
 #'   metamodel,
-#'   sample.size = 1e+07,
+#'   sample.size = 1e+05,
 #'   ext.dir = paste0(.libPaths(), "/criticality/example"),
 #'   risk.dir
 #' )

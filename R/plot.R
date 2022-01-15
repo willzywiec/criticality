@@ -19,7 +19,7 @@ Plot <- function(
   history) {
 
   library(ggplot2)
-  # library(magrittr)
+  library(magrittr)
   library(scales)
 
   # set theme

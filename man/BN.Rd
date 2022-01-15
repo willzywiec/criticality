@@ -14,7 +14,7 @@ BN(facility, dist = "gamma", ext.dir)
 \item{ext.dir}{External directory}
 }
 \description{
-This function creates a Bayesian network from nuclear facility data.
+This function creates a Bayesian network from pre-formatted nuclear facility data.
 }
 \examples{
 BN(
