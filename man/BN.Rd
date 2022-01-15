@@ -20,6 +20,6 @@ This function creates a Bayesian network from pre-formatted nuclear facility dat
 BN(
   facility = "facility",
   dist = "gamma",
-  ext.dir)
+  ext.dir = paste0(.libPaths(), "/criticality/data")
 )
 }

@@ -43,7 +43,7 @@ Sample(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+05,
-  ext.dir = paste0(.libPaths(), "/criticality/example"),
+  ext.dir = paste0(.libPaths(), "/criticality/data"),
   risk.dir
 )
 }
