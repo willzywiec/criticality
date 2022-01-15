@@ -7,20 +7,17 @@
 Sample(
   bn,
   code = "mcnp",
-  dataset,
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-  risk.dir = paste0(.libPaths()[1], "/criticality/data/risk")
+  ext.dir,
+  risk.dir
 )
 }
 \arguments{
 \item{bn}{Bayesian network object}
 
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
-
-\item{dataset}{Training and test data}
 
 \item{keff.cutoff}{keff cutoff value (e.g., 0.9)}
 
@@ -37,11 +34,10 @@ This function samples a Bayesian network object and uses an existing deep neural
 }
 \examples{
 Sample(
-  bn,
+  bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData")),
   code = "mcnp",
-  dataset,
   keff.cutoff = 0.9,
-  metamodel,
+  metamodel = NN(),
   sample.size = 1e+05,
   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
   risk.dir = paste0(.libPaths()[1], "/criticality/data/risk")

@@ -7,22 +7,19 @@
 Risk(
   bn,
   code = "mcnp",
-  dataset,
   dist = "gamma",
   facility,
   keff.cutoff = 0.9,
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir
 )
 }
 \arguments{
 \item{bn}{Bayesian network object}
 
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
-
-\item{dataset}{Training and test data}
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
@@ -43,13 +40,12 @@ This function imports the Sample function and estimates process criticality acci
 }
 \examples{
 Risk(
-  bn,
+  bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData")),
   code = "mcnp",
-  dataset,
   dist = "gamma",
   facility = "facility",
   keff.cutoff = 0.5,
-  metamodel,
+  metamodel = NN(),
   risk.pool = 10,
   sample.size = 1e+05,
   ext.dir = paste0(.libPaths()[1], "/criticality/data")

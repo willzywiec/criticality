@@ -24,7 +24,7 @@
 BN <- function(
   facility,
   dist = 'gamma',
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")) {
+  ext.dir) {
 
   facility.data <- read.csv(paste0(ext.dir, '/', facility, '.csv'))
 

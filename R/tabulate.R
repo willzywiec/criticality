@@ -17,7 +17,7 @@
 
 Tabulate <- function(
   code = 'mcnp',
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")) {
+  ext.dir) {
 
   setwd(ext.dir)
 

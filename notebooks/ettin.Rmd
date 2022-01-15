@@ -14,19 +14,36 @@ cat('\014')
 
 ```{r, warning = FALSE}
 
-library(remotes)
+# library(remotes)
+# install_github('willzywiec/criticality', auth_token = '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', quiet = TRUE)
+# library(criticality)
 
-install_github('willzywiec/criticality', auth_token = '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', quiet = TRUE)
+remove.packages('criticality')
 
-library(criticality)
+library(devtools)
+library(roxygen2)
+
+setwd('C:/Users/Will/Documents/GitHub/criticality')
+
+document()
+
+setwd('C:/Users/Will/Documents/GitHub')
+
+install('criticality', upgrade = 'never')
+
+check('criticality')
+
+```
+
+```{r}
 
 # set variable
-ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
+# ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
 
 # tabulate data
 dataset <- Tabulate(
   code = 'mcnp',
-  ext.dir = ext.dir)
+  ext.dir = paste0(.libPaths()[1], "/criticality/data"))
 
 ```
 
@@ -40,12 +57,12 @@ dataset <- Tabulate(
 
 # build metamodel
 metamodel <- NN(
-  dataset = dataset,
   batch.size = 128,
   epochs = 10,
   ensemble.size = 1,
   replot = FALSE,
-  training.dir = ext.dir)
+  ext.dir = paste0(.libPaths()[1], "/criticality/data"),
+  training.dir = paste0(.libPaths()[1], "/criticality/data"))
 
 ```
 

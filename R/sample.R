@@ -7,7 +7,6 @@
 #' This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.
 #' @param bn Bayesian network object
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
-#' @param dataset Training and test data
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
@@ -16,9 +15,8 @@
 #' @export
 #' @examples
 #' Sample(
-#'   bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData"),
+#'   bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData")),
 #'   code = "mcnp",
-#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
 #'   keff.cutoff = 0.9,
 #'   metamodel = NN(),
 #'   sample.size = 1e+05,
@@ -33,12 +31,15 @@
 Sample <- function(
   bn,
   code = 'mcnp',
-  dataset,
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-  risk.dir = paste0(.libPaths()[1], "/criticality/data/risk")) {
+  ext.dir,
+  risk.dir) {
+
+  if (!exists('dataset')) {
+    dataset <- Tabulate(code, ext.dir)
+  }
 
   cluster <- makeCluster((detectCores() / 2), type = 'SOCK')
 

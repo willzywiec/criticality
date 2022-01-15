@@ -5,29 +5,36 @@
 #' Model Function
 #'
 #' This function builds a deep neural network metamodel.
-#' @param dataset Training and test data
+#' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param layers String that defines the deep neural network architecture (e.g., "64-64")
 #' @param loss Loss function
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
+#' @param ext.dir External directory
 #' @export
 #' @examples
 #' Model(
-#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
-#'   layers = '8192-256-256-256-256-16',
-#'   loss = 'sse',
-#'   opt.alg = 'adamax',
-#'   learning.rate = 0.00075
+#'   code = "mcnp",
+#'   layers = "8192-256-256-256-256-16",
+#'   loss = "sse",
+#'   opt.alg = "adamax",
+#'   learning.rate = 0.00075,
+#'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
 #' @import keras
 #' @import magrittr
 
 Model <- function(
-  dataset,
+  code = 'mcnp',
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
   opt.alg = 'adamax',
-  learning.rate = 0.00075) {
+  learning.rate = 0.00075,
+  ext.dir) {
+
+  if (!exists('dataset')) {
+    dataset <- Tabulate(code, ext.dir)
+  }
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 
@@ -49,8 +56,6 @@ Model <- function(
     model <- model %>% layer_dense(units = layers[8], activation = 'relu')
   } else if (length(layers) == 9) {
     model <- model %>% layer_dense(units = layers[9], activation = 'relu')
-  } else if (length(layers) == 10) {
-    model <- model %>% layer_dense(units = layers[10], activation = 'relu')
   }
 
   model <- model %>% layer_dense(units = 1, activation = 'linear')

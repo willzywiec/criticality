@@ -7,7 +7,6 @@
 #' This function imports the Sample function and estimates process criticality accident risk.
 #' @param bn Bayesian network object
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
-#' @param dataset Training and test data
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param facility Facility name or building number (.csv file name)
 #' @param keff.cutoff keff cutoff value (e.g., 0.95)
@@ -18,9 +17,8 @@
 #' @export
 #' @examples
 #' Risk(
-#'   bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData"),
+#'   bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData")),
 #'   code = "mcnp",
-#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
 #'   dist = "gamma",
 #'   facility = "facility",
 #'   keff.cutoff = 0.5,
@@ -34,14 +32,17 @@
 Risk <- function(
   bn,
   code = 'mcnp',
-  dataset,
   dist = 'gamma',
   facility,
   keff.cutoff = 0.9,
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")) {
+  ext.dir) {
+
+  if (!exists('dataset')) {
+    dataset <- Tabulate(code, ext.dir)
+  }
 
   if (keff.cutoff > 0) {
     risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)

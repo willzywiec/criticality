@@ -5,8 +5,8 @@
 #' Split Function
 #'
 #' This function is a wrapper for the NN function, which subdivides the deep neural network metamodel based on fissile material form (e.g., "alpha", "delta", "heu").
-#' @param dataset Training and test data
 #' @param batch.size Batch size
+#' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param ensemble.size Number of deep neural networks to train for the ensemble
 #' @param epochs Number of training epochs
 #' @param layers String that defines the deep neural network architecture (e.g., "64-64")
@@ -20,8 +20,8 @@
 #' @export
 #' @examples
 #' Split(
-#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
 #'   batch.size = 128,
+#'   code = "mcnp",
 #'   ensemble.size = 3,
 #'   epochs = 50,
 #'   layers = '8192-256-256-256-256-16',
@@ -36,8 +36,8 @@
 #' @import magrittr
 
 Split <- function(
-  dataset,
   batch.size = 8192,
+  code = 'mcnp',
   ensemble.size = 5,
   epochs = 1500,
   layers = '8192-256-256-256-256-16',
@@ -47,7 +47,11 @@ Split <- function(
   val.split = 0.2,
   replot = TRUE,
   verbose = TRUE,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")) {
+  ext.dir) {
+
+  if (!exists('dataset')) {
+    dataset <- Tabulate(code, ext.dir)
+  }
 
   form <- names(table(dataset$output$form))
 
@@ -84,7 +88,7 @@ Split <- function(
   for (i in 1:length(form)) {
     training.dir <- paste0(ext.dir, '/training/', form[i])
     dir.create(training.dir, recursive = TRUE, showWarnings = FALSE)
-    metamodel[[i]] <- NN(dataset[[i]], batch.size, ensemble.size, epochs, layers, loss ,opt.alg, learning.rate, val.split, replot, verbose, training.dir)
+    metamodel[[i]] <- NN(batch.size, code, ensemble.size, epochs, layers, loss ,opt.alg, learning.rate, val.split, replot, verbose, ext.dir, training.dir)
   }
 
   names(metamodel) <- form

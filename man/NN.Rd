@@ -5,8 +5,8 @@
 \title{NN Function}
 \usage{
 NN(
-  dataset,
   batch.size = 8192,
+  code = "mcnp",
   ensemble.size = 5,
   epochs = 1500,
   layers = "8192-256-256-256-256-16",
@@ -16,15 +16,16 @@ NN(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  training.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir,
+  training.dir
 )
 }
 \arguments{
-\item{dataset}{Training and test data}
-
 \item{batch.size}{Batch size}
 
-\item{ensemble.size}{Number of deep neural networks to train for the ensemble}
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
+
+\item{ensemble.size}{Number of deep neural networks in the ensemble}
 
 \item{epochs}{Number of training epochs}
 
@@ -42,6 +43,8 @@ NN(
 
 \item{verbose}{Visualize TensorFlow output}
 
+\item{ext.dir}{External directory}
+
 \item{training.dir}{Training directory}
 }
 \description{
@@ -49,9 +52,9 @@ This function ties the Model, Fit, Plot, and Test functions together to build, t
 }
 \examples{
 NN(
-  dataset,
   batch.size = 128,
-  ensemble.size = 3,
+  code = "mcnp",
+  ensemble.size = 1,
   epochs = 50,
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
@@ -60,6 +63,7 @@ NN(
   val.split = 0.2,
   replot = TRUE,
   verbose = TRUE,
+  ext.dir = paste0(.libPaths()[1], "/criticality/data"),
   training.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }

@@ -11,7 +11,7 @@
 #' @examples
 #' Scale(
 #'   code = "mcnp",
-#'   output = load(paste0(.libPaths()[1], "/criticality/data/mcnp-output.csv")
+#'   output = load(paste0(.libPaths()[1], "/criticality/data/mcnp-output.csv"))
 #' )
 #' @import caret
 #' @import dplyr

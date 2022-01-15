@@ -17,6 +17,6 @@ This function centers, scales, and one-hot encodes variables.
 \examples{
 Scale(
   code = "mcnp",
-  output
+  output = load(paste0(.libPaths()[1], "/criticality/data/mcnp-output.csv"))
 )
 }

@@ -5,8 +5,8 @@
 \title{Split Function}
 \usage{
 Split(
-  dataset,
   batch.size = 8192,
+  code = "mcnp",
   ensemble.size = 5,
   epochs = 1500,
   layers = "8192-256-256-256-256-16",
@@ -16,13 +16,13 @@ Split(
   val.split = 0.2,
   replot = TRUE,
   verbose = TRUE,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir
 )
 }
 \arguments{
-\item{dataset}{Training and test data}
-
 \item{batch.size}{Batch size}
+
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{ensemble.size}{Number of deep neural networks to train for the ensemble}
 
@@ -49,8 +49,8 @@ This function is a wrapper for the NN function, which subdivides the deep neural
 }
 \examples{
 Split(
-  dataset,
   batch.size = 128,
+  code = "mcnp",
   ensemble.size = 3,
   epochs = 50,
   layers = '8192-256-256-256-256-16',

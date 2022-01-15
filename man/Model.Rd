@@ -5,15 +5,16 @@
 \title{Model Function}
 \usage{
 Model(
-  dataset,
+  code = "mcnp",
   layers = "8192-256-256-256-256-16",
   loss = "sse",
   opt.alg = "adamax",
-  learning.rate = 0.00075
+  learning.rate = 0.00075,
+  ext.dir
 )
 }
 \arguments{
-\item{dataset}{Training and test data}
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{layers}{String that defines the deep neural network architecture (e.g., "64-64")}
 
@@ -22,16 +23,19 @@ Model(
 \item{opt.alg}{Optimization algorithm}
 
 \item{learning.rate}{Learning rate}
+
+\item{ext.dir}{External directory}
 }
 \description{
 This function builds a deep neural network metamodel.
 }
 \examples{
 Model(
-  dataset,
-  layers = '8192-256-256-256-256-16',
-  loss = 'sse',
-  opt.alg = 'adamax',
-  learning.rate = 0.00075
+  code = "mcnp",
+  layers = "8192-256-256-256-256-16",
+  loss = "sse",
+  opt.alg = "adamax",
+  learning.rate = 0.00075,
+  ext.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }
