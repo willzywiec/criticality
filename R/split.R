@@ -31,7 +31,7 @@
 #'   val.split = 0.2,
 #'   replot = TRUE,
 #'   verbose = TRUE,
-#'   ext.dir = paste0(.libPaths(), "/criticality/example")
+#'   ext.dir = paste0(.libPaths(), "/criticality/data")
 #' )
 
 Split <- function(

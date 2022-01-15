@@ -13,8 +13,7 @@
 #' BN(
 #'   facility = "facility",
 #'   dist = "gamma",
-#'   ext.dir = download.file('')
-#' ext.dir = dir.create(paste0(.libPaths(), "/criticality/example", recursive = TRUE, showWarnings = FALSE))
+#'   ext.dir = paste0(.libPaths(), "/criticality/data")
 #' )
 
 BN <- function(

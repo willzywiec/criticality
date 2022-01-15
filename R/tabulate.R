@@ -11,12 +11,12 @@
 #' @examples
 #' Tabulate(
 #'   code = "mcnp",
-#'   ext.dir = paste0(.libPaths(), "/criticality/examples")
+#'   ext.dir = paste0(.libPaths(), "/criticality/data")
 #' )
 
 Tabulate <- function(
   code = 'mcnp',
-  ext.dir) {
+  ext.dir = paste0(.libPaths(), "/criticality/data") {
 
   # library(magrittr)
 

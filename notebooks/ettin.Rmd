@@ -21,7 +21,7 @@ install_github('willzywiec/criticality', auth_token = 'ghp_6OInrSeNWXocV24lHZWKO
 library(criticality)
 
 # set variable
-ext.dir <- '/Users/will/Documents/GitHub/criticality/example'
+ext.dir <- '/Users/will/Documents/GitHub/criticality/data'
 
 # tabulate data
 dataset <- Tabulate(

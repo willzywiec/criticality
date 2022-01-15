@@ -17,7 +17,7 @@
 #'   metamodel,
 #'   training.mae,
 #'   val.mae,
-#'   training.dir = paste0(.libPaths(), "/criticality/example")
+#'   training.dir = paste0(.libPaths(), "/criticality/data")
 #' )
 
 Test <- function(
