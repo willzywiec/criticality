@@ -23,7 +23,7 @@ Tabulate <- function(
 
   if (file.exists(paste0(code, '-dataset.RData'))) {
 
-    dataset <- load(paste0(code, '-dataset.RData'))
+    load(paste0(code, '-dataset.RData'))
     cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
   } else {
