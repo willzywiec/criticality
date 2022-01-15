@@ -11,8 +11,8 @@ Sample(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  ext.dir,
-  risk.dir
+  ext.dir = paste0(.libPaths()[1], "/criticality/data"),
+  risk.dir = paste0(.libPaths()[1], "/criticality/data/risk")
 )
 }
 \arguments{
@@ -44,6 +44,6 @@ Sample(
   metamodel,
   sample.size = 1e+05,
   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-  risk.dir
+  risk.dir = paste0(.libPaths()[1], "/criticality/data/risk")
 )
 }

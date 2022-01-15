@@ -11,7 +11,7 @@ Fit(
   epochs = 1500,
   val.split = 0.2,
   verbose = TRUE,
-  remodel.dir,
+  remodel.dir = paste0(.libPaths()[1], "/criticality/data/risk"),
   i
 )
 }
@@ -43,7 +43,7 @@ Fit(
   epochs = 50,
   val.split = 0.2,
   verbose = TRUE,
-  remodel.dir,
+  remodel.dir = paste0(.libPaths()[1], "/criticality/data/remodel"),
   i
 )
 }

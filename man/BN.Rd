@@ -4,7 +4,11 @@
 \alias{BN}
 \title{BN Function}
 \usage{
-BN(facility, dist = "gamma", ext.dir)
+BN(
+  facility,
+  dist = "gamma",
+  ext.dir = paste0(.libPaths()[1], "/criticality/data")
+)
 }
 \arguments{
 \item{facility}{Facility name or building number (.csv file name)}

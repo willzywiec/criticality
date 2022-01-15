@@ -16,7 +16,7 @@ Split(
   val.split = 0.2,
   replot = TRUE,
   verbose = TRUE,
-  ext.dir
+  ext.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }
 \arguments{

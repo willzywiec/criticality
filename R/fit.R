@@ -23,7 +23,7 @@
 #'   val.split = 0.2,
 #'   verbose = TRUE,
 #'   remodel.dir = paste0(.libPaths()[1], "/criticality/data/remodel"),
-#'   i
+#'   i = 1
 #' )
 #' @import keras
 #' @import magrittr

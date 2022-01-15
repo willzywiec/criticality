@@ -4,7 +4,13 @@
 \alias{Test}
 \title{Test Function}
 \usage{
-Test(dataset, metamodel, training.mae, val.mae, training.dir)
+Test(
+  dataset,
+  metamodel,
+  training.mae,
+  val.mae,
+  training.dir = paste0(.libPaths()[1], "/criticality/data")
+)
 }
 \arguments{
 \item{dataset}{Training and test data}

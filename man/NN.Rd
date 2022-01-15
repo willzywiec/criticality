@@ -16,7 +16,7 @@ NN(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  training.dir
+  training.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }
 \arguments{

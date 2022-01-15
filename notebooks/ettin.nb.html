@@ -219,19 +219,28 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZVxuZXh0LmRpciA8LSAnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2RhdGEnXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZSgpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuYGBgIn0= -->
 <pre class="r"><code>
 library(remotes)
 
 install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
 
-library(criticality)
-
-# set variable
+library(criticality)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RhdGEudGFibGUnOlxuICBtZXRob2QgICAgICAgICAgIGZyb21cbiAgcHJpbnQuZGF0YS50YWJsZSAgICAgXG4ifQ== -->
+<pre><code>Registered S3 method overwritten by &#39;data.table&#39;:
+  method           from
+  print.data.table     </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzZXQgdmFyaWFibGVzXG5jb2RlIDwtICdtY25wJ1xuZXh0LmRpciA8LSAnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2RhdGEnXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZShcbiAgY29kZSA9IGNvZGUsXG4gIGV4dC5kaXIgPSBleHQuZGlyKVxuYGBgIn0= -->
+<pre class="r"><code># set variables
+code &lt;- &#39;mcnp&#39;
 ext.dir &lt;- &#39;C:/Users/Will/Documents/GitHub/criticality/data&#39;
 
 # tabulate data
-dataset &lt;- Tabulate()</code></pre>
+dataset &lt;- Tabulate(
+  code = code,
+  ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
 <pre><code>Loaded mcnp-dataset.RData</code></pre>
@@ -240,7 +249,7 @@ dataset &lt;- Tabulate()</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxuIyBtZXRhbW9kZWwgPC0gU3BsaXQoXG4jICAgZGF0YXNldCA9IGRhdGFzZXQsXG4jICAgcmVwbG90ID0gRkFMU0UsXG4jICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKVxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIE5OKFxuICBkYXRhc2V0ID0gZGF0YXNldCxcbiAgYmF0Y2guc2l6ZSA9IDEyOCxcbiAgZXBvY2hzID0gNTAsXG4gIGVuc2VtYmxlLnNpemUgPSAxLFxuICByZXBsb3QgPSBGQUxTRSxcbiAgdHJhaW5pbmcuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxuIyBtZXRhbW9kZWwgPC0gU3BsaXQoXG4jICAgZGF0YXNldCA9IGRhdGFzZXQsXG4jICAgcmVwbG90ID0gRkFMU0UsXG4jICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKVxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIE5OKFxuICBkYXRhc2V0ID0gZGF0YXNldCxcbiAgYmF0Y2guc2l6ZSA9IDEyOCxcbiAgZXBvY2hzID0gNTAsXG4gIGVuc2VtYmxlLnNpemUgPSAxLFxuICByZXBsb3QgPSBGQUxTRSlcbmBgYCJ9 -->
 <pre class="r"><code>
 # build metamodel
 # metamodel &lt;- Split(
@@ -254,16 +263,15 @@ metamodel &lt;- NN(
   batch.size = 128,
   epochs = 50,
   ensemble.size = 1,
-  replot = FALSE,
-  training.dir = ext.dir)</code></pre>
+  replot = FALSE)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xNSAwMjozOTozMS4xNTY5Mjk6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWCBBVlgyXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4yMDIyLTAxLTE1IDAyOjM5OjMxLjcwOTEyNDogSSB0ZW5zb3JmbG93L2NvcmUvY29tbW9uX3J1bnRpbWUvZ3B1L2dwdV9kZXZpY2UuY2M6MTUyNV0gQ3JlYXRlZCBkZXZpY2UgL2pvYjpsb2NhbGhvc3QvcmVwbGljYTowL3Rhc2s6MC9kZXZpY2U6R1BVOjAgd2l0aCA2NjExIE1CIG1lbW9yeTogIC0+IGRldmljZTogMCwgbmFtZTogTlZJRElBIEdlRm9yY2UgR1RYIDEwODAsIHBjaSBidXMgaWQ6IDAwMDA6MDc6MDAuMCwgY29tcHV0ZSBjYXBhYmlsaXR5OiA2LjFcbiJ9 -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xNSAxMDo0NTozNy4xNjE3NDg6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWCBBVlgyXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4yMDIyLTAxLTE1IDEwOjQ1OjM4LjI0NjY1OTogSSB0ZW5zb3JmbG93L2NvcmUvY29tbW9uX3J1bnRpbWUvZ3B1L2dwdV9kZXZpY2UuY2M6MTUyNV0gQ3JlYXRlZCBkZXZpY2UgL2pvYjpsb2NhbGhvc3QvcmVwbGljYTowL3Rhc2s6MC9kZXZpY2U6R1BVOjAgd2l0aCA2NjExIE1CIG1lbW9yeTogIC0+IGRldmljZTogMCwgbmFtZTogTlZJRElBIEdlRm9yY2UgR1RYIDEwODAsIHBjaSBidXMgaWQ6IDAwMDA6MDc6MDAuMCwgY29tcHV0ZSBjYXBhYmlsaXR5OiA2LjFcbiJ9 -->
 <pre><code>Loaded Tensorflow version 2.7.0
-2022-01-15 02:39:31.156929: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
+2022-01-15 10:45:37.161748: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX AVX2
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2022-01-15 02:39:31.709124: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6611 MB memory:  -&gt; device: 0, name: NVIDIA GeForce GTX 1080, pci bus id: 0000:07:00.0, compute capability: 6.1</code></pre>
+2022-01-15 10:45:38.246659: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 6611 MB memory:  -&gt; device: 0, name: NVIDIA GeForce GTX 1080, pci bus id: 0000:07:00.0, compute capability: 6.1</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuTWVhbiBUcmFpbmluZyBNQUUgPSAwLjAwOTM2NFxuTWVhbiBDcm9zcy1WYWxpZGF0aW9uIE1BRSA9IDAuMDEwNDIzXG5NZWFuIFRlc3QgTUFFID0gOC40Nzg2MTFcblxuRW5zZW1ibGUgVGVzdCBNQUUgPSA4LjQ3ODYxMVxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjI3NDU1NyAoTmVsZGVyLU1lYWQsIEJGR1MsIFNBKVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuTWVhbiBUcmFpbmluZyBNQUUgPSAwLjAyMjk5MVxuTWVhbiBDcm9zcy1WYWxpZGF0aW9uIE1BRSA9IDAuMDIzMjIwXG5NZWFuIFRlc3QgTUFFID0gMy4zMzg4NTBcblxuRW5zZW1ibGUgVGVzdCBNQUUgPSAzLjMzODg1MFxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjI4NzUwNCAoTmVsZGVyLU1lYWQsIEJGR1MsIFNBKVxuIn0= -->
 <pre><code>
 
   |                                                                                                                                                                   
@@ -271,12 +279,12 @@ To enable them in other operations, rebuild TensorFlow with the appropriate comp
   |                                                                                                                                                                   
   |=============================================================================================================================================================| 100%
 
-Mean Training MAE = 0.009364
-Mean Cross-Validation MAE = 0.010423
-Mean Test MAE = 8.478611
+Mean Training MAE = 0.022991
+Mean Cross-Validation MAE = 0.023220
+Mean Test MAE = 3.338850
 
-Ensemble Test MAE = 8.478611
-Ensemble Test MAE = 0.274557 (Nelder-Mead, BFGS, SA)</code></pre>
+Ensemble Test MAE = 3.338850
+Ensemble Test MAE = 0.287504 (Nelder-Mead, BFGS, SA)</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -309,7 +317,7 @@ risk &lt;- Risk(
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCmxpYnJhcnkocmVtb3RlcykNCg0KaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpDQoNCmxpYnJhcnkoY3JpdGljYWxpdHkpDQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YScNCg0KIyB0YWJ1bGF0ZSBkYXRhDQpkYXRhc2V0IDwtIFRhYnVsYXRlKCkNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgYnVpbGQgbWV0YW1vZGVsDQojIG1ldGFtb2RlbCA8LSBTcGxpdCgNCiMgICBkYXRhc2V0ID0gZGF0YXNldCwNCiMgICByZXBsb3QgPSBGQUxTRSwNCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpDQoNCiMgYnVpbGQgbWV0YW1vZGVsDQptZXRhbW9kZWwgPC0gTk4oDQogIGRhdGFzZXQgPSBkYXRhc2V0LA0KICBiYXRjaC5zaXplID0gMTI4LA0KICBlcG9jaHMgPSA1MCwNCiAgZW5zZW1ibGUuc2l6ZSA9IDEsDQogIHJlcGxvdCA9IEZBTFNFKQ0KDQpgYGANCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0NCg0KIyBzZXQgdmFyaWFibGUNCmZhY2lsaXR5IDwtICdmYWNpbGl0eScNCg0KIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrDQpibiA8LSBCTigNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCiMgZXN0aW1hdGUgcmlzaw0KcmlzayA8LSBSaXNrKA0KICBibiA9IGJuLA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgZGlzdCA9ICdnYW1tYScsDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGtlZmYuY3V0b2ZmID0gMC41LA0KICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsDQogIHJpc2sucG9vbCA9IDEwLA0KICBzYW1wbGUuc2l6ZSA9IDFlKzA5LA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCmxpYnJhcnkocmVtb3RlcykNCg0KaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpDQoNCmxpYnJhcnkoY3JpdGljYWxpdHkpDQoNCiMgc2V0IHZhcmlhYmxlcw0KY29kZSA8LSAnbWNucCcNCmV4dC5kaXIgPC0gJ0M6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9kYXRhJw0KDQojIHRhYnVsYXRlIGRhdGENCmRhdGFzZXQgPC0gVGFidWxhdGUoDQogIGNvZGUgPSBjb2RlLA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgYnVpbGQgbWV0YW1vZGVsDQojIG1ldGFtb2RlbCA8LSBTcGxpdCgNCiMgICBkYXRhc2V0ID0gZGF0YXNldCwNCiMgICByZXBsb3QgPSBGQUxTRSwNCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpDQoNCiMgYnVpbGQgbWV0YW1vZGVsDQptZXRhbW9kZWwgPC0gTk4oDQogIGRhdGFzZXQgPSBkYXRhc2V0LA0KICBiYXRjaC5zaXplID0gMTI4LA0KICBlcG9jaHMgPSA1MCwNCiAgZW5zZW1ibGUuc2l6ZSA9IDEsDQogIHJlcGxvdCA9IEZBTFNFKQ0KDQpgYGANCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0NCg0KIyBzZXQgdmFyaWFibGUNCmZhY2lsaXR5IDwtICdmYWNpbGl0eScNCg0KIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrDQpibiA8LSBCTigNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCiMgZXN0aW1hdGUgcmlzaw0KcmlzayA8LSBSaXNrKA0KICBibiA9IGJuLA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgZGlzdCA9ICdnYW1tYScsDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGtlZmYuY3V0b2ZmID0gMC41LA0KICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsDQogIHJpc2sucG9vbCA9IDEwLA0KICBzYW1wbGUuc2l6ZSA9IDFlKzA5LA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQo=</div>
 
 
 

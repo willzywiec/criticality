@@ -14,7 +14,7 @@ Risk(
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  ext.dir
+  ext.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }
 \arguments{
