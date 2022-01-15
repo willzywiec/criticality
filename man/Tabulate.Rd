@@ -4,7 +4,7 @@
 \alias{Tabulate}
 \title{Tabulate Function}
 \usage{
-Tabulate(code = "mcnp", ext.dir = paste0(.libPaths(), "/criticality/data"))
+Tabulate(code = "mcnp", ext.dir = paste0(.libPaths()[1], "/criticality/data"))
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
@@ -17,6 +17,6 @@ This function imports the Scale function and loads/saves training and test data.
 \examples{
 Tabulate(
   code = "mcnp",
-  ext.dir = paste0(.libPaths(), "/criticality/data")
+  ext.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }

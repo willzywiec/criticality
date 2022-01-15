@@ -52,6 +52,6 @@ Risk(
   metamodel,
   risk.pool = 10,
   sample.size = 1e+05,
-  ext.dir = paste0(.libPaths(), "/criticality/data")
+  ext.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }
