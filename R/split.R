@@ -20,7 +20,7 @@
 #' @export
 #' @examples
 #' Split(
-#'   dataset,
+#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
 #'   batch.size = 128,
 #'   ensemble.size = 3,
 #'   epochs = 50,

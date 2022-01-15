@@ -40,10 +40,10 @@ Fit(
   dataset,
   model,
   batch.size = 128,
-  epochs = 50,
+  epochs = 10,
   val.split = 0.2,
   verbose = TRUE,
   remodel.dir = paste0(.libPaths()[1], "/criticality/data/remodel"),
-  i
+  i = 1
 )
 }

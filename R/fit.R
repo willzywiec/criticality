@@ -16,8 +16,8 @@
 #' @export
 #' @examples
 #' Fit(
-#'   dataset,
-#'   model,
+#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
+#'   model = load_model_hdf5(paste0(.libPaths()[1], "/criticality/data/remodel/1-1.h5"), custom_objects = c(loss = function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2)))),
 #'   batch.size = 128,
 #'   epochs = 10,
 #'   val.split = 0.2,

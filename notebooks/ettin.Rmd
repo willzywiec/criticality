@@ -16,7 +16,7 @@ cat('\014')
 
 library(remotes)
 
-# install_github('willzywiec/criticality', auth_token = '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', quiet = TRUE)
+install_github('willzywiec/criticality', auth_token = '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', quiet = TRUE)
 
 library(criticality)
 
@@ -25,6 +25,7 @@ ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
 
 # tabulate data
 dataset <- Tabulate(
+  code = 'mcnp',
   ext.dir = ext.dir)
 
 ```

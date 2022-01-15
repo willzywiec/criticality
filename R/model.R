@@ -13,7 +13,7 @@
 #' @export
 #' @examples
 #' Model(
-#'   dataset,
+#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
 #'   layers = '8192-256-256-256-256-16',
 #'   loss = 'sse',
 #'   opt.alg = 'adamax',

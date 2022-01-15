@@ -18,13 +18,13 @@
 #' @export
 #' @examples
 #' Risk(
-#'   bn,
+#'   bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData"),
 #'   code = "mcnp",
-#'   dataset,
+#'   dataset = load(paste0(.libPaths()[1], "/criticality/data/mcnp-dataset.RData"),
 #'   dist = "gamma",
 #'   facility = "facility",
 #'   keff.cutoff = 0.5,
-#'   metamodel,
+#'   metamodel = NN(),
 #'   risk.pool = 10,
 #'   sample.size = 1e+05,
 #'   ext.dir = paste0(.libPaths()[1], "/criticality/data")

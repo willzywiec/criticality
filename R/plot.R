@@ -10,8 +10,7 @@
 #' @export
 #' @examples
 #' Plot(
-#'   i,
-#'   history
+#'   i = 1
 #' )
 #' @import ggplot2
 #' @import magrittr
