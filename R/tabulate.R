@@ -16,7 +16,7 @@
 
 Tabulate <- function(
   code = 'mcnp',
-  ext.dir = paste0(.libPaths(), "/criticality/data") {
+  ext.dir = paste0(.libPaths(), "/criticality/data")) {
 
   # library(magrittr)
 
@@ -116,7 +116,7 @@ Tabulate <- function(
         sd = sd)
 
       output <- output[sample(nrow(output)), ]
-      write.csv(output, file = paste0(code, '-output.csv'), row.names = FALSE)
+      .csv(output, file = paste0(code, '-output.csv'), row.names = FALSE)
       
       dataset <- Scale(code, output)
       cat('Loaded ', code, '-dataset.RData\n', sep = '')

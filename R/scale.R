@@ -106,7 +106,7 @@ Scale <- function(
     } else if (ncol(output) == ncol(dataset$output)) {
       dataset <- list(output, training.data, training.mean, training.sd, training.df)
       names(dataset) <- c('output', 'training.data', 'training.mean', 'training.sd', 'training.df')
-      saveRDS(dataset, file = paste0(code, '-dataset.RData'))
+      saveRDS(dataset, file = paste0(code, '-dataset.RData'), version = 2)
     } else {
       dataset <- training.df
     }
