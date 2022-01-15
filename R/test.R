@@ -27,7 +27,7 @@ Test <- function(
   metamodel,
   training.mae,
   val.mae,
-  training.dir) {
+  training.dir = paste0(.libPaths()[1], "/criticality/data")) {
 
   setwd(training.dir)
 

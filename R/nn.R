@@ -48,7 +48,7 @@ NN <- function(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  training.dir) {
+  training.dir = paste0(.libPaths()[1], "/criticality/data")) {
 
   model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)

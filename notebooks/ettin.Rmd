@@ -21,11 +21,10 @@ install_github('willzywiec/criticality', auth_token = 'ghp_6OInrSeNWXocV24lHZWKO
 library(criticality)
 
 # set variable
-ext.dir <- '/Users/will/Documents/GitHub/criticality/data'
+ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
 
 # tabulate data
-dataset <- Tabulate(
-  ext.dir = ext.dir)
+dataset <- Tabulate()
 
 ```
 
@@ -43,8 +42,7 @@ metamodel <- NN(
   batch.size = 128,
   epochs = 50,
   ensemble.size = 1,
-  replot = FALSE,
-  training.dir = ext.dir)
+  replot = FALSE)
 
 ```
 

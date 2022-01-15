@@ -219,40 +219,19 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZVxuZXh0LmRpciA8LSAnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2RhdGEnXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZSgpXG5gYGAifQ== -->
 <pre class="r"><code>
 library(remotes)
 
-install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVGhlc2UgcGFja2FnZXMgaGF2ZSBtb3JlIHJlY2VudCB2ZXJzaW9ucyBhdmFpbGFibGUuXG5JdCBpcyByZWNvbW1lbmRlZCB0byB1cGRhdGUgYWxsIG9mIHRoZW0uXG5XaGljaCB3b3VsZCB5b3UgbGlrZSB0byB1cGRhdGU/XG5cbjE6IEFsbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbjI6IENSQU4gcGFja2FnZXMgb25seSAgICAgICAgICAgICAgICBcbjM6IE5vbmUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbjQ6IHJldGljdWxhdGUgKDEuMjIgIC0+IDEuMjMgKSBbQ1JBTl1cbjU6IGZhbnNpICAgICAgKDAuNS4wIC0+IDEuMC4yKSBbQ1JBTl1cbiJ9 -->
-<pre><code>These packages have more recent versions available.
-It is recommended to update all of them.
-Which would you like to update?
+install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
 
-1: All                               
-2: CRAN packages only                
-3: None                              
-4: reticulate (1.22  -&gt; 1.23 ) [CRAN]
-5: fansi      (0.5.0 -&gt; 1.0.2) [CRAN]</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuM1xuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuYGBgIn0= -->
-<pre class="r"><code>3
+library(criticality)
 
-library(criticality)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVnaXN0ZXJlZCBTMyBtZXRob2Qgb3ZlcndyaXR0ZW4gYnkgJ2RhdGEudGFibGUnOlxuICBtZXRob2QgICAgICAgICAgIGZyb21cbiAgcHJpbnQuZGF0YS50YWJsZSAgICAgXG4ifQ== -->
-<pre><code>Registered S3 method overwritten by &#39;data.table&#39;:
-  method           from
-  print.data.table     </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzZXQgdmFyaWFibGVcbmV4dC5kaXIgPC0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YSdcblxuIyB0YWJ1bGF0ZSBkYXRhXG5kYXRhc2V0IDwtIFRhYnVsYXRlKFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
-<pre class="r"><code># set variable
-ext.dir &lt;- &#39;/Users/will/Documents/GitHub/criticality/data&#39;
+# set variable
+ext.dir &lt;- &#39;C:/Users/Will/Documents/GitHub/criticality/data&#39;
 
 # tabulate data
-dataset &lt;- Tabulate(
-  ext.dir = ext.dir)</code></pre>
+dataset &lt;- Tabulate()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
 <pre><code>Loaded mcnp-dataset.RData</code></pre>
@@ -330,7 +309,7 @@ risk &lt;- Risk(
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCmxpYnJhcnkocmVtb3RlcykNCg0KaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpDQoNCmxpYnJhcnkoY3JpdGljYWxpdHkpDQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2RhdGEnDQoNCiMgdGFidWxhdGUgZGF0YQ0KZGF0YXNldCA8LSBUYWJ1bGF0ZSgNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCmBgYA0KDQpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KIyBtZXRhbW9kZWwgPC0gU3BsaXQoDQojICAgZGF0YXNldCA9IGRhdGFzZXQsDQojICAgcmVwbG90ID0gRkFMU0UsDQojICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKQ0KDQojIGJ1aWxkIG1ldGFtb2RlbA0KbWV0YW1vZGVsIDwtIE5OKA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgYmF0Y2guc2l6ZSA9IDEyOCwNCiAgZXBvY2hzID0gNTAsDQogIGVuc2VtYmxlLnNpemUgPSAxLA0KICByZXBsb3QgPSBGQUxTRSwNCiAgdHJhaW5pbmcuZGlyID0gZXh0LmRpcikNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgc2V0IHZhcmlhYmxlDQpmYWNpbGl0eSA8LSAnZmFjaWxpdHknDQoNCiMgYnVpbGQgQmF5ZXNpYW4gbmV0d29yaw0KYm4gPC0gQk4oDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGV4dC5kaXIgPSBleHQuZGlyKQ0KDQojIGVzdGltYXRlIHJpc2sNCnJpc2sgPC0gUmlzaygNCiAgYm4gPSBibiwNCiAgZGF0YXNldCA9IGRhdGFzZXQsDQogIGRpc3QgPSAnZ2FtbWEnLA0KICBmYWNpbGl0eSA9IGZhY2lsaXR5LA0KICBrZWZmLmN1dG9mZiA9IDAuNSwNCiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLA0KICByaXNrLnBvb2wgPSAxMCwNCiAgc2FtcGxlLnNpemUgPSAxZSswOSwNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCmBgYA0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCmxpYnJhcnkocmVtb3RlcykNCg0KaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpDQoNCmxpYnJhcnkoY3JpdGljYWxpdHkpDQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YScNCg0KIyB0YWJ1bGF0ZSBkYXRhDQpkYXRhc2V0IDwtIFRhYnVsYXRlKCkNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgYnVpbGQgbWV0YW1vZGVsDQojIG1ldGFtb2RlbCA8LSBTcGxpdCgNCiMgICBkYXRhc2V0ID0gZGF0YXNldCwNCiMgICByZXBsb3QgPSBGQUxTRSwNCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpDQoNCiMgYnVpbGQgbWV0YW1vZGVsDQptZXRhbW9kZWwgPC0gTk4oDQogIGRhdGFzZXQgPSBkYXRhc2V0LA0KICBiYXRjaC5zaXplID0gMTI4LA0KICBlcG9jaHMgPSA1MCwNCiAgZW5zZW1ibGUuc2l6ZSA9IDEsDQogIHJlcGxvdCA9IEZBTFNFKQ0KDQpgYGANCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0NCg0KIyBzZXQgdmFyaWFibGUNCmZhY2lsaXR5IDwtICdmYWNpbGl0eScNCg0KIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrDQpibiA8LSBCTigNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCiMgZXN0aW1hdGUgcmlzaw0KcmlzayA8LSBSaXNrKA0KICBibiA9IGJuLA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgZGlzdCA9ICdnYW1tYScsDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGtlZmYuY3V0b2ZmID0gMC41LA0KICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsDQogIHJpc2sucG9vbCA9IDEwLA0KICBzYW1wbGUuc2l6ZSA9IDFlKzA5LA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQo=</div>
 
 
 
