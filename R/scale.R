@@ -20,9 +20,6 @@ Scale <- function(
   code = 'mcnp',
   output) {
 
-  # library(caret)
-  # library(dplyr)
-
   if (nrow(output) > 0) {
 
     output$shape <- output$ht <- output$hd <- NULL
@@ -104,11 +101,11 @@ Scale <- function(
       test.df <- as.matrix(test.df)
       dataset <- list(output, training.data, training.mean, training.sd, training.df, test.data, test.df)
       names(dataset) <- c('output', 'training.data', 'training.mean', 'training.sd', 'training.df', 'test.data', 'test.df')
-      saveRDS(dataset, file = paste0(code, '-dataset.RData'))
+      save(dataset, file = paste0(code, '-dataset.RData'))
     } else if (ncol(output) == ncol(dataset$output)) {
       dataset <- list(output, training.data, training.mean, training.sd, training.df)
       names(dataset) <- c('output', 'training.data', 'training.mean', 'training.sd', 'training.df')
-      saveRDS(dataset, file = paste0(code, '-dataset.RData'), version = 2)
+      save(dataset, file = paste0(code, '-dataset.RData'))
     } else {
       dataset <- training.df
     }
