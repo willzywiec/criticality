@@ -13,12 +13,11 @@
 #'   code = "mcnp",
 #'   ext.dir = paste0(.libPaths(), "/criticality/data")
 #' )
+#' @import magrittr
 
 Tabulate <- function(
   code = 'mcnp',
   ext.dir = paste0(.libPaths(), "/criticality/data")) {
-
-  # library(magrittr)
 
   setwd(ext.dir)
 

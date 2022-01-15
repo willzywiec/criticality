@@ -219,11 +219,25 @@ pre code {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZVxuZXh0LmRpciA8LSAnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9kYXRhJ1xuXG4jIHRhYnVsYXRlIGRhdGFcbmRhdGFzZXQgPC0gVGFidWxhdGUoXG4gIGV4dC5kaXIgPSBleHQuZGlyKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG5saWJyYXJ5KHJlbW90ZXMpXG5cbmluc3RhbGxfZ2l0aHViKCd3aWxsenl3aWVjL2NyaXRpY2FsaXR5JywgYXV0aF90b2tlbiA9ICdnaHBfNk9JbnJTZU5XWG9jVjI0bEhaV0tPQTRjUnlJdHRJMTh2YWU1JywgcXVpZXQgPSBUUlVFKVxuYGBgIn0= -->
 <pre class="r"><code>
 library(remotes)
 
-install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)
+install_github(&#39;willzywiec/criticality&#39;, auth_token = &#39;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&#39;, quiet = TRUE)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiVGhlc2UgcGFja2FnZXMgaGF2ZSBtb3JlIHJlY2VudCB2ZXJzaW9ucyBhdmFpbGFibGUuXG5JdCBpcyByZWNvbW1lbmRlZCB0byB1cGRhdGUgYWxsIG9mIHRoZW0uXG5XaGljaCB3b3VsZCB5b3UgbGlrZSB0byB1cGRhdGU/XG5cbjE6IEFsbCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbjI6IENSQU4gcGFja2FnZXMgb25seSAgICAgICAgICAgICAgICBcbjM6IE5vbmUgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbjQ6IHJldGljdWxhdGUgKDEuMjIgIC0+IDEuMjMgKSBbQ1JBTl1cbjU6IGZhbnNpICAgICAgKDAuNS4wIC0+IDEuMC4yKSBbQ1JBTl1cbiJ9 -->
+<pre><code>These packages have more recent versions available.
+It is recommended to update all of them.
+Which would you like to update?
+
+1: All                               
+2: CRAN packages only                
+3: None                              
+4: reticulate (1.22  -&gt; 1.23 ) [CRAN]
+5: fansi      (0.5.0 -&gt; 1.0.2) [CRAN]</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuM1xuXG5saWJyYXJ5KGNyaXRpY2FsaXR5KVxuXG4jIHNldCB2YXJpYWJsZVxuZXh0LmRpciA8LSAnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9kYXRhJ1xuXG4jIHRhYnVsYXRlIGRhdGFcbmRhdGFzZXQgPC0gVGFidWxhdGUoXG4gIGV4dC5kaXIgPSBleHQuZGlyKVxuYGBgIn0= -->
+<pre class="r"><code>3
 
 library(criticality)
 
@@ -234,9 +248,9 @@ ext.dir &lt;- &#39;/Users/will/Documents/GitHub/criticality/data&#39;
 dataset &lt;- Tabulate(
   ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gc3VtbWFyaXplKC4sIG5vX3Jvd3MgPSBsZW5ndGgoZ2V0KGxhYmVsc1tpXSkpKSA6IFxuICBjb3VsZCBub3QgZmluZCBmdW5jdGlvbiBcInN1bW1hcml6ZVwiXG4ifQ== -->
-<pre><code>Error in summarize(., no_rows = length(get(labels[i]))) : 
-  could not find function &quot;summarize&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcmVhZC5jc3YocGFzdGUwKGNvZGUsIFwiLW91dHB1dC5jc3ZcIiksIGZpbGVFbmNvZGluZyA9IFwiVVRGLTgtQk9NXCIpICU+JSAgOiBcbiAgY291bGQgbm90IGZpbmQgZnVuY3Rpb24gXCIlPiVcIlxuIn0= -->
+<pre><code>Error in read.csv(paste0(code, &quot;-output.csv&quot;), fileEncoding = &quot;UTF-8-BOM&quot;) %&gt;%  : 
+  could not find function &quot;%&gt;%&quot;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->

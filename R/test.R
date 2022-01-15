@@ -19,6 +19,8 @@
 #'   val.mae,
 #'   training.dir = paste0(.libPaths(), "/criticality/data")
 #' )
+#' @import keras
+#' @import magrittr
 
 Test <- function(
   dataset,
@@ -26,9 +28,6 @@ Test <- function(
   training.mae,
   val.mae,
   training.dir) {
-
-  # library(keras)
-  # library(magrittr)
 
   setwd(training.dir)
 
@@ -47,7 +46,7 @@ Test <- function(
   # minimize objective function
   for (i in 1:meta.len) {
 
-    test.pred[ , i] <- metamodel[[i]] %>% predict(dataset$test.df)
+    test.pred[ , i] <- metamodel[[i]] %>% keras::predict(dataset$test.df)
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
@@ -154,7 +153,7 @@ Test <- function(
 
     if (wt.len == 1) {
 
-      training.pred[ , 1] <- metamodel[[1]] %>% predict(dataset$training.df)
+      training.pred[ , 1] <- metamodel[[1]] %>% keras::predict(dataset$training.df)
 
       training.data$avg <- training.pred[ , 1]
       training.data$nm <- training.pred[ , 1] * nm.wt[[wt.len]][[1]]
@@ -169,7 +168,7 @@ Test <- function(
     } else {
 
       for (i in 1:wt.len) {
-        training.pred[ , i] <- metamodel[[i]] %>% predict(dataset$training.df)
+        training.pred[ , i] <- metamodel[[i]] %>% keras::predict(dataset$training.df)
       }
 
       training.data$avg <- rowMeans(training.pred[ , 1:wt.len])

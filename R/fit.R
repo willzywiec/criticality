@@ -25,6 +25,8 @@
 #'   remodel.dir,
 #'   i
 #' )
+#' @import keras
+#' @import magrittr
 
 Fit <- function(
   dataset,
@@ -35,9 +37,6 @@ Fit <- function(
   verbose = TRUE,
   remodel.dir,
   i) {
-
-  # library(keras)
-  # library(magrittr)
 
   if (missing(i)) {
     model %>% fit(

@@ -15,17 +15,16 @@
 #'   dist = "gamma",
 #'   ext.dir = paste0(.libPaths(), "/criticality/data")
 #' )
+#' @import bnlearn
+#' @import dplyr
+#' @import evd
+#' @import fitdistrplus
+#' @import magrittr
 
 BN <- function(
   facility,
   dist = 'gamma',
   ext.dir) {
-
-  # library(bnlearn)
-  # library(dplyr)
-  # library(evd)
-  # library(fitdistrplus)
-  # library(magrittr)
 
   facility.data <- read.csv(paste0(ext.dir, '/', facility, '.csv'))
 

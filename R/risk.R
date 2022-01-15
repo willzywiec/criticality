@@ -29,6 +29,7 @@
 #'   sample.size = 1e+05,
 #'   ext.dir = paste0(.libPaths(), "/criticality/data")
 #' )
+#' @import dplyr
 
 Risk <- function(
   bn,
@@ -41,8 +42,6 @@ Risk <- function(
   risk.pool = 100,
   sample.size = 1e+09,
   ext.dir) {
-
-  # library(dplyr)
 
   if (keff.cutoff > 0) {
     risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)

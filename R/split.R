@@ -33,6 +33,7 @@
 #'   verbose = TRUE,
 #'   ext.dir = paste0(.libPaths(), "/criticality/data")
 #' )
+#' @import magrittr
 
 Split <- function(
   dataset,
@@ -47,8 +48,6 @@ Split <- function(
   replot = TRUE,
   verbose = TRUE,
   ext.dir) {
-
-  # library(magrittr)
 
   form <- names(table(dataset$output$form))
 

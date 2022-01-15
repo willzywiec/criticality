@@ -13,6 +13,8 @@
 #'   code = "mcnp",
 #'   output
 #' )
+#' @import caret
+#' @import dplyr
 
 Scale <- function(
   code = 'mcnp',

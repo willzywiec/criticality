@@ -19,6 +19,8 @@
 #'   opt.alg = 'adamax',
 #'   learning.rate = 0.00075
 #' )
+#' @import keras
+#' @import magrittr
 
 Model <- function(
   dataset,
@@ -26,9 +28,6 @@ Model <- function(
   loss = 'sse',
   opt.alg = 'adamax',
   learning.rate = 0.00075) {
-
-  # library(keras)
-  # library(magrittr)
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 
