@@ -43,9 +43,10 @@ dataset <- Tabulate(
 metamodel <- NN(
   dataset = dataset,
   batch.size = 128,
-  epochs = 50,
+  epochs = 10,
   ensemble.size = 1,
-  replot = FALSE)
+  replot = FALSE,
+  training.dir = ext.dir)
 
 ```
 
@@ -68,7 +69,7 @@ risk <- Risk(
   keff.cutoff = 0.5,
   metamodel = metamodel,
   risk.pool = 10,
-  sample.size = 1e+09,
+  sample.size = 1e+07,
   ext.dir = ext.dir)
 
 ```

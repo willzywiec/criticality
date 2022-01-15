@@ -52,7 +52,7 @@ Scale <- function(
     } else {
       comb.output <- rbind(output, dataset$output[ , 1:(ncol(dataset$output) - 2)])
       null.output <- Nullify(comb.output, labels)
-      dummy <- dummyVars(~ ., data = dataset$output[ , 1:(ncol(dataset$output) - 2)], sep = '')
+      dummy <- dummyVars(~ ., data = null.output, sep = '')
       training.data <- data.frame(predict(dummy, newdata = null.output))
       training.data <- training.data[1:nrow(output), ]
     }
