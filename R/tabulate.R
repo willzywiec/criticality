@@ -20,10 +20,7 @@ Tabulate <- function(
 
   # library(magrittr)
 
-  data.dir <- paste0(ext.dir, '/data')
-  dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
-
-  setwd(data.dir)
+  setwd(ext.dir)
 
   if (file.exists(paste0(code, '-dataset.RData'))) {
 

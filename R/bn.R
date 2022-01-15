@@ -13,7 +13,8 @@
 #' BN(
 #'   facility = "facility",
 #'   dist = "gamma",
-#'   ext.dir = paste0(.libPaths(), "/criticality/example")
+#'   ext.dir = download.file('')
+#' ext.dir = dir.create(paste0(.libPaths(), "/criticality/example", recursive = TRUE, showWarnings = FALSE))
 #' )
 
 BN <- function(
@@ -27,10 +28,7 @@ BN <- function(
   # library(fitdistrplus)
   # library(magrittr)
 
-  data.dir <- paste0(ext.dir, '/data')
-  dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
-
-  facility.data <- read.csv(paste0(data.dir, '/', facility, '.csv'))
+  facility.data <- read.csv(paste0(ext.dir, '/', facility, '.csv'))
 
   # set categorical parameters
   op <- table(facility.data$op) %>% names()
