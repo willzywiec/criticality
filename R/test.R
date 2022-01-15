@@ -27,8 +27,8 @@ Test <- function(
   val.mae,
   training.dir) {
 
-  library(keras)
-  library(magrittr)
+  # library(keras)
+  # library(magrittr)
 
   setwd(training.dir)
 

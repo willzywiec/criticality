@@ -11,14 +11,14 @@
 #' @examples
 #' Tabulate(
 #'   code = "mcnp",
-#'   ext.dir = paste0(.libPaths(), "/criticality/example")
+#'   ext.dir = paste0(.libPaths(), "/criticality/examples")
 #' )
 
 Tabulate <- function(
   code = 'mcnp',
   ext.dir) {
 
-  library(magrittr)
+  # library(magrittr)
 
   data.dir <- paste0(ext.dir, '/data')
   dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)

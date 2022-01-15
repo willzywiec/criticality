@@ -48,8 +48,8 @@ NN <- function(
   verbose = FALSE,
   training.dir) {
 
-  library(keras)
-  library(magrittr)
+  # library(keras)
+  # library(magrittr)
 
   model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)

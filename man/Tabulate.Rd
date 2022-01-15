@@ -17,6 +17,6 @@ This function imports the Scale function and loads/saves training and test data.
 \examples{
 Tabulate(
   code = "mcnp",
-  ext.dir = paste0(.libPaths(), "/criticality/example")
+  ext.dir = paste0(.libPaths(), "/criticality/examples")
 )
 }

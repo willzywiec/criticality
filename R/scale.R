@@ -18,8 +18,8 @@ Scale <- function(
   code = 'mcnp',
   output) {
 
-  library(caret)
-  library(dplyr)
+  # library(caret)
+  # library(dplyr)
 
   if (nrow(output) > 0) {
 
@@ -53,7 +53,7 @@ Scale <- function(
     } else {
       comb.output <- rbind(output, dataset$output[ , 1:(ncol(dataset$output) - 2)])
       null.output <- Nullify(comb.output, labels)
-      dummy <- dummyVars(~ ., data = null.output, sep = '')
+      dummy <- dummyVars(~ ., data = dataset$output[ , 1:(ncol(dataset$output) - 2)], sep = '')
       training.data <- data.frame(predict(dummy, newdata = null.output))
       training.data <- training.data[1:nrow(output), ]
     }

@@ -27,8 +27,8 @@ Model <- function(
   opt.alg = 'adamax',
   learning.rate = 0.00075) {
 
-  library(keras)
-  library(magrittr)
+  # library(keras)
+  # library(magrittr)
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 

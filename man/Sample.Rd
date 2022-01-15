@@ -40,7 +40,7 @@ Sample(
   bn,
   code = "mcnp",
   dataset,
-  keff.cutoff = 0.5,
+  keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+05,
   ext.dir = paste0(.libPaths(), "/criticality/example"),

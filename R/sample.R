@@ -19,7 +19,7 @@
 #'   bn,
 #'   code = "mcnp",
 #'   dataset,
-#'   keff.cutoff = 0.5,
+#'   keff.cutoff = 0.9,
 #'   metamodel,
 #'   sample.size = 1e+05,
 #'   ext.dir = paste0(.libPaths(), "/criticality/example"),
@@ -36,9 +36,9 @@ Sample <- function(
   ext.dir,
   risk.dir) {
 
-  library(bnlearn)
-  library(magrittr)
-  library(parallel)
+  # library(bnlearn)
+  # library(magrittr)
+  # library(parallel)
 
   cluster <- makeCluster((detectCores() / 2), type = 'SOCK')
 
@@ -95,7 +95,7 @@ Sample <- function(
 
   bn.df <- Scale(code, subset(bn.data, select = -c(op, ctrl)))
 
-  library(keras)
+  # library(keras)
 
   # predict keff values
   if (keff.cutoff > 0) {

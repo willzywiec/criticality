@@ -18,9 +18,9 @@ Plot <- function(
   i,
   history) {
 
-  library(ggplot2)
-  library(magrittr)
-  library(scales)
+  # library(ggplot2)
+  # library(magrittr)
+  # library(scales)
 
   # set theme
   new.theme <- theme_gray() + theme(axis.text = element_text(color = 'black', size = 11), text = element_text(color = 'black', family = 'serif', size = 11))

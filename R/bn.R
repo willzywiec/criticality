@@ -20,12 +20,12 @@ BN <- function(
   facility,
   dist = 'gamma',
   ext.dir) {
-	
-	library(bnlearn)
-  library(dplyr)
-  library(evd)
-  library(fitdistrplus)
-  library(magrittr)
+
+  # library(bnlearn)
+  # library(dplyr)
+  # library(evd)
+  # library(fitdistrplus)
+  # library(magrittr)
 
   data.dir <- paste0(ext.dir, '/data')
   dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
