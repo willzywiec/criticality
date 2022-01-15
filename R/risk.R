@@ -86,11 +86,11 @@ Risk <- function(
         progress.bar <- txtProgressBar(min = 0, max = risk.pool, style = 3)
         setTxtProgressBar(progress.bar, i)
         if (i == risk.pool) {
-          cat('\n', sep = '')
+          cat('\n\n', sep = '')
         }
       } else if (i == risk.pool) {
         setTxtProgressBar(progress.bar, i)
-        cat('\n', sep = '')
+        cat('\n\n', sep = '')
       } else {
         setTxtProgressBar(progress.bar, i)
       }

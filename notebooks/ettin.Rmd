@@ -16,17 +16,15 @@ cat('\014')
 
 library(remotes)
 
-install_github('willzywiec/criticality', auth_token = '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', quiet = TRUE)
+# install_github('willzywiec/criticality', auth_token = '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', quiet = TRUE)
 
 library(criticality)
 
-# set variables
-code <- 'mcnp'
+# set variable
 ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
 
 # tabulate data
 dataset <- Tabulate(
-  code = code,
   ext.dir = ext.dir)
 
 ```
@@ -69,7 +67,7 @@ risk <- Risk(
   keff.cutoff = 0.5,
   metamodel = metamodel,
   risk.pool = 10,
-  sample.size = 1e+07,
+  sample.size = 1e+05,
   ext.dir = ext.dir)
 
 ```
