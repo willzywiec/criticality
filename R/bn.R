@@ -13,7 +13,7 @@
 #' BN(
 #'   facility = "facility",
 #'   dist = "gamma",
-#'   ext.dir = paste0(.libPaths(), "/criticality/data")
+#'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
 #' @import bnlearn
 #' @import dplyr

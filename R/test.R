@@ -17,7 +17,7 @@
 #'   metamodel,
 #'   training.mae,
 #'   val.mae,
-#'   training.dir = paste0(.libPaths(), "/criticality/data")
+#'   training.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
 #' @import keras
 #' @import magrittr

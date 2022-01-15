@@ -31,7 +31,7 @@
 #'   val.split = 0.2,
 #'   replot = TRUE,
 #'   verbose = TRUE,
-#'   training.dir = paste0(.libPaths(), "/criticality/data")
+#'   training.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
 #' @import keras
 #' @import magrittr

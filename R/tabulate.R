@@ -11,7 +11,7 @@
 #' @examples
 #' Tabulate(
 #'   code = "mcnp",
-#'   ext.dir = paste0(.libPaths(), "/criticality/data")
+#'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
 #' @import magrittr
 
@@ -23,7 +23,7 @@ Tabulate <- function(
 
   if (file.exists(paste0(code, '-dataset.RData'))) {
 
-    dataset <- readRDS(paste0(code, '-dataset.RData'))
+    dataset <- load(paste0(code, '-dataset.RData'))
     cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
   } else {
