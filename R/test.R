@@ -7,7 +7,7 @@
 #' This function optimizes an existing deep neural network metamodel and generates .csv predictions for all training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param ensemble.size Number of deep neural networks in the ensemble
-#' @param loss Loss functio
+#' @param loss Loss function
 #' @param ext.dir External directory
 #' @param training.dir Training directory
 #' @export
