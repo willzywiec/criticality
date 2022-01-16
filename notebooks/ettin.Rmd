@@ -23,17 +23,17 @@ remove.packages('criticality')
 library(devtools)
 library(roxygen2)
 
-# setwd('C:/Users/Will/Documents/GitHub/criticality')
-setwd('/Users/will/Documents/GitHub/criticality')
+setwd('C:/Users/Will/Documents/GitHub/criticality')
+# setwd('/Users/will/Documents/GitHub/criticality')
 
 document()
 
-# setwd('C:/Users/Will/Documents/GitHub')
-setwd('/Users/will/Documents/GitHub')
+setwd('C:/Users/Will/Documents/GitHub')
+# setwd('/Users/will/Documents/GitHub')
 
 install('criticality', upgrade = 'never')
 
-# check('criticality')
+check('criticality')
 
 ```
 

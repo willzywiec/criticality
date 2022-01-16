@@ -82,7 +82,7 @@ Risk <- function(
       bn.data <- cpdist(
         bn,
         nodes = names(bn),
-        evidence = (as.integer(mass) > 120) & (as.integer(rad) > 7),
+        evidence = (as.integer(mass) > 100) & (as.integer(rad) > 7),
         batch = sample.size,
         cluster = cluster,
         n = sample.size) %>% na.omit()

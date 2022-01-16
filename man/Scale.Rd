@@ -15,8 +15,9 @@ Scale(code = "mcnp", output)
 This function centers, scales, and one-hot encodes variables.
 }
 \examples{
+dataset <- Tabulate(code, paste0(.libPaths()[1], "/criticality/data"))
 Scale(
   code = "mcnp",
-  output = load(paste0(.libPaths()[1], "/criticality/data/mcnp-output.csv"))
+  output = read.csv(paste0(.libPaths()[1], "/criticality/data/mcnp-output.csv"))
 )
 }
