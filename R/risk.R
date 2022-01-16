@@ -16,6 +16,10 @@
 #' @export
 #' @examples
 #' Risk(
+#'   bn = BN(
+#'     facility = "facility",
+#'     dist = "gamma",
+#'     ext.dir = paste0(.libPaths()[1], "/criticality/data")),
 #'   code = "mcnp",
 #'   dist = "gamma",
 #'   facility = "facility",
@@ -33,7 +37,7 @@
 #'     replot = TRUE,
 #'     verbose = TRUE,
 #'     ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-#'     training.dir = tempdir()),
+#'     training.dir = paste0(.libPaths()[1], "/criticality/data")),
 #'   risk.pool = 10,
 #'   sample.size = 1e+05,
 #'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
@@ -41,6 +45,7 @@
 #' @import dplyr
 
 Risk <- function(
+  bn,
   code = 'mcnp',
   dist = 'gamma',
   facility,
@@ -51,7 +56,6 @@ Risk <- function(
   ext.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
-  if (!exists('bn')) load(paste0(ext.dir, '/bn.RData'))
 
   if (keff.cutoff > 0) {
     risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)

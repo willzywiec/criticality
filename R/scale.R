@@ -20,6 +20,8 @@ Scale <- function(
   code = 'mcnp',
   output) {
 
+  if (!exists('dataset')) dataset <- Tabulate(code, paste0(.libPaths()[1], "/criticality/data"))
+
   if (nrow(output) > 0) {
 
     output$shape <- output$ht <- output$hd <- NULL

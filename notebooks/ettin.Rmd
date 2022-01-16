@@ -23,11 +23,13 @@ remove.packages('criticality')
 library(devtools)
 library(roxygen2)
 
-setwd('C:/Users/Will/Documents/GitHub/criticality')
+# setwd('C:/Users/Will/Documents/GitHub/criticality')
+setwd('/Users/will/Documents/GitHub/criticality')
 
 document()
 
-setwd('C:/Users/Will/Documents/GitHub')
+# setwd('C:/Users/Will/Documents/GitHub')
+setwd('/Users/will/Documents/GitHub')
 
 install('criticality', upgrade = 'never')
 
@@ -38,7 +40,8 @@ install('criticality', upgrade = 'never')
 ```{r}
 
 # set variable
-ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
+# ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
+ext.dir <- '/Users/will/Documents/GitHub/criticality/data'
 
 # tabulate data
 dataset <- Tabulate(

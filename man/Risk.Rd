@@ -5,6 +5,7 @@
 \title{Risk Function}
 \usage{
 Risk(
+  bn,
   code = "mcnp",
   dist = "gamma",
   facility,
@@ -37,6 +38,10 @@ This function imports the Sample function and estimates process criticality acci
 }
 \examples{
 Risk(
+  bn = BN(
+    facility = "facility",
+    dist = "gamma",
+    ext.dir = paste0(.libPaths()[1], "/criticality/data")),
   code = "mcnp",
   dist = "gamma",
   facility = "facility",
@@ -54,7 +59,7 @@ Risk(
     replot = TRUE,
     verbose = TRUE,
     ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-    training.dir = tempdir()),
+    training.dir = paste0(.libPaths()[1], "/criticality/data")),
   risk.pool = 10,
   sample.size = 1e+05,
   ext.dir = paste0(.libPaths()[1], "/criticality/data")

@@ -227,29 +227,95 @@ pre code {
 
 remove.packages(&#39;criticality&#39;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVtb3ZpbmcgcGFja2FnZSBmcm9tIOKAmEM6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvNC4x4oCZXG4oYXMg4oCYbGli4oCZIGlzIHVuc3BlY2lmaWVkKVxuIn0= -->
-<pre><code>Removing package from ‘C:/Users/Will/Documents/R/win-library/4.1’
+<!-- rnb-output-begin eyJkYXRhIjoiUmVtb3ZpbmcgcGFja2FnZSBmcm9tIOKAmC9MaWJyYXJ5L0ZyYW1ld29ya3MvUi5mcmFtZXdvcmsvVmVyc2lvbnMvNC4xL1Jlc291cmNlcy9saWJyYXJ54oCZXG4oYXMg4oCYbGli4oCZIGlzIHVuc3BlY2lmaWVkKVxuIn0= -->
+<pre><code>Removing package from ‘/Library/Frameworks/R.framework/Versions/4.1/Resources/library’
 (as ‘lib’ is unspecified)</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkZXZ0b29scylcbmxpYnJhcnkocm94eWdlbjIpXG5cbnNldHdkKCdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHknKVxuXG5kb2N1bWVudCgpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShkZXZ0b29scylcbmxpYnJhcnkocm94eWdlbjIpXG5cbiMgc2V0d2QoJ0M6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eScpXG5zZXR3ZCgnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eScpXG5cbmRvY3VtZW50KClcbmBgYCJ9 -->
 <pre class="r"><code>library(devtools)
 library(roxygen2)
 
-setwd(&#39;C:/Users/Will/Documents/GitHub/criticality&#39;)
+# setwd(&#39;C:/Users/Will/Documents/GitHub/criticality&#39;)
+setwd(&#39;/Users/will/Documents/GitHub/criticality&#39;)
 
 document()</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiaSBVcGRhdGluZyBjcml0aWNhbGl0eSBkb2N1bWVudGF0aW9uXG4ifQ== -->
-<pre><code>i Updating criticality documentation</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoi4oS5IFVwZGF0aW5nIGNyaXRpY2FsaXR5IGRvY3VtZW50YXRpb25cbuKEuSBMb2FkaW5nIGNyaXRpY2FsaXR5XG4ifQ== -->
+<pre><code>ℹ Updating criticality documentation
+ℹ Loading criticality</code></pre>
 <!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV3JpdGluZyBOQU1FU1BBQ0VcbldyaXRpbmcgTkFNRVNQQUNFXG4ifQ== -->
+<pre><code>Writing NAMESPACE
+Writing NAMESPACE</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBzZXR3ZCgnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViJylcbnNldHdkKCcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViJylcblxuaW5zdGFsbCgnY3JpdGljYWxpdHknLCB1cGdyYWRlID0gJ25ldmVyJylcbmBgYCJ9 -->
+<pre class="r"><code># setwd(&#39;C:/Users/Will/Documents/GitHub&#39;)
+setwd(&#39;/Users/will/Documents/GitHub&#39;)
+
+install(&#39;criticality&#39;, upgrade = &#39;never&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBcbiAgIGNoZWNraW5nIGZvciBmaWxlIOKAmC9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvREVTQ1JJUFRJT07igJkgLi4uXG4gIFxu4pyTICBjaGVja2luZyBmb3IgZmlsZSDigJgvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L0RFU0NSSVBUSU9O4oCZICgzNDRtcylcblxuICBcbuKUgCAgcHJlcGFyaW5nIOKAmGNyaXRpY2FsaXR54oCZOiAoMnMpXG5cbiAgXG4gICBjaGVja2luZyBERVNDUklQVElPTiBtZXRhLWluZm9ybWF0aW9uIC4uLlxuICBcbuKckyAgY2hlY2tpbmcgREVTQ1JJUFRJT04gbWV0YS1pbmZvcm1hdGlvblxuXG4gIFxu4pSAICBjaGVja2luZyBmb3IgTEYgbGluZS1lbmRpbmdzIGluIHNvdXJjZSBhbmQgbWFrZSBmaWxlcyBhbmQgc2hlbGwgc2NyaXB0c1xuXG4gIFxu4pSAICBjaGVja2luZyBmb3IgZW1wdHkgb3IgdW5uZWVkZWQgZGlyZWN0b3JpZXNcbiAgIFJlbW92ZWQgZW1wdHkgZGlyZWN0b3J5IOKAmGNyaXRpY2FsaXR5L2V4YW1wbGUvcmlzay9mYWNpbGl0eS1nYW1tYS0xZSswNy0wLjnigJlcbiAgIFJlbW92ZWQgZW1wdHkgZGlyZWN0b3J5IOKAmGNyaXRpY2FsaXR5L2V4YW1wbGUvcmlzay9mYWNpbGl0eS1nYW1tYS0xZSswOS0wLjnigJlcbiAgIFJlbW92ZWQgZW1wdHkgZGlyZWN0b3J5IOKAmGNyaXRpY2FsaXR5L2V4YW1wbGUvcmlza+KAmVxuICAgUmVtb3ZlZCBlbXB0eSBkaXJlY3Rvcnkg4oCYY3JpdGljYWxpdHkvZXhhbXBsZeKAmVxu4pSAICBsb29raW5nIHRvIHNlZSBpZiBhIOKAmGRhdGEvZGF0YWxpc3TigJkgZmlsZSBzaG91bGQgYmUgYWRkZWRcblxuICBcbuKUgCAgYnVpbGRpbmcg4oCYY3JpdGljYWxpdHlfMC4wLjAuOTAwMC50YXIuZ3rigJlcblxuICBcbiAgIFxuXG5SdW5uaW5nIC9MaWJyYXJ5L0ZyYW1ld29ya3MvUi5mcmFtZXdvcmsvUmVzb3VyY2VzL2Jpbi9SIENNRCBJTlNUQUxMIFxcXG4gIC92YXIvZm9sZGVycy9teC8zbWpwYjJ5MTR4MzAyc21qbGR6ZDVsOTgwMDAwZ24vVC8vUnRtcDA2elpGSS9jcml0aWNhbGl0eV8wLjAuMC45MDAwLnRhci5neiBcXFxuICAtLWluc3RhbGwtdGVzdHMgXG4qIGluc3RhbGxpbmcgdG8gbGlicmFyeSDigJgvTGlicmFyeS9GcmFtZXdvcmtzL1IuZnJhbWV3b3JrL1ZlcnNpb25zLzQuMS9SZXNvdXJjZXMvbGlicmFyeeKAmVxuKiBpbnN0YWxsaW5nICpzb3VyY2UqIHBhY2thZ2Ug4oCYY3JpdGljYWxpdHnigJkgLi4uXG4qKiB1c2luZyBzdGFnZWQgaW5zdGFsbGF0aW9uXG4qKiBSXG4qKiBkYXRhXG4qKiBieXRlLWNvbXBpbGUgYW5kIHByZXBhcmUgcGFja2FnZSBmb3IgbGF6eSBsb2FkaW5nXG5Ob3RlOiB3cm9uZyBudW1iZXIgb2YgYXJndW1lbnRzIHRvICdjZWlsaW5nJyBcbioqIGhlbHBcbioqKiBpbnN0YWxsaW5nIGhlbHAgaW5kaWNlc1xuKiogYnVpbGRpbmcgcGFja2FnZSBpbmRpY2VzXG4qKiB0ZXN0aW5nIGlmIGluc3RhbGxlZCBwYWNrYWdlIGNhbiBiZSBsb2FkZWQgZnJvbSB0ZW1wb3JhcnkgbG9jYXRpb25cbioqIHRlc3RpbmcgaWYgaW5zdGFsbGVkIHBhY2thZ2UgY2FuIGJlIGxvYWRlZCBmcm9tIGZpbmFsIGxvY2F0aW9uXG4qKiB0ZXN0aW5nIGlmIGluc3RhbGxlZCBwYWNrYWdlIGtlZXBzIGEgcmVjb3JkIG9mIHRlbXBvcmFyeSBpbnN0YWxsYXRpb24gcGF0aFxuKiBET05FIChjcml0aWNhbGl0eSlcbiJ9 -->
+<pre><code>  
+   checking for file ‘/Users/will/Documents/GitHub/criticality/DESCRIPTION’ ...
+  
+✓  checking for file ‘/Users/will/Documents/GitHub/criticality/DESCRIPTION’ (344ms)
+
+  
+─  preparing ‘criticality’: (2s)
+
+  
+   checking DESCRIPTION meta-information ...
+  
+✓  checking DESCRIPTION meta-information
+
+  
+─  checking for LF line-endings in source and make files and shell scripts
+
+  
+─  checking for empty or unneeded directories
+   Removed empty directory ‘criticality/example/risk/facility-gamma-1e+07-0.9’
+   Removed empty directory ‘criticality/example/risk/facility-gamma-1e+09-0.9’
+   Removed empty directory ‘criticality/example/risk’
+   Removed empty directory ‘criticality/example’
+─  looking to see if a ‘data/datalist’ file should be added
+
+  
+─  building ‘criticality_0.0.0.9000.tar.gz’
+
+  
+   
+
+Running /Library/Frameworks/R.framework/Resources/bin/R CMD INSTALL \
+  /var/folders/mx/3mjpb2y14x302smjldzd5l980000gn/T//Rtmp06zZFI/criticality_0.0.0.9000.tar.gz \
+  --install-tests 
+* installing to library ‘/Library/Frameworks/R.framework/Versions/4.1/Resources/library’
+* installing *source* package ‘criticality’ ...
+** using staged installation
+** R
+** data
+** byte-compile and prepare package for lazy loading
+Note: wrong number of arguments to &#39;ceiling&#39; 
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (criticality)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBjaGVjaygnY3JpdGljYWxpdHknKVxuXG5gYGAifQ== -->
+<pre class="r"><code># check(&#39;criticality&#39;)
+</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZXh0LmRpciA8LSAnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2RhdGEnXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZShcbiAgY29kZSA9ICdtY25wJyxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuIyBleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YSdcbmV4dC5kaXIgPC0gJy9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YSdcblxuIyB0YWJ1bGF0ZSBkYXRhXG5kYXRhc2V0IDwtIFRhYnVsYXRlKFxuICBjb2RlID0gJ21jbnAnLFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
 <pre class="r"><code>
 # set variable
-ext.dir &lt;- &#39;C:/Users/Will/Documents/GitHub/criticality/data&#39;
+# ext.dir &lt;- &#39;C:/Users/Will/Documents/GitHub/criticality/data&#39;
+ext.dir &lt;- &#39;/Users/will/Documents/GitHub/criticality/data&#39;
 
 # tabulate data
 dataset &lt;- Tabulate(
@@ -259,8 +325,8 @@ dataset &lt;- Tabulate(
 <!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
 <pre><code>Loaded mcnp-dataset.RData</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdhcyBjaGFuZ2VkIHRvIEM6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9kYXRhIGluc2lkZSBhIG5vdGVib29rIGNodW5rLiBUaGUgd29ya2luZyBkaXJlY3Rvcnkgd2lsbCBiZSByZXNldCB3aGVuIHRoZSBjaHVuayBpcyBmaW5pc2hlZCBydW5uaW5nLiBVc2UgdGhlIGtuaXRyIHJvb3QuZGlyIG9wdGlvbiBpbiB0aGUgc2V0dXAgY2h1bmsgdG8gY2hhbmdlIHRoZSB3b3JraW5nIGRpcmVjdG9yeSBmb3Igbm90ZWJvb2sgY2h1bmtzLlxuIn0= -->
-<pre><code>Warning: The working directory was changed to C:/Users/Will/Documents/GitHub/criticality/data inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdhcyBjaGFuZ2VkIHRvIC9Vc2Vycy93aWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YSBpbnNpZGUgYSBub3RlYm9vayBjaHVuay4gVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdpbGwgYmUgcmVzZXQgd2hlbiB0aGUgY2h1bmsgaXMgZmluaXNoZWQgcnVubmluZy4gVXNlIHRoZSBrbml0ciByb290LmRpciBvcHRpb24gaW4gdGhlIHNldHVwIGNodW5rIHRvIGNoYW5nZSB0aGUgd29ya2luZyBkaXJlY3RvcnkgZm9yIG5vdGVib29rIGNodW5rcy5cbiJ9 -->
+<pre><code>Warning: The working directory was changed to /Users/will/Documents/GitHub/criticality/data inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -283,13 +349,18 @@ metamodel &lt;- NN(
   ext.dir = ext.dir,
   training.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuTWVhbiBUcmFpbmluZyBNQUUgPSAwLjA0OTA1M1xuTWVhbiBDcm9zcy1WYWxpZGF0aW9uIE1BRSA9IDAuMDQ0MTI4XG5NZWFuIFRlc3QgTUFFID0gNC40NzE1MDJcblxuRW5zZW1ibGUgVGVzdCBNQUUgPSA0LjQ3MTUwMlxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjI5MDgxMyAoTmVsZGVyLU1lYWQsIEJGR1MsIFNBKVxuIn0= -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIFRlbnNvcmZsb3cgdmVyc2lvbiAyLjcuMFxuMjAyMi0wMS0xNiAwMDo0MDo1Mi44MjgyNDA6IEkgdGVuc29yZmxvdy9jb3JlL3BsYXRmb3JtL2NwdV9mZWF0dXJlX2d1YXJkLmNjOjE1MV0gVGhpcyBUZW5zb3JGbG93IGJpbmFyeSBpcyBvcHRpbWl6ZWQgd2l0aCBvbmVBUEkgRGVlcCBOZXVyYWwgTmV0d29yayBMaWJyYXJ5IChvbmVETk4pIHRvIHVzZSB0aGUgZm9sbG93aW5nIENQVSBpbnN0cnVjdGlvbnMgaW4gcGVyZm9ybWFuY2UtY3JpdGljYWwgb3BlcmF0aW9uczogIEFWWDIgRk1BXG5UbyBlbmFibGUgdGhlbSBpbiBvdGhlciBvcGVyYXRpb25zLCByZWJ1aWxkIFRlbnNvckZsb3cgd2l0aCB0aGUgYXBwcm9wcmlhdGUgY29tcGlsZXIgZmxhZ3MuXG4ifQ== -->
+<pre><code>Loaded Tensorflow version 2.7.0
+2022-01-16 00:40:52.828240: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgIDAlXG4gIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PXwgMTAwJVxuXG5NZWFuIFRyYWluaW5nIE1BRSA9IDAuMDQ5MDUzXG5NZWFuIENyb3NzLVZhbGlkYXRpb24gTUFFID0gMC4wNDQxMjhcbk1lYW4gVGVzdCBNQUUgPSA0LjQ3MTUwMlxuXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDQuNDcxNTAyXG5FbnNlbWJsZSBUZXN0IE1BRSA9IDAuMjkwODEzIChOZWxkZXItTWVhZCwgQkZHUywgU0EpXG4ifQ== -->
 <pre><code>
 
-  |                                                                                                                                                                   
-  |                                                                                                                                                             |   0%
-  |                                                                                                                                                                   
-  |=============================================================================================================================================================| 100%
+  |                                                                           
+  |                                                                     |   0%
+  |                                                                           
+  |=====================================================================| 100%
 
 Mean Training MAE = 0.049053
 Mean Cross-Validation MAE = 0.044128
@@ -302,7 +373,7 @@ Ensemble Test MAE = 0.290813 (Nelder-Mead, BFGS, SA)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcblxuIyBlc3RpbWF0ZSByaXNrXG5yaXNrIDwtIFJpc2soXG4gIGRpc3QgPSAnZ2FtbWEnLFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBrZWZmLmN1dG9mZiA9IDAuNSxcbiAgbWV0YW1vZGVsID0gbWV0YW1vZGVsLFxuICByaXNrLnBvb2wgPSAxMCxcbiAgc2FtcGxlLnNpemUgPSAxZSswNSxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
 <pre class="r"><code>
 # set variable
 facility &lt;- &#39;facility&#39;
@@ -310,14 +381,24 @@ facility &lt;- &#39;facility&#39;
 # build Bayesian network
 bn &lt;- BN(
   facility = facility,
+  ext.dir = ext.dir)
+
+# estimate risk
+risk &lt;- Risk(
+  dist = &#39;gamma&#39;,
+  facility = facility,
+  keff.cutoff = 0.5,
+  metamodel = metamodel,
+  risk.pool = 10,
+  sample.size = 1e+05,
   ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcHJpbnQuZGVmYXVsdChpLCBcIiBcIiwgaikgOiBpbnZhbGlkIHByaW50aW5nIGRpZ2l0cyAtMjE0NzQ4MzY0OFxuIn0= -->
-<pre><code>Error in print.default(i, &quot; &quot;, j) : invalid printing digits -2147483648</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiUmlzayA8IDFlKzA2XG4ifQ== -->
+<pre><code>Risk &lt; 1e+06</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgbGlicmFyeShyZW1vdGVzKQ0KIyBpbnN0YWxsX2dpdGh1Yignd2lsbHp5d2llYy9jcml0aWNhbGl0eScsIGF1dGhfdG9rZW4gPSAnZ2hwXzZPSW5yU2VOV1hvY1YyNGxIWldLT0E0Y1J5SXR0STE4dmFlNScsIHF1aWV0ID0gVFJVRSkNCiMgbGlicmFyeShjcml0aWNhbGl0eSkNCg0KcmVtb3ZlLnBhY2thZ2VzKCdjcml0aWNhbGl0eScpDQoNCmxpYnJhcnkoZGV2dG9vbHMpDQpsaWJyYXJ5KHJveHlnZW4yKQ0KDQpzZXR3ZCgnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5JykNCg0KZG9jdW1lbnQoKQ0KDQpzZXR3ZCgnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViJykNCg0KaW5zdGFsbCgnY3JpdGljYWxpdHknLCB1cGdyYWRlID0gJ25ldmVyJykNCg0KIyBjaGVjaygnY3JpdGljYWxpdHknKQ0KDQpgYGANCg0KYGBge3J9DQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YScNCg0KIyB0YWJ1bGF0ZSBkYXRhDQpkYXRhc2V0IDwtIFRhYnVsYXRlKA0KICBjb2RlID0gJ21jbnAnLA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgYnVpbGQgbWV0YW1vZGVsDQojIG1ldGFtb2RlbCA8LSBTcGxpdCgNCiMgICBkYXRhc2V0ID0gZGF0YXNldCwNCiMgICByZXBsb3QgPSBGQUxTRSwNCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpDQoNCiMgYnVpbGQgbWV0YW1vZGVsDQptZXRhbW9kZWwgPC0gTk4oDQogIGJhdGNoLnNpemUgPSAxMjgsDQogIGVwb2NocyA9IDEwLA0KICBlbnNlbWJsZS5zaXplID0gMSwNCiAgcmVwbG90ID0gRkFMU0UsDQogIGV4dC5kaXIgPSBleHQuZGlyLA0KICB0cmFpbmluZy5kaXIgPSBleHQuZGlyKQ0KDQpgYGANCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0NCg0KIyBzZXQgdmFyaWFibGUNCmZhY2lsaXR5IDwtICdmYWNpbGl0eScNCg0KIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrDQpibiA8LSBCTigNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCiMgZXN0aW1hdGUgcmlzaw0KcmlzayA8LSBSaXNrKA0KICBkaXN0ID0gJ2dhbW1hJywNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAga2VmZi5jdXRvZmYgPSAwLjUsDQogIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCwNCiAgcmlzay5wb29sID0gMTAsDQogIHNhbXBsZS5zaXplID0gMWUrMDUsDQogIGV4dC5kaXIgPSBleHQuZGlyKQ0KDQpgYGANCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlIDogJ0V0dGluJwpvdXRwdXQgOiBodG1sX25vdGVib29rCi0tLQoKYGBge3IsIGluY2x1ZGUgPSBGQUxTRSwgd2FybmluZyA9IEZBTFNFfQoKIyBpbml0aWFsaXplIGVudmlyb25tZW50CmlmICghaXMubnVsbChkZXYubGlzdCgpKSkgZGV2Lm9mZigpCnJtKGxpc3QgPSBscygpKQpjYXQoJ1wwMTQnKQoKYGBgCgpgYGB7ciwgd2FybmluZyA9IEZBTFNFfQoKIyBsaWJyYXJ5KHJlbW90ZXMpCiMgaW5zdGFsbF9naXRodWIoJ3dpbGx6eXdpZWMvY3JpdGljYWxpdHknLCBhdXRoX3Rva2VuID0gJ2docF82T0luclNlTldYb2NWMjRsSFpXS09BNGNSeUl0dEkxOHZhZTUnLCBxdWlldCA9IFRSVUUpCiMgbGlicmFyeShjcml0aWNhbGl0eSkKCnJlbW92ZS5wYWNrYWdlcygnY3JpdGljYWxpdHknKQoKbGlicmFyeShkZXZ0b29scykKbGlicmFyeShyb3h5Z2VuMikKCiMgc2V0d2QoJ0M6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eScpCnNldHdkKCcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5JykKCmRvY3VtZW50KCkKCiMgc2V0d2QoJ0M6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL0dpdEh1YicpCnNldHdkKCcvVXNlcnMvd2lsbC9Eb2N1bWVudHMvR2l0SHViJykKCmluc3RhbGwoJ2NyaXRpY2FsaXR5JywgdXBncmFkZSA9ICduZXZlcicpCgojIGNoZWNrKCdjcml0aWNhbGl0eScpCgpgYGAKCmBgYHtyfQoKIyBzZXQgdmFyaWFibGUKIyBleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YScKZXh0LmRpciA8LSAnL1VzZXJzL3dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9kYXRhJwoKIyB0YWJ1bGF0ZSBkYXRhCmRhdGFzZXQgPC0gVGFidWxhdGUoCiAgY29kZSA9ICdtY25wJywKICBleHQuZGlyID0gZXh0LmRpcikKCmBgYAoKYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0KCiMgYnVpbGQgbWV0YW1vZGVsCiMgbWV0YW1vZGVsIDwtIFNwbGl0KAojICAgZGF0YXNldCA9IGRhdGFzZXQsCiMgICByZXBsb3QgPSBGQUxTRSwKIyAgIGV4dC5kaXIgPSAnL1VzZXJzL3dpbGwvRGVza3RvcC9leGFtcGxlJykKCiMgYnVpbGQgbWV0YW1vZGVsCm1ldGFtb2RlbCA8LSBOTigKICBiYXRjaC5zaXplID0gMTI4LAogIGVwb2NocyA9IDEwLAogIGVuc2VtYmxlLnNpemUgPSAxLAogIHJlcGxvdCA9IEZBTFNFLAogIGV4dC5kaXIgPSBleHQuZGlyLAogIHRyYWluaW5nLmRpciA9IGV4dC5kaXIpCgpgYGAKCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9CgojIHNldCB2YXJpYWJsZQpmYWNpbGl0eSA8LSAnZmFjaWxpdHknCgojIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmsKYm4gPC0gQk4oCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwKICBleHQuZGlyID0gZXh0LmRpcikKCiMgZXN0aW1hdGUgcmlzawpyaXNrIDwtIFJpc2soCiAgZGlzdCA9ICdnYW1tYScsCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwKICBrZWZmLmN1dG9mZiA9IDAuNSwKICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsCiAgcmlzay5wb29sID0gMTAsCiAgc2FtcGxlLnNpemUgPSAxZSswNSwKICBleHQuZGlyID0gZXh0LmRpcikKCmBgYAo=</div>
 
 
 

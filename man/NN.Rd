@@ -64,6 +64,6 @@ NN(
   replot = TRUE,
   verbose = TRUE,
   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-  training.dir = tempdir()
+  training.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 }
