@@ -55,15 +55,15 @@ NN(
   batch.size = 128,
   code = "mcnp",
   ensemble.size = 1,
-  epochs = 50,
-  layers = '8192-256-256-256-256-16',
-  loss = 'sse',
-  opt.alg = 'adamax',
+  epochs = 10,
+  layers = "8192-256-256-256-256-16",
+  loss = "sse",
+  opt.alg = "adamax",
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
   verbose = TRUE,
   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-  training.dir = paste0(.libPaths()[1], "/criticality/data")
+  training.dir = tempdir()
 )
 }

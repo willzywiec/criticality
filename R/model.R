@@ -32,9 +32,7 @@ Model <- function(
   learning.rate = 0.00075,
   ext.dir) {
 
-  if (!exists('dataset')) {
-    dataset <- Tabulate(code, ext.dir)
-  }
+  if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 

@@ -246,27 +246,27 @@ document()</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuIyBleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YSdcblxuIyB0YWJ1bGF0ZSBkYXRhXG5kYXRhc2V0IDwtIFRhYnVsYXRlKFxuICBjb2RlID0gJ21jbnAnLFxuICBleHQuZGlyID0gcGFzdGUwKC5saWJQYXRocygpWzFdLCBcIi9jcml0aWNhbGl0eS9kYXRhXCIpKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZXh0LmRpciA8LSAnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5L2RhdGEnXG5cbiMgdGFidWxhdGUgZGF0YVxuZGF0YXNldCA8LSBUYWJ1bGF0ZShcbiAgY29kZSA9ICdtY25wJyxcbiAgZXh0LmRpciA9IGV4dC5kaXIpXG5gYGAifQ== -->
 <pre class="r"><code>
 # set variable
-# ext.dir &lt;- &#39;C:/Users/Will/Documents/GitHub/criticality/data&#39;
+ext.dir &lt;- &#39;C:/Users/Will/Documents/GitHub/criticality/data&#39;
 
 # tabulate data
 dataset &lt;- Tabulate(
   code = &#39;mcnp&#39;,
-  ext.dir = paste0(.libPaths()[1], &quot;/criticality/data&quot;))</code></pre>
+  ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-output-begin eyJkYXRhIjoiTG9hZGVkIG1jbnAtZGF0YXNldC5SRGF0YVxuIn0= -->
 <pre><code>Loaded mcnp-dataset.RData</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdhcyBjaGFuZ2VkIHRvIEM6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL1Ivd2luLWxpYnJhcnkvNC4xL2NyaXRpY2FsaXR5L2RhdGEgaW5zaWRlIGEgbm90ZWJvb2sgY2h1bmsuIFRoZSB3b3JraW5nIGRpcmVjdG9yeSB3aWxsIGJlIHJlc2V0IHdoZW4gdGhlIGNodW5rIGlzIGZpbmlzaGVkIHJ1bm5pbmcuIFVzZSB0aGUga25pdHIgcm9vdC5kaXIgb3B0aW9uIGluIHRoZSBzZXR1cCBjaHVuayB0byBjaGFuZ2UgdGhlIHdvcmtpbmcgZGlyZWN0b3J5IGZvciBub3RlYm9vayBjaHVua3MuXG4ifQ== -->
-<pre><code>Warning: The working directory was changed to C:/Users/Will/Documents/R/win-library/4.1/criticality/data inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogVGhlIHdvcmtpbmcgZGlyZWN0b3J5IHdhcyBjaGFuZ2VkIHRvIEM6L1VzZXJzL1dpbGwvRG9jdW1lbnRzL0dpdEh1Yi9jcml0aWNhbGl0eS9kYXRhIGluc2lkZSBhIG5vdGVib29rIGNodW5rLiBUaGUgd29ya2luZyBkaXJlY3Rvcnkgd2lsbCBiZSByZXNldCB3aGVuIHRoZSBjaHVuayBpcyBmaW5pc2hlZCBydW5uaW5nLiBVc2UgdGhlIGtuaXRyIHJvb3QuZGlyIG9wdGlvbiBpbiB0aGUgc2V0dXAgY2h1bmsgdG8gY2hhbmdlIHRoZSB3b3JraW5nIGRpcmVjdG9yeSBmb3Igbm90ZWJvb2sgY2h1bmtzLlxuIn0= -->
+<pre><code>Warning: The working directory was changed to C:/Users/Will/Documents/GitHub/criticality/data inside a notebook chunk. The working directory will be reset when the chunk is finished running. Use the knitr root.dir option in the setup chunk to change the working directory for notebook chunks.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxuIyBtZXRhbW9kZWwgPC0gU3BsaXQoXG4jICAgZGF0YXNldCA9IGRhdGFzZXQsXG4jICAgcmVwbG90ID0gRkFMU0UsXG4jICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKVxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIE5OKFxuICBiYXRjaC5zaXplID0gMTI4LFxuICBlcG9jaHMgPSAxMCxcbiAgZW5zZW1ibGUuc2l6ZSA9IDEsXG4gIHJlcGxvdCA9IEZBTFNFLFxuICBleHQuZGlyID0gcGFzdGUwKC5saWJQYXRocygpWzFdLCBcIi9jcml0aWNhbGl0eS9kYXRhXCIpLFxuICB0cmFpbmluZy5kaXIgPSBwYXN0ZTAoLmxpYlBhdGhzKClbMV0sIFwiL2NyaXRpY2FsaXR5L2RhdGFcIikpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxuIyBtZXRhbW9kZWwgPC0gU3BsaXQoXG4jICAgZGF0YXNldCA9IGRhdGFzZXQsXG4jICAgcmVwbG90ID0gRkFMU0UsXG4jICAgZXh0LmRpciA9ICcvVXNlcnMvd2lsbC9EZXNrdG9wL2V4YW1wbGUnKVxuXG4jIGJ1aWxkIG1ldGFtb2RlbFxubWV0YW1vZGVsIDwtIE5OKFxuICBiYXRjaC5zaXplID0gMTI4LFxuICBlcG9jaHMgPSAxMCxcbiAgZW5zZW1ibGUuc2l6ZSA9IDEsXG4gIHJlcGxvdCA9IEZBTFNFLFxuICBleHQuZGlyID0gZXh0LmRpcixcbiAgdHJhaW5pbmcuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
 <pre class="r"><code>
 # build metamodel
 # metamodel &lt;- Split(
@@ -280,17 +280,29 @@ metamodel &lt;- NN(
   epochs = 10,
   ensemble.size = 1,
   replot = FALSE,
-  ext.dir = paste0(.libPaths()[1], &quot;/criticality/data&quot;),
-  training.dir = paste0(.libPaths()[1], &quot;/criticality/data&quot;))</code></pre>
+  ext.dir = ext.dir,
+  training.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gZmlsZShmaWxlLCBcInJ0XCIpIDogY2Fubm90IG9wZW4gdGhlIGNvbm5lY3Rpb25cbiJ9 -->
-<pre><code>Error in file(file, &quot;rt&quot;) : cannot open the connection</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgMCVcbiAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgfD09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT18IDEwMCVcblxuTWVhbiBUcmFpbmluZyBNQUUgPSAwLjA0OTA1M1xuTWVhbiBDcm9zcy1WYWxpZGF0aW9uIE1BRSA9IDAuMDQ0MTI4XG5NZWFuIFRlc3QgTUFFID0gNC40NzE1MDJcblxuRW5zZW1ibGUgVGVzdCBNQUUgPSA0LjQ3MTUwMlxuRW5zZW1ibGUgVGVzdCBNQUUgPSAwLjI5MDgxMyAoTmVsZGVyLU1lYWQsIEJGR1MsIFNBKVxuIn0= -->
+<pre><code>
+
+  |                                                                                                                                                                   
+  |                                                                                                                                                             |   0%
+  |                                                                                                                                                                   
+  |=============================================================================================================================================================| 100%
+
+Mean Training MAE = 0.049053
+Mean Cross-Validation MAE = 0.044128
+Mean Test MAE = 4.471502
+
+Ensemble Test MAE = 4.471502
+Ensemble Test MAE = 0.290813 (Nelder-Mead, BFGS, SA)</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcblxuIyBlc3RpbWF0ZSByaXNrXG5yaXNrIDwtIFJpc2soXG4gIGJuID0gYm4sXG4gIGRhdGFzZXQgPSBkYXRhc2V0LFxuICBkaXN0ID0gJ2dhbW1hJyxcbiAgZmFjaWxpdHkgPSBmYWNpbGl0eSxcbiAga2VmZi5jdXRvZmYgPSAwLjUsXG4gIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCxcbiAgcmlzay5wb29sID0gMTAsXG4gIHNhbXBsZS5zaXplID0gMWUrMDUsXG4gIGV4dC5kaXIgPSBleHQuZGlyKVxuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuXG4jIHNldCB2YXJpYWJsZVxuZmFjaWxpdHkgPC0gJ2ZhY2lsaXR5J1xuXG4jIGJ1aWxkIEJheWVzaWFuIG5ldHdvcmtcbmJuIDwtIEJOKFxuICBmYWNpbGl0eSA9IGZhY2lsaXR5LFxuICBleHQuZGlyID0gZXh0LmRpcilcbmBgYCJ9 -->
 <pre class="r"><code>
 # set variable
 facility &lt;- &#39;facility&#39;
@@ -298,24 +310,14 @@ facility &lt;- &#39;facility&#39;
 # build Bayesian network
 bn &lt;- BN(
   facility = facility,
-  ext.dir = ext.dir)
-
-# estimate risk
-risk &lt;- Risk(
-  bn = bn,
-  dataset = dataset,
-  dist = &#39;gamma&#39;,
-  facility = facility,
-  keff.cutoff = 0.5,
-  metamodel = metamodel,
-  risk.pool = 10,
-  sample.size = 1e+05,
-  ext.dir = ext.dir)
-</code></pre>
+  ext.dir = ext.dir)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gcHJpbnQuZGVmYXVsdChpLCBcIiBcIiwgaikgOiBpbnZhbGlkIHByaW50aW5nIGRpZ2l0cyAtMjE0NzQ4MzY0OFxuIn0= -->
+<pre><code>Error in print.default(i, &quot; &quot;, j) : invalid printing digits -2147483648</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgbGlicmFyeShyZW1vdGVzKQ0KIyBpbnN0YWxsX2dpdGh1Yignd2lsbHp5d2llYy9jcml0aWNhbGl0eScsIGF1dGhfdG9rZW4gPSAnZ2hwXzZPSW5yU2VOV1hvY1YyNGxIWldLT0E0Y1J5SXR0STE4dmFlNScsIHF1aWV0ID0gVFJVRSkNCiMgbGlicmFyeShjcml0aWNhbGl0eSkNCg0KcmVtb3ZlLnBhY2thZ2VzKCdjcml0aWNhbGl0eScpDQoNCmxpYnJhcnkoZGV2dG9vbHMpDQpsaWJyYXJ5KHJveHlnZW4yKQ0KDQpzZXR3ZCgnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5JykNCg0KZG9jdW1lbnQoKQ0KDQpzZXR3ZCgnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViJykNCg0KaW5zdGFsbCgnY3JpdGljYWxpdHknLCB1cGdyYWRlID0gJ25ldmVyJykNCg0KY2hlY2soJ2NyaXRpY2FsaXR5JykNCg0KYGBgDQoNCmBgYHtyfQ0KDQojIHNldCB2YXJpYWJsZQ0KIyBleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YScNCg0KIyB0YWJ1bGF0ZSBkYXRhDQpkYXRhc2V0IDwtIFRhYnVsYXRlKA0KICBjb2RlID0gJ21jbnAnLA0KICBleHQuZGlyID0gcGFzdGUwKC5saWJQYXRocygpWzFdLCAiL2NyaXRpY2FsaXR5L2RhdGEiKSkNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgYnVpbGQgbWV0YW1vZGVsDQojIG1ldGFtb2RlbCA8LSBTcGxpdCgNCiMgICBkYXRhc2V0ID0gZGF0YXNldCwNCiMgICByZXBsb3QgPSBGQUxTRSwNCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpDQoNCiMgYnVpbGQgbWV0YW1vZGVsDQptZXRhbW9kZWwgPC0gTk4oDQogIGJhdGNoLnNpemUgPSAxMjgsDQogIGVwb2NocyA9IDEwLA0KICBlbnNlbWJsZS5zaXplID0gMSwNCiAgcmVwbG90ID0gRkFMU0UsDQogIGV4dC5kaXIgPSBwYXN0ZTAoLmxpYlBhdGhzKClbMV0sICIvY3JpdGljYWxpdHkvZGF0YSIpLA0KICB0cmFpbmluZy5kaXIgPSBwYXN0ZTAoLmxpYlBhdGhzKClbMV0sICIvY3JpdGljYWxpdHkvZGF0YSIpKQ0KDQpgYGANCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0NCg0KIyBzZXQgdmFyaWFibGUNCmZhY2lsaXR5IDwtICdmYWNpbGl0eScNCg0KIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrDQpibiA8LSBCTigNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCiMgZXN0aW1hdGUgcmlzaw0KcmlzayA8LSBSaXNrKA0KICBibiA9IGJuLA0KICBkYXRhc2V0ID0gZGF0YXNldCwNCiAgZGlzdCA9ICdnYW1tYScsDQogIGZhY2lsaXR5ID0gZmFjaWxpdHksDQogIGtlZmYuY3V0b2ZmID0gMC41LA0KICBtZXRhbW9kZWwgPSBtZXRhbW9kZWwsDQogIHJpc2sucG9vbCA9IDEwLA0KICBzYW1wbGUuc2l6ZSA9IDFlKzA1LA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZSA6ICdFdHRpbicNCm91dHB1dCA6IGh0bWxfbm90ZWJvb2sNCi0tLQ0KDQpgYGB7ciwgaW5jbHVkZSA9IEZBTFNFLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgaW5pdGlhbGl6ZSBlbnZpcm9ubWVudA0KaWYgKCFpcy5udWxsKGRldi5saXN0KCkpKSBkZXYub2ZmKCkNCnJtKGxpc3QgPSBscygpKQ0KY2F0KCdcMDE0JykNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgbGlicmFyeShyZW1vdGVzKQ0KIyBpbnN0YWxsX2dpdGh1Yignd2lsbHp5d2llYy9jcml0aWNhbGl0eScsIGF1dGhfdG9rZW4gPSAnZ2hwXzZPSW5yU2VOV1hvY1YyNGxIWldLT0E0Y1J5SXR0STE4dmFlNScsIHF1aWV0ID0gVFJVRSkNCiMgbGlicmFyeShjcml0aWNhbGl0eSkNCg0KcmVtb3ZlLnBhY2thZ2VzKCdjcml0aWNhbGl0eScpDQoNCmxpYnJhcnkoZGV2dG9vbHMpDQpsaWJyYXJ5KHJveHlnZW4yKQ0KDQpzZXR3ZCgnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViL2NyaXRpY2FsaXR5JykNCg0KZG9jdW1lbnQoKQ0KDQpzZXR3ZCgnQzovVXNlcnMvV2lsbC9Eb2N1bWVudHMvR2l0SHViJykNCg0KaW5zdGFsbCgnY3JpdGljYWxpdHknLCB1cGdyYWRlID0gJ25ldmVyJykNCg0KIyBjaGVjaygnY3JpdGljYWxpdHknKQ0KDQpgYGANCg0KYGBge3J9DQoNCiMgc2V0IHZhcmlhYmxlDQpleHQuZGlyIDwtICdDOi9Vc2Vycy9XaWxsL0RvY3VtZW50cy9HaXRIdWIvY3JpdGljYWxpdHkvZGF0YScNCg0KIyB0YWJ1bGF0ZSBkYXRhDQpkYXRhc2V0IDwtIFRhYnVsYXRlKA0KICBjb2RlID0gJ21jbnAnLA0KICBleHQuZGlyID0gZXh0LmRpcikNCg0KYGBgDQoNCmBgYHtyLCB3YXJuaW5nID0gRkFMU0V9DQoNCiMgYnVpbGQgbWV0YW1vZGVsDQojIG1ldGFtb2RlbCA8LSBTcGxpdCgNCiMgICBkYXRhc2V0ID0gZGF0YXNldCwNCiMgICByZXBsb3QgPSBGQUxTRSwNCiMgICBleHQuZGlyID0gJy9Vc2Vycy93aWxsL0Rlc2t0b3AvZXhhbXBsZScpDQoNCiMgYnVpbGQgbWV0YW1vZGVsDQptZXRhbW9kZWwgPC0gTk4oDQogIGJhdGNoLnNpemUgPSAxMjgsDQogIGVwb2NocyA9IDEwLA0KICBlbnNlbWJsZS5zaXplID0gMSwNCiAgcmVwbG90ID0gRkFMU0UsDQogIGV4dC5kaXIgPSBleHQuZGlyLA0KICB0cmFpbmluZy5kaXIgPSBleHQuZGlyKQ0KDQpgYGANCg0KYGBge3IsIHdhcm5pbmcgPSBGQUxTRX0NCg0KIyBzZXQgdmFyaWFibGUNCmZhY2lsaXR5IDwtICdmYWNpbGl0eScNCg0KIyBidWlsZCBCYXllc2lhbiBuZXR3b3JrDQpibiA8LSBCTigNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAgZXh0LmRpciA9IGV4dC5kaXIpDQoNCiMgZXN0aW1hdGUgcmlzaw0KcmlzayA8LSBSaXNrKA0KICBkaXN0ID0gJ2dhbW1hJywNCiAgZmFjaWxpdHkgPSBmYWNpbGl0eSwNCiAga2VmZi5jdXRvZmYgPSAwLjUsDQogIG1ldGFtb2RlbCA9IG1ldGFtb2RlbCwNCiAgcmlzay5wb29sID0gMTAsDQogIHNhbXBsZS5zaXplID0gMWUrMDUsDQogIGV4dC5kaXIgPSBleHQuZGlyKQ0KDQpgYGANCg==</div>
 
 
 

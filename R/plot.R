@@ -7,10 +7,12 @@
 #' This function generates and saves plots and data.
 #' @param i Model number
 #' @param history Training history
+#' @param plot.dir Plot directory
 #' @export
 #' @examples
 #' Plot(
-#'   i = 1
+#'   i = 1,
+#'   plot.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
 #' @import ggplot2
 #' @import magrittr
@@ -18,11 +20,14 @@
 
 Plot <- function(
   i,
-  history) {
+  history,
+  plot.dir) {
 
   # set theme
   new.theme <- theme_gray() + theme(axis.text = element_text(color = 'black', size = 11), text = element_text(color = 'black', family = 'serif', size = 11))
   theme_set(new.theme)
+
+  if (!missing(plot.dir)) setwd(plot.dir)
 
   if (missing('history')) {
     history <- read.csv(paste0(i, '.csv'), header = TRUE)
@@ -39,7 +44,7 @@ Plot <- function(
   ggplot(history, aes(x = epoch)) +
   geom_line(aes(y = val.mae, color = 'cross-validation data')) +
   geom_line(aes(y = mae, color = 'training data')) +
-  geom_point(aes(x = which.min(history$mae), y = min(history$mae), color = 'training minimum')) +
+  geom_point(aes(x = which.min(mae), y = min(mae), color = 'training minimum')) +
   guides(color = guide_legend(override.aes = list(linetype = c(1, 1, NA), shape = c(NA, NA, 16)))) +
   scale_color_manual('', breaks = c('training data', 'cross-validation data', 'training minimum'), values = c('black', '#a9a9a9', 'red')) +
   scale_x_continuous(breaks = pretty_breaks()) +

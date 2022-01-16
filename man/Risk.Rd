@@ -5,7 +5,6 @@
 \title{Risk Function}
 \usage{
 Risk(
-  bn,
   code = "mcnp",
   dist = "gamma",
   facility,
@@ -17,8 +16,6 @@ Risk(
 )
 }
 \arguments{
-\item{bn}{Bayesian network object}
-
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
@@ -40,12 +37,24 @@ This function imports the Sample function and estimates process criticality acci
 }
 \examples{
 Risk(
-  bn = load(paste0(.libPaths()[1], "/criticality/data/bn.RData")),
   code = "mcnp",
   dist = "gamma",
   facility = "facility",
   keff.cutoff = 0.5,
-  metamodel = NN(),
+  metamodel = NN(
+    batch.size = 128,
+    code = "mcnp",
+    ensemble.size = 1,
+    epochs = 10,
+    layers = "8192-256-256-256-256-16",
+    loss = "sse",
+    opt.alg = "adamax",
+    learning.rate = 0.00075,
+    val.split = 0.2,
+    replot = TRUE,
+    verbose = TRUE,
+    ext.dir = paste0(.libPaths()[1], "/criticality/data"),
+    training.dir = tempdir()),
   risk.pool = 10,
   sample.size = 1e+05,
   ext.dir = paste0(.libPaths()[1], "/criticality/data")

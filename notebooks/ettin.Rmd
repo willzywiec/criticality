@@ -31,19 +31,19 @@ setwd('C:/Users/Will/Documents/GitHub')
 
 install('criticality', upgrade = 'never')
 
-check('criticality')
+# check('criticality')
 
 ```
 
 ```{r}
 
 # set variable
-# ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
+ext.dir <- 'C:/Users/Will/Documents/GitHub/criticality/data'
 
 # tabulate data
 dataset <- Tabulate(
   code = 'mcnp',
-  ext.dir = paste0(.libPaths()[1], "/criticality/data"))
+  ext.dir = ext.dir)
 
 ```
 
@@ -61,8 +61,8 @@ metamodel <- NN(
   epochs = 10,
   ensemble.size = 1,
   replot = FALSE,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-  training.dir = paste0(.libPaths()[1], "/criticality/data"))
+  ext.dir = ext.dir,
+  training.dir = ext.dir)
 
 ```
 
@@ -78,8 +78,6 @@ bn <- BN(
 
 # estimate risk
 risk <- Risk(
-  bn = bn,
-  dataset = dataset,
   dist = 'gamma',
   facility = facility,
   keff.cutoff = 0.5,
