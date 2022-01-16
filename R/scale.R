@@ -7,20 +7,17 @@
 #' This function centers, scales, and one-hot encodes variables.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param output Processed output from Monte Carlo radiation transport code simulations
+#' @param pkg.env R package environment
 #' @export
-#' @examples
-#' Scale(
-#'   code = "mcnp",
-#'   output = read.csv(paste0(.libPaths()[1], "/criticality/data/mcnp-output.csv"))
-#' )
 #' @import caret
 #' @import dplyr
 
 Scale <- function(
   code = 'mcnp',
-  output) {
+  output,
+  pkg.env) {
 
-  if (!exists('dataset')) dataset <- Tabulate(code, paste0(.libPaths()[1], "/criticality/data"))
+  if (exists('pkg.env$dataset')) dataset <- pkg.env$dataset
 
   output$shape <- output$ht <- output$hd <- NULL
 

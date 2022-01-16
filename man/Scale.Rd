@@ -4,20 +4,15 @@
 \alias{Scale}
 \title{Scale Function}
 \usage{
-Scale(code = "mcnp", output)
+Scale(code = "mcnp", output, pkg.env)
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{output}{Processed output from Monte Carlo radiation transport code simulations}
+
+\item{pkg.env}{R package environment}
 }
 \description{
 This function centers, scales, and one-hot encodes variables.
-}
-\examples{
-dataset <- Tabulate(code, paste0(.libPaths()[1], "/criticality/data"))
-Scale(
-  code = "mcnp",
-  output = read.csv(paste0(.libPaths()[1], "/criticality/data/mcnp-output.csv"))
-)
 }
