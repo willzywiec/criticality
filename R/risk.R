@@ -5,6 +5,7 @@
 #' Risk Function
 #'
 #' This function imports the Sample function and estimates process criticality accident risk.
+#' @param bn Bayesian network
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param facility Facility name or building number (.csv file name)
@@ -57,10 +58,6 @@ Risk <- function(
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
-  # setup R package environment to pass dataset from Risk() to Sample() to Scale() for R CMD check
-  pkg.env <- new.env()
-  pkg.env$dataset <- dataset
-
   if (keff.cutoff > 0) {
     risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
     dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
@@ -98,7 +95,7 @@ Risk <- function(
     risk <- pooled.risk <- numeric()
 
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir, pkg.env)
+      bn.data[[i]] <- Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= 0.95]) / sample.size # USL = 0.95
       if (i == 1) {
         cat('\n', sep = '')

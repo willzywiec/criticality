@@ -6,6 +6,7 @@
 \usage{
 Model(
   code = "mcnp",
+  dataset,
   layers = "8192-256-256-256-256-16",
   loss = "sse",
   opt.alg = "adamax",
@@ -15,6 +16,8 @@ Model(
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
+
+\item{dataset}{Training and test data}
 
 \item{layers}{String that defines the deep neural network architecture (e.g., "64-64")}
 
@@ -28,14 +31,4 @@ Model(
 }
 \description{
 This function builds a deep neural network metamodel.
-}
-\examples{
-Model(
-  code = "mcnp",
-  layers = "8192-256-256-256-256-16",
-  loss = "sse",
-  opt.alg = "adamax",
-  learning.rate = 0.00075,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")
-)
 }

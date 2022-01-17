@@ -7,27 +7,27 @@
 #' This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.
 #' @param bn Bayesian network object
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
+#' @param dataset Training and test data
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
 #' @param ext.dir External directory
 #' @param risk.dir Risk directory
-#' @param pkg.env R package environment
 #' @export
 #' @import bnlearn
 #' @import keras
 #' @import magrittr
 #' @import parallel
 
-Sample <- function(\
+Sample <- function(
   bn,
   code = 'mcnp',
+  dataset,
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
   ext.dir,
-  risk.dir,
-  pkg.env) {
+  risk.dir) {
 
   cluster <- parallel::makeCluster((parallel::detectCores() / 2), type = 'SOCK')
 
@@ -82,7 +82,7 @@ Sample <- function(\
   bn.data$vol <- vol
   bn.data$conc <- conc
 
-  bn.df <- Scale(code, subset(bn.data, select = -c(op, ctrl)), pkg.env)
+  bn.df <- Scale(code, dataset, subset(bn.data, select = -c(op, ctrl)))
 
   # predict keff values
   if (keff.cutoff > 0) {

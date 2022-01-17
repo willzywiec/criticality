@@ -17,6 +17,8 @@ Risk(
 )
 }
 \arguments{
+\item{bn}{Bayesian network}
+
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}

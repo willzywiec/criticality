@@ -174,8 +174,6 @@ BN <- function(
   
   bn <- custom.fit(dag, dist = bn)
 
-  save(bn, file = 'bn.RData')
-
   return(bn)
 
 }

@@ -62,7 +62,7 @@ NN(
   learning.rate = 0.00075,
   val.split = 0.2,
   replot = TRUE,
-  verbose = TRUE,
+  verbose = FALSE,
   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
   training.dir = paste0(.libPaths()[1], "/criticality/data")
 )

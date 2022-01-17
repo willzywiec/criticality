@@ -37,7 +37,7 @@ Tabulate <- function(
 
       if (nrow(output) >= length(output.files)) {
         output <- output[sample(nrow(output)), ]
-        dataset <- Scale(code, output)
+        dataset <- Scale(code = code, output = output)
         cat('Loaded ', code, '-dataset.RData\n', sep = '')
       } else {
         remove(output)
@@ -117,7 +117,7 @@ Tabulate <- function(
       output <- output[sample(nrow(output)), ]
       .csv(output, file = paste0(code, '-output.csv'), row.names = FALSE)
       
-      dataset <- Scale(code, output)
+      dataset <- Scale(code = code, output = output)
       cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
     } 

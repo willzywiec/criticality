@@ -4,14 +4,14 @@
 \alias{Scale}
 \title{Scale Function}
 \usage{
-Scale(code = "mcnp", output, pkg.env)
+Scale(code = "mcnp", dataset = NULL, output)
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
-\item{output}{Processed output from Monte Carlo radiation transport code simulations}
+\item{dataset}{Training and test data}
 
-\item{pkg.env}{R package environment}
+\item{output}{Processed output from Monte Carlo radiation transport code simulations}
 }
 \description{
 This function centers, scales, and one-hot encodes variables.

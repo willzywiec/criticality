@@ -6,33 +6,24 @@
 #'
 #' This function builds a deep neural network metamodel.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
+#' @param dataset Training and test data
 #' @param layers String that defines the deep neural network architecture (e.g., "64-64")
 #' @param loss Loss function
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
 #' @param ext.dir External directory
 #' @export
-#' @examples
-#' Model(
-#'   code = "mcnp",
-#'   layers = "8192-256-256-256-256-16",
-#'   loss = "sse",
-#'   opt.alg = "adamax",
-#'   learning.rate = 0.00075,
-#'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
-#' )
 #' @import keras
 #' @import magrittr
 
 Model <- function(
   code = 'mcnp',
+  dataset,
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
   opt.alg = 'adamax',
   learning.rate = 0.00075,
   ext.dir) {
-
-  if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 

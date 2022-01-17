@@ -6,6 +6,7 @@
 #'
 #' This function optimizes an existing deep neural network metamodel and generates .csv predictions for all training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
+#' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param loss Loss function
 #' @param ext.dir External directory
@@ -16,14 +17,15 @@
 
 Test <- function(
   code = 'mcnp',
+  dataset,
   ensemble.size = 5,
-  loss,
+  loss = 'sse',
   ext.dir,
   training.dir) {
 
-  if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
-
   training.mae <- val.mae <- numeric()
+
+  metamodel <- list()
   
   for (i in 1:ensemble.size) {
     metrics <- read.csv(paste0(i, '.csv'))
@@ -32,19 +34,17 @@ Test <- function(
     metamodel[[i]] <- load_model_hdf5(paste0(i, '-', metrics$epoch[which.min(metrics$mae + metrics$val.mae)], '.h5'), custom_objects = c(loss = loss))
   }
 
-  setwd(training.dir)
-
   meta.len <- length(metamodel)
 
   test.data <- dataset$test.data
 
   test.pred <- matrix(nrow = nrow(dataset$test.df), ncol = meta.len)
 
+  Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE)))
+
   test.mae <- avg <- nm <- bfgs <- sa <- numeric()
 
   nm.wt <- bfgs.wt <- sa.wt <- list()
-
-  Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE)))
 
   # minimize objective function
   for (i in 1:meta.len) {
@@ -148,7 +148,7 @@ Test <- function(
   }
 
   # adjust predicted keff values
-  if (!file.exists('training-data.csv') || !file.exists('test-data.csv')) {
+  if (!file.exists(paste0(training.dir, '/training-data.csv')) || !file.exists(paste0(training.dir, '/test-data.csv'))) {
 
     training.data <- dataset$training.data
 
@@ -186,8 +186,8 @@ Test <- function(
 
     }
 
-    write.csv(training.data, file = 'training-data.csv', row.names = FALSE)
-    write.csv(test.data, file = 'test-data.csv', row.names = FALSE)
+    write.csv(training.data, file = paste0(training.dir, '/training-data.csv'), row.names = FALSE)
+    write.csv(test.data, file = paste0(training.dir, '/test-data.csv'), row.names = FALSE)
 
   }
 

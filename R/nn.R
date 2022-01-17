@@ -31,7 +31,7 @@
 #'   learning.rate = 0.00075,
 #'   val.split = 0.2,
 #'   replot = TRUE,
-#'   verbose = TRUE,
+#'   verbose = FALSE,
 #'   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
 #'   training.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
@@ -95,7 +95,7 @@ NN <- function(
 
   if (length(model.files) < ensemble.size) {
     for (i in (length(model.files) + 1):ensemble.size) {
-      metamodel[[i]] <- Model(code, layers, loss, opt.alg, learning.rate, ext.dir)
+      metamodel[[i]] <- Model(code, dataset, layers, loss, opt.alg, learning.rate, ext.dir)
       history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose)
       Plot(i, history[[i]])
       save_model_hdf5(metamodel[[i]], paste0(i, '.h5'))
@@ -130,7 +130,7 @@ NN <- function(
   }
 
   # optimize existing metamodel and generate .csv predictions for all training and test data
-  wt <- Test(code, ensemble.size, loss, ext.dir, training.dir)
+  wt <- Test(code, dataset, ensemble.size, loss, ext.dir, training.dir)
 
   return(list(metamodel, wt))
 
