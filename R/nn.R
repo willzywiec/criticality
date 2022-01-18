@@ -4,7 +4,7 @@
 #
 #' NN Function
 #'
-#' This function ties the Tabulate, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
+#' This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
 #' @param batch.size Batch size
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param ensemble.size Number of deep neural networks in the ensemble
@@ -14,7 +14,7 @@
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
-#' @param replot Boolean (TRUE/FALSE) that determines if graphs should be replotted.
+#' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted.
 #' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow output should be visualized.
 #' @param ext.dir External directory (PATH)
 #' @param training.dir Training directory
