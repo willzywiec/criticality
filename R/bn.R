@@ -26,7 +26,7 @@ BN <- function(
   dist = 'gamma',
   ext.dir) {
 
-  facility.data <- read.csv(paste0(ext.dir, '/', facility, '.csv'))
+  facility.data <- utils::read.csv(paste0(ext.dir, '/', facility, '.csv'))
 
   # set categorical parameters
   op <- table(facility.data$op) %>% names()
@@ -59,7 +59,7 @@ BN <- function(
       for (j in 1:length(ctrl)) {
 
         x <- op[i]
-        y <- ctrl[i]
+        y <- ctrl[j]
 
         filter.data <- filter(facility.data, (op == x & ctrl == y))
         par.fit[[j]][[i]] <- filter.data[[par.str]]
@@ -88,7 +88,7 @@ BN <- function(
 
           if (dist == 'gamma') {
             par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'gamma', method = 'mle')
-            par.fit[[j]][[i]] <- dgamma(par, rate = par.fit[[j]][[i]]$estimate[[2]], shape = par.fit[[j]][[i]]$estimate[[1]])
+            par.fit[[j]][[i]] <- stats::dgamma(par, rate = par.fit[[j]][[i]]$estimate[[2]], shape = par.fit[[j]][[i]]$estimate[[1]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'gev') {
             par.fit[[j]][[i]] <- fgev(par.fit[[j]][[i]], method = 'BFGS', std.err = FALSE)
@@ -96,15 +96,15 @@ BN <- function(
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'normal') {
             par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'norm', method = 'mle')
-            par.fit[[j]][[i]] <- dnorm(par, mean = par.fit[[j]][[i]]$estimate[[1]], sd = par.fit[[j]][[i]]$estimate[[2]])
+            par.fit[[j]][[i]] <- stats::dnorm(par, mean = par.fit[[j]][[i]]$estimate[[1]], sd = par.fit[[j]][[i]]$estimate[[2]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'log-normal') {
             par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'lnorm', method = 'mle')
-            par.fit[[j]][[i]] <- dlnorm(par, meanlog = par.fit[[j]][[i]]$estimate[[1]], sdlog = par.fit[[j]][[i]]$estimate[[2]])
+            par.fit[[j]][[i]] <- stats::dlnorm(par, meanlog = par.fit[[j]][[i]]$estimate[[1]], sdlog = par.fit[[j]][[i]]$estimate[[2]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'weibull') {
             par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'weibull', method = 'mle')
-            par.fit[[j]][[i]] <- dweibull(par, shape = par.fit[[j]][[i]]$estimate[[1]], scale = par.fit[[j]][[i]]$estimate[[2]])
+            par.fit[[j]][[i]] <- stats::dweibull(par, shape = par.fit[[j]][[i]]$estimate[[1]], scale = par.fit[[j]][[i]]$estimate[[2]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           }
 
@@ -121,7 +121,9 @@ BN <- function(
     
   }
 
-  # build graph
+#
+# build graph
+#
   nodes <- c('op', 'ctrl', 'mass', 'form', 'mod', 'rad', 'ref', 'thk')
   dag <- empty.graph(nodes = nodes)
 
@@ -142,7 +144,9 @@ BN <- function(
   op.cpt <- matrix(op.cpt, ncol = 1, dimnames = list(op, NULL))
   ctrl.cpt <- matrix(ctrl.cpt, nrow = 7, ncol = 6, dimnames = list(ctrl, op))
 
-  # fit parameters
+#
+# fit parameters
+#
   mass.cpt <- Parameter(op, ctrl, mass, dist) %>% unlist()
   mass.cpt <- array(mass.cpt, dim = c(length(mass), length(ctrl), length(op)), dimnames = list('mass' = mass, 'ctrl' = ctrl, 'op' = op))
 
@@ -161,7 +165,9 @@ BN <- function(
   thk.cpt <- Parameter(op, ctrl, thk, dist) %>% unlist()
   thk.cpt <- array(thk.cpt, dim = c(length(thk), length(ctrl), length(op)), dimnames = list('thk' = thk, 'ctrl' = ctrl, 'op' = op))
 
-  # build Bayesian network
+#
+# build Bayesian network
+#
   bn <- list(
     op = op.cpt,
     ctrl = ctrl.cpt,

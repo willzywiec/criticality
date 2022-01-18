@@ -61,9 +61,10 @@ NN(
   opt.alg = "adamax",
   learning.rate = 0.00075,
   val.split = 0.2,
-  replot = TRUE,
+  replot = FALSE,
   verbose = FALSE,
   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
   training.dir = paste0(.libPaths()[1], "/criticality/data")
 )
+unlink(paste0(.libPaths()[1], "/criticality/data/test-mae.csv"))
 }

@@ -4,7 +4,7 @@
 \alias{Plot}
 \title{Plot Function}
 \usage{
-Plot(i, history, plot.dir)
+Plot(i, history = NULL, plot.dir)
 }
 \arguments{
 \item{i}{Model number}
@@ -15,10 +15,4 @@ Plot(i, history, plot.dir)
 }
 \description{
 This function generates and saves plots and data.
-}
-\examples{
-Plot(
-  i = 1,
-  plot.dir = paste0(.libPaths()[1], "/criticality/data")
-)
 }

@@ -30,11 +30,12 @@
 #'   opt.alg = "adamax",
 #'   learning.rate = 0.00075,
 #'   val.split = 0.2,
-#'   replot = TRUE,
+#'   replot = FALSE,
 #'   verbose = FALSE,
 #'   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
 #'   training.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
+#' unlink(paste0(.libPaths()[1], "/criticality/data/test-mae.csv"))
 #' @import keras
 #' @import magrittr
 
@@ -61,14 +62,14 @@ NN <- function(
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
 
-  setwd(model.dir)
-
   # build custom loss function
   if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
 
-  model.files <- list.files(pattern = '\\.h5$')
+#
+# train metamodel
+#
+  model.files <- list.files(path = model.dir, pattern = '\\.h5$')
 
-  # train metamodel
   metamodel <- history <- rep(list(0), length(ensemble.size))
 
   Fit <- function(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i) {
@@ -97,39 +98,39 @@ NN <- function(
     for (i in (length(model.files) + 1):ensemble.size) {
       metamodel[[i]] <- Model(code, dataset, layers, loss, opt.alg, learning.rate, ext.dir)
       history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose)
-      Plot(i, history[[i]])
-      save_model_hdf5(metamodel[[i]], paste0(i, '.h5'))
+      Plot(i = i, history = history[[i]], plot.dir = model.dir)
+      save_model_hdf5(metamodel[[i]], paste0(model.dir, '/', i, '.h5'))
     }
   } else {
-    model.files <- list.files(pattern = '\\.h5$')
+    model.files <- list.files(path = model.dir, pattern = '\\.h5$')
     for (i in 1:ensemble.size) {
-      metamodel[[i]] <- load_model_hdf5(model.files[i], custom_objects = c(loss = loss))
-      if (replot == TRUE) Plot(i)
+      metamodel[[i]] <- load_model_hdf5(paste0(model.dir, '/', model.files[i]), custom_objects = c(loss = loss))
+      if (replot == TRUE) Plot(i = i, plot.dir = model.dir)
     }
   }
 
-  # retrain metamodel
-  setwd(remodel.dir)
-  
-  remodel.files <- list.files(pattern = '\\.h5$')
+#
+# retrain metamodel
+#
+  remodel.files <- list.files(path = remodel.dir, pattern = '\\.h5$')
 
   history <- list()
   
   if (length(remodel.files) < ensemble.size * epochs / 10) {
     for (i in 1:ensemble.size) {
-      remodel.files <- list.files(pattern = paste0(i, '-.+\\.h5$'))
+      remodel.files <- list.files(path = remodel.dir, pattern = paste0(i, '-.+\\.h5$'))
       if (length(remodel.files) < epochs / 10) {
         history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose, remodel.dir, i)
-        Plot(i, history[[i]])
+        Plot(i = i, history = history[[i]], plot.dir = remodel.dir)
       } else {
-        Plot(i)
+        Plot(i = i, plot.dir = remodel.dir)
       }
     }
   } else if (replot == TRUE) {
-    for (i in 1:ensemble.size) Plot(i)
+    for (i in 1:ensemble.size) Plot(i = i, plot.dir = remodel.dir)
   }
 
-  # optimize existing metamodel and generate .csv predictions for all training and test data
+  # set metamodel weights and generate .csv predictions for all training and test data
   wt <- Test(code, dataset, ensemble.size, loss, ext.dir, training.dir)
 
   return(list(metamodel, wt))

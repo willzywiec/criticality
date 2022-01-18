@@ -29,9 +29,14 @@ Sample <- function(
   ext.dir,
   risk.dir) {
 
+  # set bindings for nonstandard evaluation
+  op <- ctrl <- mass <- rad <- NULL
+
+#
+# sample conditional probability tables
+#
   cluster <- parallel::makeCluster((parallel::detectCores() / 2), type = 'SOCK')
 
-  # sample conditional probability tables
   if (keff.cutoff > 0) {
     bn.data <- cpdist(
       bn,
@@ -39,7 +44,7 @@ Sample <- function(
       evidence = (as.integer(mass) > 100) & (as.integer(rad) > 7),
       batch = sample.size,
       cluster = cluster,
-      n = sample.size) %>% na.omit()
+      n = sample.size) %>% stats::na.omit()
   } else {
     bn.data <- cpdist(
       bn,
@@ -47,7 +52,7 @@ Sample <- function(
       evidence = TRUE,
       batch = sample.size,
       cluster = cluster,
-      n = sample.size) %>% na.omit()
+      n = sample.size) %>% stats::na.omit()
   }
 
   parallel::stopCluster(cluster)
@@ -82,16 +87,21 @@ Sample <- function(
   bn.data$vol <- vol
   bn.data$conc <- conc
 
-  bn.df <- Scale(code, dataset, subset(bn.data, select = -c(op, ctrl)))
+  bn.df <- Scale(
+    code = code,
+    dataset = dataset,
+    output = subset(bn.data, select = -c(op, ctrl)),
+    ext.dir = ext.dir)
 
-  # predict keff values
+#
+# predict keff values
+#
   if (keff.cutoff > 0) {
-    bn.data$keff <- metamodel[[1]][[1]] %>% predict(bn.df)
+    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df)
     bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff)
     bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
     if (nrow(bn.data) == 0) {
-      setwd(ext.dir)
       unlink(risk.dir, recursive = TRUE, force = TRUE)
       stop(paste0('There were no keff values > ', keff.cutoff))
     }
@@ -99,11 +109,11 @@ Sample <- function(
 
   if (typeof(metamodel[[2]]) == 'list') {
     keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
-    for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% predict(bn.df)
+    for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df)
     bn.data$keff <- rowSums(keff * metamodel[[2]][[1]])
   } else {
     keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
-    for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% predict(bn.df)
+    for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df)
     bn.data$keff <- rowMeans(keff)
   }
 

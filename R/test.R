@@ -4,7 +4,7 @@
 #
 #' Test Function
 #'
-#' This function optimizes an existing deep neural network metamodel and generates .csv predictions for all training and test data.
+#' This function sets deep neural network metamodel weights and generates .csv predictions for all training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
@@ -23,15 +23,18 @@ Test <- function(
   ext.dir,
   training.dir) {
 
+  remodel.dir <- paste0(training.dir, '/remodel')
+  dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
+
   training.mae <- val.mae <- numeric()
 
   metamodel <- list()
   
   for (i in 1:ensemble.size) {
-    metrics <- read.csv(paste0(i, '.csv'))
+    metrics <- utils::read.csv(paste0(remodel.dir, '/', i, '.csv'))
     training.mae[i] <- metrics$mae[which.min(metrics$mae + metrics$val.mae)]
     val.mae[i] <- metrics$val.mae[which.min(metrics$mae + metrics$val.mae)]
-    metamodel[[i]] <- load_model_hdf5(paste0(i, '-', metrics$epoch[which.min(metrics$mae + metrics$val.mae)], '.h5'), custom_objects = c(loss = loss))
+    metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[which.min(metrics$mae + metrics$val.mae)], '.h5'), custom_objects = c(loss = loss))
   }
 
   meta.len <- length(metamodel)
@@ -46,16 +49,18 @@ Test <- function(
 
   nm.wt <- bfgs.wt <- sa.wt <- list()
 
-  # minimize objective function
+#
+# minimize objective function
+#
   for (i in 1:meta.len) {
 
-    test.pred[ , i] <- metamodel[[i]] %>% predict(dataset$test.df)
+    test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df)
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
-    nm.wt[[i]] <- optim(rep(0, i), Objective, method = 'Nelder-Mead', lower = 0)
-    bfgs.wt[[i]] <- optim(rep(0, i), Objective, method = 'BFGS', lower = 0)
-    sa.wt[[i]] <- optim(rep(0, i), Objective, method = 'SANN', lower = 0)
+    nm.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'Nelder-Mead', lower = 0)
+    bfgs.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'BFGS', lower = 0)
+    sa.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'SANN', lower = 0)
 
     avg[i] <- mean(abs(test.data$keff - rowMeans(test.pred, na.rm = TRUE)))
     nm[i] <- mean(abs(test.data$keff - rowSums(test.pred * nm.wt[[i]][[1]], na.rm = TRUE)))
@@ -64,26 +69,28 @@ Test <- function(
 
     if (i == 1) {
       cat('\n', sep = '')
-      progress.bar <- txtProgressBar(min = 0, max = meta.len, style = 3)
-      setTxtProgressBar(progress.bar, i)
+      progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 3)
+      utils::setTxtProgressBar(progress.bar, i)
       if (i == meta.len) {
         cat('\n\n', sep = '')
       }
     } else if (i == meta.len) {
-      setTxtProgressBar(progress.bar, i)
+      utils::setTxtProgressBar(progress.bar, i)
       cat('\n\n', sep = '')
     } else {
-      setTxtProgressBar(progress.bar, i)
+      utils::setTxtProgressBar(progress.bar, i)
     }
 
   }
-  
-  write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = 'test-mae.csv', row.names = FALSE)
 
-  cat('Mean Training MAE = ', mean(training.mae) %>% sprintf('%.6f', .), '\n', sep = '')
-  cat('Mean Cross-Validation MAE = ', mean(val.mae) %>% sprintf('%.6f', .), '\n', sep = '')
-  cat('Mean Test MAE = ', mean(test.mae) %>% sprintf('%.6f', .), '\n\n', sep = '')
-  cat('Ensemble Test MAE = ', avg[meta.len] %>% sprintf('%.6f', .), '\n', sep = '')
+  close(progress.bar)
+  
+  utils::write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = paste0(training.dir, 'test-mae.csv'), row.names = FALSE)
+
+  cat('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)), '\n', sep = '')
+  cat('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), '\n', sep = '')
+  cat('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), '\n\n', sep = '')
+  cat('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]), '\n', sep = '')
 
   if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] == sa[meta.len]) {
     cat.str <- ' (Nelder-Mead, BFGS, SA)\n'
@@ -101,7 +108,7 @@ Test <- function(
     cat.str <- ' (SA)\n'
   }
 
-  cat('Ensemble Test MAE = ', nm[meta.len] %>% sprintf('%.6f', .), cat.str, sep = '')
+  cat('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), cat.str, sep = '')
 
   test.min <- min(c(avg[which.min(avg)], nm[which.min(nm)], bfgs[which.min(bfgs)], sa[which.min(sa)]))
 
@@ -125,7 +132,7 @@ Test <- function(
       cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
     }
 
-    cat('Ensemble Test MAE = ', avg[wt.len] %>% sprintf('%.6f', .), '\n', sep = '')
+    cat('Ensemble Test MAE = ', sprintf('%.6f', avg[wt.len]), '\n', sep = '')
 
     if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] == sa[wt.len]) {
       cat.str <- ' (Nelder-Mead, BFGS, SA)\n'
@@ -143,11 +150,13 @@ Test <- function(
       cat.str <- ' (SA)\n'
     }
 
-    cat('Ensemble Test MAE = ', nm[meta.len] %>% sprintf('%.6f', .), cat.str, sep = '')
+    cat('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), cat.str, sep = '')
     
   }
 
-  # adjust predicted keff values
+#
+# set metamodel weights
+#
   if (!file.exists(paste0(training.dir, '/training-data.csv')) || !file.exists(paste0(training.dir, '/test-data.csv'))) {
 
     training.data <- dataset$training.data
@@ -156,7 +165,7 @@ Test <- function(
 
     if (wt.len == 1) {
 
-      training.pred[ , 1] <- metamodel[[1]] %>% predict(dataset$training.df)
+      training.pred[ , 1] <- metamodel[[1]] %>% stats::predict(dataset$training.df)
 
       training.data$avg <- training.pred[ , 1]
       training.data$nm <- training.pred[ , 1] * nm.wt[[wt.len]][[1]]
@@ -171,7 +180,7 @@ Test <- function(
     } else {
 
       for (i in 1:wt.len) {
-        training.pred[ , i] <- metamodel[[i]] %>% predict(dataset$training.df)
+        training.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$training.df)
       }
 
       training.data$avg <- rowMeans(training.pred[ , 1:wt.len])
@@ -186,8 +195,8 @@ Test <- function(
 
     }
 
-    write.csv(training.data, file = paste0(training.dir, '/training-data.csv'), row.names = FALSE)
-    write.csv(test.data, file = paste0(training.dir, '/test-data.csv'), row.names = FALSE)
+    utils::write.csv(training.data, file = paste0(training.dir, '/training-data.csv'), row.names = FALSE)
+    utils::write.csv(test.data, file = paste0(training.dir, '/test-data.csv'), row.names = FALSE)
 
   }
 

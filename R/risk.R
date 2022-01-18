@@ -43,6 +43,11 @@
 #'   sample.size = 1e+05,
 #'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
+#' unlink(paste0(.libPaths()[1], "/criticality/data/bn-data.RData"))
+#' unlink(paste0(.libPaths()[1], "/criticality/data/risk.csv"))
+#' temp.dir <- unlist(strsplit(tempdir(), '\\\\'))
+#' temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
+#' unlink(temp.dir, recursive = TRUE, force = TRUE)
 #' @import dplyr
 
 Risk <- function(
@@ -66,28 +71,28 @@ Risk <- function(
     dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
   }
 
-  setwd(risk.dir)
-
   # restrict sample size (~12 GB RAM)
   if (sample.size > 5e+08) {
     risk.pool <- risk.pool * sample.size / 5e+08
     sample.size <- 5e+08
   }
 
-  # estimate process criticality accident risk
-  if (file.exists('risk.csv') && length(read.csv('risk.csv', fileEncoding = 'UTF-8-BOM')[ , 1]) >= risk.pool) {
+#
+# estimate process criticality accident risk
+#
+  if (file.exists(paste0(risk.dir, 'risk.csv')) && length(utils::read.csv(paste0(risk.dir, 'risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]) >= risk.pool) {
 
-    bn.data <- readRDS('bn-data.RData')
-    risk <- read.csv('risk.csv', fileEncoding = 'UTF-8-BOM')[ , 1]
+    bn.data <- readRDS(paste0(risk.dir, 'bn-data.RData'))
+    risk <- utils::read.csv(paste0(risk.dir, 'risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]
 
     if (mean(risk) != 0) {
       cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
-      cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
+      cat('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
     } else {
       cat('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
     }
 
-    if (mean(risk) != 0) cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
+    if (mean(risk) != 0) cat('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
 
   } else {
 
@@ -99,18 +104,20 @@ Risk <- function(
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= 0.95]) / sample.size # USL = 0.95
       if (i == 1) {
         cat('\n', sep = '')
-        progress.bar <- txtProgressBar(min = 0, max = risk.pool, style = 3)
-        setTxtProgressBar(progress.bar, i)
+        progress.bar <- utils::txtProgressBar(min = 0, max = risk.pool, style = 3)
+        utils::setTxtProgressBar(progress.bar, i)
         if (i == risk.pool) {
           cat('\n\n', sep = '')
         }
       } else if (i == risk.pool) {
-        setTxtProgressBar(progress.bar, i)
+        utils::setTxtProgressBar(progress.bar, i)
         cat('\n\n', sep = '')
       } else {
-        setTxtProgressBar(progress.bar, i)
+        utils::setTxtProgressBar(progress.bar, i)
       }
     }
+
+    close(progress.bar)
 
     if (risk.pool > 100) {
       breaks <- seq((length(risk) / 100), length(risk), (length(risk) / 100))
@@ -118,12 +125,12 @@ Risk <- function(
       risk <- pooled.risk
     }
   
-    saveRDS(bn.data, file = 'bn-data.RData')
-    write.csv(as.data.frame(risk, col.names = 'risk'), file = 'risk.csv', row.names = FALSE)
+    saveRDS(bn.data, file = paste0(ext.dir, 'bn-data.RData'))
+    utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(ext.dir, '/risk.csv'), row.names = FALSE)
 
     if (mean(risk) != 0) {
       cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
-      cat('SD = ', formatC(sd(risk), format = 'e', digits = 3), '\n', sep = '')
+      cat('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
     } else {
       cat('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
     }

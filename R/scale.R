@@ -8,6 +8,7 @@
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param output Processed output from Monte Carlo radiation transport code simulations
+#' @param ext.dir External directory
 #' @export
 #' @import caret
 #' @import dplyr
@@ -15,7 +16,11 @@
 Scale <- function(
   code = 'mcnp',
   dataset = NULL,
-  output) {
+  output,
+  ext.dir) {
+
+  # set bindings for nonstandard evaluation
+  mass <- rad <- sd <- NULL
 
   output$shape <- output$ht <- output$hd <- NULL
 
@@ -35,20 +40,20 @@ Scale <- function(
   if (is.null(dataset)) {
     null.output <- Nullify(output, labels)
     dummy <- dummyVars(~ ., data = null.output, sep = '')
-    training.data <- data.frame(predict(dummy, newdata = null.output))
+    training.data <- data.frame(stats::predict(dummy, newdata = null.output))
     training.data <- filter(training.data, sd < 0.001)
   } else if (ncol(output) == ncol(dataset$output)) {
     comb.output <- rbind(output, dataset$output)
     null.output <- Nullify(comb.output, labels)
     dummy <- dummyVars(~ ., data = null.output, sep = '')
-    training.data <- data.frame(predict(dummy, newdata = null.output))
+    training.data <- data.frame(stats::predict(dummy, newdata = null.output))
     training.data <- training.data[1:nrow(output), ]
     training.data <- filter(training.data, sd < 0.001)
   } else {
     comb.output <- rbind(output, dataset$output[ , 1:(ncol(dataset$output) - 2)])
     null.output <- Nullify(comb.output, labels)
     dummy <- dummyVars(~ ., data = null.output, sep = '')
-    training.data <- data.frame(predict(dummy, newdata = null.output))
+    training.data <- data.frame(stats::predict(dummy, newdata = null.output))
     training.data <- training.data[1:nrow(output), ]
   }
 
@@ -61,7 +66,9 @@ Scale <- function(
     # training.data <- anti_join(training.data, test.data, by = 'mass')
   }
 
-  # scale data
+#
+# scale data
+#
   labels <- c('mass', 'rad', 'thk', 'vol', 'conc') # missing 'ht' and 'hd'
 
   if (is.null(dataset)) {
@@ -96,11 +103,11 @@ Scale <- function(
     test.df <- as.matrix(test.df)
     dataset <- list(output, training.data, training.mean, training.sd, training.df, test.data, test.df)
     names(dataset) <- c('output', 'training.data', 'training.mean', 'training.sd', 'training.df', 'test.data', 'test.df')
-    save(dataset, file = paste0(code, '-dataset.RData'), compress = 'xz')
+    save(dataset, file = paste0(ext.dir, '/', code, '-dataset.RData'), compress = 'xz')
   } else if (ncol(output) == ncol(dataset$output)) {
     dataset <- list(output, training.data, training.mean, training.sd, training.df)
     names(dataset) <- c('output', 'training.data', 'training.mean', 'training.sd', 'training.df')
-    save(dataset, file = paste0(code, '-dataset.RData'), compress = 'xz')
+    save(dataset, file = paste0(ext.dir, '/', code, '-dataset.RData'), compress = 'xz')
   } else {
     dataset <- training.df
   }

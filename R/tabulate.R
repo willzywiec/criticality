@@ -19,25 +19,25 @@ Tabulate <- function(
   code = 'mcnp',
   ext.dir) {
 
-  setwd(ext.dir)
+  if (file.exists(paste0(ext.dir, '/', code, '-dataset.RData'))) {
 
-  if (file.exists(paste0(code, '-dataset.RData'))) {
-
-    load(paste0(code, '-dataset.RData'))
+    load(paste0(ext.dir, '/', code, '-dataset.RData'))
     cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
   } else {
 
-    output.files <- list.files(pattern = '\\.o$')
+    output.files <- list.files(path = ext.dir, pattern = '\\.o$')
 
-    # load output
-    if (file.exists(paste0(code, '-output.csv'))) {
+  #
+  # load output
+  #
+    if (file.exists(paste0(ext.dir, '/', code, '-output.csv'))) {
 
-      output <- read.csv(paste0(code, '-output.csv'), fileEncoding = 'UTF-8-BOM') %>% na.omit()
-
+      output <- utils::read.csv(paste0(ext.dir, '/', code, '-output.csv'), fileEncoding = 'UTF-8-BOM') %>% stats::na.omit()
+      
       if (nrow(output) >= length(output.files)) {
         output <- output[sample(nrow(output)), ]
-        dataset <- Scale(code = code, output = output)
+        dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
         cat('Loaded ', code, '-dataset.RData\n', sep = '')
       } else {
         remove(output)
@@ -51,7 +51,7 @@ Tabulate <- function(
 
       for (i in 1:length(output.files)) {
 
-        if (any(grep('final result', readLines(output.files[i])))) {
+        if (any(grep('final result', readLines(paste0(ext.dir, '/', output.files[i]))))) {
 
           # set mass (g), form, mod, rad (cm), and ref
           file.name <- gsub('\\.o', '', output.files[i]) %>% strsplit('-') %>% unlist()
@@ -91,7 +91,7 @@ Tabulate <- function(
           hd[i] <- (ht[i] / (2 * rad[i]))
 
           # set keff and sd
-          final.result <- grep('final result', readLines(output.files[i]), value = TRUE) %>% strsplit('\\s+') %>% unlist()
+          final.result <- grep('final result', readLines(paste0(ext.dir, '/', output.files[i])), value = TRUE) %>% strsplit('\\s+') %>% unlist()
           keff[i] <- final.result[4]
           sd[i] <- final.result[5]
 
@@ -115,9 +115,9 @@ Tabulate <- function(
         sd = sd)
 
       output <- output[sample(nrow(output)), ]
-      .csv(output, file = paste0(code, '-output.csv'), row.names = FALSE)
-      
-      dataset <- Scale(code = code, output = output)
+      utils::write.csv(output, file = paste0(ext.dir, '/', code, '-output.csv'), row.names = FALSE)
+
+      dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
       cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
     } 

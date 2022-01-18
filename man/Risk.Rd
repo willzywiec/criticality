@@ -66,4 +66,9 @@ Risk(
   sample.size = 1e+05,
   ext.dir = paste0(.libPaths()[1], "/criticality/data")
 )
+unlink(paste0(.libPaths()[1], "/criticality/data/bn-data.RData"))
+unlink(paste0(.libPaths()[1], "/criticality/data/risk.csv"))
+temp.dir <- unlist(strsplit(tempdir(), '\\\\\\\\'))
+temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
+unlink(temp.dir, recursive = TRUE, force = TRUE)
 }
