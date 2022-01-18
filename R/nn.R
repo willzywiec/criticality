@@ -4,7 +4,7 @@
 #
 #' NN Function
 #'
-#' This function ties the Model, Fit, Plot, and Test functions together to build, train, and test a deep neural network metamodel.
+#' This function ties the Tabulate, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
 #' @param batch.size Batch size
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param ensemble.size Number of deep neural networks in the ensemble
