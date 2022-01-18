@@ -11,7 +11,7 @@
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
-#' @param ext.dir External directory
+#' @param ext.dir External directory (PATH)
 #' @param risk.dir Risk directory
 #' @export
 #' @import bnlearn

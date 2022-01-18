@@ -9,7 +9,7 @@
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param loss Loss function
-#' @param ext.dir External directory
+#' @param ext.dir External directory (PATH)
 #' @param training.dir Training directory
 #' @export
 #' @import keras
@@ -22,6 +22,8 @@ Test <- function(
   loss = 'sse',
   ext.dir,
   training.dir) {
+
+  if (missing('training.dir')) training.dir <- ext.dir
 
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)

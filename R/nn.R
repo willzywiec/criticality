@@ -14,9 +14,9 @@
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
-#' @param replot Boolean (TRUE/FALSE) that determines if plots should be regenerated
-#' @param verbose Visualize TensorFlow output
-#' @param ext.dir External directory
+#' @param replot Boolean (TRUE/FALSE) that determines if graphs should be replotted.
+#' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow output should be visualized.
+#' @param ext.dir External directory (PATH)
 #' @param training.dir Training directory
 #' @export
 #' @examples
@@ -32,8 +32,7 @@
 #'   val.split = 0.2,
 #'   replot = FALSE,
 #'   verbose = FALSE,
-#'   ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-#'   training.dir = paste0(.libPaths()[1], "/criticality/data")
+#'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
 #' )
 #' unlink(paste0(.libPaths()[1], "/criticality/data/test-mae.csv"))
 #' @import keras
@@ -55,6 +54,8 @@ NN <- function(
   training.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
+
+  if (missing('training.dir')) training.dir <- ext.dir
 
   model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)

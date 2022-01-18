@@ -13,7 +13,7 @@
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param risk.pool Number of times risk is calculated
 #' @param sample.size Number of samples used to calculate risk
-#' @param ext.dir External directory
+#' @param ext.dir External directory (PATH)
 #' @export
 #' @examples
 #' Risk(

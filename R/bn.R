@@ -7,7 +7,7 @@
 #' This function creates a Bayesian network from pre-formatted nuclear facility data.
 #' @param facility Facility name or building number (.csv file name)
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
-#' @param ext.dir External directory
+#' @param ext.dir External directory (PATH)
 #' @export
 #' @examples
 #' BN(

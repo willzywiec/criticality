@@ -6,7 +6,7 @@
 #'
 #' This function imports the Scale function and loads/saves training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
-#' @param ext.dir External directory
+#' @param ext.dir External directory (PATH)
 #' @export
 #' @examples
 #' Tabulate(

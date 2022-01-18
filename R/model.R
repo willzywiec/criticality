@@ -11,7 +11,7 @@
 #' @param loss Loss function
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
-#' @param ext.dir External directory
+#' @param ext.dir External directory (PATH)
 #' @export
 #' @import keras
 #' @import magrittr
