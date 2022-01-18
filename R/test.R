@@ -39,6 +39,9 @@ Test <- function(
     metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[which.min(metrics$mae + metrics$val.mae)], '.h5'), custom_objects = c(loss = loss))
   }
 
+#
+# minimize objective function
+#
   meta.len <- length(metamodel)
 
   test.data <- dataset$test.data
@@ -51,9 +54,6 @@ Test <- function(
 
   nm.wt <- bfgs.wt <- sa.wt <- list()
 
-#
-# minimize objective function
-#
   for (i in 1:meta.len) {
 
     test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df)
