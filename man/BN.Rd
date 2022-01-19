@@ -11,7 +11,7 @@ BN(facility, dist = "gamma", ext.dir)
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
-\item{ext.dir}{External directory (PATH)}
+\item{ext.dir}{External directory (full path)}
 }
 \description{
 This function creates a Bayesian network from pre-formatted nuclear facility data.
@@ -20,6 +20,6 @@ This function creates a Bayesian network from pre-formatted nuclear facility dat
 BN(
   facility = "facility",
   dist = "gamma",
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 )
 }

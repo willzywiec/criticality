@@ -28,9 +28,9 @@ Sample(
 
 \item{sample.size}{Number of samples used to calculate risk}
 
-\item{ext.dir}{External directory (PATH)}
+\item{ext.dir}{External directory (full path)}
 
-\item{risk.dir}{Risk directory}
+\item{risk.dir}{Risk directory (full path)}
 }
 \description{
 This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.

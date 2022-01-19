@@ -43,9 +43,9 @@ NN(
 
 \item{verbose}{Boolean (TRUE/FALSE) that determines if TensorFlow output should be visualized.}
 
-\item{ext.dir}{External directory (PATH)}
+\item{ext.dir}{External directory (full path)}
 
-\item{training.dir}{Training directory}
+\item{training.dir}{Training directory (full path)}
 }
 \description{
 This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
@@ -63,7 +63,7 @@ NN(
   val.split = 0.2,
   replot = FALSE,
   verbose = FALSE,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 )
-unlink(paste0(.libPaths()[1], "/criticality/data/test-mae.csv"))
+unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
 }

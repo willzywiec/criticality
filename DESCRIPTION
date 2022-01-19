@@ -1,11 +1,11 @@
 Package: criticality
-Title: Models Fissile Material Operations
+Title: A Package for Modeling Fissile Material Operations
 Version: 0.0.0.9000
 Authors@R: 
     person("William", "Zywiec", , "willzywiec@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1842-9599"))
 Depends: R (>= 3.5.0)
-Description: This R package models fissile material operations and estimates process criticality accident risk.
+Description: This package can be used to fit truncated probability distributions to fissile material operations and estimate process criticality accident risk.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -11,7 +11,7 @@ Plot(i, history = NULL, plot.dir)
 
 \item{history}{Training history}
 
-\item{plot.dir}{Plot directory}
+\item{plot.dir}{Plot directory (full path)}
 }
 \description{
 This function generates and saves plots and data.

@@ -16,8 +16,8 @@
 #' @param val.split Validation split
 #' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted.
 #' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow output should be visualized.
-#' @param ext.dir External directory (PATH)
-#' @param training.dir Training directory
+#' @param ext.dir External directory (full path)
+#' @param training.dir Training directory (full path)
 #' @export
 #' @examples
 #' NN(
@@ -32,9 +32,9 @@
 #'   val.split = 0.2,
 #'   replot = FALSE,
 #'   verbose = FALSE,
-#'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
+#'   ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 #' )
-#' unlink(paste0(.libPaths()[1], "/criticality/data/test-mae.csv"))
+#' unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
 #' @import keras
 #' @import magrittr
 

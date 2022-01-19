@@ -7,7 +7,7 @@
 #' This function generates and saves plots and data.
 #' @param i Model number
 #' @param history Training history
-#' @param plot.dir Plot directory
+#' @param plot.dir Plot directory (full path)
 #' @export
 #' @import ggplot2
 #' @import magrittr

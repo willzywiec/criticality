@@ -33,7 +33,7 @@ Risk(
 
 \item{sample.size}{Number of samples used to calculate risk}
 
-\item{ext.dir}{External directory (PATH)}
+\item{ext.dir}{External directory (full path)}
 }
 \description{
 This function imports the Sample function and estimates process criticality accident risk.
@@ -43,7 +43,7 @@ Risk(
   bn = BN(
     facility = "facility",
     dist = "gamma",
-    ext.dir = paste0(.libPaths()[1], "/criticality/data")),
+    ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
   code = "mcnp",
   dist = "gamma",
   facility = "facility",
@@ -60,14 +60,14 @@ Risk(
     val.split = 0.2,
     replot = TRUE,
     verbose = TRUE,
-    ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-    training.dir = paste0(.libPaths()[1], "/criticality/data")),
+    ext.dir = paste0(.libPaths()[1], "/criticality/extdata"),
+    training.dir = paste0(.libPaths()[1], "/criticality/extdata")),
   risk.pool = 10,
   sample.size = 1e+05,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 )
-unlink(paste0(.libPaths()[1], "/criticality/data/bn-data.RData"))
-unlink(paste0(.libPaths()[1], "/criticality/data/risk.csv"))
+unlink(paste0(.libPaths()[1], "/criticality/extdata/bn-data.RData"))
+unlink(paste0(.libPaths()[1], "/criticality/extdata/risk.csv"))
 temp.dir <- unlist(strsplit(tempdir(), '\\\\\\\\'))
 temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
 unlink(temp.dir, recursive = TRUE, force = TRUE)

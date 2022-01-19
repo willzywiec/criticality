@@ -6,12 +6,12 @@
 #'
 #' This function imports the Scale function and loads/saves training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
-#' @param ext.dir External directory (PATH)
+#' @param ext.dir External directory (full path)
 #' @export
 #' @examples
 #' Tabulate(
 #'   code = "mcnp",
-#'   ext.dir = paste0(.libPaths()[1], "/criticality/data")
+#'   ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 #' )
 #' @import magrittr
 
@@ -32,9 +32,7 @@ Tabulate <- function(
   # load output
   #
     if (file.exists(paste0(ext.dir, '/', code, '-output.csv'))) {
-
       output <- utils::read.csv(paste0(ext.dir, '/', code, '-output.csv'), fileEncoding = 'UTF-8-BOM') %>% stats::na.omit()
-      
       if (nrow(output) >= length(output.files)) {
         output <- output[sample(nrow(output)), ]
         dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
@@ -116,8 +114,12 @@ Tabulate <- function(
 
       output <- output[sample(nrow(output)), ]
       utils::write.csv(output, file = paste0(ext.dir, '/', code, '-output.csv'), row.names = FALSE)
+      
+      dataset <- Scale(
+        code = code,
+        output = output,
+        ext.dir = ext.dir)
 
-      dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
       cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
     } 

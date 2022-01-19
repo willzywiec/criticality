@@ -9,8 +9,8 @@
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param loss Loss function
-#' @param ext.dir External directory (PATH)
-#' @param training.dir Training directory
+#' @param ext.dir External directory (full path)
+#' @param training.dir Training directory (full path)
 #' @export
 #' @import keras
 #' @import magrittr
@@ -87,7 +87,7 @@ Test <- function(
 
   close(progress.bar)
   
-  utils::write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = paste0(training.dir, 'test-mae.csv'), row.names = FALSE)
+  utils::write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = paste0(training.dir, '/test-mae.csv'), row.names = FALSE)
 
   cat('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)), '\n', sep = '')
   cat('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), '\n', sep = '')

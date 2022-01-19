@@ -9,7 +9,7 @@ Tabulate(code = "mcnp", ext.dir)
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
-\item{ext.dir}{External directory (PATH)}
+\item{ext.dir}{External directory (full path)}
 }
 \description{
 This function imports the Scale function and loads/saves training and test data.
@@ -17,6 +17,6 @@ This function imports the Scale function and loads/saves training and test data.
 \examples{
 Tabulate(
   code = "mcnp",
-  ext.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 )
 }

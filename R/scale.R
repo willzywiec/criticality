@@ -8,7 +8,7 @@
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param output Processed output from Monte Carlo radiation transport code simulations
-#' @param ext.dir External directory (PATH)
+#' @param ext.dir External directory (full path)
 #' @export
 #' @import caret
 #' @import dplyr
