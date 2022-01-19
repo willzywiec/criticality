@@ -13,7 +13,7 @@ Scale(code = "mcnp", dataset = NULL, output, ext.dir)
 
 \item{output}{Processed output from Monte Carlo radiation transport code simulations}
 
-\item{ext.dir}{External directory}
+\item{ext.dir}{External directory (PATH)}
 }
 \description{
 This function centers, scales, and one-hot encodes variables.

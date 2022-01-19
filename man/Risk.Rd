@@ -33,7 +33,7 @@ Risk(
 
 \item{sample.size}{Number of samples used to calculate risk}
 
-\item{ext.dir}{External directory}
+\item{ext.dir}{External directory (PATH)}
 }
 \description{
 This function imports the Sample function and estimates process criticality accident risk.

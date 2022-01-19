@@ -28,7 +28,7 @@ Sample(
 
 \item{sample.size}{Number of samples used to calculate risk}
 
-\item{ext.dir}{External directory}
+\item{ext.dir}{External directory (PATH)}
 
 \item{risk.dir}{Risk directory}
 }

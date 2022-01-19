@@ -22,10 +22,10 @@ Test(
 
 \item{loss}{Loss function}
 
-\item{ext.dir}{External directory}
+\item{ext.dir}{External directory (PATH)}
 
 \item{training.dir}{Training directory}
 }
 \description{
-This function optimizes an existing deep neural network metamodel and generates .csv predictions for all training and test data.
+This function sets deep neural network metamodel weights and generates .csv predictions for all training and test data.
 }

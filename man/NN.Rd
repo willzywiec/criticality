@@ -39,16 +39,16 @@ NN(
 
 \item{val.split}{Validation split}
 
-\item{replot}{Boolean (TRUE/FALSE) that determines if plots should be regenerated}
+\item{replot}{Boolean (TRUE/FALSE) that determines if .png files should be replotted.}
 
-\item{verbose}{Visualize TensorFlow output}
+\item{verbose}{Boolean (TRUE/FALSE) that determines if TensorFlow output should be visualized.}
 
-\item{ext.dir}{External directory}
+\item{ext.dir}{External directory (PATH)}
 
 \item{training.dir}{Training directory}
 }
 \description{
-This function ties the Model, Fit, Plot, and Test functions together to build, train, and test a deep neural network metamodel.
+This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
 }
 \examples{
 NN(
@@ -63,8 +63,7 @@ NN(
   val.split = 0.2,
   replot = FALSE,
   verbose = FALSE,
-  ext.dir = paste0(.libPaths()[1], "/criticality/data"),
-  training.dir = paste0(.libPaths()[1], "/criticality/data")
+  ext.dir = paste0(.libPaths()[1], "/criticality/data")
 )
 unlink(paste0(.libPaths()[1], "/criticality/data/test-mae.csv"))
 }

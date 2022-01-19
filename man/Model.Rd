@@ -27,7 +27,7 @@ Model(
 
 \item{learning.rate}{Learning rate}
 
-\item{ext.dir}{External directory}
+\item{ext.dir}{External directory (PATH)}
 }
 \description{
 This function builds a deep neural network metamodel.
