@@ -1,7 +1,5 @@
 # model.R
 #
-# William Zywiec
-#
 #' Model Function
 #'
 #' This function builds a deep neural network metamodel.
@@ -23,7 +21,7 @@ Model <- function(
   loss = 'sse',
   opt.alg = 'adamax',
   learning.rate = 0.00075,
-  ext.dir) {
+  ext.dir = getwd()) {
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 

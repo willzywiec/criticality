@@ -4,7 +4,7 @@
 \alias{Scale}
 \title{Scale Function}
 \usage{
-Scale(code = "mcnp", dataset = NULL, output, ext.dir)
+Scale(code = "mcnp", dataset = NULL, output, ext.dir = getwd())
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}

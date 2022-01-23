@@ -1,7 +1,5 @@
 # sample.R
 #
-# William Zywiec
-#
 #' Sample Function
 #'
 #' This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.
@@ -12,7 +10,7 @@
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
 #' @param ext.dir External directory (full path)
-#' @param risk.dir Risk directory (full path)
+#' @param risk.dir Risk directory
 #' @export
 #' @import bnlearn
 #' @import keras
@@ -28,8 +26,8 @@ Sample <- function(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  ext.dir,
-  risk.dir) {
+  ext.dir = getwd(),
+  risk.dir = getwd()) {
 
   # set bindings for nonstandard evaluation
   op <- ctrl <- mass <- rad <- NULL

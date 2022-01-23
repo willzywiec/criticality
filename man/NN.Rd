@@ -16,8 +16,8 @@ NN(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  ext.dir,
-  training.dir
+  ext.dir = getwd(),
+  training.dir = getwd()
 )
 }
 \arguments{
@@ -53,7 +53,7 @@ This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions tog
 \examples{
 config <- FALSE
 try(config <- reticulate::py_config()$available)
-if (config == TRUE) {
+try(if (config == TRUE) {
   NN(
     batch.size = 128,
     code = "mcnp",
@@ -69,5 +69,5 @@ if (config == TRUE) {
     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
   )
   unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
-}
+})
 }

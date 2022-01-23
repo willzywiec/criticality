@@ -11,8 +11,8 @@ Sample(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  ext.dir,
-  risk.dir
+  ext.dir = getwd(),
+  risk.dir = getwd()
 )
 }
 \arguments{
@@ -30,7 +30,7 @@ Sample(
 
 \item{ext.dir}{External directory (full path)}
 
-\item{risk.dir}{Risk directory (full path)}
+\item{risk.dir}{Risk directory}
 }
 \description{
 This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.

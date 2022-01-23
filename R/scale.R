@@ -1,7 +1,5 @@
 # scale.R
 #
-# William Zywiec
-#
 #' Scale Function
 #'
 #' This function centers, scales, and one-hot encodes variables.
@@ -17,7 +15,7 @@ Scale <- function(
   code = 'mcnp',
   dataset = NULL,
   output,
-  ext.dir) {
+  ext.dir = getwd()) {
 
   # set bindings for nonstandard evaluation
   mass <- rad <- sd <- NULL

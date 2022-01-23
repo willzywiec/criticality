@@ -1,7 +1,5 @@
 # bn.R
 #
-# William Zywiec
-#
 #' BN Function
 #'
 #' This function creates a Bayesian network from pre-formatted nuclear facility data.
@@ -24,7 +22,7 @@
 BN <- function(
   facility,
   dist = 'gamma',
-  ext.dir) {
+  ext.dir = getwd()) {
 
   facility.data <- utils::read.csv(paste0(ext.dir, '/', facility, '.csv'))
 

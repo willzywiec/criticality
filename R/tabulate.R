@@ -1,7 +1,5 @@
 # tabulate.R
 #
-# William Zywiec
-#
 #' Tabulate Function
 #'
 #' This function imports the Scale function and loads/saves training and test data.
@@ -18,7 +16,7 @@
 
 Tabulate <- function(
   code = 'mcnp',
-  ext.dir) {
+  ext.dir = getwd()) {
 
   if (file.exists(paste0(ext.dir, '/', code, '-dataset.RData'))) {
 

@@ -1,7 +1,5 @@
 # test.R
 #
-# William Zywiec
-#
 #' Test Function
 #'
 #' This function sets deep neural network metamodel weights and generates .csv predictions for all training and test data.
@@ -20,10 +18,8 @@ Test <- function(
   dataset,
   ensemble.size = 5,
   loss = 'sse',
-  ext.dir,
-  training.dir) {
-
-  if (missing('training.dir')) training.dir <- ext.dir
+  ext.dir = getwd(),
+  training.dir = getwd()) {
 
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)

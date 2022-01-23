@@ -9,8 +9,8 @@ Test(
   dataset,
   ensemble.size = 5,
   loss = "sse",
-  ext.dir,
-  training.dir
+  ext.dir = getwd(),
+  training.dir = getwd()
 )
 }
 \arguments{

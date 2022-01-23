@@ -4,7 +4,7 @@
 \alias{Tabulate}
 \title{Tabulate Function}
 \usage{
-Tabulate(code = "mcnp", ext.dir)
+Tabulate(code = "mcnp", ext.dir = getwd())
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}

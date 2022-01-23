@@ -4,7 +4,7 @@
 \alias{Plot}
 \title{Plot Function}
 \usage{
-Plot(i, history = NULL, plot.dir)
+Plot(i, history = NULL, plot.dir = getwd())
 }
 \arguments{
 \item{i}{Model number}

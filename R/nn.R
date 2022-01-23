@@ -1,7 +1,5 @@
 # nn.R
 #
-# William Zywiec
-#
 #' NN Function
 #'
 #' This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
@@ -22,7 +20,7 @@
 #' @examples
 #' config <- FALSE
 #' try(config <- reticulate::py_config()$available)
-#' if (config == TRUE) {
+#' try(if (config == TRUE) {
 #'   NN(
 #'     batch.size = 128,
 #'     code = "mcnp",
@@ -38,7 +36,7 @@
 #'     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 #'   )
 #'   unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
-#' }
+#' })
 #' @import keras
 #' @import magrittr
 #' @import reticulate
@@ -55,12 +53,10 @@ NN <- function(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  ext.dir,
-  training.dir) {
+  ext.dir = getwd(),
+  training.dir = getwd()) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
-
-  if (missing('training.dir')) training.dir <- ext.dir
 
   model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)

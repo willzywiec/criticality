@@ -1,7 +1,5 @@
 # risk.R
 #
-# William Zywiec
-#
 #' Risk Function
 #'
 #' This function imports the Sample function and estimates process criticality accident risk.
@@ -18,7 +16,7 @@
 #' @examples
 #' config <- FALSE
 #' try(config <- reticulate::py_config()$available)
-#' if (config == TRUE) {
+#' try(if (config == TRUE) {
 #'   Risk(
 #'     bn = BN(
 #'       facility = "facility",
@@ -50,7 +48,7 @@
 #'   temp.dir <- unlist(strsplit(tempdir(), '\\\\'))
 #'   temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
 #'   unlink(temp.dir, recursive = TRUE, force = TRUE)
-#' }
+#' })
 #' @import dplyr
 #' @import keras
 #' @import magrittr
@@ -65,7 +63,7 @@ Risk <- function(
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  ext.dir) {
+  ext.dir = getwd()) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 

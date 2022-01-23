@@ -1,7 +1,5 @@
 # plot.R
 #
-# William Zywiec
-#
 #' Plot Function
 #'
 #' This function generates and saves plots and data.
@@ -16,7 +14,7 @@
 Plot <- function(
   i,
   history = NULL,
-  plot.dir) {
+  plot.dir = getwd()) {
 
   # set theme
   new.theme <- theme_gray() + theme(axis.text = element_text(color = 'black', size = 11), text = element_text(color = 'black', family = 'serif', size = 11))

@@ -11,7 +11,7 @@ Model(
   loss = "sse",
   opt.alg = "adamax",
   learning.rate = 0.00075,
-  ext.dir
+  ext.dir = getwd()
 )
 }
 \arguments{
