@@ -19,5 +19,7 @@ Tabulate(
   code = "mcnp",
   ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 )
-unlink(tempdir(), recursive = TRUE, force = TRUE)
+temp.dir <- unlist(strsplit(tempdir(), '\\\\\\\\'))
+temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
+unlink(temp.dir, recursive = TRUE, force = TRUE)
 }

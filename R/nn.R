@@ -35,7 +35,6 @@
 #'     verbose = FALSE,
 #'     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 #'   )
-#'   unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
 #' })
 #' @import keras
 #' @import magrittr
@@ -54,9 +53,11 @@ NN <- function(
   replot = TRUE,
   verbose = FALSE,
   ext.dir = getwd(),
-  training.dir = getwd()) {
+  training.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
+
+  if (missing(training.dir)) training.dir <- ext.dir
 
   model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)

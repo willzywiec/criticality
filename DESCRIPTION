@@ -21,5 +21,4 @@ Imports:
     magrittr,
     parallel,
     reticulate,
-    scales,
-    snow
+    scales

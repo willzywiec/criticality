@@ -17,7 +17,7 @@ NN(
   replot = TRUE,
   verbose = FALSE,
   ext.dir = getwd(),
-  training.dir = getwd()
+  training.dir
 )
 }
 \arguments{
@@ -68,6 +68,5 @@ try(if (config == TRUE) {
     verbose = FALSE,
     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
   )
-  unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
 })
 }
