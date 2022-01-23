@@ -16,39 +16,45 @@
 #' @param ext.dir External directory (full path)
 #' @export
 #' @examples
-#' Risk(
-#'   bn = BN(
-#'     facility = "facility",
-#'     dist = "gamma",
-#'     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
-#'   code = "mcnp",
-#'   dist = "gamma",
-#'   facility = "facility",
-#'   keff.cutoff = 0.5,
-#'   metamodel = NN(
-#'     batch.size = 128,
+#' config <- FALSE
+#' try(config <- reticulate::py_config()$available)
+#' if (config == TRUE) {
+#'   Risk(
+#'     bn = BN(
+#'       facility = "facility",
+#'       dist = "gamma",
+#'       ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
 #'     code = "mcnp",
-#'     ensemble.size = 1,
-#'     epochs = 10,
-#'     layers = "8192-256-256-256-256-16",
-#'     loss = "sse",
-#'     opt.alg = "adamax",
-#'     learning.rate = 0.00075,
-#'     val.split = 0.2,
-#'     replot = TRUE,
-#'     verbose = TRUE,
-#'     ext.dir = paste0(.libPaths()[1], "/criticality/extdata"),
-#'     training.dir = paste0(.libPaths()[1], "/criticality/extdata")),
-#'   risk.pool = 10,
-#'   sample.size = 1e+05,
-#'   ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
-#' )
-#' unlink(paste0(.libPaths()[1], "/criticality/extdata/bn-data.RData"))
-#' unlink(paste0(.libPaths()[1], "/criticality/extdata/risk.csv"))
-#' temp.dir <- unlist(strsplit(tempdir(), '\\\\'))
-#' temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
-#' unlink(temp.dir, recursive = TRUE, force = TRUE)
+#'     dist = "gamma",
+#'     facility = "facility",
+#'     keff.cutoff = 0.5,
+#'     metamodel = NN(
+#'       batch.size = 128,
+#'       code = "mcnp",
+#'       ensemble.size = 1,
+#'       epochs = 10,
+#'       layers = "8192-256-256-256-256-16",
+#'       loss = "sse",
+#'       opt.alg = "adamax",
+#'       learning.rate = 0.00075,
+#'       val.split = 0.2,
+#'       replot = TRUE,
+#'       verbose = TRUE,
+#'       ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
+#'     risk.pool = 10,
+#'     sample.size = 1e+05,
+#'     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+#'   )
+#'   unlink(paste0(.libPaths()[1], "/criticality/extdata/bn-data.RData"))
+#'   unlink(paste0(.libPaths()[1], "/criticality/extdata/risk.csv"))
+#'   temp.dir <- unlist(strsplit(tempdir(), '\\\\'))
+#'   temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
+#'   unlink(temp.dir, recursive = TRUE, force = TRUE)
+#' }
 #' @import dplyr
+#' @import keras
+#' @import magrittr
+#' @import reticulate
 
 Risk <- function(
   bn,
@@ -82,8 +88,8 @@ Risk <- function(
 #
   if (file.exists(paste0(risk.dir, 'risk.csv')) && length(utils::read.csv(paste0(risk.dir, 'risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]) >= risk.pool) {
 
-    bn.data <- readRDS(paste0(risk.dir, 'bn-data.RData'))
-    risk <- utils::read.csv(paste0(risk.dir, 'risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]
+    bn.data <- readRDS(paste0(risk.dir, '/bn-data.RData'))
+    risk <- utils::read.csv(paste0(risk.dir, '/risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]
 
     if (mean(risk) != 0) {
       cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
@@ -111,7 +117,7 @@ Risk <- function(
         }
       } else if (i == risk.pool) {
         utils::setTxtProgressBar(progress.bar, i)
-        cat('\n\n', sep = '')
+        cat('\n', sep = '')
       } else {
         utils::setTxtProgressBar(progress.bar, i)
       }
@@ -125,8 +131,8 @@ Risk <- function(
       risk <- pooled.risk
     }
   
-    saveRDS(bn.data, file = paste0(ext.dir, 'bn-data.RData'))
-    utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(ext.dir, '/risk.csv'), row.names = FALSE)
+    saveRDS(bn.data, file = paste0(ext.dir, '/bn-data.RData'))
+    utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(risk.dir, '/risk.csv'), row.names = FALSE)
 
     if (mean(risk) != 0) {
       cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')

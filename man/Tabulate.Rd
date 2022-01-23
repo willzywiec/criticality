@@ -19,4 +19,5 @@ Tabulate(
   code = "mcnp",
   ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
 )
+unlink(tempdir(), recursive = TRUE, force = TRUE)
 }

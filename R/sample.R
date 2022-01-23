@@ -17,7 +17,9 @@
 #' @import bnlearn
 #' @import keras
 #' @import magrittr
-#' @import parallel
+#' @importFrom parallel detectCores
+#' @importFrom snow makeCluster
+#' @importFrom snow stopCluster
 
 Sample <- function(
   bn,
@@ -35,7 +37,7 @@ Sample <- function(
 #
 # sample conditional probability tables
 #
-  cluster <- parallel::makeCluster((parallel::detectCores() / 2), type = 'SOCK')
+  cluster <- snow::makeCluster((parallel::detectCores() / 2), type = 'SOCK')
 
   if (keff.cutoff > 0) {
     bn.data <- cpdist(
@@ -55,7 +57,7 @@ Sample <- function(
       n = sample.size) %>% stats::na.omit()
   }
 
-  parallel::stopCluster(cluster)
+  snow::stopCluster(cluster)
 
   bn.data[[3]] <- unlist(bn.data[[3]]) %>% as.character() %>% as.numeric() # mass
   bn.data[[4]] <- unlist(bn.data[[4]])                                     # form

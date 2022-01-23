@@ -74,11 +74,11 @@ Test <- function(
       progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 3)
       utils::setTxtProgressBar(progress.bar, i)
       if (i == meta.len) {
-        cat('\n\n', sep = '')
+        cat('\n', sep = '')
       }
     } else if (i == meta.len) {
       utils::setTxtProgressBar(progress.bar, i)
-      cat('\n\n', sep = '')
+      cat('\n', sep = '')
     } else {
       utils::setTxtProgressBar(progress.bar, i)
     }

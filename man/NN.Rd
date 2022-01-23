@@ -51,19 +51,23 @@ NN(
 This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
 }
 \examples{
-NN(
-  batch.size = 128,
-  code = "mcnp",
-  ensemble.size = 1,
-  epochs = 10,
-  layers = "8192-256-256-256-256-16",
-  loss = "sse",
-  opt.alg = "adamax",
-  learning.rate = 0.00075,
-  val.split = 0.2,
-  replot = FALSE,
-  verbose = FALSE,
-  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
-)
-unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
+config <- FALSE
+try(config <- reticulate::py_config()$available)
+if (config == TRUE) {
+  NN(
+    batch.size = 128,
+    code = "mcnp",
+    ensemble.size = 1,
+    epochs = 10,
+    layers = "8192-256-256-256-256-16",
+    loss = "sse",
+    opt.alg = "adamax",
+    learning.rate = 0.00075,
+    val.split = 0.2,
+    replot = FALSE,
+    verbose = FALSE,
+    ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+  )
+  unlink(paste0(.libPaths()[1], "/criticality/extdata/test-mae.csv"))
+}
 }

@@ -39,36 +39,39 @@ Risk(
 This function imports the Sample function and estimates process criticality accident risk.
 }
 \examples{
-Risk(
-  bn = BN(
-    facility = "facility",
-    dist = "gamma",
-    ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
-  code = "mcnp",
-  dist = "gamma",
-  facility = "facility",
-  keff.cutoff = 0.5,
-  metamodel = NN(
-    batch.size = 128,
+config <- FALSE
+try(config <- reticulate::py_config()$available)
+if (config == TRUE) {
+  Risk(
+    bn = BN(
+      facility = "facility",
+      dist = "gamma",
+      ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
     code = "mcnp",
-    ensemble.size = 1,
-    epochs = 10,
-    layers = "8192-256-256-256-256-16",
-    loss = "sse",
-    opt.alg = "adamax",
-    learning.rate = 0.00075,
-    val.split = 0.2,
-    replot = TRUE,
-    verbose = TRUE,
-    ext.dir = paste0(.libPaths()[1], "/criticality/extdata"),
-    training.dir = paste0(.libPaths()[1], "/criticality/extdata")),
-  risk.pool = 10,
-  sample.size = 1e+05,
-  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
-)
-unlink(paste0(.libPaths()[1], "/criticality/extdata/bn-data.RData"))
-unlink(paste0(.libPaths()[1], "/criticality/extdata/risk.csv"))
-temp.dir <- unlist(strsplit(tempdir(), '\\\\\\\\'))
-temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
-unlink(temp.dir, recursive = TRUE, force = TRUE)
+    dist = "gamma",
+    facility = "facility",
+    keff.cutoff = 0.5,
+    metamodel = NN(
+      batch.size = 128,
+      code = "mcnp",
+      ensemble.size = 1,
+      epochs = 10,
+      layers = "8192-256-256-256-256-16",
+      loss = "sse",
+      opt.alg = "adamax",
+      learning.rate = 0.00075,
+      val.split = 0.2,
+      replot = TRUE,
+      verbose = TRUE,
+      ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
+    risk.pool = 10,
+    sample.size = 1e+05,
+    ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+  )
+  unlink(paste0(.libPaths()[1], "/criticality/extdata/bn-data.RData"))
+  unlink(paste0(.libPaths()[1], "/criticality/extdata/risk.csv"))
+  temp.dir <- unlist(strsplit(tempdir(), '\\\\\\\\'))
+  temp.dir <- paste0(temp.dir[1:(length(temp.dir) - 1)], collapse = "/")
+  unlink(temp.dir, recursive = TRUE, force = TRUE)
+}
 }
