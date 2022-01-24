@@ -8,7 +8,7 @@ on:
       - main
       - master
 
-name: test-coverage
+name: coveralls
 
 jobs:
   test-coverage:
