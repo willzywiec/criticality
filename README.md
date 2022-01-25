@@ -7,5 +7,5 @@ This is a collection of functions that can be used to model fissile material ope
 
 ## Install the current release from GitHub:  
 ```r
-pak::pak('willzywiec/criticality/pkg/criticality')
+devtools::install_github('willzywiec/criticality/pkg/criticality')
 ```
