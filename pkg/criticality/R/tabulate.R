@@ -8,15 +8,19 @@
 #' @return A list of training and test data
 #' @export
 #' @examples
+#'
 #' ext.dir <- paste0(tempdir(), "/criticality/extdata")
 #' dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+#'
 #' extdata <- paste0(.libPaths()[1], "/criticality/extdata")
 #' file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
 #' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
+#'
 #' Tabulate(
 #'   code = "mcnp",
 #'   ext.dir = ext.dir
 #' )
+#'
 #' @import magrittr
 
 Tabulate <- function(
