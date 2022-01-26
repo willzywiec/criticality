@@ -54,11 +54,14 @@ A list of lists containing an ensemble of deep neural networks and weights
 This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
 }
 \examples{
+
 ext.dir <- paste0(tempdir(), "/criticality/extdata")
 dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+
 extdata <- paste0(.libPaths()[1], "/criticality/extdata")
 file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
 file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
+
 config <- FALSE
 try(config <- reticulate::py_config()$available)
 try(if (config == TRUE) {
@@ -77,4 +80,5 @@ try(if (config == TRUE) {
     ext.dir = ext.dir
   )
 })
+
 }
