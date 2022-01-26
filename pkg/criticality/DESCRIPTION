@@ -6,6 +6,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-1842-9599"))
 Depends: R (>= 3.5.0)
 Description: This is a collection of functions for modeling fissile material operations in process facilities.
+    Zywiec, W.J., Mazzuchi, T.A., Sarkani, S. (2021) <doi:10.1016/j.ress.2020.107322>
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

@@ -21,7 +21,7 @@
 #'     bn = BN(
 #'       facility = "facility",
 #'       dist = "gamma",
-#'       ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
+#'       ext.dir = tempdir()),
 #'     code = "mcnp",
 #'     dist = "gamma",
 #'     facility = "facility",
@@ -38,10 +38,10 @@
 #'       val.split = 0.2,
 #'       replot = TRUE,
 #'       verbose = TRUE,
-#'       ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
+#'       ext.dir = tempdir()),
 #'     risk.pool = 10,
 #'     sample.size = 1e+04,
-#'     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+#'     ext.dir = tempdir()
 #'   )
 #' })
 #' @import dplyr
@@ -58,7 +58,7 @@ Risk <- function(
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  ext.dir = getwd()) {
+  ext.dir = tempdir()) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
@@ -85,13 +85,13 @@ Risk <- function(
     risk <- utils::read.csv(paste0(risk.dir, '/risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]
 
     if (mean(risk) != 0) {
-      cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
-      cat('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
+      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
+      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
     } else {
-      cat('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
+      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
     }
 
-    if (mean(risk) != 0) cat('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
+    if (mean(risk) != 0) message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
 
   } else {
 
@@ -102,15 +102,15 @@ Risk <- function(
       bn.data[[i]] <- Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= 0.95]) / sample.size # USL = 0.95
       if (i == 1) {
-        cat('\n', sep = '')
+        message('\n', sep = '')
         progress.bar <- utils::txtProgressBar(min = 0, max = risk.pool, style = 3)
         utils::setTxtProgressBar(progress.bar, i)
         if (i == risk.pool) {
-          cat('\n', sep = '')
+          message('\n', sep = '')
         }
       } else if (i == risk.pool) {
         utils::setTxtProgressBar(progress.bar, i)
-        cat('\n', sep = '')
+        message('\n', sep = '')
       } else {
         utils::setTxtProgressBar(progress.bar, i)
       }
@@ -128,10 +128,10 @@ Risk <- function(
     utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(risk.dir, '/risk.csv'), row.names = FALSE)
 
     if (mean(risk) != 0) {
-      cat('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
-      cat('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
+      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
+      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
     } else {
-      cat('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
+      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
     }
 
   }

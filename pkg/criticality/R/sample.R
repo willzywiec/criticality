@@ -24,8 +24,8 @@ Sample <- function(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  ext.dir = getwd(),
-  risk.dir = getwd()) {
+  ext.dir = tempdir(),
+  risk.dir = tempdir()) {
 
   # set bindings for nonstandard evaluation
   op <- ctrl <- mass <- rad <- NULL

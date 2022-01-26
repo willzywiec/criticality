@@ -15,7 +15,7 @@ Scale <- function(
   code = 'mcnp',
   dataset = NULL,
   output,
-  ext.dir = getwd()) {
+  ext.dir = tempdir()) {
 
   # set bindings for nonstandard evaluation
   mass <- rad <- sd <- NULL

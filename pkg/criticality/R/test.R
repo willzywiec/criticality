@@ -7,6 +7,7 @@
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param loss Loss function
+#' @param verbose Boolean (TRUE/FALSE) that determines if Test function output should be displayed
 #' @param ext.dir External directory (full path)
 #' @param training.dir Training directory (full path)
 #' @export
@@ -18,8 +19,11 @@ Test <- function(
   dataset,
   ensemble.size = 5,
   loss = 'sse',
-  ext.dir = getwd(),
-  training.dir = getwd()) {
+  verbose = FALSE,
+  ext.dir = tempdir(),
+  training.dir) {
+
+  if (missing(training.dir)) training.dir <- ext.dir
 
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
@@ -65,48 +69,48 @@ Test <- function(
     bfgs[i] <- mean(abs(test.data$keff - rowSums(test.pred * bfgs.wt[[i]][[1]], na.rm = TRUE)))
     sa[i] <- mean(abs(test.data$keff - rowSums(test.pred * sa.wt[[i]][[1]], na.rm = TRUE)))
 
-    if (i == 1) {
+    if (i == 1 && verbose == TRUE) {
       cat('\n', sep = '')
       progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 3)
       utils::setTxtProgressBar(progress.bar, i)
       if (i == meta.len) {
         cat('\n', sep = '')
       }
-    } else if (i == meta.len) {
+    } else if (i == meta.len && verbose == TRUE) {
       utils::setTxtProgressBar(progress.bar, i)
       cat('\n', sep = '')
-    } else {
+    } else if (verbose == TRUE) {
       utils::setTxtProgressBar(progress.bar, i)
     }
 
   }
 
-  close(progress.bar)
+  if (verbose == TRUE) close(progress.bar)
   
   utils::write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = paste0(training.dir, '/test-mae.csv'), row.names = FALSE)
 
-  cat('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)), '\n', sep = '')
-  cat('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), '\n', sep = '')
-  cat('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), '\n\n', sep = '')
-  cat('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]), '\n', sep = '')
+  message('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)), '\n', sep = '')
+  message('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), '\n', sep = '')
+  message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), '\n\n', sep = '')
+  message('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]), '\n', sep = '')
 
   if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] == sa[meta.len]) {
-    cat.str <- ' (Nelder-Mead, BFGS, SA)\n'
+    msg.str <- ' (Nelder-Mead, BFGS, SA)\n'
   } else if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] < sa[meta.len]) {
-    cat.str <- ' (Nelder-Mead, BFGS)\n'
+    msg.str <- ' (Nelder-Mead, BFGS)\n'
   } else if (nm[meta.len] == sa[meta.len] && nm[meta.len] < bfgs[meta.len]) {
-    cat.str <- ' (Nelder-Mead, SA)\n'
+    msg.str <- ' (Nelder-Mead, SA)\n'
   } else if (bfgs[meta.len] == sa[meta.len] && bfgs[meta.len] < nm[meta.len]) {
-    cat.str <- ' (BFGS, SA)\n'
+    msg.str <- ' (BFGS, SA)\n'
   } else if (nm[meta.len] < bfgs[meta.len] && nm[meta.len] < sa[meta.len]) {
-    cat.str <- ' (Nelder-Mead)\n'
+    msg.str <- ' (Nelder-Mead)\n'
   } else if (bfgs[meta.len] < nm[meta.len] && bfgs[meta.len] < sa[meta.len]) {
-    cat.str <- ' (BFGS)\n'
+    msg.str <- ' (BFGS)\n'
   } else if (sa[meta.len] < nm[meta.len] && sa[meta.len] < bfgs[meta.len]) {
-    cat.str <- ' (SA)\n'
+    msg.str <- ' (SA)\n'
   }
 
-  cat('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), cat.str, sep = '')
+  message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str, sep = '')
 
   test.min <- min(c(avg[which.min(avg)], nm[which.min(nm)], bfgs[which.min(bfgs)], sa[which.min(sa)]))
 
@@ -125,30 +129,30 @@ Test <- function(
   if (wt.len < meta.len && wt[1] != 0) {
 
     if (wt.len == 1) {
-      cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network\n\n', sep = '')
+      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network\n\n', sep = '')
     } else {
-      cat('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
+      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
     }
 
-    cat('Ensemble Test MAE = ', sprintf('%.6f', avg[wt.len]), '\n', sep = '')
+    message('Ensemble Test MAE = ', sprintf('%.6f', avg[wt.len]), '\n', sep = '')
 
     if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] == sa[wt.len]) {
-      cat.str <- ' (Nelder-Mead, BFGS, SA)\n'
+      msg.str <- ' (Nelder-Mead, BFGS, SA)\n'
     } else if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] < sa[wt.len]) {
-      cat.str <- ' (Nelder-Mead, BFGS)\n'
+      msg.str <- ' (Nelder-Mead, BFGS)\n'
     } else if (nm[wt.len] == sa[wt.len] && nm[wt.len] < bfgs[wt.len]) {
-      cat.str <- ' (Nelder-Mead, SA)\n'
+      msg.str <- ' (Nelder-Mead, SA)\n'
     } else if (bfgs[wt.len] == sa[wt.len] && bfgs[wt.len] < nm[wt.len]) {
-      cat.str <- ' (BFGS, SA)\n'
+      msg.str <- ' (BFGS, SA)\n'
     } else if (nm[wt.len] < bfgs[wt.len] && nm[wt.len] < sa[wt.len]) {
-      cat.str <- ' (Nelder-Mead)\n'
+      msg.str <- ' (Nelder-Mead)\n'
     } else if (bfgs[wt.len] < nm[wt.len] && bfgs[wt.len] < sa[wt.len]) {
-      cat.str <- ' (BFGS)\n'
+      msg.str <- ' (BFGS)\n'
     } else if (sa[wt.len] < nm[wt.len] && sa[wt.len] < bfgs[wt.len]) {
-      cat.str <- ' (SA)\n'
+      msg.str <- ' (SA)\n'
     }
 
-    cat('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), cat.str, sep = '')
+    message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str, sep = '')
     
   }
 

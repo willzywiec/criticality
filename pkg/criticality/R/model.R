@@ -21,7 +21,7 @@ Model <- function(
   loss = 'sse',
   opt.alg = 'adamax',
   learning.rate = 0.00075,
-  ext.dir = getwd()) {
+  ext.dir = tempdir()) {
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 

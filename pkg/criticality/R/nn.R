@@ -12,8 +12,8 @@
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
-#' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted.
-#' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow output should be visualized.
+#' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted
+#' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow and Test function output should be displayed
 #' @param ext.dir External directory (full path)
 #' @param training.dir Training directory (full path)
 #' @export
@@ -33,7 +33,7 @@
 #'     val.split = 0.2,
 #'     replot = FALSE,
 #'     verbose = FALSE,
-#'     ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+#'     ext.dir = tempdir()
 #'   )
 #' })
 #' @import keras
@@ -52,7 +52,7 @@ NN <- function(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  ext.dir = getwd(),
+  ext.dir = tempdir(),
   training.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
@@ -134,7 +134,7 @@ NN <- function(
   }
 
   # set metamodel weights and generate .csv predictions for all training and test data
-  wt <- Test(code, dataset, ensemble.size, loss, ext.dir, training.dir)
+  wt <- Test(code, dataset, ensemble.size, loss, verbose, ext.dir, training.dir)
 
   return(list(metamodel, wt))
 

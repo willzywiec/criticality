@@ -9,18 +9,17 @@
 #' @examples
 #' Tabulate(
 #'   code = "mcnp",
-#'   ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+#'   ext.dir = tempdir()
 #' )
 #' @import magrittr
 
 Tabulate <- function(
   code = 'mcnp',
-  ext.dir = getwd()) {
+  ext.dir = tempdir()) {
 
   if (file.exists(paste0(ext.dir, '/', code, '-dataset.RData'))) {
 
     load(paste0(ext.dir, '/', code, '-dataset.RData'))
-    cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
   } else {
 
@@ -34,7 +33,6 @@ Tabulate <- function(
       if (nrow(output) >= length(output.files)) {
         output <- output[sample(nrow(output)), ]
         dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
-        cat('Loaded ', code, '-dataset.RData\n', sep = '')
       } else {
         remove(output)
       }
@@ -117,8 +115,6 @@ Tabulate <- function(
         code = code,
         output = output,
         ext.dir = ext.dir)
-
-      cat('Loaded ', code, '-dataset.RData\n', sep = '')
 
     } 
 
