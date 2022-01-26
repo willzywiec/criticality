@@ -16,7 +16,7 @@ NN(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  ext.dir = getwd(),
+  ext.dir,
   training.dir
 )
 }
@@ -39,18 +39,26 @@ NN(
 
 \item{val.split}{Validation split}
 
-\item{replot}{Boolean (TRUE/FALSE) that determines if .png files should be replotted.}
+\item{replot}{Boolean (TRUE/FALSE) that determines if .png files should be replotted}
 
-\item{verbose}{Boolean (TRUE/FALSE) that determines if TensorFlow output should be visualized.}
+\item{verbose}{Boolean (TRUE/FALSE) that determines if TensorFlow and Test function output should be displayed}
 
 \item{ext.dir}{External directory (full path)}
 
 \item{training.dir}{Training directory (full path)}
 }
+\value{
+A list of lists containing an ensemble of deep neural networks and weights
+}
 \description{
 This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
 }
 \examples{
+ext.dir <- paste0(tempdir(), "/criticality/extdata")
+dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 config <- FALSE
 try(config <- reticulate::py_config()$available)
 try(if (config == TRUE) {
@@ -66,7 +74,7 @@ try(if (config == TRUE) {
     val.split = 0.2,
     replot = FALSE,
     verbose = FALSE,
-    ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+    ext.dir = ext.dir
   )
 })
 }

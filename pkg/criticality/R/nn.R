@@ -16,8 +16,14 @@
 #' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow and Test function output should be displayed
 #' @param ext.dir External directory (full path)
 #' @param training.dir Training directory (full path)
+#' @return A list of lists containing an ensemble of deep neural networks and weights
 #' @export
 #' @examples
+#' ext.dir <- paste0(tempdir(), "/criticality/extdata")
+#' dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+#' extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+#' file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+#' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 #' config <- FALSE
 #' try(config <- reticulate::py_config()$available)
 #' try(if (config == TRUE) {
@@ -33,7 +39,7 @@
 #'     val.split = 0.2,
 #'     replot = FALSE,
 #'     verbose = FALSE,
-#'     ext.dir = tempdir()
+#'     ext.dir = ext.dir
 #'   )
 #' })
 #' @import keras
@@ -52,7 +58,7 @@ NN <- function(
   val.split = 0.2,
   replot = TRUE,
   verbose = FALSE,
-  ext.dir = tempdir(),
+  ext.dir,
   training.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)

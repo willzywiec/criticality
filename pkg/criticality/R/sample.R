@@ -11,6 +11,7 @@
 #' @param sample.size Number of samples used to calculate risk
 #' @param ext.dir External directory (full path)
 #' @param risk.dir Risk directory
+#' @return A list of Bayesian network samples with predicted keff values
 #' @export
 #' @import bnlearn
 #' @import keras
@@ -24,8 +25,8 @@ Sample <- function(
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
-  ext.dir = tempdir(),
-  risk.dir = tempdir()) {
+  ext.dir,
+  risk.dir) {
 
   # set bindings for nonstandard evaluation
   op <- ctrl <- mass <- rad <- NULL

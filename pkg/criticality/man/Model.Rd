@@ -11,7 +11,7 @@ Model(
   loss = "sse",
   opt.alg = "adamax",
   learning.rate = 0.00075,
-  ext.dir = getwd()
+  ext.dir
 )
 }
 \arguments{
@@ -28,6 +28,9 @@ Model(
 \item{learning.rate}{Learning rate}
 
 \item{ext.dir}{External directory (full path)}
+}
+\value{
+A deep neural network metamodel of Monte Carlo radiation transport code output
 }
 \description{
 This function builds a deep neural network metamodel.

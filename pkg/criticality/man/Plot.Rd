@@ -4,7 +4,7 @@
 \alias{Plot}
 \title{Plot Function}
 \usage{
-Plot(i, history = NULL, plot.dir = getwd())
+Plot(i, history = NULL, plot.dir)
 }
 \arguments{
 \item{i}{Model number}
@@ -12,6 +12,9 @@ Plot(i, history = NULL, plot.dir = getwd())
 \item{history}{Training history}
 
 \item{plot.dir}{Plot directory (full path)}
+}
+\value{
+No output (generates and saves ggplot2 files and training histories)
 }
 \description{
 This function generates and saves plots and data.

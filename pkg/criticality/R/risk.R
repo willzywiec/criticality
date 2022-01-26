@@ -12,8 +12,14 @@
 #' @param risk.pool Number of times risk is calculated
 #' @param sample.size Number of samples used to calculate risk
 #' @param ext.dir External directory (full path)
+#' @return A list of lists containing process criticality accident risk estimates and samples
 #' @export
 #' @examples
+#' ext.dir <- paste0(tempdir(), "/criticality/extdata")
+#' dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+#' extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+#' file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+#' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 #' config <- FALSE
 #' try(config <- reticulate::py_config()$available)
 #' try(if (config == TRUE) {
@@ -21,7 +27,7 @@
 #'     bn = BN(
 #'       facility = "facility",
 #'       dist = "gamma",
-#'       ext.dir = tempdir()),
+#'       ext.dir = ext.dir),
 #'     code = "mcnp",
 #'     dist = "gamma",
 #'     facility = "facility",
@@ -38,10 +44,10 @@
 #'       val.split = 0.2,
 #'       replot = TRUE,
 #'       verbose = TRUE,
-#'       ext.dir = tempdir()),
+#'       ext.dir = ext.dir),
 #'     risk.pool = 10,
 #'     sample.size = 1e+04,
-#'     ext.dir = tempdir()
+#'     ext.dir = ext.dir
 #'   )
 #' })
 #' @import dplyr
@@ -58,7 +64,7 @@ Risk <- function(
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  ext.dir = tempdir()) {
+  ext.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 

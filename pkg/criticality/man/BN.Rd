@@ -4,7 +4,7 @@
 \alias{BN}
 \title{BN Function}
 \usage{
-BN(facility, dist = "gamma", ext.dir = getwd())
+BN(facility, dist = "gamma", ext.dir)
 }
 \arguments{
 \item{facility}{Facility name or building number (.csv file name)}
@@ -13,13 +13,21 @@ BN(facility, dist = "gamma", ext.dir = getwd())
 
 \item{ext.dir}{External directory (full path)}
 }
+\value{
+A Bayesian network that describes fissile material operations in a nuclear facility
+}
 \description{
 This function creates a Bayesian network from pre-formatted nuclear facility data.
 }
 \examples{
+ext.dir <- paste0(tempdir(), "/criticality/extdata")
+dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 BN(
   facility = "facility",
   dist = "gamma",
-  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+  ext.dir = ext.dir
 )
 }

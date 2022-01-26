@@ -5,17 +5,23 @@
 #' This function imports the Scale function and loads/saves training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param ext.dir External directory (full path)
+#' @return A list of training and test data
 #' @export
 #' @examples
+#' ext.dir <- paste0(tempdir(), "/criticality/extdata")
+#' dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+#' extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+#' file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+#' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 #' Tabulate(
 #'   code = "mcnp",
-#'   ext.dir = tempdir()
+#'   ext.dir = ext.dir
 #' )
 #' @import magrittr
 
 Tabulate <- function(
   code = 'mcnp',
-  ext.dir = tempdir()) {
+  ext.dir) {
 
   if (file.exists(paste0(ext.dir, '/', code, '-dataset.RData'))) {
 

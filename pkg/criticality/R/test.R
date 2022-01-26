@@ -10,6 +10,7 @@
 #' @param verbose Boolean (TRUE/FALSE) that determines if Test function output should be displayed
 #' @param ext.dir External directory (full path)
 #' @param training.dir Training directory (full path)
+#' @return A list of deep neural network weights
 #' @export
 #' @import keras
 #' @import magrittr
@@ -20,7 +21,7 @@ Test <- function(
   ensemble.size = 5,
   loss = 'sse',
   verbose = FALSE,
-  ext.dir = tempdir(),
+  ext.dir,
   training.dir) {
 
   if (missing(training.dir)) training.dir <- ext.dir

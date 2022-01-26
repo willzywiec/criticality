@@ -4,19 +4,27 @@
 \alias{Tabulate}
 \title{Tabulate Function}
 \usage{
-Tabulate(code = "mcnp", ext.dir = getwd())
+Tabulate(code = "mcnp", ext.dir)
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{ext.dir}{External directory (full path)}
 }
+\value{
+A list of training and test data
+}
 \description{
 This function imports the Scale function and loads/saves training and test data.
 }
 \examples{
+ext.dir <- paste0(tempdir(), "/criticality/extdata")
+dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 Tabulate(
   code = "mcnp",
-  ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+  ext.dir = ext.dir
 )
 }

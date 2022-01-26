@@ -6,12 +6,18 @@
 #' @param facility Facility name or building number (.csv file name)
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param ext.dir External directory (full path)
+#' @return A Bayesian network that describes fissile material operations in a nuclear facility
 #' @export
 #' @examples
+#' ext.dir <- paste0(tempdir(), "/criticality/extdata")
+#' dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+#' extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+#' file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+#' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 #' BN(
 #'   facility = "facility",
 #'   dist = "gamma",
-#'   ext.dir = tempdir()
+#'   ext.dir = ext.dir
 #' )
 #' @import bnlearn
 #' @import dplyr
@@ -22,7 +28,7 @@
 BN <- function(
   facility,
   dist = 'gamma',
-  ext.dir = tempdir()) {
+  ext.dir) {
 
   facility.data <- utils::read.csv(paste0(ext.dir, '/', facility, '.csv'))
 

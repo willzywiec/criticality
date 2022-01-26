@@ -9,8 +9,9 @@ Test(
   dataset,
   ensemble.size = 5,
   loss = "sse",
-  ext.dir = getwd(),
-  training.dir = getwd()
+  verbose = FALSE,
+  ext.dir,
+  training.dir
 )
 }
 \arguments{
@@ -22,9 +23,14 @@ Test(
 
 \item{loss}{Loss function}
 
+\item{verbose}{Boolean (TRUE/FALSE) that determines if Test function output should be displayed}
+
 \item{ext.dir}{External directory (full path)}
 
 \item{training.dir}{Training directory (full path)}
+}
+\value{
+A list of deep neural network weights
 }
 \description{
 This function sets deep neural network metamodel weights and generates .csv predictions for all training and test data.

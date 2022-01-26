@@ -7,6 +7,7 @@
 #' @param dataset Training and test data
 #' @param output Processed output from Monte Carlo radiation transport code simulations
 #' @param ext.dir External directory (full path)
+#' @return A list of centered, scaled, and one-hot-encoded training and test data
 #' @export
 #' @import caret
 #' @import dplyr
@@ -15,7 +16,7 @@ Scale <- function(
   code = 'mcnp',
   dataset = NULL,
   output,
-  ext.dir = tempdir()) {
+  ext.dir) {
 
   # set bindings for nonstandard evaluation
   mass <- rad <- sd <- NULL

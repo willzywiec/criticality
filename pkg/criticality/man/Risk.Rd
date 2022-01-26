@@ -13,7 +13,7 @@ Risk(
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
-  ext.dir = getwd()
+  ext.dir
 )
 }
 \arguments{
@@ -35,10 +35,18 @@ Risk(
 
 \item{ext.dir}{External directory (full path)}
 }
+\value{
+A list of lists containing process criticality accident risk estimates and samples
+}
 \description{
 This function imports the Sample function and estimates process criticality accident risk.
 }
 \examples{
+ext.dir <- paste0(tempdir(), "/criticality/extdata")
+dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
+extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
+file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 config <- FALSE
 try(config <- reticulate::py_config()$available)
 try(if (config == TRUE) {
@@ -46,7 +54,7 @@ try(if (config == TRUE) {
     bn = BN(
       facility = "facility",
       dist = "gamma",
-      ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
+      ext.dir = ext.dir),
     code = "mcnp",
     dist = "gamma",
     facility = "facility",
@@ -63,10 +71,10 @@ try(if (config == TRUE) {
       val.split = 0.2,
       replot = TRUE,
       verbose = TRUE,
-      ext.dir = paste0(.libPaths()[1], "/criticality/extdata")),
+      ext.dir = ext.dir),
     risk.pool = 10,
     sample.size = 1e+04,
-    ext.dir = paste0(.libPaths()[1], "/criticality/extdata")
+    ext.dir = ext.dir
   )
 })
 }

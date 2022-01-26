@@ -4,7 +4,7 @@
 \alias{Scale}
 \title{Scale Function}
 \usage{
-Scale(code = "mcnp", dataset = NULL, output, ext.dir = getwd())
+Scale(code = "mcnp", dataset = NULL, output, ext.dir)
 }
 \arguments{
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
@@ -14,6 +14,9 @@ Scale(code = "mcnp", dataset = NULL, output, ext.dir = getwd())
 \item{output}{Processed output from Monte Carlo radiation transport code simulations}
 
 \item{ext.dir}{External directory (full path)}
+}
+\value{
+A list of centered, scaled, and one-hot-encoded training and test data
 }
 \description{
 This function centers, scales, and one-hot encodes variables.

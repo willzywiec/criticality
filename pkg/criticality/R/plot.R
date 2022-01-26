@@ -6,6 +6,7 @@
 #' @param i Model number
 #' @param history Training history
 #' @param plot.dir Plot directory (full path)
+#' @return No output (generates and saves ggplot2 files and training histories)
 #' @export
 #' @import ggplot2
 #' @import magrittr
@@ -14,7 +15,7 @@
 Plot <- function(
   i,
   history = NULL,
-  plot.dir = getwd()) {
+  plot.dir) {
 
   # set theme
   new.theme <- theme_gray() + theme(axis.text = element_text(color = 'black', size = 11), text = element_text(color = 'black', family = 'serif', size = 11))

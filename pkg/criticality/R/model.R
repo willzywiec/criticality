@@ -10,6 +10,7 @@
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
 #' @param ext.dir External directory (full path)
+#' @return A deep neural network metamodel of Monte Carlo radiation transport code output
 #' @export
 #' @import keras
 #' @import magrittr
@@ -21,7 +22,7 @@ Model <- function(
   loss = 'sse',
   opt.alg = 'adamax',
   learning.rate = 0.00075,
-  ext.dir = tempdir()) {
+  ext.dir) {
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 
