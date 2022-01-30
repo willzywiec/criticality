@@ -74,7 +74,6 @@ Risk <- function(
   risk.pool = 100,
   sample.size = 1e+09,
   usl = 0.95,
-  verbose = TRUE,
   ext.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
