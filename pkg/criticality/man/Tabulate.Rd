@@ -12,7 +12,7 @@ Tabulate(code = "mcnp", ext.dir)
 \item{ext.dir}{External directory (full path)}
 }
 \value{
-A list of training and test data
+A list of centered, scaled, and one-hot-encoded training and test data
 }
 \description{
 This function imports the Scale function and loads/saves training and test data.

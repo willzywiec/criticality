@@ -30,7 +30,7 @@ Model(
 \item{ext.dir}{External directory (full path)}
 }
 \value{
-A deep neural network metamodel of Monte Carlo radiation transport code output
+A deep neural network metamodel of Monte Carlo radiation transport code simulation output
 }
 \description{
 This function builds a deep neural network metamodel.

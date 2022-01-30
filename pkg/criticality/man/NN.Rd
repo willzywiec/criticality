@@ -51,7 +51,7 @@ NN(
 A list of lists containing an ensemble of deep neural networks and weights
 }
 \description{
-This function ties the Tabulate, Scale, Model, Fit, Plot, and Test functions together to train an ensemble of deep neural networks to predict keff values.
+This function imports the Tabulate, Scale, Model, Fit, Plot, and Test functions to train an ensemble of deep neural networks to predict keff values.
 }
 \examples{
 

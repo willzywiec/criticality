@@ -7,12 +7,14 @@
 Risk(
   bn,
   code = "mcnp",
+  cores = parallel::detectCores()/2,
   dist = "gamma",
   facility,
   keff.cutoff = 0.9,
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
+  usl = 0.95,
   ext.dir
 )
 }
@@ -21,11 +23,13 @@ Risk(
 
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
+\item{cores}{Number of CPU cores to use for generating Bayesian network samples}
+
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
 \item{facility}{Facility name or building number (.csv file name)}
 
-\item{keff.cutoff}{keff cutoff value (e.g., 0.95)}
+\item{keff.cutoff}{keff cutoff value (e.g., keff >= 0.9)}
 
 \item{metamodel}{List of deep neural network metamodels and weights}
 
@@ -33,10 +37,12 @@ Risk(
 
 \item{sample.size}{Number of samples used to calculate risk}
 
+\item{usl}{Upper subcritical limit (e.g., keff >= 0.95)}
+
 \item{ext.dir}{External directory (full path)}
 }
 \value{
-A list of lists containing process criticality accident risk estimates and samples
+A list of lists containing process criticality accident risk estimates and Bayesian network samples
 }
 \description{
 This function imports the Sample function and estimates process criticality accident risk.
@@ -59,6 +65,7 @@ try(if (config == TRUE) {
       dist = "gamma",
       ext.dir = ext.dir),
     code = "mcnp",
+    cores = 1,
     dist = "gamma",
     facility = "facility",
     keff.cutoff = 0.5,
@@ -77,6 +84,7 @@ try(if (config == TRUE) {
       ext.dir = ext.dir),
     risk.pool = 10,
     sample.size = 1e+04,
+    usl = 0.95,
     ext.dir = ext.dir
   )
 })

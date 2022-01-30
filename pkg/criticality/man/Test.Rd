@@ -33,5 +33,5 @@ Test(
 A list of deep neural network weights
 }
 \description{
-This function sets deep neural network metamodel weights and generates .csv predictions for all training and test data.
+This function calculates deep neural network metamodel weights and generates keff predictions for all training and test data.
 }

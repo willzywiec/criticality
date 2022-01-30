@@ -7,6 +7,7 @@
 Sample(
   bn,
   code = "mcnp",
+  cores = parallel::detectCores()/2,
   dataset,
   keff.cutoff = 0.9,
   metamodel,
@@ -19,6 +20,8 @@ Sample(
 \item{bn}{Bayesian network object}
 
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
+
+\item{cores}{Number of CPU cores to use for generating Bayesian network samples}
 
 \item{dataset}{Training and test data}
 
@@ -36,5 +39,5 @@ Sample(
 A list of Bayesian network samples with predicted keff values
 }
 \description{
-This function samples a Bayesian network object and uses an existing deep neural network metamodel to predict keff values.
+This function samples the Bayesian network and generates keff predictions using a deep neural network metamodel.
 }

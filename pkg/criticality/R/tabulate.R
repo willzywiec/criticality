@@ -5,7 +5,7 @@
 #' This function imports the Scale function and loads/saves training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param ext.dir External directory (full path)
-#' @return A list of training and test data
+#' @return A list of centered, scaled, and one-hot-encoded training and test data
 #' @export
 #' @examples
 #'

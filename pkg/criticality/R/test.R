@@ -2,7 +2,7 @@
 #
 #' Test Function
 #'
-#' This function sets deep neural network metamodel weights and generates .csv predictions for all training and test data.
+#' This function calculates deep neural network metamodel weights and generates keff predictions for all training and test data.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble

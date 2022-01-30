@@ -5,14 +5,16 @@
 #' This function imports the Sample function and estimates process criticality accident risk.
 #' @param bn Bayesian network
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
+#' @param cores Number of CPU cores to use for generating Bayesian network samples
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param facility Facility name or building number (.csv file name)
-#' @param keff.cutoff keff cutoff value (e.g., 0.95)
+#' @param keff.cutoff keff cutoff value (e.g., keff >= 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param risk.pool Number of times risk is calculated
 #' @param sample.size Number of samples used to calculate risk
+#' @param usl Upper subcritical limit (e.g., keff >= 0.95)
 #' @param ext.dir External directory (full path)
-#' @return A list of lists containing process criticality accident risk estimates and samples
+#' @return A list of lists containing process criticality accident risk estimates and Bayesian network samples
 #' @export
 #' @examples
 #'
@@ -32,6 +34,7 @@
 #'       dist = "gamma",
 #'       ext.dir = ext.dir),
 #'     code = "mcnp",
+#'     cores = 1,
 #'     dist = "gamma",
 #'     facility = "facility",
 #'     keff.cutoff = 0.5,
@@ -50,6 +53,7 @@
 #'       ext.dir = ext.dir),
 #'     risk.pool = 10,
 #'     sample.size = 1e+04,
+#'     usl = 0.95,
 #'     ext.dir = ext.dir
 #'   )
 #' })
@@ -62,12 +66,14 @@
 Risk <- function(
   bn,
   code = 'mcnp',
+  cores = parallel::detectCores() / 2,
   dist = 'gamma',
   facility,
   keff.cutoff = 0.9,
   metamodel,
   risk.pool = 100,
   sample.size = 1e+09,
+  usl = 0.95,
   ext.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
@@ -109,8 +115,8 @@ Risk <- function(
     risk <- pooled.risk <- numeric()
 
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
-      risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= 0.95]) / sample.size # USL = 0.95
+      bn.data[[i]] <- Sample(bn, code, cores, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
+      risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= usl]) / sample.size
       if (i == 1) {
         message('\n', sep = '')
         progress.bar <- utils::txtProgressBar(min = 0, max = risk.pool, style = 3)

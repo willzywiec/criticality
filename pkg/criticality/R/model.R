@@ -10,7 +10,7 @@
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
 #' @param ext.dir External directory (full path)
-#' @return A deep neural network metamodel of Monte Carlo radiation transport code output
+#' @return A deep neural network metamodel of Monte Carlo radiation transport code simulation output
 #' @export
 #' @import keras
 #' @import magrittr

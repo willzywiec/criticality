@@ -14,7 +14,8 @@ BN(facility, dist = "gamma", ext.dir)
 \item{ext.dir}{External directory (full path)}
 }
 \value{
-A Bayesian network that describes fissile material operations in a nuclear facility
+A Bayesian network that models fissile material operations (op), controls (ctrl),
+and parameters that affect nuclear criticality safety
 }
 \description{
 This function creates a Bayesian network from pre-formatted nuclear facility data.

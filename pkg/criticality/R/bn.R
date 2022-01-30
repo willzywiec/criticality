@@ -6,7 +6,8 @@
 #' @param facility Facility name or building number (.csv file name)
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param ext.dir External directory (full path)
-#' @return A Bayesian network that describes fissile material operations in a nuclear facility
+#' @return A Bayesian network that models fissile material operations (op), controls (ctrl), 
+#'         and parameters that affect nuclear criticality safety
 #' @export
 #' @examples
 #'
