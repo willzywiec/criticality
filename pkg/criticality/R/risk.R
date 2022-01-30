@@ -102,13 +102,13 @@ Risk <- function(
     risk <- utils::read.csv(paste0(risk.dir, '/risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]
 
     if (mean(risk) != 0) {
-      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
-      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
+      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3))
+      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3))
     } else {
-      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
+      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0))
     }
 
-    if (mean(risk) != 0) message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
+    if (mean(risk) != 0) message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3))
 
   } else {
 
@@ -138,10 +138,10 @@ Risk <- function(
     utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(risk.dir, '/risk.csv'), row.names = FALSE)
 
     if (mean(risk) != 0) {
-      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3), sep = '')
-      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), sep = '')
+      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3))
+      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3))
     } else {
-      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), sep = '')
+      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0))
     }
 
   }

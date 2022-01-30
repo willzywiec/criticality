@@ -15,6 +15,7 @@ Risk(
   risk.pool = 100,
   sample.size = 1e+09,
   usl = 0.95,
+  verbose = TRUE,
   ext.dir
 )
 }

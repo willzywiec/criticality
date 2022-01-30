@@ -70,30 +70,23 @@ Test <- function(
     bfgs[i] <- mean(abs(test.data$keff - rowSums(test.pred * bfgs.wt[[i]][[1]], na.rm = TRUE)))
     sa[i] <- mean(abs(test.data$keff - rowSums(test.pred * sa.wt[[i]][[1]], na.rm = TRUE)))
 
-    if (i == 1 && verbose == TRUE) {
-      cat('\n', sep = '')
+    if (i == 1) {
       progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 3)
       utils::setTxtProgressBar(progress.bar, i)
-      if (i == meta.len) {
-        cat('\n', sep = '')
-      }
-    } else if (i == meta.len && verbose == TRUE) {
-      utils::setTxtProgressBar(progress.bar, i)
-      cat('\n', sep = '')
-    } else if (verbose == TRUE) {
+    } else {
       utils::setTxtProgressBar(progress.bar, i)
     }
 
   }
 
-  if (verbose == TRUE) close(progress.bar)
+  close(progress.bar)
   
   utils::write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = paste0(training.dir, '/test-mae.csv'), row.names = FALSE)
 
-  message('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)), sep = '')
-  message('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), sep = '')
-  message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), sep = '')
-  message('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]), sep = '')
+  message('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)))
+  message('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)))
+  message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)))
+  message('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]))
 
   if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] == sa[meta.len]) {
     msg.str <- ' (Nelder-Mead, BFGS, SA)'
@@ -111,7 +104,7 @@ Test <- function(
     msg.str <- ' (SA)'
   }
 
-  message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str, sep = '')
+  message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str)
 
   test.min <- min(c(avg[which.min(avg)], nm[which.min(nm)], bfgs[which.min(bfgs)], sa[which.min(sa)]))
 
@@ -130,12 +123,12 @@ Test <- function(
   if (wt.len < meta.len && wt[1] != 0) {
 
     if (wt.len == 1) {
-      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network', sep = '')
+      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network')
     } else {
-      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks', sep = '')
+      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks')
     }
 
-    message('Ensemble Test MAE = ', sprintf('%.6f', avg[wt.len]), '\n', sep = '')
+    message('Ensemble Test MAE = ', sprintf('%.6f', avg[wt.len]))
 
     if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] == sa[wt.len]) {
       msg.str <- ' (Nelder-Mead, BFGS, SA)'
@@ -153,7 +146,7 @@ Test <- function(
       msg.str <- ' (SA)'
     }
 
-    message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str, sep = '')
+    message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str)
     
   }
 
