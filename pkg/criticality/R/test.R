@@ -90,25 +90,25 @@ Test <- function(
   
   utils::write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = paste0(training.dir, '/test-mae.csv'), row.names = FALSE)
 
-  message('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)), '\n', sep = '')
+  message('\nMean Training MAE = ', sprintf('%.6f', mean(training.mae)), '\n', sep = '')
   message('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), '\n', sep = '')
-  message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), '\n\n', sep = '')
+  message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), '\n', sep = '')
   message('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]), '\n', sep = '')
 
   if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] == sa[meta.len]) {
-    msg.str <- ' (Nelder-Mead, BFGS, SA)\n'
+    msg.str <- ' (Nelder-Mead, BFGS, SA)'
   } else if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] < sa[meta.len]) {
-    msg.str <- ' (Nelder-Mead, BFGS)\n'
+    msg.str <- ' (Nelder-Mead, BFGS)'
   } else if (nm[meta.len] == sa[meta.len] && nm[meta.len] < bfgs[meta.len]) {
-    msg.str <- ' (Nelder-Mead, SA)\n'
+    msg.str <- ' (Nelder-Mead, SA)'
   } else if (bfgs[meta.len] == sa[meta.len] && bfgs[meta.len] < nm[meta.len]) {
-    msg.str <- ' (BFGS, SA)\n'
+    msg.str <- ' (BFGS, SA)'
   } else if (nm[meta.len] < bfgs[meta.len] && nm[meta.len] < sa[meta.len]) {
-    msg.str <- ' (Nelder-Mead)\n'
+    msg.str <- ' (Nelder-Mead)'
   } else if (bfgs[meta.len] < nm[meta.len] && bfgs[meta.len] < sa[meta.len]) {
-    msg.str <- ' (BFGS)\n'
+    msg.str <- ' (BFGS)'
   } else if (sa[meta.len] < nm[meta.len] && sa[meta.len] < bfgs[meta.len]) {
-    msg.str <- ' (SA)\n'
+    msg.str <- ' (SA)'
   }
 
   message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str, sep = '')

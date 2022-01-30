@@ -69,11 +69,12 @@ Sample <- function(
   bn.data[[8]] <- unlist(bn.data[[8]]) %>% as.character() %>% as.numeric() # thk
 
   # set fissile material density (g/cc)
-  fiss.density <- ifelse((bn.data$form == 'alpha'), 19.86, NA)
-  fiss.density <- ifelse((bn.data$form == 'delta'), 15.92, NA)
-  fiss.density <- ifelse((bn.data$form == 'puo2'), 11.5, NA)
-  fiss.density <- ifelse((bn.data$form == 'heu'), 18.85, NA)
-  fiss.density <- ifelse((bn.data$form == 'uo2'), 10.97, NA)
+  fiss.density <- bn.data$form
+  fiss.density[fiss.density == 'alpha'] <- 19.86
+  fiss.density[fiss.density == 'delta'] <- 15.92
+  fiss.density[fiss.density == 'puo2'] <- 11.5
+  fiss.density[fiss.density == 'heu'] <- 18.85
+  fiss.density[fiss.density == 'uo2'] <- 10.97
 
   # calculate vol (cc)
   vol <- 4/3 * pi * bn.data$rad^3
