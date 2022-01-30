@@ -104,16 +104,10 @@ Sample <- function(
   bn.data$thk[bn.data$ref == 'none'] <- 0
 
   # calculate conc (g/cc)
-  conc <- ifelse((vol == 0), 0, (bn.data$mass / vol))
+  bn.data$conc <- ifelse((vol == 0), 0, (bn.data$mass / vol))
 
-  # set form, vol (cc), and conc (g/cc)
-  bn.data$form[fiss.density == 19.86] <- 'alpha'
-  bn.data$form[fiss.density == 15.92] <- 'delta'
-  bn.data$form[fiss.density == 11.5] <- 'puo2'
-  bn.data$form[fiss.density == 18.85] <- 'heu'
-  bn.data$form[fiss.density == 10.97] <- 'uo2'
+  # set vol (cc)
   bn.data$vol <- vol
-  bn.data$conc <- conc
 
   bn.df <- Scale(
     code = code,
