@@ -90,10 +90,10 @@ Test <- function(
   
   utils::write.csv(data.frame(avg = avg, nm = nm, bfgs = bfgs, sa = sa), file = paste0(training.dir, '/test-mae.csv'), row.names = FALSE)
 
-  message('\nMean Training MAE = ', sprintf('%.6f', mean(training.mae)), '\n', sep = '')
-  message('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), '\n', sep = '')
-  message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), '\n', sep = '')
-  message('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]), '\n', sep = '')
+  message('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)), sep = '')
+  message('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)), sep = '')
+  message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)), sep = '')
+  message('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]), sep = '')
 
   if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] == sa[meta.len]) {
     msg.str <- ' (Nelder-Mead, BFGS, SA)'
@@ -130,27 +130,27 @@ Test <- function(
   if (wt.len < meta.len && wt[1] != 0) {
 
     if (wt.len == 1) {
-      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network\n\n', sep = '')
+      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network', sep = '')
     } else {
-      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks\n\n', sep = '')
+      message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural networks', sep = '')
     }
 
     message('Ensemble Test MAE = ', sprintf('%.6f', avg[wt.len]), '\n', sep = '')
 
     if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] == sa[wt.len]) {
-      msg.str <- ' (Nelder-Mead, BFGS, SA)\n'
+      msg.str <- ' (Nelder-Mead, BFGS, SA)'
     } else if (nm[wt.len] == bfgs[wt.len] && nm[wt.len] < sa[wt.len]) {
-      msg.str <- ' (Nelder-Mead, BFGS)\n'
+      msg.str <- ' (Nelder-Mead, BFGS)'
     } else if (nm[wt.len] == sa[wt.len] && nm[wt.len] < bfgs[wt.len]) {
-      msg.str <- ' (Nelder-Mead, SA)\n'
+      msg.str <- ' (Nelder-Mead, SA)'
     } else if (bfgs[wt.len] == sa[wt.len] && bfgs[wt.len] < nm[wt.len]) {
-      msg.str <- ' (BFGS, SA)\n'
+      msg.str <- ' (BFGS, SA)'
     } else if (nm[wt.len] < bfgs[wt.len] && nm[wt.len] < sa[wt.len]) {
-      msg.str <- ' (Nelder-Mead)\n'
+      msg.str <- ' (Nelder-Mead)'
     } else if (bfgs[wt.len] < nm[wt.len] && bfgs[wt.len] < sa[wt.len]) {
-      msg.str <- ' (BFGS)\n'
+      msg.str <- ' (BFGS)'
     } else if (sa[wt.len] < nm[wt.len] && sa[wt.len] < bfgs[wt.len]) {
-      msg.str <- ' (SA)\n'
+      msg.str <- ' (SA)'
     }
 
     message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str, sep = '')

@@ -21,7 +21,7 @@ Plot <- function(
   new.theme <- theme_gray() + theme(axis.text = element_text(color = 'black', size = 11), text = element_text(color = 'black', family = 'serif', size = 11))
   theme_set(new.theme)
 
-  if (missing('history')) {
+  if (is.null(history)) {
     history <- utils::read.csv(paste0(plot.dir, '/', i, '.csv'), header = TRUE)
   } else {
     history <- data.frame(

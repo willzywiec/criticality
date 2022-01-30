@@ -128,7 +128,7 @@ Tabulate <- function(
 
     } 
 
-    if (!exists('data') && length(output.files) == 0) stop('Could not find data\n')
+    if (!exists('dataset') && length(output.files) == 0) stop('Could not find data')
 
   }
 

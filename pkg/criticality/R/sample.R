@@ -6,7 +6,6 @@
 #' @param bn Bayesian network object
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
-#' @param dataset Training and test data
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
@@ -23,12 +22,13 @@ Sample <- function(
   bn,
   code = 'mcnp',
   cores = parallel::detectCores() / 2,
-  dataset,
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
   ext.dir,
-  risk.dir) {
+  risk.dir = NULL) {
+
+  if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
   # set bindings for nonstandard evaluation
   op <- ctrl <- mass <- rad <- NULL
@@ -41,11 +41,26 @@ Sample <- function(
     cluster <- parallel::makeCluster(cores)
   }
 
-  if (keff.cutoff > 0) {
+  if (cores > 1 && keff.cutoff > 0) {
     bn.data <- cpdist(
       bn,
       nodes = names(bn),
       evidence = (as.integer(mass) > 100) & (as.integer(rad) > 7),
+      batch = sample.size,
+      cluster = cluster,
+      n = sample.size) %>% stats::na.omit()
+  } else if (cores == 1 && keff.cutoff > 0) {
+    bn.data <- cpdist(
+      bn,
+      nodes = names(bn),
+      evidence = (as.integer(mass) > 100) & (as.integer(rad) > 7),
+      batch = sample.size,
+      n = sample.size) %>% stats::na.omit()
+  } else if (cores > 1) {
+    bn.data <- cpdist(
+      bn,
+      nodes = names(bn),
+      evidence = TRUE,
       batch = sample.size,
       cluster = cluster,
       n = sample.size) %>% stats::na.omit()
@@ -55,7 +70,6 @@ Sample <- function(
       nodes = names(bn),
       evidence = TRUE,
       batch = sample.size,
-      cluster = cluster,
       n = sample.size) %>% stats::na.omit()
   }
 
@@ -69,12 +83,13 @@ Sample <- function(
   bn.data[[8]] <- unlist(bn.data[[8]]) %>% as.character() %>% as.numeric() # thk
 
   # set fissile material density (g/cc)
-  fiss.density <- bn.data$form
+  fiss.density <- as.character(bn.data$form)
   fiss.density[fiss.density == 'alpha'] <- 19.86
   fiss.density[fiss.density == 'delta'] <- 15.92
   fiss.density[fiss.density == 'puo2'] <- 11.5
   fiss.density[fiss.density == 'heu'] <- 18.85
   fiss.density[fiss.density == 'uo2'] <- 10.97
+  fiss.density <- as.numeric(fiss.density)
 
   # calculate vol (cc)
   vol <- 4/3 * pi * bn.data$rad^3
@@ -91,7 +106,12 @@ Sample <- function(
   # calculate conc (g/cc)
   conc <- ifelse((vol == 0), 0, (bn.data$mass / vol))
 
-  # set vol (cc) and conc (g/cc)
+  # set form, vol (cc), and conc (g/cc)
+  bn.data$form[fiss.density == 19.86] <- 'alpha'
+  bn.data$form[fiss.density == 15.92] <- 'delta'
+  bn.data$form[fiss.density == 11.5] <- 'puo2'
+  bn.data$form[fiss.density == 18.85] <- 'heu'
+  bn.data$form[fiss.density == 10.97] <- 'uo2'
   bn.data$vol <- vol
   bn.data$conc <- conc
 
@@ -110,7 +130,7 @@ Sample <- function(
     bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
     if (nrow(bn.data) == 0) {
-      unlink(risk.dir, recursive = TRUE, force = TRUE)
+      if (is.null(risk.dir)) unlink(risk.dir, recursive = TRUE, force = TRUE)
       stop(paste0('There were no keff values > ', keff.cutoff))
     }
   }

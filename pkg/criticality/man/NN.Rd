@@ -17,7 +17,7 @@ NN(
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
-  training.dir
+  training.dir = NULL
 )
 }
 \arguments{

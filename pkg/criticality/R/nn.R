@@ -63,11 +63,11 @@ NN <- function(
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
-  training.dir) {
+  training.dir = NULL) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
-  if (missing(training.dir)) training.dir <- ext.dir
+  if (is.null(training.dir)) training.dir <- ext.dir
 
   model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
@@ -85,8 +85,8 @@ NN <- function(
 
   metamodel <- history <- rep(list(0), length(ensemble.size))
 
-  Fit <- function(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i) {
-    if (missing(i)) {
+  Fit <- function(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i = NULL) {
+    if (is.null(i)) {
       model %>% fit(
         dataset$training.df,
         dataset$training.data$keff,

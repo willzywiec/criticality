@@ -74,6 +74,7 @@ Risk <- function(
   risk.pool = 100,
   sample.size = 1e+09,
   usl = 0.95,
+  verbose = TRUE,
   ext.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
@@ -115,18 +116,11 @@ Risk <- function(
     risk <- pooled.risk <- numeric()
 
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, cores, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
+      bn.data[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= usl]) / sample.size
       if (i == 1) {
-        message('\n', sep = '')
         progress.bar <- utils::txtProgressBar(min = 0, max = risk.pool, style = 3)
         utils::setTxtProgressBar(progress.bar, i)
-        if (i == risk.pool) {
-          message('\n', sep = '')
-        }
-      } else if (i == risk.pool) {
-        utils::setTxtProgressBar(progress.bar, i)
-        message('\n', sep = '')
       } else {
         utils::setTxtProgressBar(progress.bar, i)
       }
@@ -144,10 +138,10 @@ Risk <- function(
     utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(risk.dir, '/risk.csv'), row.names = FALSE)
 
     if (mean(risk) != 0) {
-      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3), '\n', sep = '')
-      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), '\n', sep = '')
+      message('Risk = ', formatC(mean(risk), format = 'e', digits = 3), sep = '')
+      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3), sep = '')
     } else {
-      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), '\n', sep = '')
+      message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0), sep = '')
     }
 
   }
