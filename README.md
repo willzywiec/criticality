@@ -2,7 +2,7 @@
 
 # criticality
 
-A collection of functions for modeling fissile material operations in nuclear facilities, based on Zywiec et al (https://www.sciencedirect.com/science/article/abs/pii/S0951832020308152?via%3Dihub). 
+A collection of functions for modeling fissile material operations in nuclear facilities. 
 
 ## Install the latest release from GitHub:  
 ```r
