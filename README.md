@@ -4,7 +4,11 @@
 
 A collection of functions that can be used to model fissile material operations in nuclear facilities and estimate process criticality accident risk.  
 
-## Install the current release from GitHub:  
+## Install the latest release from GitHub:  
 ```r
 devtools::install_github('willzywiec/criticality/pkg/criticality')
 ```
+
+## Install the current release from CRAN:  
+```r
+install.packages('criticality')
