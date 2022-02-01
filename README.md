@@ -2,7 +2,7 @@
 
 # criticality
 
-A collection of functions that can be used to model fissile material operations in nuclear facilities and estimate process criticality accident risk.  
+A collection of functions for modeling fissile material operations in nuclear facilities, based on Zywiec et al (https://www.sciencedirect.com/science/article/abs/pii/S0951832020308152?via%3Dihub). 
 
 ## Install the latest release from GitHub:  
 ```r
