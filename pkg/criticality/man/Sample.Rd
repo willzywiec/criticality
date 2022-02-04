@@ -8,6 +8,7 @@ Sample(
   bn,
   code = "mcnp",
   cores = parallel::detectCores()/2,
+  dataset = Tabulate(code = "mcnp", ext.dir = ext.dir),
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
@@ -21,6 +22,8 @@ Sample(
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{cores}{Number of CPU cores to use for generating Bayesian network samples}
+
+\item{dataset}{Training and test data}
 
 \item{keff.cutoff}{keff cutoff value (e.g., 0.9)}
 

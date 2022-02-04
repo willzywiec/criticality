@@ -17,7 +17,7 @@
 
 Model <- function(
   code = 'mcnp',
-  dataset,
+  dataset = Tabulate(code = 'mcnp', ext.dir = ext.dir),
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
   opt.alg = 'adamax',

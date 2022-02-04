@@ -6,6 +6,7 @@
 #' @param bn Bayesian network
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
+#' @param dataset Training and test data
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param facility Facility name or building number (.csv file name)
 #' @param keff.cutoff keff cutoff value (e.g., keff >= 0.9)
@@ -35,12 +36,14 @@
 #'       ext.dir = ext.dir),
 #'     code = "mcnp",
 #'     cores = 1,
+#'     dataset = Tabulate(code, ext.dir),
 #'     dist = "gamma",
 #'     facility = "facility",
 #'     keff.cutoff = 0.5,
 #'     metamodel = NN(
 #'       batch.size = 128,
 #'       code = "mcnp",
+#'       dataset = Tabulate(code = "mcnp", ext.dir = ext.dir),
 #'       ensemble.size = 1,
 #'       epochs = 10,
 #'       layers = "8192-256-256-256-256-16",
@@ -67,6 +70,7 @@ Risk <- function(
   bn,
   code = 'mcnp',
   cores = parallel::detectCores() / 2,
+  dataset = Tabulate(code = 'mcnp', ext.dir = ext.dir),
   dist = 'gamma',
   facility,
   keff.cutoff = 0.9,
@@ -75,8 +79,6 @@ Risk <- function(
   sample.size = 1e+09,
   usl = 0.95,
   ext.dir) {
-
-  if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
   if (keff.cutoff > 0) {
     risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
@@ -115,7 +117,7 @@ Risk <- function(
     risk <- pooled.risk <- numeric()
 
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
+      bn.data[[i]] <- Sample(bn, code, cores, dataset, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= usl]) / sample.size
       if (i == 1) {
         progress.bar <- utils::txtProgressBar(min = 0, max = risk.pool, style = 3)
