@@ -5,6 +5,7 @@
 #' This function imports the Tabulate, Scale, Model, Fit, Plot, and Test functions to train an ensemble of deep neural networks to predict keff values.
 #' @param batch.size Batch size
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
+#' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param epochs Number of training epochs
 #' @param layers String that defines the deep neural network architecture (e.g., "64-64")
@@ -53,6 +54,7 @@
 NN <- function(
   batch.size = 8192,
   code = 'mcnp',
+  dataset,
   ensemble.size = 5,
   epochs = 1500,
   layers = '8192-256-256-256-256-16',
