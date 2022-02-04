@@ -6,7 +6,7 @@
 \usage{
 Model(
   code = "mcnp",
-  dataset = Tabulate(code = "mcnp", ext.dir = ext.dir),
+  dataset,
   layers = "8192-256-256-256-256-16",
   loss = "sse",
   opt.alg = "adamax",
@@ -33,5 +33,5 @@ Model(
 A deep neural network metamodel of Monte Carlo radiation transport code simulation output
 }
 \description{
-This function builds a deep neural network metamodel.
+This function builds the deep neural network metamodel architecture.
 }

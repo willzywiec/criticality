@@ -8,7 +8,6 @@ Risk(
   bn,
   code = "mcnp",
   cores = parallel::detectCores()/2,
-  dataset = Tabulate(code = "mcnp", ext.dir = ext.dir),
   dist = "gamma",
   facility,
   keff.cutoff = 0.9,
@@ -25,8 +24,6 @@ Risk(
 \item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
 
 \item{cores}{Number of CPU cores to use for generating Bayesian network samples}
-
-\item{dataset}{Training and test data}
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
@@ -69,14 +66,12 @@ try(if (config == TRUE) {
       ext.dir = ext.dir),
     code = "mcnp",
     cores = 1,
-    dataset = Tabulate(code, ext.dir),
     dist = "gamma",
     facility = "facility",
     keff.cutoff = 0.5,
     metamodel = NN(
       batch.size = 128,
       code = "mcnp",
-      dataset = Tabulate(code = "mcnp", ext.dir = ext.dir),
       ensemble.size = 1,
       epochs = 10,
       layers = "8192-256-256-256-256-16",

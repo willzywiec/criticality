@@ -2,7 +2,7 @@
 #
 #' Model Function
 #'
-#' This function builds a deep neural network metamodel.
+#' This function builds the deep neural network metamodel architecture.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param layers String that defines the deep neural network architecture (e.g., "64-64")
@@ -17,7 +17,7 @@
 
 Model <- function(
   code = 'mcnp',
-  dataset = Tabulate(code = 'mcnp', ext.dir = ext.dir),
+  dataset,
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
   opt.alg = 'adamax',

@@ -17,7 +17,7 @@
 
 Test <- function(
   code = 'mcnp',
-  dataset = Tabulate(code = 'mcnp', ext.dir = ext.dir),
+  dataset,
   ensemble.size = 5,
   loss = 'sse',
   verbose = FALSE,

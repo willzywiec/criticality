@@ -7,7 +7,6 @@
 NN(
   batch.size = 8192,
   code = "mcnp",
-  dataset = Tabulate(code = "mcnp", ext.dir = ext.dir),
   ensemble.size = 5,
   epochs = 1500,
   layers = "8192-256-256-256-256-16",
@@ -69,7 +68,6 @@ try(if (config == TRUE) {
   NN(
     batch.size = 128,
     code = "mcnp",
-    dataset = Tabulate(code = "mcnp", ext.dir = ext.dir),
     ensemble.size = 1,
     epochs = 10,
     layers = "8192-256-256-256-256-16",

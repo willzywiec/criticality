@@ -6,7 +6,6 @@
 #' @param bn Bayesian network object
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
-#' @param dataset Training and test data
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param sample.size Number of samples used to calculate risk
@@ -23,12 +22,13 @@ Sample <- function(
   bn,
   code = 'mcnp',
   cores = parallel::detectCores() / 2,
-  dataset = Tabulate(code = 'mcnp', ext.dir = ext.dir),
   keff.cutoff = 0.9,
   metamodel,
   sample.size = 1e+09,
   ext.dir,
   risk.dir = NULL) {
+
+  if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
   # set bindings for nonstandard evaluation
   op <- ctrl <- mass <- rad <- NULL
