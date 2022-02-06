@@ -11,6 +11,7 @@
 #' @export
 #' @import caret
 #' @import dplyr
+#' @import magrittr
 
 Scale <- function(
   code = 'mcnp',
@@ -58,8 +59,8 @@ Scale <- function(
 
   # partition data
   if (is.null(dataset)) {
-    test.data <- sample(training.data, size = round(nrow(training.data) * 0.2))
-    training.data <- anti_join(training.data, test.data, by = 'mass')
+    test.data <- training.data[sample(nrow(training.data), round(nrow(training.data) * 0.2)), ]
+    training.data <- training.data %>% anti_join(test.data)
   }
 
 #
