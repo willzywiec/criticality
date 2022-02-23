@@ -49,13 +49,13 @@ Test <- function(
 
   test.pred <- matrix(nrow = nrow(dataset$test.df), ncol = meta.len)
 
-  Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred %*% x, na.rm = TRUE)))
-
   test.mae <- avg <- nm <- bfgs <- sa <- numeric()
 
   nm.wt <- bfgs.wt <- sa.wt <- list()
 
   for (i in 1:meta.len) {
+
+    Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred[ , i] * x, na.rm = TRUE)))
 
     test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df)
 
