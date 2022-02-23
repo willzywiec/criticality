@@ -49,7 +49,7 @@ Test <- function(
 
   test.pred <- matrix(nrow = nrow(dataset$test.df), ncol = meta.len)
 
-  Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE)))
+  Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred %*% x, na.rm = TRUE)))
 
   test.mae <- avg <- nm <- bfgs <- sa <- numeric()
 
@@ -61,9 +61,9 @@ Test <- function(
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
-    nm.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'Nelder-Mead', lower = 0)
-    bfgs.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'BFGS', lower = 0)
-    sa.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'SANN', lower = 0)
+    nm.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'Nelder-Mead')
+    bfgs.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'BFGS')
+    sa.wt[[i]] <- stats::optim(rep(0, i), Objective, method = 'SANN')
 
     avg[i] <- mean(abs(test.data$keff - rowMeans(test.pred, na.rm = TRUE)))
     nm[i] <- mean(abs(test.data$keff - rowSums(test.pred * nm.wt[[i]][[1]], na.rm = TRUE)))
