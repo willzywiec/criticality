@@ -36,7 +36,7 @@ Plot <- function(
   ggplot(history, aes_string(x = 'epoch')) +
   geom_line(aes_string(y = 'val.mae', color = shQuote('cross-validation data'))) +
   geom_line(aes_string(y = 'mae', color = shQuote('training data'))) +
-  geom_point(aes(x = which.min(history$mae), y = min(history$mae), color = 'training minimum')) +
+  geom_point(aes(x = which.min(mae), y = min(mae), color = 'training minimum')) +
   guides(color = guide_legend(override.aes = list(linetype = c(1, 1, NA), shape = c(NA, NA, 16)))) +
   scale_color_manual('', breaks = c('training data', 'cross-validation data', 'training minimum'), values = c('black', '#a9a9a9', 'red')) +
   scale_x_continuous(breaks = pretty_breaks()) +
