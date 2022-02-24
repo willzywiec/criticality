@@ -55,7 +55,7 @@ Test <- function(
 
   for (i in 1:meta.len) {
 
-    Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred[ , 0:i] * x, na.rm = TRUE)))
+    Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred[ , 1:i] * x, na.rm = TRUE)))
 
     test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df)
 
