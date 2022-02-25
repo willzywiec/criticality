@@ -53,7 +53,7 @@ Test <- function(
 
   nm.wt <- bfgs.wt <- sa.wt <- list()
 
-  Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE)))
+  Objective <- function(x) mean(abs(test.data$keff - rowSums(na.omit(test.pred) * x)))
 
   for (i in 1:meta.len) {
 
