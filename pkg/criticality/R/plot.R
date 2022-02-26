@@ -55,8 +55,8 @@ Plot <- function(
     label = format(min(history$mae), digits = 3, scientific = TRUE),
     color = 'red',
     family = 'serif',
-    size = 3.5) %>% suppressWarnings()
-  
-  ggsave(paste0(plot.dir, '/', i, '.png'), dpi = 1000, height = 4, width = 6.5) %>% suppressMessages()
+    size = 3.5)
+
+  ggsave(paste0(plot.dir, '/', i, '.png'), dpi = 1000, height = 4, width = 6.5) %>% suppressMessages() %>% suppressWarnings()
 
 }
