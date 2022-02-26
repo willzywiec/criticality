@@ -33,8 +33,6 @@ Plot <- function(
     utils::write.csv(history, file = paste0(plot.dir, '/', i, '.csv'), row.names = FALSE)
   }
 
-  options(warn = -1)
-
   ggplot(history, aes_string(x = 'epoch')) +
   geom_line(aes_string(y = 'val.mae', color = shQuote('cross-validation data'))) +
   geom_line(aes_string(y = 'mae', color = shQuote('training data'))) +
@@ -57,10 +55,8 @@ Plot <- function(
     label = format(min(history$mae), digits = 3, scientific = TRUE),
     color = 'red',
     family = 'serif',
-    size = 3.5)
-
-  options(warn = 0)
-
+    size = 3.5) %>% suppressWarnings()
+  
   ggsave(paste0(plot.dir, '/', i, '.png'), dpi = 1000, height = 4, width = 6.5) %>% suppressMessages()
 
 }
