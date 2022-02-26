@@ -61,9 +61,9 @@ Test <- function(
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
-    nm.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'Nelder-Mead')
-    bfgs.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'BFGS')
-    sa.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'SANN')
+    nm.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'Nelder-Mead') %>% suppressWarnings()
+    bfgs.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'BFGS') %>% suppressWarnings()
+    sa.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'SANN') %>% suppressWarnings()
 
     avg[i] <- mean(abs(test.data$keff - rowMeans(test.pred, na.rm = TRUE)))
     nm[i] <- mean(abs(test.data$keff - rowSums(test.pred * nm.wt[[i]][[1]], na.rm = TRUE)))
