@@ -61,7 +61,7 @@ Test <- function(
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
-    nm.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'Nelder-Mead')
+    nm.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'Nelder-Mead') %>% suppressWarnings()
     bfgs.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'BFGS')
     sa.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'SANN')
 
