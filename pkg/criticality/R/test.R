@@ -66,9 +66,9 @@ Test <- function(
     sa.wt[[i]] <- stats::optim(rep(1 / i, i), Objective, method = 'SANN') %>% suppressWarnings()
 
     avg[i] <- mean(abs(test.data$keff - rowMeans(test.pred, na.rm = TRUE)))
-    nm[i] <- mean(abs(test.data$keff - rowSums(test.pred * nm.wt[[i]][[1]], na.rm = TRUE)))
-    bfgs[i] <- mean(abs(test.data$keff - rowSums(test.pred * bfgs.wt[[i]][[1]], na.rm = TRUE)))
-    sa[i] <- mean(abs(test.data$keff - rowSums(test.pred * sa.wt[[i]][[1]], na.rm = TRUE)))
+    nm[i] <- mean(abs(test.data$keff - rowSums(test.pred * nm.wt[[i]][[1]], na.rm = TRUE))) %>% suppressWarnings()
+    bfgs[i] <- mean(abs(test.data$keff - rowSums(test.pred * bfgs.wt[[i]][[1]], na.rm = TRUE))) %>% suppressWarnings()
+    sa[i] <- mean(abs(test.data$keff - rowSums(test.pred * sa.wt[[i]][[1]], na.rm = TRUE))) %>% suppressWarnings()
 
     if (i == 1) {
       progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 3)
