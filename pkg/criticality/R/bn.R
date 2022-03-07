@@ -35,7 +35,7 @@ BN <- function(
   dist = 'gamma',
   ext.dir) {
 
-  facility.data <- utils::read.csv(facility.data)
+  facility.data <- utils::read.csv(paste0(ext.dir, '/', facility.data))
 
   # set categorical parameters
   op <- table(facility.data$op) %>% names()
