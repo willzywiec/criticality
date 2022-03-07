@@ -3,6 +3,7 @@
 #' Model Function
 #'
 #' This function builds the deep neural network metamodel architecture.
+#' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param layers String that defines the deep neural network architecture (e.g., "64-64")
 #' @param loss Loss function
@@ -15,6 +16,7 @@
 #' @import magrittr
 
 Model <- function(
+  code = 'mcnp', # unnecessary?
   dataset,
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
