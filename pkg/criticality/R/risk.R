@@ -7,7 +7,7 @@
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
-#' @param facility Facility name or building number (.csv file name)
+#' @param facility.data .csv file name
 #' @param keff.cutoff keff cutoff value (e.g., keff >= 0.9)
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param risk.pool Number of times risk is calculated
@@ -30,13 +30,13 @@
 #' try(if (config == TRUE) {
 #'   Risk(
 #'     bn = BN(
-#'       facility = "facility",
+#'       facility.data = "facility.csv",
 #'       dist = "gamma",
 #'       ext.dir = ext.dir),
 #'     code = "mcnp",
 #'     cores = 1,
 #'     dist = "gamma",
-#'     facility = "facility",
+#'     facility.data = "facility.csv",
 #'     keff.cutoff = 0.5,
 #'     metamodel = NN(
 #'       batch.size = 128,
@@ -68,7 +68,7 @@ Risk <- function(
   code = 'mcnp',
   cores = parallel::detectCores() / 2,
   dist = 'gamma',
-  facility,
+  facility.data,
   keff.cutoff = 0.9,
   metamodel,
   risk.pool = 100,
@@ -77,6 +77,8 @@ Risk <- function(
   ext.dir) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
+
+  facility <- gsub('.csv', '', facility.data)
 
   if (keff.cutoff > 0) {
     risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)

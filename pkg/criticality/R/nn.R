@@ -111,7 +111,7 @@ NN <- function(
 
   if (length(model.files) < ensemble.size) {
     for (i in (length(model.files) + 1):ensemble.size) {
-      metamodel[[i]] <- Model(code, dataset, layers, loss, opt.alg, learning.rate, ext.dir)
+      metamodel[[i]] <- Model(dataset, layers, loss, opt.alg, learning.rate, ext.dir)
       history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose)
       Plot(i = i, history = history[[i]], plot.dir = model.dir)
       save_model_hdf5(metamodel[[i]], paste0(model.dir, '/', i, '.h5'))

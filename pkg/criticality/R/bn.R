@@ -3,7 +3,7 @@
 #' BN Function
 #'
 #' This function creates a Bayesian network from pre-formatted nuclear facility data.
-#' @param facility Facility name or building number (.csv file name)
+#' @param facility.data .csv file name
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param ext.dir External directory (full path)
 #' @return A Bayesian network that models fissile material operations (op), controls (ctrl), 
@@ -19,7 +19,7 @@
 #' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 #'
 #' BN(
-#'   facility = "facility",
+#'   facility.data = "facility.csv",
 #'   dist = "gamma",
 #'   ext.dir = ext.dir
 #' )
@@ -31,11 +31,11 @@
 #' @import magrittr
 
 BN <- function(
-  facility,
+  facility.data,
   dist = 'gamma',
   ext.dir) {
 
-  facility.data <- utils::read.csv(paste0(ext.dir, '/', facility, '.csv'))
+  facility.data <- utils::read.csv(facility.data)
 
   # set categorical parameters
   op <- table(facility.data$op) %>% names()
