@@ -9,7 +9,7 @@ Risk(
   code = "mcnp",
   cores = parallel::detectCores()/2,
   dist = "gamma",
-  facility,
+  facility.data,
   keff.cutoff = 0.9,
   metamodel,
   risk.pool = 100,
@@ -27,7 +27,7 @@ Risk(
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
-\item{facility}{Facility name or building number (.csv file name)}
+\item{facility.data}{.csv file name}
 
 \item{keff.cutoff}{keff cutoff value (e.g., keff >= 0.9)}
 
@@ -61,13 +61,13 @@ try(config <- reticulate::py_config()$available)
 try(if (config == TRUE) {
   Risk(
     bn = BN(
-      facility = "facility",
+      facility.data = "facility.csv",
       dist = "gamma",
       ext.dir = ext.dir),
     code = "mcnp",
     cores = 1,
     dist = "gamma",
-    facility = "facility",
+    facility.data = "facility.csv",
     keff.cutoff = 0.5,
     metamodel = NN(
       batch.size = 128,
