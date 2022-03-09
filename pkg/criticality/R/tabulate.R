@@ -27,9 +27,9 @@ Tabulate <- function(
   code = 'mcnp',
   ext.dir) {
 
-  dataset.rdata <- list.files()[grep(paste0(code, '.*RData$'), list.files())]
+  dataset.rdata <- list.files(path = ext.dir)[grep(paste0(code, '.*RData$'), list.files(path = ext.dir))]
 
-  output.csv <- list.files()[grep(paste0(code, '.*csv$'), list.files())]
+  output.csv <- list.files(path = ext.dir)[grep(paste0(code, '.*csv$'), list.files(path = ext.dir))]
 
   if (file.exists(paste0(ext.dir, '/', dataset.rdata))) {
 
