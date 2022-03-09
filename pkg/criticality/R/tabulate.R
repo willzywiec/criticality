@@ -125,10 +125,7 @@ Tabulate <- function(
       output <- output[sample(nrow(output)), ]
       utils::write.csv(output, file = paste0(ext.dir, '/', code, '-output.csv'), row.names = FALSE)
       
-      dataset <- Scale(
-        code = code,
-        output = output,
-        ext.dir = ext.dir)
+      dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
 
     } 
 
