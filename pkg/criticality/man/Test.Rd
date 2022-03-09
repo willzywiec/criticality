@@ -5,7 +5,6 @@
 \title{Test Function}
 \usage{
 Test(
-  code = "mcnp",
   dataset,
   ensemble.size = 5,
   loss = "sse",
@@ -15,8 +14,6 @@ Test(
 )
 }
 \arguments{
-\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
-
 \item{dataset}{Training and test data}
 
 \item{ensemble.size}{Number of deep neural networks in the ensemble}
