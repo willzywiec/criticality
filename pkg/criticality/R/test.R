@@ -3,7 +3,6 @@
 #' Test Function
 #'
 #' This function calculates deep neural network metamodel weights and generates keff predictions for all training and test data.
-#' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param loss Loss function
@@ -16,7 +15,6 @@
 #' @import magrittr
 
 Test <- function(
-  code = 'mcnp',
   dataset,
   ensemble.size = 5,
   loss = 'sse',

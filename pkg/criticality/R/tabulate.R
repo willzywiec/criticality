@@ -27,9 +27,13 @@ Tabulate <- function(
   code = 'mcnp',
   ext.dir) {
 
-  if (file.exists(paste0(ext.dir, '/', code, '-dataset.RData'))) {
+  dataset.rdata <- list.files()[grep(paste0(code, '.*RData$'), list.files())]
 
-    load(paste0(ext.dir, '/', code, '-dataset.RData'))
+  output.csv <- list.files()[grep(paste0(code, '.*csv$'), list.files())]
+
+  if (file.exists(paste0(ext.dir, '/', dataset.rdata))) {
+
+    load(paste0(ext.dir, '/', dataset.rdata))
 
   } else {
 
@@ -38,8 +42,8 @@ Tabulate <- function(
   #
   # load output
   #
-    if (file.exists(paste0(ext.dir, '/', code, '-output.csv'))) {
-      output <- utils::read.csv(paste0(ext.dir, '/', code, '-output.csv'), fileEncoding = 'UTF-8-BOM') %>% stats::na.omit()
+    if (file.exists(paste0(ext.dir, '/', output.csv))) {
+      output <- utils::read.csv(paste0(ext.dir, '/', output.csv), fileEncoding = 'UTF-8-BOM') %>% stats::na.omit()
       if (nrow(output) >= length(output.files)) {
         output <- output[sample(nrow(output)), ]
         dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
