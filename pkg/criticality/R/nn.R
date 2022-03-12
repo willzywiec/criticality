@@ -146,7 +146,7 @@ NN <- function(
   }
 
   # set metamodel weights and generate .csv predictions for all training and test data
-  wt <- Test(code, dataset, ensemble.size, loss, verbose, ext.dir, training.dir)
+  wt <- Test(dataset, ensemble.size, loss, verbose, ext.dir, training.dir)
 
   return(list(metamodel, wt))
 
