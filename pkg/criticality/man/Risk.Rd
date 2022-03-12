@@ -21,6 +21,8 @@ Risk(
 \arguments{
 \item{bn}{Bayesian network}
 
+\item{code}{Monte Carlo radiation transport code (e.g., "cog", "mcnp")}
+
 \item{cores}{Number of CPU cores to use for generating Bayesian network samples}
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
