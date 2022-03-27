@@ -50,8 +50,12 @@ Tabulate <- function(
       } else {
         remove(output)
       }
-      
-    } else {
+    }
+
+  #
+  # tabulate output
+  #
+    if (!exists('output')) {
 
       mass <- rad <- thk <- ht <- vol <- conc <- hd <- keff <- sd <- numeric()
       
