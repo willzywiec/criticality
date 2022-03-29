@@ -4,7 +4,7 @@
 #'
 #' This function creates a Bayesian network from pre-formatted nuclear facility data.
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
-#' @param facility.csv Facility data file name (.csv)
+#' @param facility.data .csv file name
 #' @param ext.dir External directory (full path)
 #' @return A Bayesian network that models fissile material operations (op), controls (ctrl), 
 #'         and parameters that affect nuclear criticality safety
@@ -20,7 +20,7 @@
 #'
 #' BN(
 #'   dist = "gamma",
-#'   facility.csv = "facility.csv",
+#'   facility.data = "facility.csv",
 #'   ext.dir = ext.dir
 #' )
 #'
@@ -32,10 +32,10 @@
 
 BN <- function(
   dist = 'gamma',
-  facility.csv,
+  facility.data,
   ext.dir) {
 
-  facility.data <- utils::read.csv(paste0(ext.dir, '/', facility.csv))
+  facility.data <- utils::read.csv(paste0(ext.dir, '/', facility.data))
 
   # set categorical parameters
   op <- table(facility.data$op) %>% names()
