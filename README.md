@@ -4,7 +4,7 @@
 
 A collection of functions for modeling fissile material operations in nuclear facilities
 
-## Install the latest release from GitHub:  
+## Install the latest (failing) release from GitHub:  
 ```r
 devtools::install_github('willzywiec/criticality/pkg/criticality')
 ```
