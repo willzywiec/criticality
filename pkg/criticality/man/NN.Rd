@@ -15,6 +15,7 @@ NN(
   opt.alg = "adamax",
   learning.rate = 0.00075,
   val.split = 0.2,
+  overwrite = FALSE,
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
@@ -41,6 +42,8 @@ NN(
 \item{learning.rate}{Learning rate}
 
 \item{val.split}{Validation split}
+
+\item{overwrite}{Boolean (TRUE/FALSE) that determines if files should be overwritten}
 
 \item{replot}{Boolean (TRUE/FALSE) that determines if .png files should be replotted}
 
