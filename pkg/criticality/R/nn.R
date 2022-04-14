@@ -13,6 +13,7 @@
 #' @param opt.alg Optimization algorithm
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
+#' @param overwrite Boolean (TRUE/FALSE) that determines if files should be overwritten
 #' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted
 #' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow and Test function output should be displayed
 #' @param ext.dir External directory (full path)
@@ -62,6 +63,7 @@ NN <- function(
   opt.alg = 'adamax',
   learning.rate = 0.00075,
   val.split = 0.2,
+  overwrite = FALSE,
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
@@ -79,6 +81,38 @@ NN <- function(
 
   # build custom loss function
   if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
+
+  # check metamodel settings
+  new.settings <- paste0(
+    'metamodel settings', '\n',
+    'batch size: ', batch.size, '\n',
+    'code: ', code, '\n',
+    'ensemble size: ', ensemble.size, '\n',
+    'epochs: ', epochs, '\n',
+    'layers: ', layers, '\n',
+    'loss: ', loss, '\n',
+    'optimization algorithm: ', opt.alg, '\n',
+    'learning rate: ', learning.rate,'\n',
+    'validation split: ', val.split, '\n',
+    'external directory: ', ext.dir, '\n',
+    'training directory: ', training.dir)
+
+  if (file.exists(paste0(training.dir, '/metamodel-settings.txt'))) {
+    old.settings <- read.table(paste0(training.dir, '/metamodel-settings.txt'))
+    if (new.settings != old.settings) {
+      if (overwrite == TRUE) {
+        unlink(model.dir, recursive = TRUE)
+        unlink(remodel.dir, recursive = TRUE)
+        write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
+        dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
+        dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
+      } else {
+        stop('Files could not be overwritten')
+      }
+    }
+  } else {
+    write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
+  }
 
 #
 # train metamodel
