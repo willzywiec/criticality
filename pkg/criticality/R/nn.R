@@ -98,12 +98,12 @@ NN <- function(
     'training directory: ', training.dir)
 
   if (file.exists(paste0(training.dir, '/metamodel-settings.txt'))) {
-    old.settings <- read.table(paste0(training.dir, '/metamodel-settings.txt'))
+    old.settings <- utils::read.table(paste0(training.dir, '/metamodel-settings.txt'))
     if (new.settings != old.settings) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
+        utils::write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
@@ -111,7 +111,7 @@ NN <- function(
       }
     }
   } else {
-    write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
+    utils::write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
   }
 
 #

@@ -1,6 +1,6 @@
 Package: criticality
 Title: Modeling Fissile Material Operations in Nuclear Facilities
-Version: 0.9.3
+Version: 0.9.2
 Authors@R: 
     person("Will", "Zywiec", , "willzywiec@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1842-9599"))
