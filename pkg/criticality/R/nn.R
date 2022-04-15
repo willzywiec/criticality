@@ -85,15 +85,15 @@ NN <- function(
   # check metamodel settings
   new.settings <- paste0(
     'metamodel settings', '\n',
-    'batch size: ', batch.size, '\n',
+    'batch size: ', as.character(batch.size), '\n',
     'code: ', code, '\n',
-    'ensemble size: ', ensemble.size, '\n',
-    'epochs: ', epochs, '\n',
-    'layers: ', layers, '\n',
+    'ensemble size: ', as.character(ensemble.size), '\n',
+    'epochs: ', as.character(epochs), '\n',
+    'layers: ', as.character(layers), '\n',
     'loss: ', loss, '\n',
     'optimization algorithm: ', opt.alg, '\n',
-    'learning rate: ', learning.rate,'\n',
-    'validation split: ', val.split, '\n',
+    'learning rate: ', as.character(learning.rate),'\n',
+    'validation split: ', as.character(val.split), '\n',
     'external directory: ', ext.dir, '\n',
     'training directory: ', training.dir)
 
