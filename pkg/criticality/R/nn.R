@@ -79,31 +79,31 @@ NN <- function(
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
 
-  # build custom loss function
-  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
-
   # check metamodel settings
   new.settings <- paste0(
-    'metamodel settings', '\n',
-    'batch size: ', as.character(batch.size), '\n',
+    'model settings', '\n',
+    'batch size: ', batch.size, '\n',
     'code: ', code, '\n',
-    'ensemble size: ', as.character(ensemble.size), '\n',
-    'epochs: ', as.character(epochs), '\n',
-    'layers: ', as.character(layers), '\n',
+    'ensemble size: ', ensemble.size, '\n',
+    'epochs: ', epochs, '\n',
+    'layers: ', layers, '\n',
     'loss: ', loss, '\n',
     'optimization algorithm: ', opt.alg, '\n',
-    'learning rate: ', as.character(learning.rate),'\n',
-    'validation split: ', as.character(val.split), '\n',
+    'learning rate: ', learning.rate,'\n',
+    'validation split: ', val.split, '\n',
     'external directory: ', ext.dir, '\n',
     'training directory: ', training.dir)
 
-  if (file.exists(paste0(training.dir, '/metamodel-settings.txt'))) {
-    old.settings <- utils::read.table(paste0(training.dir, '/metamodel-settings.txt'))
+  # build custom loss function
+  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
+
+  if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
+    old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'))
     if (new.settings != old.settings) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        utils::write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
+        utils::write.table(new.settings, paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
@@ -111,7 +111,7 @@ NN <- function(
       }
     }
   } else {
-    utils::write.table(new.settings, paste0(training.dir, '/metamodel-settings.txt'))
+    utils::write.table(new.settings, paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
 #
