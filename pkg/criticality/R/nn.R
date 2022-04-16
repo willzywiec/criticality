@@ -79,31 +79,31 @@ NN <- function(
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
 
-  # check metamodel settings
-  new.settings <- paste0(
-    'model settings', '\n',
-    'batch size: ', batch.size, '\n',
-    'code: ', code, '\n',
-    'ensemble size: ', ensemble.size, '\n',
-    'epochs: ', epochs, '\n',
-    'layers: ', layers, '\n',
-    'loss: ', loss, '\n',
-    'optimization algorithm: ', opt.alg, '\n',
-    'learning rate: ', learning.rate,'\n',
-    'validation split: ', val.split, '\n',
-    'external directory: ', ext.dir, '\n',
-    'training directory: ', training.dir)
+  new.settings <- data.frame(V1 = c(
+    'model settings',
+    paste0('batch size: ', batch.size),
+    paste0('code: ', code),
+    paste0('ensemble size: ', ensemble.size),
+    paste0('epochs: ', epochs),
+    paste0('layers: ', layers),
+    paste0('loss: ', loss),
+    paste0('optimization algorithm: ', opt.alg),
+    paste0('learning rate: ', learning.rate),
+    paste0('validation split: ', val.split),
+    paste0('external directory: ', ext.dir),
+    paste0('training directory: ', training.dir)))
 
   # build custom loss function
   if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
 
+  # check metamodel settings
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
-    old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'))
+    old.settings <- utils::read.csv(paste0(training.dir, '/model-settings.txt'), header = FALSE, fileEncoding = 'UTF-8-BOM')
     if (new.settings != old.settings) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        utils::write.table(new.settings, paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+        utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
@@ -111,7 +111,7 @@ NN <- function(
       }
     }
   } else {
-    utils::write.table(new.settings, paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+    utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE)
   }
 
 #
