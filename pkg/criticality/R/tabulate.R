@@ -55,7 +55,7 @@ Tabulate <- function(
   #
   # tabulate output
   #
-    if (!exists('output') && length(output.files) == 0) stop('Could not find data')
+    if (!exists('output') && length(output.files) == 0) stop('Could not find data', call. = FALSE)
 
     if (!exists('output')) {
 

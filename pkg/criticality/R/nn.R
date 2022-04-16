@@ -99,7 +99,7 @@ NN <- function(
   # check metamodel settings
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
     old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'), sep = '\n') %>% as.data.frame()
-    if (new.settings != old.settings) {
+    if (!identical(new.settings, old.settings)) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
@@ -107,7 +107,7 @@ NN <- function(
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
-        stop('Files could not be overwritten')
+        stop('Files could not be overwritten', call. = FALSE)
       }
     }
   } else {
