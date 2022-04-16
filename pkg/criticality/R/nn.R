@@ -98,12 +98,12 @@ NN <- function(
 
   # check metamodel settings
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
-    old.settings <- utils::read.csv(paste0(training.dir, '/model-settings.txt'), header = FALSE, fileEncoding = 'UTF-8-BOM')
+    old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'), sep = '\n') %>% as.data.frame()
     if (new.settings != old.settings) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE, col.names = FALSE)
+        utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
@@ -111,7 +111,7 @@ NN <- function(
       }
     }
   } else {
-    utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE, col.names = FALSE)
+    utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
 #
