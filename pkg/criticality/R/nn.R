@@ -103,7 +103,7 @@ NN <- function(
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE)
+        utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE, col.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
@@ -111,7 +111,7 @@ NN <- function(
       }
     }
   } else {
-    utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE)
+    utils::write.csv(new.settings, file = paste0(training.dir, '/model-settings.txt'), row.names = FALSE, col.names = FALSE)
   }
 
 #
