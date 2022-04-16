@@ -31,7 +31,7 @@ Tabulate <- function(
 
   output.csv <- list.files(path = ext.dir)[grep(paste0(code, '.*csv$'), list.files(path = ext.dir))]
 
-  if (file.exists(paste0(ext.dir, '/', dataset.rdata))) {
+  if (file.exists(paste0(ext.dir, '/', dataset.rdata)) && !identical(dataset.rdata, character(0))) {
 
     load(paste0(ext.dir, '/', dataset.rdata))
 
@@ -42,7 +42,7 @@ Tabulate <- function(
   #
   # load output
   #
-    if (file.exists(paste0(ext.dir, '/', output.csv))) {
+    if (file.exists(paste0(ext.dir, '/', output.csv)) && !identical(output.csv, character(0))) {
       output <- utils::read.csv(paste0(ext.dir, '/', output.csv), fileEncoding = 'UTF-8-BOM') %>% stats::na.omit()
       if (nrow(output) >= length(output.files)) {
         output <- output[sample(nrow(output)), ]
@@ -55,6 +55,8 @@ Tabulate <- function(
   #
   # tabulate output
   #
+    if (!exists('output') && length(output.files) == 0) stop('Could not find data')
+
     if (!exists('output')) {
 
       mass <- rad <- thk <- ht <- vol <- conc <- hd <- keff <- sd <- numeric()
@@ -132,8 +134,6 @@ Tabulate <- function(
       dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
 
     } 
-
-    if (!exists('dataset') && length(output.files) == 0) stop('Could not find data')
 
   }
 
