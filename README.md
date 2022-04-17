@@ -1,3 +1,4 @@
+https://cranlogs.r-pkg.org/badges/grand-total/mltools
 [![R-CMD-check](https://github.com/willzywiec/criticality/workflows/R-CMD-check/badge.svg)](https://github.com/willzywiec/criticality/actions)
 
 # criticality
