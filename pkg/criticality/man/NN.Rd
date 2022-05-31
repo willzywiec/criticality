@@ -73,16 +73,11 @@ try(config <- reticulate::py_config()$available)
 try(if (config == TRUE) {
   NN(
     batch.size = 128,
-    code = "mcnp",
     ensemble.size = 1,
     epochs = 10,
     layers = "256-256-16",
     loss = "sse",
-    opt.alg = "adamax",
-    learning.rate = 0.00075,
-    val.split = 0.2,
     replot = FALSE,
-    verbose = FALSE,
     ext.dir = ext.dir
   )
 })

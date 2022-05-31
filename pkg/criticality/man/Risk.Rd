@@ -62,29 +62,20 @@ try(if (config == TRUE) {
   Risk(
     bn = BN(
       facility.data = "facility.csv",
-      dist = "gamma",
       ext.dir = ext.dir),
     code = "mcnp",
     cores = 1,
-    dist = "gamma",
     facility.data = "facility.csv",
     keff.cutoff = 0.5,
     metamodel = NN(
       batch.size = 128,
-      code = "mcnp",
       ensemble.size = 1,
       epochs = 10,
-      layers = "8192-256-256-256-256-16",
-      loss = "sse",
-      opt.alg = "adamax",
-      learning.rate = 0.00075,
-      val.split = 0.2,
-      replot = TRUE,
-      verbose = TRUE,
+      layers = "256-256-16",
+      replot = FALSE,
       ext.dir = ext.dir),
     risk.pool = 10,
     sample.size = 1e+04,
-    usl = 0.95,
     ext.dir = ext.dir
   )
 })
