@@ -2,7 +2,7 @@
 
 # criticality
 
-A collection of functions for modeling fissile material operations in nuclear facilities. The current R package is written using Keras + TensorFlow.  
+A collection of functions for modeling fissile material operations in nuclear facilities  
   
 ## Install the latest release from GitHub:  
 ```r
