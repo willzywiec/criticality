@@ -39,20 +39,20 @@ Scale <- function(
   # nullify one-factor variables and one-hot encode categorical variables
   if (is.null(dataset)) {
     null.output <- Nullify(output, labels)
-    dummy <- dummyVars(~ ., data = null.output, sep = '')
+    dummy <- caret::dummyVars(~ ., data = null.output, sep = '')
     training.data <- data.frame(stats::predict(dummy, newdata = null.output))
     training.data <- filter(training.data, sd < 0.001)
   } else if (ncol(output) == ncol(dataset$output)) {
     comb.output <- rbind(output, dataset$output)
     null.output <- Nullify(comb.output, labels)
-    dummy <- dummyVars(~ ., data = null.output, sep = '')
+    dummy <- caret::dummyVars(~ ., data = null.output, sep = '')
     training.data <- data.frame(stats::predict(dummy, newdata = null.output))
     training.data <- training.data[1:nrow(output), ]
     training.data <- filter(training.data, sd < 0.001)
   } else {
     comb.output <- rbind(output, dataset$output[ , 1:(ncol(dataset$output) - 2)])
     null.output <- Nullify(comb.output, labels)
-    dummy <- dummyVars(~ ., data = null.output, sep = '')
+    dummy <- caret::dummyVars(~ ., data = null.output, sep = '')
     training.data <- data.frame(stats::predict(dummy, newdata = null.output))
     training.data <- training.data[1:nrow(output), ]
   }
