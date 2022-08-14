@@ -9,6 +9,6 @@ A collection of functions for modeling fissile material operations in nuclear fa
 devtools::install_github('willzywiec/criticality/pkg/criticality')
 ```
 
-## Install the current release from CRAN directly through R or RStudio:  
+## Install the current release from CRAN:  
 ```r
 install.packages('criticality')
