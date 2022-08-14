@@ -2,7 +2,7 @@
 #
 #' Risk Function
 #'
-#' This function imports the Sample function and estimates process criticality accident risk.
+#' This function estimates process criticality accident risk (imports Sample function).
 #' @param bn Bayesian network
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
