@@ -149,7 +149,8 @@ BN <- function(
     }
   }
 
-  op.cpt <- matrix(op.cpt, ncol = 1, dimnames = list(op, NULL))
+  # op.cpt <- matrix(op.cpt, ncol = 1, dimnames = list(op, NULL))
+  op.cpt <- matrix(op.cpt, ncol = 1, dimnames = list('op' = op))
   ctrl.cpt <- matrix(ctrl.cpt, nrow = 7, ncol = 6, dimnames = list(ctrl, op))
 
 #
