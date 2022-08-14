@@ -100,7 +100,9 @@ Test <- function(
     msg.str <- ' (SA)'
   }
 
-  message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str)
+  obj.min <- min(c(nm[meta.len], bfgs[meta.len], sa[meta.len]))
+
+  message('Ensemble Test MAE = ', sprintf('%.6f', obj.min), msg.str)
 
   test.min <- min(c(avg[which.min(avg)], nm[which.min(nm)], bfgs[which.min(bfgs)], sa[which.min(sa)]))
 
@@ -142,7 +144,9 @@ Test <- function(
       msg.str <- ' (SA)'
     }
 
-    message('Ensemble Test MAE = ', sprintf('%.6f', nm[meta.len]), msg.str)
+    obj.min <- min(c(nm[meta.len], bfgs[meta.len], sa[meta.len]))
+
+    message('Ensemble Test MAE = ', sprintf('%.6f', obj.min), msg.str)
     
   }
 

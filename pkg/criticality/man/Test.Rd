@@ -4,14 +4,7 @@
 \alias{Test}
 \title{Test Function}
 \usage{
-Test(
-  dataset,
-  ensemble.size = 5,
-  loss = "sse",
-  verbose = FALSE,
-  ext.dir,
-  training.dir
-)
+Test(dataset, ensemble.size = 5, loss = "sse", ext.dir, training.dir)
 }
 \arguments{
 \item{dataset}{Training and test data}
@@ -19,8 +12,6 @@ Test(
 \item{ensemble.size}{Number of deep neural networks in the ensemble}
 
 \item{loss}{Loss function}
-
-\item{verbose}{Boolean (TRUE/FALSE) that determines if Test function output should be displayed}
 
 \item{ext.dir}{External directory (full path)}
 

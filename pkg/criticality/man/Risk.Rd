@@ -45,7 +45,7 @@ Risk(
 A list of lists containing process criticality accident risk estimates and Bayesian network samples
 }
 \description{
-This function imports the Sample function and estimates process criticality accident risk.
+This function estimates process criticality accident risk (imports Sample function).
 }
 \examples{
 

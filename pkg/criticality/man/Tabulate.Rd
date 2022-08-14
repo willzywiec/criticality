@@ -15,7 +15,7 @@ Tabulate(code = "mcnp", ext.dir)
 A list of centered, scaled, and one-hot-encoded training and test data
 }
 \description{
-This function imports the Scale function and loads/saves training and test data.
+This function loads/saves training and test data (imports Scale function).
 }
 \examples{
 
