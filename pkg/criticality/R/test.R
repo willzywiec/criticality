@@ -6,7 +6,6 @@
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param loss Loss function
-#' @param verbose Boolean (TRUE/FALSE) that determines if Test function output should be displayed
 #' @param ext.dir External directory (full path)
 #' @param training.dir Training directory (full path)
 #' @return A list of deep neural network weights
@@ -18,7 +17,6 @@ Test <- function(
   dataset,
   ensemble.size = 5,
   loss = 'sse',
-  verbose = FALSE,
   ext.dir,
   training.dir) {
 
