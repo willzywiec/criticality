@@ -118,7 +118,7 @@ NN <- function(
 
   Fit <- function(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i = NULL) {
     if (is.null(i)) {
-      model %>% fit(
+      model %>% keras::fit(
         dataset$training.df,
         dataset$training.data$keff,
         batch_size = batch.size,
@@ -127,7 +127,7 @@ NN <- function(
         verbose = verbose)
     } else {
       checkpoint <- callback_model_checkpoint(paste0(remodel.dir, '/', i, '-{epoch:1d}.h5'), monitor = 'mean_absolute_error')
-      model %>% fit(
+      model %>% keras::fit(
         dataset$training.df,
         dataset$training.data$keff,
         batch_size = batch.size,
