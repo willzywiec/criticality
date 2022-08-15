@@ -95,7 +95,7 @@ BN <- function(
           }
 
           if (dist == 'gamma') {
-            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'gamma', method = 'mle')
+            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'gamma', method = 'mle') %>% suppressWarnings()
             par.fit[[j]][[i]] <- stats::dgamma(par, rate = par.fit[[j]][[i]]$estimate[[2]], shape = par.fit[[j]][[i]]$estimate[[1]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'gev') {
