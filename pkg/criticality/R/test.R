@@ -51,11 +51,11 @@ Test <- function(
 
   Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE))) %>% suppressWarnings()
 
-  progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 2)
+  progress.bar <- utils::txtProgressBar(max = meta.len, style = 3)
 
   for (i in 1:meta.len) {
 
-    test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df)
+    test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df) %>% suppressMessages()
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
