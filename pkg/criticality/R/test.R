@@ -56,7 +56,7 @@ Test <- function(
 
   for (i in 1:meta.len) {
 
-    test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df)
+    test.pred[ , i] <- metamodel[[i]] %>% predict(dataset$test.df)
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
