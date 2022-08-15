@@ -12,7 +12,6 @@
 #' @export
 #' @import keras
 #' @import magrittr
-#' @import SimDesign
 
 Test <- function(
   dataset,
