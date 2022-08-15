@@ -113,7 +113,7 @@ Sample <- function(
     code = code,
     dataset = dataset,
     output = subset(bn.data, select = -c(op, ctrl)),
-    ext.dir = ext.dir) %>% suppressWarnings()
+    ext.dir = ext.dir)
 
 #
 # predict keff values

@@ -95,23 +95,23 @@ BN <- function(
           }
 
           if (dist == 'gamma') {
-            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'gamma', method = 'mle', lower = 0)
+            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'gamma', method = 'mle') %>% suppressWarnings()
             par.fit[[j]][[i]] <- stats::dgamma(par, rate = par.fit[[j]][[i]]$estimate[[2]], shape = par.fit[[j]][[i]]$estimate[[1]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'gev') {
-            par.fit[[j]][[i]] <- fgev(par.fit[[j]][[i]], method = 'BFGS', std.err = FALSE)
+            par.fit[[j]][[i]] <- fgev(par.fit[[j]][[i]], method = 'BFGS', std.err = FALSE) %>% suppressWarnings()
             par.fit[[j]][[i]] <- dgev(par, loc = par.fit[[j]][[i]]$estimate[[1]], scale = par.fit[[j]][[i]]$estimate[[2]], shape = par.fit[[j]][[i]]$estimate[[3]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'normal') {
-            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'norm', method = 'mle', lower = 0)
+            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'norm', method = 'mle') %>% suppressWarnings()
             par.fit[[j]][[i]] <- stats::dnorm(par, mean = par.fit[[j]][[i]]$estimate[[1]], sd = par.fit[[j]][[i]]$estimate[[2]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'log-normal') {
-            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'lnorm', method = 'mle', lower = 0)
+            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'lnorm', method = 'mle') %>% suppressWarnings()
             par.fit[[j]][[i]] <- stats::dlnorm(par, meanlog = par.fit[[j]][[i]]$estimate[[1]], sdlog = par.fit[[j]][[i]]$estimate[[2]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           } else if (dist == 'weibull') {
-            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'weibull', method = 'mle', lower = 0)
+            par.fit[[j]][[i]] <- fitdist(par.fit[[j]][[i]], distr = 'weibull', method = 'mle') %>% suppressWarnings()
             par.fit[[j]][[i]] <- stats::dweibull(par, shape = par.fit[[j]][[i]]$estimate[[1]], scale = par.fit[[j]][[i]]$estimate[[2]])
             par.fit[[j]][[i]] <- par.fit[[j]][[i]] / sum(par.fit[[j]][[i]])
           }
