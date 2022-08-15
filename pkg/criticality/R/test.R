@@ -51,6 +51,8 @@ Test <- function(
 
   Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE))) %>% suppressWarnings()
 
+  progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 1)
+
   for (i in 1:meta.len) {
 
     test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df)
@@ -66,12 +68,7 @@ Test <- function(
     bfgs[i] <- mean(abs(test.data$keff - rowSums(test.pred * bfgs.wt[[i]][[1]], na.rm = TRUE))) %>% suppressWarnings()
     sa[i] <- mean(abs(test.data$keff - rowSums(test.pred * sa.wt[[i]][[1]], na.rm = TRUE))) %>% suppressWarnings()
 
-    if (i == 1) {
-      progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 1)
-      utils::setTxtProgressBar(progress.bar, i)
-    } else {
-      utils::setTxtProgressBar(progress.bar, i)
-    }
+    utils::setTxtProgressBar(progress.bar, i)
 
   }
 
