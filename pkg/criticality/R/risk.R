@@ -107,7 +107,7 @@ Risk <- function(
     bn.data <- list()
     risk <- pooled.risk <- numeric()
 
-    progress.bar <- utils::txtProgressBar(min = 0, max = risk.pool, style = 1)
+    progress.bar <- utils::txtProgressBar(min = 0, max = risk.pool, style = 3)
 
     for (i in 1:risk.pool) {
       bn.data[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir) %>% suppressWarnings()
