@@ -67,7 +67,7 @@ Test <- function(
     sa[i] <- mean(abs(test.data$keff - rowSums(test.pred * sa.wt[[i]][[1]], na.rm = TRUE))) %>% suppressWarnings()
 
     if (i == 1) {
-      progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 3)
+      progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 1)
       utils::setTxtProgressBar(progress.bar, i)
     } else {
       utils::setTxtProgressBar(progress.bar, i)
