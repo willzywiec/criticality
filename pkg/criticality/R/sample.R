@@ -113,13 +113,13 @@ Sample <- function(
     code = code,
     dataset = dataset,
     output = subset(bn.data, select = -c(op, ctrl)),
-    ext.dir = ext.dir)
+    ext.dir = ext.dir) %>% suppressWarnings()
 
 #
 # predict keff values
 #
   if (keff.cutoff > 0) {
-    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df) %>% suppressWarnings()
+    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df)
     bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff)
     bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
