@@ -53,7 +53,6 @@
 #' @import keras
 #' @import magrittr
 #' @import reticulate
-#' @import SimDesign
 
 Risk <- function(
   bn,
@@ -110,8 +109,14 @@ Risk <- function(
 
     progress.bar <- utils::txtProgressBar(max = risk.pool, style = 3)
 
+    Quiet <- function(x) {
+      sink(tempfile())
+      on.exit(sink())
+      invisible(force(x))
+    }
+
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir) %>% SimDesign::quiet(messages = TRUE, cat = TRUE)
+      bn.data[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir) %>% suppressWarnings() %>% Quiet()
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= usl]) / sample.size
       utils::setTxtProgressBar(progress.bar, i)
     }
