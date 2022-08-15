@@ -51,7 +51,7 @@ Test <- function(
 
   Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE))) %>% suppressWarnings()
 
-  progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 3)
+  progress.bar <- utils::txtProgressBar(min = 0, max = meta.len, style = 2)
 
   for (i in 1:meta.len) {
 
