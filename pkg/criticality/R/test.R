@@ -55,7 +55,7 @@ Test <- function(
 
   for (i in 1:meta.len) {
 
-    test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df) %>% suppressMessages()
+    test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df) %>% quiet(messages = TRUE, cat = TRUE)
 
     test.mae[i] <- mean(abs(test.data$keff - test.pred[ , i]))
 
