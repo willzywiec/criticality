@@ -1,5 +1,5 @@
-[![R-CMD-check](https://github.com/willzywiec/criticality/workflows/R-CMD-check/badge.svg)]
-[![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/criticality)]
+![R-CMD-check](https://github.com/willzywiec/criticality/workflows/R-CMD-check/badge.svg)
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/criticality)
 
 # criticality
 
