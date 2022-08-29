@@ -148,7 +148,7 @@ Test <- function(
   }
 
   if (abs(obj.min - avg[meta.len]) > 0.1 || abs(mean(training.mae) - mean(test.mae)) > 0.1) {
-    message('-\nWarning: Metamodel does not converge!')
+    message('-\nWarning: Metamodel does not converge')
   }
 
 #
