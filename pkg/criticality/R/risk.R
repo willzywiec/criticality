@@ -84,7 +84,7 @@ Risk <- function(
 
   # copy metamodel settings
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
-    file.copy(paste0(training.dir, '/model-settings.txt'), paste0(risk.dir, '/model-settings.txt'))
+    file.copy(c(paste0(training.dir, '/model-settings.txt')), paste0(risk.dir, '/model-settings.txt'))
   }
 
   # restrict sample size (~12 GB RAM)
