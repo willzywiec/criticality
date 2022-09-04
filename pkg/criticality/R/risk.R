@@ -14,6 +14,7 @@
 #' @param sample.size Number of samples used to calculate risk
 #' @param usl Upper subcritical limit (e.g., keff >= 0.95)
 #' @param ext.dir External directory (full path)
+#' @param training.dir Training directory (full path)
 #' @return A list of lists containing process criticality accident risk estimates and Bayesian network samples
 #' @export
 #' @examples
@@ -45,7 +46,8 @@
 #'       ext.dir = ext.dir),
 #'     risk.pool = 10,
 #'     sample.size = 1e+04,
-#'     ext.dir = ext.dir
+#'     ext.dir = ext.dir,
+#'     training.dir = NULL
 #'   )
 #' })
 #'
@@ -65,18 +67,24 @@ Risk <- function(
   risk.pool = 100,
   sample.size = 1e+09,
   usl = 0.95,
-  ext.dir) {
+  ext.dir,
+  training.dir = NULL) {
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
-  facility <- gsub('.csv', '', facility.data)
+  if (is.null(training.dir)) training.dir <- ext.dir
+
+  risk.dir <- paste0(ext.dir, '/risk/', gsub('.csv', '', facility.data), '-', dist, '-', formatC(sample.size, format = 'e', digits = 0))
 
   if (keff.cutoff > 0) {
-    risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0), '-', keff.cutoff)
-    dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
-  } else {
-    risk.dir <- paste0(ext.dir, '/risk/', facility, '-', dist, '-', formatC(sample.size, format = 'e', digits = 0))
-    dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
+    risk.dir <- paste0(risk.dir, , '-', keff.cutoff)
+  }
+
+  dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
+
+  # copy metamodel settings
+  if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
+    file.copy(paste0(training.dir, '/model-settings.txt'), paste0(risk.dir, '/model-settings.txt'))
   }
 
   # restrict sample size (~12 GB RAM)

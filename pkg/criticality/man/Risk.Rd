@@ -15,7 +15,8 @@ Risk(
   risk.pool = 100,
   sample.size = 1e+09,
   usl = 0.95,
-  ext.dir
+  ext.dir,
+  training.dir = NULL
 )
 }
 \arguments{
@@ -40,6 +41,8 @@ Risk(
 \item{usl}{Upper subcritical limit (e.g., keff >= 0.95)}
 
 \item{ext.dir}{External directory (full path)}
+
+\item{training.dir}{Training directory (full path)}
 }
 \value{
 A list of lists containing process criticality accident risk estimates and Bayesian network samples
@@ -76,7 +79,8 @@ try(if (config == TRUE) {
       ext.dir = ext.dir),
     risk.pool = 10,
     sample.size = 1e+04,
-    ext.dir = ext.dir
+    ext.dir = ext.dir,
+    training.dir = NULL
   )
 })
 

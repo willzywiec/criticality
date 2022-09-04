@@ -78,7 +78,6 @@ NN <- function(
     'model settings',
     paste0('batch size: ', batch.size),
     paste0('code: ', code),
-    paste0('ensemble size: ', ensemble.size),
     paste0('epochs: ', epochs),
     paste0('layers: ', layers),
     paste0('loss: ', loss),
@@ -102,7 +101,7 @@ NN <- function(
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
-        stop('Files could not be overwritten', call. = FALSE)
+        stop('files could not be overwritten', call. = FALSE)
       }
     }
   } else {
