@@ -77,7 +77,7 @@ Risk <- function(
   risk.dir <- paste0(ext.dir, '/risk/', gsub('.csv', '', facility.data), '-', dist, '-', formatC(sample.size, format = 'e', digits = 0))
 
   if (keff.cutoff > 0) {
-    risk.dir <- paste0(risk.dir, , '-', keff.cutoff)
+    risk.dir <- paste0(risk.dir, '-', keff.cutoff)
   }
 
   dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
