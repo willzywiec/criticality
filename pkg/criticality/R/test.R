@@ -154,48 +154,45 @@ Test <- function(
 #
 # set metamodel weights
 #
-  if (!file.exists(paste0(training.dir, '/training-data.csv')) || !file.exists(paste0(training.dir, '/test-data.csv'))) {
 
-    training.data <- dataset$training.data
+  training.data <- dataset$training.data
 
-    training.pred <- matrix(nrow = nrow(dataset$training.df), ncol = wt.len)
+  training.pred <- matrix(nrow = nrow(dataset$training.df), ncol = wt.len)
 
-    if (wt.len == 1) {
+  if (wt.len == 1) {
 
-      training.pred[ , 1] <- metamodel[[1]] %>% stats::predict(dataset$training.df, verbose = FALSE)
+    training.pred[ , 1] <- metamodel[[1]] %>% stats::predict(dataset$training.df, verbose = FALSE)
 
-      training.data$avg <- training.pred[ , 1]
-      training.data$nm <- training.pred[ , 1] * nm.wt[[wt.len]][[1]]
-      training.data$bfgs <- training.pred[ , 1] * bfgs.wt[[wt.len]][[1]]
-      training.data$sa <- training.pred[ , 1] * sa.wt[[wt.len]][[1]]
+    training.data$avg <- training.pred[ , 1]
+    training.data$nm <- training.pred[ , 1] * nm.wt[[wt.len]][[1]]
+    training.data$bfgs <- training.pred[ , 1] * bfgs.wt[[wt.len]][[1]]
+    training.data$sa <- training.pred[ , 1] * sa.wt[[wt.len]][[1]]
 
-      test.data$avg <- test.pred[ , 1]
-      test.data$nm <- test.pred[ , 1] * nm.wt[[wt.len]][[1]]
-      test.data$bfgs <- test.pred[ , 1] * bfgs.wt[[wt.len]][[1]]
-      test.data$sa <- test.pred[ , 1] * sa.wt[[wt.len]][[1]]
+    test.data$avg <- test.pred[ , 1]
+    test.data$nm <- test.pred[ , 1] * nm.wt[[wt.len]][[1]]
+    test.data$bfgs <- test.pred[ , 1] * bfgs.wt[[wt.len]][[1]]
+    test.data$sa <- test.pred[ , 1] * sa.wt[[wt.len]][[1]]
 
-    } else {
+  } else {
 
-      for (i in 1:wt.len) {
-        training.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$training.df, verbose = FALSE)
-      }
-
-      training.data$avg <- rowMeans(training.pred[ , 1:wt.len])
-      training.data$nm <- rowSums(training.pred[ , 1:wt.len] * nm.wt[[wt.len]][[1]])
-      training.data$bfgs <- rowSums(training.pred[ , 1:wt.len] * bfgs.wt[[wt.len]][[1]])
-      training.data$sa <- rowSums(training.pred[ , 1:wt.len] * sa.wt[[wt.len]][[1]])
-
-      test.data$avg <- rowMeans(test.pred[ , 1:wt.len])
-      test.data$nm <- rowSums(test.pred[ , 1:wt.len] * nm.wt[[wt.len]][[1]])
-      test.data$bfgs <- rowSums(test.pred[ , 1:wt.len] * bfgs.wt[[wt.len]][[1]])
-      test.data$sa <- rowSums(test.pred[ , 1:wt.len] * sa.wt[[wt.len]][[1]])
-
+    for (i in 1:wt.len) {
+      training.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$training.df, verbose = FALSE)
     }
 
-    utils::write.csv(training.data, file = paste0(training.dir, '/training-data.csv'), row.names = FALSE)
-    utils::write.csv(test.data, file = paste0(training.dir, '/test-data.csv'), row.names = FALSE)
+    training.data$avg <- rowMeans(training.pred[ , 1:wt.len])
+    training.data$nm <- rowSums(training.pred[ , 1:wt.len] * nm.wt[[wt.len]][[1]])
+    training.data$bfgs <- rowSums(training.pred[ , 1:wt.len] * bfgs.wt[[wt.len]][[1]])
+    training.data$sa <- rowSums(training.pred[ , 1:wt.len] * sa.wt[[wt.len]][[1]])
+
+    test.data$avg <- rowMeans(test.pred[ , 1:wt.len])
+    test.data$nm <- rowSums(test.pred[ , 1:wt.len] * nm.wt[[wt.len]][[1]])
+    test.data$bfgs <- rowSums(test.pred[ , 1:wt.len] * bfgs.wt[[wt.len]][[1]])
+    test.data$sa <- rowSums(test.pred[ , 1:wt.len] * sa.wt[[wt.len]][[1]])
 
   }
+
+  utils::write.csv(training.data, file = paste0(training.dir, '/training-data.csv'), row.names = FALSE)
+  utils::write.csv(test.data, file = paste0(training.dir, '/test-data.csv'), row.names = FALSE)
 
   return(wt)
 
