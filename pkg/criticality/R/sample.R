@@ -124,8 +124,7 @@ Sample <- function(
     bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
     if (nrow(bn.data) == 0) {
-      if (is.null(risk.dir)) unlink(risk.dir, recursive = TRUE, force = TRUE)
-      stop(paste0('There were no keff values > ', keff.cutoff))
+      if (is.null(risk.dir)) unlink(risk.dir, recursive = TRUE, force = TRUE) stop(paste0('there were no keff values > ', keff.cutoff))
     }
   }
 
