@@ -101,6 +101,8 @@ NN <- function(
       } else {
         stop('files could not be overwritten', call. = FALSE)
       }
+    } else {
+      utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
     }
   } else {
     utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
