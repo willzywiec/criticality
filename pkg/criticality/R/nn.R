@@ -87,9 +87,6 @@ NN <- function(
     paste0('external directory: ', ext.dir),
     paste0('training directory: ', training.dir)))
 
-  # build custom loss function
-  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
-
   # check metamodel settings
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
     old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'), sep = '\n') %>% as.data.frame()
@@ -97,6 +94,7 @@ NN <- function(
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
+        new.settings <- gsub(paste0('code: ', code), paste0('code: ', code, '\n', 'ensemble size: ', ensemble.size), new.settings)
         utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
@@ -105,8 +103,12 @@ NN <- function(
       }
     }
   } else {
+    new.settings <- gsub(paste0('code: ', code), paste0('code: ', code, '\n', 'ensemble size: ', ensemble.size), new.settings)
     utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
+
+  # build custom loss function
+  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
 
 #
 # train metamodel
