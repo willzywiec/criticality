@@ -91,7 +91,7 @@ NN <- function(
   # check metamodel settings
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
     old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'), sep = '\n') %>% as.data.frame()
-    if (!identical(new.settings, old.settings)) {
+    if (!identical(new.settings[-4, ], old.settings[-4, ])) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
