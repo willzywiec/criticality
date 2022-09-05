@@ -78,7 +78,6 @@ NN <- function(
     'model settings',
     paste0('batch size: ', batch.size),
     paste0('code: ', code),
-    paste0('dataset: ', dataset),
     paste0('ensemble size: ', ensemble.size),
     paste0('epochs: ', epochs),
     paste0('layers: ', layers),
