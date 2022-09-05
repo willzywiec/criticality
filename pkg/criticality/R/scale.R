@@ -60,7 +60,7 @@ Scale <- function(
   # partition data
   if (is.null(dataset)) {
     test.data <- training.data[sample(nrow(training.data), round(nrow(training.data) * 0.2)), ]
-    training.data <- training.data %>% anti_join(test.data)
+    training.data <- training.data %>% anti_join(test.data) %>% suppressMessages()
   }
 
 #
