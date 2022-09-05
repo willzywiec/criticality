@@ -78,6 +78,8 @@ NN <- function(
     'model settings',
     paste0('batch size: ', batch.size),
     paste0('code: ', code),
+    paste0('dataset: ', dataset),
+    paste0('ensemble size: ', ensemble.size),
     paste0('epochs: ', epochs),
     paste0('layers: ', layers),
     paste0('loss: ', loss),
@@ -94,7 +96,6 @@ NN <- function(
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        new.settings <- gsub(paste0('code: ', code), paste0('code: ', code, '\n', 'ensemble size: ', ensemble.size), new.settings)
         utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
@@ -103,7 +104,6 @@ NN <- function(
       }
     }
   } else {
-    new.settings <- gsub(paste0('code: ', code), paste0('code: ', code, '\n', 'ensemble size: ', ensemble.size), new.settings)
     utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
