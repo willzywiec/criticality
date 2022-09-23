@@ -121,19 +121,18 @@ Sample <- function(
   if (keff.cutoff > 0) {
 
     bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
+    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff) %>% .[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
 
     while (nrow(subset(bn.data, keff > keff.cutoff)) == 0) {
       if (as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist() %>% .[2] %>% nchar() > 1) {
         keff.cutoff <- trunc(keff.cutoff * 100) / 100 - 0.01
-        bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
+        bn.data <- subset(bn.data, keff > keff.cutoff)
       } else {
         keff.cutoff <- trunc(keff.cutoff * 100) / 100 - 0.1
-        bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
+        bn.data <- subset(bn.data, keff > keff.cutoff)
       }
     }
-
-    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff) %>% .[ , -ncol(bn.df)]
 
   }
 
