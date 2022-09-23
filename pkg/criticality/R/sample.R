@@ -119,14 +119,22 @@ Sample <- function(
 # predict keff values
 #
   if (keff.cutoff > 0) {
+
     bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
-    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff)
-    bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
-    if (nrow(bn.data) == 0) {
-      if (is.null(risk.dir)) unlink(risk.dir, recursive = TRUE, force = TRUE)
-      stop(paste0('there were no keff values > ', keff.cutoff))
+
+    while (nrow(subset(bn.data, keff > keff.cutoff)) == 0) {
+      if (as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist() %>% .[2] %>% nchar() > 1) {
+        keff.cutoff <- trunc(keff.cutoff * 100) / 100 - 0.01
+        bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
+      } else {
+        keff.cutoff <- trunc(keff.cutoff * 100) / 100 - 0.1
+        bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
+      }
     }
+
+    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff) %>% .[ , -ncol(bn.df)]
+
   }
 
   if (typeof(metamodel[[2]]) == 'list') {
