@@ -40,15 +40,13 @@ Scale <- function(
   if (is.null(dataset)) {
     null.output <- Nullify(output, labels)
     dummy <- caret::dummyVars(~ ., data = null.output, sep = '')
-    training.data <- data.frame(stats::predict(dummy, newdata = null.output))
-    training.data <- filter(training.data, sd < 0.001)
+    training.data <- data.frame(stats::predict(dummy, newdata = null.output)) %>% filter(sd < 0.001)
   } else if (ncol(output) == ncol(dataset$output)) {
     combined.output <- rbind(output, dataset$output)
     null.output <- Nullify(combined.output, labels)
     dummy <- caret::dummyVars(~ ., data = null.output, sep = '')
     training.data <- data.frame(stats::predict(dummy, newdata = null.output))
-    training.data <- training.data[1:nrow(output), ]
-    training.data <- filter(training.data, sd < 0.001)
+    training.data <- training.data[1:nrow(output), ] %>% filter(sd < 0.001)
   } else {
     combined.output <- rbind(output, dataset$output[ , 1:(ncol(dataset$output) - 2)])
     null.output <- Nullify(combined.output, labels)

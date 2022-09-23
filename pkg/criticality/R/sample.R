@@ -125,7 +125,8 @@ Sample <- function(
     bn.data <- subset(bn.data, keff > keff.cutoff)
 
     while (nrow(subset(bn.data, keff > keff.cutoff)) == 0) {
-      if (as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist() %>% .[2] %>% nchar() > 1) {
+      dec.len <- as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist() %>% .[2] %>% nchar()
+      if (dec.len > 1) {
         keff.cutoff <- trunc(keff.cutoff * 100) / 100 - 0.01
         bn.data <- subset(bn.data, keff > keff.cutoff)
       } else {
