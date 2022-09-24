@@ -121,31 +121,38 @@ Sample <- function(
   if (keff.cutoff > 0) {
 
     bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
-    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff) %>% .[ , -ncol(bn.df)]
+
+    dec.len <- 0
 
     while (nrow(subset(bn.data, keff > keff.cutoff)) == 0) {
       dec.len <- as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist() %>% .[2] %>% nchar()
-      if (dec.len > 1) {
+      if (is.na(dec.len)) {
+        break
+      } else if (dec.len > 1) {
         keff.cutoff <- trunc(keff.cutoff * 100) / 100 - 0.01
-        bn.data <- subset(bn.data, keff > keff.cutoff)
       } else {
         keff.cutoff <- trunc(keff.cutoff * 100) / 100 - 0.1
-        bn.data <- subset(bn.data, keff > keff.cutoff)
       }
     }
 
+    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff) %>% .[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
 
   }
 
-  if (typeof(metamodel[[2]]) == 'list') {
-    keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
-    for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE)
-    bn.data$keff <- rowSums(keff * metamodel[[2]][[1]])
-  } else {
-    keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
-    for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE)
-    bn.data$keff <- rowMeans(keff)
+  # print(paste0('Hey ', nrow(bn.df), ' ', nrow(bn.data), ' fuck!'))
+  # print(!is.na(bn.data))
+
+  if (nrow(bn.data) > 1) {
+    if (typeof(metamodel[[2]]) == 'list') {
+      keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
+      for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE)
+      bn.data$keff <- rowSums(keff * metamodel[[2]][[1]])
+    } else {
+      keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
+      for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE)
+      bn.data$keff <- rowMeans(keff)
+    }
   }
 
   return(bn.data)
