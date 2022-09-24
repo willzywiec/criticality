@@ -140,9 +140,6 @@ Sample <- function(
 
   }
 
-  # print(paste0('Hey ', nrow(bn.df), ' ', nrow(bn.data), ' fuck!'))
-  # print(!is.na(bn.data))
-
   if (nrow(bn.data) > 1) {
     if (typeof(metamodel[[2]]) == 'list') {
       keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
