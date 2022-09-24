@@ -122,7 +122,6 @@ Sample <- function(
 
     bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
     bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff) %>% .[ , -ncol(bn.df)]
-    bn.data <- subset(bn.data, keff > keff.cutoff)
 
     while (nrow(subset(bn.data, keff > keff.cutoff)) == 0) {
       dec.len <- as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist() %>% .[2] %>% nchar()
@@ -134,6 +133,8 @@ Sample <- function(
         bn.data <- subset(bn.data, keff > keff.cutoff)
       }
     }
+
+    bn.data <- subset(bn.data, keff > keff.cutoff)
 
   }
 
