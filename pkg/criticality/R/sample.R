@@ -136,7 +136,8 @@ Sample <- function(
       }
     }
 
-    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff) %>% .[ , -ncol(bn.df)]
+    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff)
+    bn.df <- bn.df[ , -ncol(bn.df)]
     bn.data <- subset(bn.data, keff > keff.cutoff)
 
   }
