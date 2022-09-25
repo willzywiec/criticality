@@ -125,7 +125,8 @@ Sample <- function(
     dec.len <- 0
 
     while (nrow(subset(bn.data, keff > keff.cutoff)) == 0) {
-      dec.len <- as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist() %>% .[2] %>% nchar()
+      dec.len <- as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist()
+      dec.len <- nchar(dec.len[2])
       if (is.na(dec.len)) {
         break
       } else if (dec.len > 1) {
