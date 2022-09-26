@@ -10,7 +10,6 @@
 #' @param training.dir Training directory (full path)
 #' @return A list of deep neural network weights
 #' @export
-#' @import keras
 #' @import magrittr
 
 Test <- function(

@@ -14,7 +14,6 @@
 #' @return A list of Bayesian network samples with predicted keff values
 #' @export
 #' @import bnlearn
-#' @import keras
 #' @import magrittr
 #' @import parallel
 

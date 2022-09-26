@@ -52,7 +52,6 @@
 #' })
 #'
 #' @import dplyr
-#' @import keras
 #' @import magrittr
 #' @import reticulate
 
