@@ -16,6 +16,7 @@ NN(
   learning.rate = 0.00075,
   val.split = 0.2,
   overwrite = FALSE,
+  remodel = TRUE,
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
@@ -44,6 +45,8 @@ NN(
 \item{val.split}{Validation split}
 
 \item{overwrite}{Boolean (TRUE/FALSE) that determines if files should be overwritten}
+
+\item{remodel}{Boolean (TRUE/FALSE) that determines if an existing metamodel should be reused}
 
 \item{replot}{Boolean (TRUE/FALSE) that determines if .png files should be replotted}
 

@@ -14,6 +14,7 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param overwrite Boolean (TRUE/FALSE) that determines if files should be overwritten
+#' @param remodel Boolean (TRUE/FALSE) that determines if an existing metamodel should be reused
 #' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted
 #' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow and Test function output should be displayed
 #' @param ext.dir External directory (full path)
@@ -59,6 +60,7 @@ NN <- function(
   learning.rate = 0.00075,
   val.split = 0.2,
   overwrite = FALSE,
+  remodel = TRUE,
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
@@ -108,76 +110,87 @@ NN <- function(
     utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
-  # build custom loss function
-  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
+  # check for an existing metamodel
+  if (file.exists(paste0(training.dir, '/metamodel.RData')) && remodel == FALSE) {
 
-#
-# train metamodel
-#
-  model.files <- list.files(path = model.dir, pattern = '\\.h5$')
+    load(paste0(training.dir, '/metamodel.RData'))
 
-  metamodel <- history <- rep(list(0), length(ensemble.size))
-
-  Fit <- function(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i = NULL) {
-    if (is.null(i)) {
-      model %>% keras::fit(
-        dataset$training.df,
-        dataset$training.data$keff,
-        batch_size = batch.size,
-        epochs = epochs,
-        validation_split = val.split,
-        verbose = verbose)
-    } else {
-      checkpoint <- callback_model_checkpoint(paste0(remodel.dir, '/', i, '-{epoch:1d}.h5'), monitor = 'mean_absolute_error')
-      model %>% keras::fit(
-        dataset$training.df,
-        dataset$training.data$keff,
-        batch_size = batch.size,
-        epochs = epochs / 10,
-        validation_split = val.split,
-        verbose = verbose,
-        callbacks = c(checkpoint))
-    }
-  }
-
-  if (length(model.files) < ensemble.size) {
-    for (i in (length(model.files) + 1):ensemble.size) {
-      metamodel[[i]] <- Model(dataset, layers, loss, opt.alg, learning.rate, ext.dir)
-      history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose)
-      Plot(i = i, history = history[[i]], plot.dir = model.dir)
-      save_model_hdf5(metamodel[[i]], paste0(model.dir, '/', i, '.h5'))
-    }
   } else {
+
+    # build custom loss function
+    if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
+
+  #
+  # train metamodel
+  #
     model.files <- list.files(path = model.dir, pattern = '\\.h5$')
-    for (i in 1:ensemble.size) {
-      metamodel[[i]] <- load_model_hdf5(paste0(model.dir, '/', model.files[i]), custom_objects = c(loss = loss))
-      if (replot == TRUE) Plot(i = i, plot.dir = model.dir)
-    }
-  }
 
-#
-# retrain metamodel
-#
-  remodel.files <- list.files(path = remodel.dir, pattern = '\\.h5$')
+    metamodel <- history <- rep(list(0), length(ensemble.size))
 
-  history <- list()
-  
-  if (length(remodel.files) < ensemble.size * epochs / 10) {
-    for (i in 1:ensemble.size) {
-      remodel.files <- list.files(path = remodel.dir, pattern = paste0(i, '-.+\\.h5$'))
-      if (length(remodel.files) < epochs / 10) {
-        history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose, remodel.dir, i)
-        Plot(i = i, history = history[[i]], plot.dir = remodel.dir)
+    Fit <- function(dataset, model, batch.size, epochs, val.split, verbose, remodel.dir, i = NULL) {
+      if (is.null(i)) {
+        model %>% keras::fit(
+          dataset$training.df,
+          dataset$training.data$keff,
+          batch_size = batch.size,
+          epochs = epochs,
+          validation_split = val.split,
+          verbose = verbose)
       } else {
-        Plot(i = i, plot.dir = remodel.dir)
+        checkpoint <- callback_model_checkpoint(paste0(remodel.dir, '/', i, '-{epoch:1d}.h5'), monitor = 'mean_absolute_error')
+        model %>% keras::fit(
+          dataset$training.df,
+          dataset$training.data$keff,
+          batch_size = batch.size,
+          epochs = epochs / 10,
+          validation_split = val.split,
+          verbose = verbose,
+          callbacks = c(checkpoint))
       }
     }
-  } else if (replot == TRUE) {
-    for (i in 1:ensemble.size) Plot(i = i, plot.dir = remodel.dir)
-  }
 
-  # set metamodel weights and generate .csv predictions for all training and test data
-  wt <- Test(dataset, ensemble.size, loss, ext.dir, training.dir)
+    if (length(model.files) < ensemble.size) {
+      for (i in (length(model.files) + 1):ensemble.size) {
+        metamodel[[i]] <- Model(dataset, layers, loss, opt.alg, learning.rate, ext.dir)
+        history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose)
+        Plot(i = i, history = history[[i]], plot.dir = model.dir)
+        save_model_hdf5(metamodel[[i]], paste0(model.dir, '/', i, '.h5'))
+      }
+    } else {
+      model.files <- list.files(path = model.dir, pattern = '\\.h5$')
+      for (i in 1:ensemble.size) {
+        metamodel[[i]] <- load_model_hdf5(paste0(model.dir, '/', model.files[i]), custom_objects = c(loss = loss))
+        if (replot == TRUE) Plot(i = i, plot.dir = model.dir)
+      }
+    }
+
+  #
+  # retrain metamodel
+  #
+    remodel.files <- list.files(path = remodel.dir, pattern = '\\.h5$')
+
+    history <- list()
+  
+    if (length(remodel.files) < ensemble.size * epochs / 10) {
+      for (i in 1:ensemble.size) {
+        remodel.files <- list.files(path = remodel.dir, pattern = paste0(i, '-.+\\.h5$'))
+        if (length(remodel.files) < epochs / 10) {
+          history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose, remodel.dir, i)
+          Plot(i = i, history = history[[i]], plot.dir = remodel.dir)
+        } else {
+          Plot(i = i, plot.dir = remodel.dir)
+        }
+      }
+    } else if (replot == TRUE) {
+      for (i in 1:ensemble.size) Plot(i = i, plot.dir = remodel.dir)
+    }
+
+    # set metamodel weights and generate .csv predictions for all training and test data
+    wt <- Test(dataset, ensemble.size, loss, ext.dir, training.dir)
+
+    save(list(metamodel, wt), file = paste0(training.dir, '/metamodel.RData'), compress = 'xz')
+
+  }
 
   return(list(metamodel, wt))
 
