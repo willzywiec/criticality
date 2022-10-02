@@ -118,11 +118,13 @@ NN <- function(
 
     load(paste0(training.dir, '/metamodel.RData'))
 
-    metamodel <- wt <- rep(list(0), length(ensemble.size))
+    metamodel <- rep(list(0), length(ensemble.size))
+
+    wt <- numeric()
 
     for (i in 1:ensemble.size) {
-      metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', meta.wt[[1]][i], '.h5'), custom_objects = c(loss = loss))
-      wt[[i]] <- meta.wt[[2]][i]
+      metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', meta.wt[[1]][[i]], '.h5'), custom_objects = c(loss = loss))
+      wt[i] <- meta.wt[[2]][[i]]
     }
 
   } else {

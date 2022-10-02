@@ -24,9 +24,9 @@ Test <- function(
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
 
-  training.mae <- val.mae <- numeric()
+  meta.mae <- training.mae <- val.mae <- numeric()
 
-  metamodel <- meta.mae <- rep(list(0), length(ensemble.size))
+  metamodel <- rep(list(0), length(ensemble.size))
 
   for (i in 1:ensemble.size) {
     metrics <- utils::read.csv(paste0(remodel.dir, '/', i, '.csv'))
@@ -39,11 +39,9 @@ Test <- function(
 #
 # minimize objective function
 #
-  meta.len <- length(metamodel)
-
   test.data <- dataset$test.data
 
-  test.pred <- matrix(nrow = nrow(dataset$test.df), ncol = meta.len)
+  test.pred <- matrix(nrow = nrow(dataset$test.df), ncol = ensemble.size)
 
   test.mae <- avg <- nm <- bfgs <- sa <- numeric()
 
@@ -51,9 +49,9 @@ Test <- function(
 
   Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE))) %>% suppressWarnings()
 
-  progress.bar <- utils::txtProgressBar(max = meta.len, style = 3)
+  progress.bar <- utils::txtProgressBar(max = ensemble.size, style = 3)
 
-  for (i in 1:meta.len) {
+  for (i in 1:ensemble.size) {
 
     test.pred[ , i] <- metamodel[[i]] %>% stats::predict(dataset$test.df, verbose = FALSE)
 
@@ -79,25 +77,25 @@ Test <- function(
   message('Mean Training MAE = ', sprintf('%.6f', mean(training.mae)))
   message('Mean Cross-Validation MAE = ', sprintf('%.6f', mean(val.mae)))
   message('Mean Test MAE = ', sprintf('%.6f', mean(test.mae)))
-  message('Ensemble Test MAE = ', sprintf('%.6f', avg[meta.len]))
+  message('Ensemble Test MAE = ', sprintf('%.6f', avg[ensemble.size]))
 
-  if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] == sa[meta.len]) {
+  if (nm[ensemble.size] == bfgs[ensemble.size] && nm[ensemble.size] == sa[ensemble.size]) {
     msg.str <- ' (Nelder-Mead, BFGS, SA)'
-  } else if (nm[meta.len] == bfgs[meta.len] && nm[meta.len] < sa[meta.len]) {
+  } else if (nm[ensemble.size] == bfgs[ensemble.size] && nm[ensemble.size] < sa[ensemble.size]) {
     msg.str <- ' (Nelder-Mead, BFGS)'
-  } else if (nm[meta.len] == sa[meta.len] && nm[meta.len] < bfgs[meta.len]) {
+  } else if (nm[ensemble.size] == sa[ensemble.size] && nm[ensemble.size] < bfgs[ensemble.size]) {
     msg.str <- ' (Nelder-Mead, SA)'
-  } else if (bfgs[meta.len] == sa[meta.len] && bfgs[meta.len] < nm[meta.len]) {
+  } else if (bfgs[ensemble.size] == sa[ensemble.size] && bfgs[ensemble.size] < nm[ensemble.size]) {
     msg.str <- ' (BFGS, SA)'
-  } else if (nm[meta.len] < bfgs[meta.len] && nm[meta.len] < sa[meta.len]) {
+  } else if (nm[ensemble.size] < bfgs[ensemble.size] && nm[ensemble.size] < sa[ensemble.size]) {
     msg.str <- ' (Nelder-Mead)'
-  } else if (bfgs[meta.len] < nm[meta.len] && bfgs[meta.len] < sa[meta.len]) {
+  } else if (bfgs[ensemble.size] < nm[ensemble.size] && bfgs[ensemble.size] < sa[ensemble.size]) {
     msg.str <- ' (BFGS)'
-  } else if (sa[meta.len] < nm[meta.len] && sa[meta.len] < bfgs[meta.len]) {
+  } else if (sa[ensemble.size] < nm[ensemble.size] && sa[ensemble.size] < bfgs[ensemble.size]) {
     msg.str <- ' (SA)'
   }
 
-  obj.min <- min(c(nm[meta.len], bfgs[meta.len], sa[meta.len]))
+  obj.min <- min(c(nm[ensemble.size], bfgs[ensemble.size], sa[ensemble.size]))
 
   message('Ensemble Test MAE = ', sprintf('%.6f', obj.min), msg.str)
 
@@ -115,7 +113,7 @@ Test <- function(
 
   wt.len <- length(wt)
 
-  if (wt.len < meta.len && wt[1] != 0) {
+  if (wt.len < ensemble.size && wt[1] != 0) {
 
     if (wt.len == 1) {
       message('-\nTest MAE reaches a local minimum with ', wt.len, ' neural network')
@@ -141,13 +139,13 @@ Test <- function(
       msg.str <- ' (SA)'
     }
 
-    obj.min <- min(c(nm[meta.len], bfgs[meta.len], sa[meta.len]))
+    obj.min <- min(c(nm[ensemble.size], bfgs[ensemble.size], sa[ensemble.size]))
 
     message('Ensemble Test MAE = ', sprintf('%.6f', obj.min), msg.str)
     
   }
 
-  if (abs(obj.min - avg[meta.len]) > 0.1 || abs(mean(training.mae) - mean(test.mae)) > 0.1) {
+  if (abs(obj.min - avg[ensemble.size]) > 0.1 || abs(mean(training.mae) - mean(test.mae)) > 0.1) {
     message('-\nWarning: metamodel does not converge')
   }
 
