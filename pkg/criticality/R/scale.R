@@ -20,9 +20,7 @@ Scale <- function(
   ext.dir) {
 
   # set bindings for nonstandard evaluation
-  mass <- rad <- sd <- NULL
-
-  output$shape <- output$ht <- output$hd <- NULL
+  mass <- rad <- sd <- output$shape <- output$ht <- output$hd <- NULL
 
   labels <- names(output)
 

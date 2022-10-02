@@ -26,13 +26,14 @@ Test <- function(
 
   training.mae <- val.mae <- numeric()
 
-  metamodel <- list()
-  
+  metamodel <- meta.mae <- rep(list(0), length(ensemble.size))
+
   for (i in 1:ensemble.size) {
     metrics <- utils::read.csv(paste0(remodel.dir, '/', i, '.csv'))
-    training.mae[i] <- metrics$mae[which.min(metrics$mae + metrics$val.mae)]
-    val.mae[i] <- metrics$val.mae[which.min(metrics$mae + metrics$val.mae)]
-    metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[which.min(metrics$mae + metrics$val.mae)], '.h5'), custom_objects = c(loss = loss))
+    meta.mae[i] <- which.min(metrics$mae + metrics$val.mae)
+    training.mae[i] <- metrics$mae[meta.mae[i]]
+    val.mae[i] <- metrics$val.mae[meta.mae[i]]
+    metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[meta.mae[i]], '.h5'), custom_objects = c(loss = loss))
   }
 
 #
@@ -46,7 +47,7 @@ Test <- function(
 
   test.mae <- avg <- nm <- bfgs <- sa <- numeric()
 
-  nm.wt <- bfgs.wt <- sa.wt <- list()
+  nm.wt <- bfgs.wt <- sa.wt <- rep(list(0), length(ensemble.size))
 
   Objective <- function(x) mean(abs(test.data$keff - rowSums(test.pred * x, na.rm = TRUE))) %>% suppressWarnings()
 
@@ -188,6 +189,10 @@ Test <- function(
     test.data$sa <- rowSums(test.pred[ , 1:wt.len] * sa.wt[[wt.len]][[1]])
 
   }
+
+  meta.wt <- list(meta.mae, wt)
+
+  save(meta.wt, file = paste0(training.dir, '/metamodel.RData'), compress = 'xz')
 
   utils::write.csv(training.data, file = paste0(training.dir, '/training-data.csv'), row.names = FALSE)
   utils::write.csv(test.data, file = paste0(training.dir, '/test-data.csv'), row.names = FALSE)

@@ -110,15 +110,22 @@ NN <- function(
     utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
-  # check for an existing metamodel
+  # build custom loss function
+  if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
+
+  # load metamodel
   if (file.exists(paste0(training.dir, '/metamodel.RData')) && remodel == FALSE) {
 
     load(paste0(training.dir, '/metamodel.RData'))
 
-  } else {
+    metamodel <- wt <- rep(list(0), length(ensemble.size))
 
-    # build custom loss function
-    if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
+    for (i in 1:ensemble.size) {
+      metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[meta.wt[[1]][i]], '.h5'), custom_objects = c(loss = loss))
+      wt[[i]] <- meta.wt[[2]][i]
+    }
+
+  } else {
 
   #
   # train metamodel
@@ -169,7 +176,7 @@ NN <- function(
   #
     remodel.files <- list.files(path = remodel.dir, pattern = '\\.h5$')
 
-    history <- list()
+    history <- rep(list(0), length(ensemble.size))
   
     if (length(remodel.files) < ensemble.size * epochs / 10) {
       for (i in 1:ensemble.size) {
@@ -188,12 +195,8 @@ NN <- function(
     # set metamodel weights and generate .csv predictions for all training and test data
     wt <- Test(dataset, ensemble.size, loss, ext.dir, training.dir)
 
-    metamodel.wt <- list(metamodel, wt)
-
-    save(metamodel.wt, file = paste0(training.dir, '/metamodel.RData'), compress = 'xz')
-
   }
 
-  return(metamodel.wt)
+  return(list(metamodel, wt))
 
 }

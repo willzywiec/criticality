@@ -112,6 +112,7 @@ Risk <- function(
   } else {
 
     bn.data <- list()
+    
     risk <- pooled.risk <- numeric()
 
     progress.bar <- utils::txtProgressBar(max = risk.pool, style = 3)
