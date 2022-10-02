@@ -66,6 +66,12 @@ NN <- function(
   ext.dir,
   training.dir = NULL) {
 
+  Sys.setenv('TF_CPP_MIN_LOG_LEVEL' = '2')
+  # 0 = all messages are logged (default)
+  # 1 = info messages are not printed
+  # 2 = info and warning messages are not printed
+  # 3 = info, warning, and error messages are not printed
+
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
   if (is.null(training.dir)) training.dir <- ext.dir
