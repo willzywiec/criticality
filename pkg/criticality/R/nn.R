@@ -114,7 +114,7 @@ NN <- function(
   if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
 
   # load metamodel
-  if (file.exists(paste0(training.dir, '/metamodel.RData')) && remodel == FALSE) {
+  if (file.exists(paste0(training.dir, '/metamodel.RData')) && identical(new.settings[-4, ], old.settings[-4, ]) && remodel == FALSE) {
 
     load(paste0(training.dir, '/metamodel.RData'))
 
