@@ -188,10 +188,12 @@ NN <- function(
     # set metamodel weights and generate .csv predictions for all training and test data
     wt <- Test(dataset, ensemble.size, loss, ext.dir, training.dir)
 
-    save(list(metamodel, wt), file = paste0(training.dir, '/metamodel.RData'), compress = 'xz')
+    metamodel.wt <- list(metamodel, wt)
+
+    save(metamodel.wt, file = paste0(training.dir, '/metamodel.RData'), compress = 'xz')
 
   }
 
-  return(list(metamodel, wt))
+  return(metamodel.wt)
 
 }
