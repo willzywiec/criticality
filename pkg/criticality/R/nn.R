@@ -60,7 +60,7 @@ NN <- function(
   learning.rate = 0.00075,
   val.split = 0.2,
   overwrite = FALSE,
-  remodel = TRUE,
+  remodel = FALSE,
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
@@ -71,6 +71,8 @@ NN <- function(
   # 1 = info messages are not printed
   # 2 = info and warning messages are not printed
   # 3 = info, warning, and error messages are not printed
+
+  library(keras)
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 

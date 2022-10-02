@@ -16,7 +16,7 @@ NN(
   learning.rate = 0.00075,
   val.split = 0.2,
   overwrite = FALSE,
-  remodel = TRUE,
+  remodel = FALSE,
   replot = TRUE,
   verbose = FALSE,
   ext.dir,
