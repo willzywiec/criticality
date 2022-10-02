@@ -121,7 +121,7 @@ NN <- function(
     metamodel <- wt <- rep(list(0), length(ensemble.size))
 
     for (i in 1:ensemble.size) {
-      metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[meta.wt[[1]][i]], '.h5'), custom_objects = c(loss = loss))
+      metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', meta.wt[[1]][i], '.h5'), custom_objects = c(loss = loss))
       wt[[i]] <- meta.wt[[2]][i]
     }
 
