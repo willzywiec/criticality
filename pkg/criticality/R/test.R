@@ -24,16 +24,16 @@ Test <- function(
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
 
-  meta.mae <- training.mae <- val.mae <- numeric()
+  min.mae <- training.mae <- val.mae <- numeric()
 
   metamodel <- rep(list(0), length(ensemble.size))
 
   for (i in 1:ensemble.size) {
     metrics <- utils::read.csv(paste0(remodel.dir, '/', i, '.csv'))
-    meta.mae[i] <- which.min(metrics$mae + metrics$val.mae)
-    training.mae[i] <- metrics$mae[meta.mae[i]]
-    val.mae[i] <- metrics$val.mae[meta.mae[i]]
-    metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[meta.mae[i]], '.h5'), custom_objects = c(loss = loss))
+    min.mae[i] <- which.min(metrics$mae + metrics$val.mae)
+    training.mae[i] <- metrics$mae[min.mae[i]]
+    val.mae[i] <- metrics$val.mae[min.mae[i]]
+    metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', metrics$epoch[min.mae[i]], '.h5'), custom_objects = c(loss = loss))
   }
 
 #
@@ -188,9 +188,9 @@ Test <- function(
 
   }
 
-  meta.wt <- list(meta.mae, wt)
+  min.wt <- list(min.mae, wt)
 
-  save(meta.wt, file = paste0(training.dir, '/metamodel.RData'), compress = 'xz')
+  save(min.wt, file = paste0(training.dir, '/metamodel.RData'), compress = 'xz')
 
   utils::write.csv(training.data, file = paste0(training.dir, '/training-data.csv'), row.names = FALSE)
   utils::write.csv(test.data, file = paste0(training.dir, '/test-data.csv'), row.names = FALSE)
