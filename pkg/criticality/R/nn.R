@@ -123,8 +123,8 @@ NN <- function(
     wt <- numeric()
 
     for (i in 1:ensemble.size) {
-      metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', wt[[1]][[i]], '.h5'), custom_objects = c(loss = loss))
-      wt[i] <- wt[[2]][[i]]
+      metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', min.wt[[1]][[i]], '.h5'), custom_objects = c(loss = loss))
+      wt[i] <- min.wt[[2]][[i]]
     }
 
   } else {
