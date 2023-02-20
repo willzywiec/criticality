@@ -50,7 +50,7 @@ NN(
 
 \item{replot}{Boolean (TRUE/FALSE) that determines if .png files should be replotted}
 
-\item{verbose}{Boolean (TRUE/FALSE) that determines if TensorFlow and Test function output should be displayed}
+\item{verbose}{Boolean (TRUE/FALSE) that determines if TensorFlow and Fit function output should be displayed}
 
 \item{ext.dir}{External directory (full path)}
 
