@@ -16,7 +16,7 @@
 #' @param overwrite Boolean (TRUE/FALSE) that determines if files should be overwritten
 #' @param remodel Boolean (TRUE/FALSE) that determines if an existing metamodel should be reused
 #' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted
-#' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow and Test function output should be displayed
+#' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow and Fit function output should be displayed
 #' @param ext.dir External directory (full path)
 #' @param training.dir Training directory (full path)
 #' @return A list of lists containing an ensemble of deep neural networks and weights
@@ -90,7 +90,9 @@ NN <- function(
     paste0('external directory: ', ext.dir),
     paste0('training directory: ', training.dir)))
 
-  # check metamodel settings
+#
+# check metamodel settings
+#
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
     old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'), sep = '\n') %>% as.data.frame()
     if (!identical(new.settings[-4, ], old.settings[-4, ])) {
@@ -110,10 +112,12 @@ NN <- function(
     utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
-  # build custom loss function
+  # build sum of squared errors (SSE) loss function
   if (loss == 'sse') loss <- SSE <- function(y_true, y_pred) k_sum(k_pow(y_true - y_pred, 2))
 
-  # load metamodel
+#
+# load metamodel
+#
   if (file.exists(paste0(training.dir, '/metamodel.RData')) && identical(new.settings[-4, ], old.settings[-4, ]) && remodel == FALSE) {
 
     load(paste0(training.dir, '/metamodel.RData'))
@@ -129,9 +133,9 @@ NN <- function(
 
   } else {
 
-  #
-  # train metamodel
-  #
+#
+# train metamodel
+#
     model.files <- list.files(path = model.dir, pattern = '\\.h5$')
 
     metamodel <- history <- rep(list(0), length(ensemble.size))
@@ -173,9 +177,9 @@ NN <- function(
       }
     }
 
-  #
-  # retrain metamodel
-  #
+#
+# retrain metamodel
+#
     remodel.files <- list.files(path = remodel.dir, pattern = '\\.h5$')
 
     history <- rep(list(0), length(ensemble.size))
