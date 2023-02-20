@@ -36,41 +36,32 @@ Tabulate <- function(
 
   } else {
 
-    output.files <- list.files(path = ext.dir, pattern = '\\.o$')
-
-  #
-  # load output
-  #
     if (file.exists(paste0(ext.dir, '/', output.csv)) && !identical(output.csv, character(0))) {
 
       output <- utils::read.csv(paste0(ext.dir, '/', output.csv), fileEncoding = 'UTF-8-BOM') %>% stats::na.omit()
 
-      if (nrow(output) >= length(output.files)) {
+      output <- output[sample(nrow(output)), ]
 
-        output <- output[sample(nrow(output)), ]
+      # calculate vol (cc)
+      vol <- 4/3 * pi * output$rad^3
 
-        # calculate vol (cc)
-        vol <- 4/3 * pi * output$rad^3
+      # calculate conc (g/cc)
+      conc <- output$mass / vol
 
-        # calculate conc (g/cc)
-        conc <- output$mass / vol
+      output <- data.frame(
+        mass = output$mass,
+        form = output$form,
+        mod = output$mod,
+        rad = output$rad,
+        ref = output$ref,
+        thk = output$thk,
+        shape = output$shape,
+        vol = vol,
+        conc = conc,
+        keff = output$keff,
+        sd = output$sd)
 
-        output <- data.frame(
-          mass = output$mass,
-          form = output$form,
-          mod = output$mod,
-          rad = output$rad,
-          ref = output$ref,
-          thk = output$thk,
-          shape = output$shape,
-          vol = vol,
-          conc = conc,
-          keff = output$keff,
-          sd = output$sd)
-
-        dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
-
-      }
+      dataset <- Scale(code = code, output = output, ext.dir = ext.dir)
 
     } else {
 
