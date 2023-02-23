@@ -124,12 +124,6 @@ Risk <- function(
     }
 
     close(progress.bar)
-
-    if (risk.pool > 100) {
-      breaks <- seq((length(risk) / 100), length(risk), (length(risk) / 100))
-      for (i in 1:100) pooled.risk[i] <- sum(risk[(breaks[i] - (length(risk) / 100 - 1)):breaks[i]])
-      risk <- pooled.risk
-    }
   
     saveRDS(bn.data, file = paste0(ext.dir, '/bn-data.RData'))
     utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(risk.dir, '/risk.csv'), row.names = FALSE)
