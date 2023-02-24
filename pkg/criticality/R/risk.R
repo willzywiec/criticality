@@ -107,7 +107,13 @@ Risk <- function(
       message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0))
     }
 
-    if (mean(risk) != 0) message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3))
+    if (mean(risk) != 0) {
+      if (risk.pool == 1) {
+        message('SD = NA')
+      } else {
+        message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3))
+      }
+    }
 
   } else {
 
@@ -130,7 +136,11 @@ Risk <- function(
 
     if (mean(risk) != 0) {
       message('Risk = ', formatC(mean(risk), format = 'e', digits = 3))
-      message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3))
+      if (risk.pool == 1) {
+        message('SD = NA')
+      } else {
+        message('SD = ', formatC(stats::sd(risk), format = 'e', digits = 3))
+      }
     } else {
       message('Risk < ', formatC(risk.pool * sample.size, format = 'e', digits = 0))
     }
