@@ -124,11 +124,11 @@ NN <- function(
     ensemble.size == length(list.files(path = model.dir)[grep('.*h5$', list.files(path = model.dir))]) &&
     remodel == FALSE) {
 
-    load(paste0(training.dir, '/metamodel.RData'))
+    wt <- min.wt <- numeric() # 'min.wt' must be defined prior to loading 'metamodel.RData'
+
+    load(paste0(training.dir, '/metamodel.RData')) # load 'min.wt'
 
     metamodel <- rep(list(0), length(ensemble.size))
-
-    wt <- numeric()
 
     for (i in 1:ensemble.size) {
       metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', min.wt[[1]][[i]], '.h5'), custom_objects = c(loss = loss))
