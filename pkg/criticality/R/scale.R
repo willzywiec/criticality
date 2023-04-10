@@ -19,6 +19,8 @@ Scale <- function(
   output,
   ext.dir) {
 
+  code <- tolower(code)
+
   # set bindings for nonstandard evaluation
   mass <- rad <- sd <- output$shape <- NULL # missing 'output$ht' and 'output$hd'
 
