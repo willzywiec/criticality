@@ -202,7 +202,7 @@ NN <- function(
       for (i in 1:ensemble.size) Plot(i = i, plot.dir = remodel.dir)
     }
 
-    # set metamodel weights and generate .csv predictions for all training and test data
+    # set metamodel weights, generate predictions for all training and test data, and save predictions as a .csv file
     wt <- Test(dataset, ensemble.size, loss, ext.dir, training.dir)
 
   }
