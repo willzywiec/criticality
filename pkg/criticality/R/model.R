@@ -94,6 +94,8 @@ Model <- function(
       args[nm] <- list(modifiers[[nm]](args[[nm]]))
     }
 
+    args
+
   }
 
   legacy_optimizer_adadelta <- function(
