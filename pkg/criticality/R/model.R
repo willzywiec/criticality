@@ -185,32 +185,32 @@ Model <- function(
       loss = loss,
       optimizer = optimizer_rmsprop(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
-  } else if (opt.alg == 'legacy.adadelta') {
+  } else if (opt.alg == 'legacy_adadelta') {
     model %>% compile(
       loss = loss,
       optimizer = legacy_optimizer_adadelta(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
-  } else if (opt.alg == 'legacy.adagrad') {
+  } else if (opt.alg == 'legacy_adagrad') {
     model %>% compile(
       loss = loss,
       optimizer = legacy_optimizer_adagrad(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
-  } else if (opt.alg == 'legacy.adam') {
+  } else if (opt.alg == 'legacy_adam') {
     model %>% compile(
       loss = loss,
       optimizer = legacy_optimizer_adam(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
-  } else if (opt.alg == 'legacy.adamax') {
+  } else if (opt.alg == 'legacy_adamax') {
     model %>% compile(
       loss = loss,
       optimizer = legacy_optimizer_adamax(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
-  } else if (opt.alg == 'legacy.nadam') {
+  } else if (opt.alg == 'legacy_nadam') {
     model %>% compile(
       loss = loss,
       optimizer = legacy_optimizer_nadam(learning_rate = learning.rate),
       metrics = c('mean_absolute_error'))
-  } else if (opt.alg == 'legacy.rmsprop') {
+  } else if (opt.alg == 'legacy_rmsprop') {
     model %>% compile(
       loss = loss,
       optimizer = legacy_optimizer_rmsprop(learning_rate = learning.rate),
