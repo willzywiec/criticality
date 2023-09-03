@@ -48,10 +48,26 @@ Model <- function(
 
 #
 # refactored to select legacy optimizers for Apple M1/M2 chips
+# https://github.com/rstudio/keras/blob/main/R/utils.R
 #
   if (Sys.info()[1] == 'Darwin') {
 
-    # https://github.com/rstudio/keras/blob/main/R/utils.R
+    assert_all_dots_named <- function(envir = parent.frame(), cl) {
+
+      x <- eval(quote(list(...)), envir)
+
+      if(!length(x)) return()
+
+      x <- names(x)
+
+      if(is.character(x) && !anyNA(x) && all(x != "")) return()
+
+      stop('All arguments provided to `...` must be named.\n',
+        'Call with unnamed arguments in dots:\n  ',
+        paste(deparse(cl, 500L), collapse = '\n'))
+
+    }
+
     capture_args <- function(
       cl, modifiers = NULL, ignore = NULL,
       envir = parent.frame(), fn = sys.function(-1)) {
