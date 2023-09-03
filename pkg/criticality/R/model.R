@@ -47,7 +47,7 @@ Model <- function(
   model <- model %>% layer_dense(units = 1, activation = 'linear')
 
 #
-# refactor functions to select legacy optimizers for Apple M1/M2 chips
+# refactor functions to set up legacy optimizers for Apple M1/M2 chips
 # https://github.com/rstudio/keras/blob/main/R/utils.R
 #
   assert_all_dots_named <- function(envir = parent.frame(), cl) {
@@ -94,7 +94,7 @@ Model <- function(
       args[nm] <- list(modifiers[[nm]](args[[nm]]))
     }
 
-    args
+    return(args)
 
   }
 
