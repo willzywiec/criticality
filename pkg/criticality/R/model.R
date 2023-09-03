@@ -47,7 +47,7 @@ Model <- function(
   model <- model %>% layer_dense(units = 1, activation = 'linear')
 
 #
-# refactored to select legacy optimizers for Apple M1/M2 chips
+# refactor functions to select legacy optimizers for Apple M1/M2 chips
 # https://github.com/rstudio/keras/blob/main/R/utils.R
 #
   if (Sys.info()[1] == 'Darwin') {
@@ -91,7 +91,7 @@ Model <- function(
       }
 
       nms_to_modify <- intersect(names(args), names(modifiers))
-      
+
       for (nm in nms_to_modify) {
         args[nm] <- list(modifiers[[nm]](args[[nm]]))
       }
