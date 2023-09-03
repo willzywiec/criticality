@@ -51,6 +51,34 @@ Model <- function(
 #
   if (Sys.info()[1] == 'Darwin') {
 
+    # https://github.com/rstudio/keras/blob/main/R/utils.R
+    capture_args <- function(
+      cl, modifiers = NULL, ignore = NULL,
+      envir = parent.frame(), fn = sys.function(-1)) {
+
+      fn_arg_nms <- names(formals(fn))
+      known_args <- intersect(names(cl), fn_arg_nms)
+      known_args <- setdiff(known_args, ignore)
+      names(known_args) <- known_args
+      cl2 <- c(quote(list), lapply(known_args, as.symbol))
+
+      if("..." %in% fn_arg_nms && !"..." %in% ignore) {
+        assert_all_dots_named(envir, cl)
+        cl2 <- c(cl2, quote(...))
+      }
+
+      args <- eval(as.call(cl2), envir)
+
+      # check `ignore` again, since arg might have been in `...`
+      for (nm in intersect(names(args), ignore)) {
+        args[[nm]] <- NULL
+      }
+
+      nms_to_modify <- intersect(names(args), names(modifiers))
+      for (nm in nms_to_modify) {
+        args[nm] <- list(modifiers[[nm]](args[[nm]]))}
+      }
+
     optimizer_adadelta <- function(
       learning_rate = 0.001, rho = 0.95, epsilon = 1e-07,
       weight_decay = NULL, clipnorm = NULL, clipvalue = NULL, global_clipnorm = NULL,
