@@ -8,6 +8,7 @@
 #' @param dataset Training and test data
 #' @param ensemble.size Number of deep neural networks in the ensemble
 #' @param epochs Number of training epochs
+#' @param framework Deep learning software frameowrk (e.g., "keras", "torch")
 #' @param layers String that defines the deep neural network architecture (e.g., "64-64")
 #' @param loss Loss function
 #' @param opt.alg Optimization algorithm
@@ -37,6 +38,7 @@
 #'     batch.size = 128,
 #'     ensemble.size = 1,
 #'     epochs = 10,
+#'     framework = "keras",
 #'     layers = "256-256-16",
 #'     loss = "sse",
 #'     replot = FALSE,
@@ -47,6 +49,7 @@
 #' @import keras
 #' @import magrittr
 #' @import reticulate
+#' @import torch
 
 NN <- function(
   batch.size = 8192,
@@ -54,6 +57,7 @@ NN <- function(
   dataset,
   ensemble.size = 5,
   epochs = 1500,
+  framework = 'keras',
   layers = '8192-256-256-256-256-16',
   loss = 'sse',
   opt.alg = 'adamax',
@@ -82,6 +86,7 @@ NN <- function(
     paste0('code: ', code),
     paste0('ensemble size: ', ensemble.size),
     paste0('epochs: ', epochs),
+    paste0('framework: ', framework),
     paste0('layers: ', layers),
     paste0('loss: ', loss),
     paste0('optimization algorithm: ', opt.alg),

@@ -10,6 +10,7 @@ NN(
   dataset,
   ensemble.size = 5,
   epochs = 1500,
+  framework = "keras",
   layers = "8192-256-256-256-256-16",
   loss = "sse",
   opt.alg = "adamax",
@@ -33,6 +34,8 @@ NN(
 \item{ensemble.size}{Number of deep neural networks in the ensemble}
 
 \item{epochs}{Number of training epochs}
+
+\item{framework}{Deep learning software frameowrk (e.g., "keras", "torch")}
 
 \item{layers}{String that defines the deep neural network architecture (e.g., "64-64")}
 
@@ -78,6 +81,7 @@ try(if (config == TRUE) {
     batch.size = 128,
     ensemble.size = 1,
     epochs = 10,
+    framework = "keras",
     layers = "256-256-16",
     loss = "sse",
     replot = FALSE,

@@ -46,6 +46,72 @@ Model <- function(
 
   model <- model %>% layer_dense(units = 1, activation = 'linear')
 
+#
+# refactored to select legacy optimizers for Apple M1/M2 chips
+#
+  if (Sys.info()[1] == 'Darwin') {
+
+    optimizer_adadelta <- function(
+      learning_rate = 0.001, rho = 0.95, epsilon = 1e-07,
+      weight_decay = NULL, clipnorm = NULL, clipvalue = NULL, global_clipnorm = NULL,
+      use_ema = FALSE, ema_momentum = 0.99, ema_overwrite_frequency = NULL,
+      jit_compile = TRUE, name = "Adadelta", ...) {
+      args <- capture_args(match.call(), NULL)
+      do.call(keras$optimizers$legacy$Adadelta, args)
+    }
+
+    optimizer_adagrad <- function(
+      learning_rate = 0.001, initial_accumulator_value = 0.1,
+      epsilon = 1e-07, weight_decay = NULL, clipnorm = NULL, clipvalue = NULL,
+      global_clipnorm = NULL, use_ema = FALSE, ema_momentum = 0.99,
+      ema_overwrite_frequency = NULL, jit_compile = TRUE,
+      name = 'Adagrad', ...) {
+      args <- capture_args(match.call(), NULL)
+      do.call(keras$optimizers$legacy$Adagrad, args)
+    }
+
+    optimizer_adam <- function(
+      learning_rate = 0.001, beta_1 = 0.9, beta_2 = 0.999,
+      epsilon = 1e-07, amsgrad = FALSE, weight_decay = NULL, clipnorm = NULL,
+      clipvalue = NULL, global_clipnorm = NULL, use_ema = FALSE,
+      ema_momentum = 0.99, ema_overwrite_frequency = NULL, jit_compile = TRUE,
+      name = 'Adam', ...) {
+      args <- capture_args(match.call(), NULL)
+      do.call(keras$optimizers$legacy$Adam, args)
+    }
+
+    optimizer_adamax <- function(
+      learning_rate = 0.001, beta_1 = 0.9, beta_2 = 0.999,
+      epsilon = 1e-07, weight_decay = NULL, clipnorm = NULL, clipvalue = NULL,
+      global_clipnorm = NULL, use_ema = FALSE, ema_momentum = 0.99,
+      ema_overwrite_frequency = NULL, jit_compile = TRUE,
+      name = 'Adamax', ...) {
+      args <- capture_args(match.call(), NULL)
+      do.call(keras$optimizers$legacy$Adamax, args)
+    }
+
+    optimizer_nadam <- function(
+      learning_rate = 0.001, beta_1 = 0.9, beta_2 = 0.999,
+      epsilon = 1e-07, weight_decay = NULL, clipnorm = NULL, clipvalue = NULL,
+      global_clipnorm = NULL, use_ema = FALSE, ema_momentum = 0.99,
+      ema_overwrite_frequency = NULL, jit_compile = TRUE,
+      name = 'Nadam', ...) {
+      args <- capture_args(match.call(), NULL)
+      do.call(keras$optimizers$legacy$Nadam, args)
+    }
+
+    optimizer_rmsprop <- function(
+      learning_rate = 0.001, rho = 0.9, momentum = 0, epsilon = 1e-07,
+      centered = FALSE, weight_decay = NULL, clipnorm = NULL, clipvalue = NULL,
+      global_clipnorm = NULL, use_ema = FALSE, ema_momentum = 0.99,
+      ema_overwrite_frequency = 100L, jit_compile = TRUE,
+      name = "RMSprop", ...) {
+      args <- capture_args(match.call(), list(ema_overwrite_frequency = as.integer))
+      do.call(keras$optimizers$RMSprop, args)
+    }
+
+  }
+
   if (opt.alg == 'adadelta') {
     model %>% compile(
       loss = loss,
