@@ -91,9 +91,12 @@ Model <- function(
       }
 
       nms_to_modify <- intersect(names(args), names(modifiers))
+      
       for (nm in nms_to_modify) {
-        args[nm] <- list(modifiers[[nm]](args[[nm]]))}
+        args[nm] <- list(modifiers[[nm]](args[[nm]]))
       }
+
+    }
 
     optimizer_adadelta <- function(
       learning_rate = 0.001, rho = 0.95, epsilon = 1e-07,
@@ -151,7 +154,7 @@ Model <- function(
       ema_overwrite_frequency = 100L, jit_compile = TRUE,
       name = "RMSprop", ...) {
       args <- capture_args(match.call(), list(ema_overwrite_frequency = as.integer))
-      do.call(keras$optimizers$RMSprop, args)
+      do.call(keras$optimizers$legacy$RMSprop, args)
     }
 
   }
