@@ -121,7 +121,7 @@ NN <- function(
   if (
     file.exists(paste0(training.dir, '/metamodel.RData')) &&
     identical(new.settings[-4, ], old.settings[-4, ]) &&
-    ensemble.size == length(list.files(path = model.dir)[grep('.*h5$', list.files(path = model.dir))]) &&
+    ensemble.size <= length(list.files(path = model.dir)[grep('.*h5$', list.files(path = model.dir))]) &&
     remodel == FALSE) {
 
     wt <- min.wt <- numeric() # 'min.wt' must be defined prior to loading 'metamodel.RData'
