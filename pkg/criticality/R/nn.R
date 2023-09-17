@@ -135,6 +135,8 @@ NN <- function(
       wt[i] <- min.wt[[2]][[i]]
     }
 
+    message('Metamodel loaded')
+
   } else {
 
 #
