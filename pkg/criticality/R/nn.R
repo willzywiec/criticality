@@ -135,8 +135,6 @@ NN <- function(
       wt[i] <- min.wt[[2]][[i]]
     }
 
-    message('Metamodel loaded')
-
   } else {
 
 #
@@ -208,6 +206,8 @@ NN <- function(
     wt <- Test(dataset, ensemble.size, loss, ext.dir, training.dir)
 
   }
+
+  message('Metamodel loaded')
 
   return(list(metamodel, wt))
 
