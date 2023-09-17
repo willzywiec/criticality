@@ -121,6 +121,7 @@ NN <- function(
   if (
     file.exists(paste0(training.dir, '/metamodel.RData')) &&
     identical(new.settings[-4, ], old.settings[-4, ]) &&
+    ensemble.size <= old.settings[4, ] &&
     ensemble.size <= length(list.files(path = model.dir)[grep('.*h5$', list.files(path = model.dir))]) &&
     remodel == FALSE) {
 
