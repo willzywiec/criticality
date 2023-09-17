@@ -14,8 +14,8 @@
 #' @param learning.rate Learning rate
 #' @param val.split Validation split
 #' @param overwrite Boolean (TRUE/FALSE) that determines if files should be overwritten
-#' @param remodel Boolean (TRUE/FALSE) that determines if an existing metamodel should be reused
 #' @param replot Boolean (TRUE/FALSE) that determines if .png files should be replotted
+#' @param reweight Boolean (TRUE/FALSE) that determines if metamodel weights should be recalculated
 #' @param verbose Boolean (TRUE/FALSE) that determines if TensorFlow and Fit function output should be displayed
 #' @param ext.dir External directory (full path)
 #' @param training.dir Training directory (full path)
@@ -60,8 +60,8 @@ NN <- function(
   learning.rate = 0.00075,
   val.split = 0.2,
   overwrite = FALSE,
-  remodel = FALSE,
   replot = TRUE,
+  reweight = FALSE,
   verbose = FALSE,
   ext.dir,
   training.dir = NULL) {
@@ -121,9 +121,9 @@ NN <- function(
   if (
     file.exists(paste0(training.dir, '/metamodel.RData')) &&
     identical(new.settings[-4, ], old.settings[-4, ]) &&
-    ensemble.size <= as.numeric(strsplit(old.settings[4, ], ' ')[[1]][3]) &&
-    ensemble.size <= length(list.files(path = model.dir)[grep('.*h5$', list.files(path = model.dir))]) &&
-    remodel == FALSE) {
+    ensemble.size == dim(utils::read.csv(paste0(training.dir, '/test-mae.csv')))[1] && # check that ensemble.size is equal to the number of rows in test-mae.csv
+    ensemble.size <= length(list.files(path = model.dir)[grep('.*h5$', list.files(path = model.dir))]) && # redundant check to ensure files haven't been deleted
+    reweight == FALSE) {
 
     wt <- min.wt <- numeric() # 'min.wt' must be defined prior to loading 'metamodel.RData'
 
@@ -136,11 +136,11 @@ NN <- function(
       wt[i] <- min.wt[[2]][[i]]
     }
 
-  } else {
-
 #
 # train metamodel
 #
+  } else {
+
     model.files <- list.files(path = model.dir, pattern = '\\.h5$')
 
     metamodel <- history <- rep(list(0), length(ensemble.size))
@@ -183,7 +183,7 @@ NN <- function(
     }
 
 #
-# retrain metamodel
+# refine metamodel (epochs / 10)
 #
     remodel.files <- list.files(path = remodel.dir, pattern = '\\.h5$')
 

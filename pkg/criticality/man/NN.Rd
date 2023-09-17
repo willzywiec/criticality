@@ -16,8 +16,8 @@ NN(
   learning.rate = 0.00075,
   val.split = 0.2,
   overwrite = FALSE,
-  remodel = FALSE,
   replot = TRUE,
+  reweight = FALSE,
   verbose = FALSE,
   ext.dir,
   training.dir = NULL
@@ -46,9 +46,9 @@ NN(
 
 \item{overwrite}{Boolean (TRUE/FALSE) that determines if files should be overwritten}
 
-\item{remodel}{Boolean (TRUE/FALSE) that determines if an existing metamodel should be reused}
-
 \item{replot}{Boolean (TRUE/FALSE) that determines if .png files should be replotted}
+
+\item{reweight}{Boolean (TRUE/FALSE) that determines if metamodel weights should be recalculated}
 
 \item{verbose}{Boolean (TRUE/FALSE) that determines if TensorFlow and Fit function output should be displayed}
 
