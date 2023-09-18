@@ -119,7 +119,7 @@ Sample <- function(
 #
   if (keff.cutoff > 0) {
 
-    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
+    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
 
     dec.len <- 0
 
@@ -144,11 +144,11 @@ Sample <- function(
   if (nrow(bn.data) > 1) {
     if (typeof(metamodel[[2]]) == 'list') {
       keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
-      for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE)
+      for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
       bn.data$keff <- rowSums(keff * metamodel[[2]][[1]])
     } else {
       keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
-      for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE)
+      for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
       bn.data$keff <- rowMeans(keff)
     }
   }

@@ -124,15 +124,16 @@ Risk <- function(
     progress.bar <- utils::txtProgressBar(max = risk.pool, style = 3)
 
     for (i in 1:risk.pool) {
-      bn.data[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir) %>% suppressWarnings()
+      bn.data[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir)
       risk[i] <- length(bn.data[[i]]$keff[bn.data[[i]]$keff >= usl]) / sample.size
       utils::setTxtProgressBar(progress.bar, i)
     }
 
     close(progress.bar)
   
-    saveRDS(bn.data, file = paste0(ext.dir, '/bn-data.RData'))
     utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(risk.dir, '/risk.csv'), row.names = FALSE)
+    utils::write.csv(as.data.frame(bn.data), file = paste0(risk.dir, '/bn-data.csv'), row.names = FALSE)
+    saveRDS(bn.data, file = paste0(risk.dir, '/bn-data.RData'))
 
     if (mean(risk) != 0) {
       message('Risk = ', formatC(mean(risk), format = 'e', digits = 3))

@@ -188,6 +188,8 @@ BN <- function(
   
   bn <- custom.fit(dag, dist = bn)
 
+  message('Bayesian network loaded')
+
   return(bn)
 
 }
