@@ -95,7 +95,7 @@ Risk <- function(
 #
 # estimate process criticality accident risk
 #
-  if (file.exists(paste0(risk.dir, 'risk.csv')) && length(utils::read.csv(paste0(risk.dir, 'risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]) >= risk.pool) {
+  if (file.exists(paste0(risk.dir, '/risk.csv')) && length(utils::read.csv(paste0(risk.dir, '/risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]) >= risk.pool) {
 
     bn.data <- readRDS(paste0(risk.dir, '/bn-data.RData'))
     risk <- utils::read.csv(paste0(risk.dir, '/risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]
