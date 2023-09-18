@@ -119,7 +119,7 @@ Sample <- function(
 #
   if (keff.cutoff > 0) {
 
-    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
+    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
 
     dec.len <- 0
 
