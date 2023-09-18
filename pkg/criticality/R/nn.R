@@ -153,7 +153,7 @@ NN <- function(
           batch_size = batch.size,
           epochs = epochs,
           validation_split = val.split,
-          verbose = verbose) %>% suppressMessages()
+          verbose = verbose)
       } else {
         checkpoint <- callback_model_checkpoint(paste0(remodel.dir, '/', i, '-{epoch:1d}.h5'), monitor = 'mean_absolute_error')
         model %>% keras::fit(
@@ -163,14 +163,14 @@ NN <- function(
           epochs = epochs / 10,
           validation_split = val.split,
           verbose = verbose,
-          callbacks = c(checkpoint)) %>% suppressMessages()
+          callbacks = c(checkpoint))
       }
     }
 
     if (length(model.files) < ensemble.size) {
       for (i in (length(model.files) + 1):ensemble.size) {
-        metamodel[[i]] <- Model(dataset, layers, loss, opt.alg, learning.rate, ext.dir) %>% suppressMessages()
-        history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose) %>% suppressMessages()
+        metamodel[[i]] <- Model(dataset, layers, loss, opt.alg, learning.rate, ext.dir)
+        history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose)
         Plot(i = i, history = history[[i]], plot.dir = model.dir)
         save_model_hdf5(metamodel[[i]], paste0(model.dir, '/', i, '.h5'))
       }
@@ -193,7 +193,7 @@ NN <- function(
       for (i in 1:ensemble.size) {
         remodel.files <- list.files(path = remodel.dir, pattern = paste0(i, '-.+\\.h5$'))
         if (length(remodel.files) < epochs / 10) {
-          history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose, remodel.dir, i) %>% suppressMessages()
+          history[[i]] <- Fit(dataset, metamodel[[i]], batch.size, epochs, val.split, verbose, remodel.dir, i)
           Plot(i = i, history = history[[i]], plot.dir = remodel.dir)
         } else {
           Plot(i = i, plot.dir = remodel.dir)
