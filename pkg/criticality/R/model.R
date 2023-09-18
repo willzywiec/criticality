@@ -24,7 +24,7 @@ Model <- function(
 
   layers <- strsplit(layers, '-') %>% unlist() %>% as.integer()
 
-  model <- keras_model_sequential() %>% layer_dense(units = layers[1], activation = 'relu', input_shape = dim(dataset$training.df)[2]) %>% suppressMessages()
+  model <- keras_model_sequential() %>% layer_dense(units = layers[1], activation = 'relu', input_shape = dim(dataset$training.df)[2])
 
   if (length(layers) >= 2) {
     model <- model %>% layer_dense(units = layers[2], activation = 'relu')
