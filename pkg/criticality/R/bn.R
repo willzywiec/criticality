@@ -188,6 +188,8 @@ BN <- function(
   
   bn <- custom.fit(dag, dist = bn)
 
+  saveRDS(bn, file = paste0(ext.dir, '/bn-', facility.data, '.RData'))
+
   return(bn)
 
 }
