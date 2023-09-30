@@ -77,7 +77,7 @@ NN <- function(
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
 
   new.settings <- data.frame(V1 = c(
-    'model settings',
+    'metamodel settings',
     paste0('batch size: ', batch.size),
     paste0('code: ', code),
     paste0('ensemble size: ', ensemble.size),
@@ -93,23 +93,23 @@ NN <- function(
 #
 # check metamodel settings
 #
-  if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
-    old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'), sep = '\n') %>% as.data.frame()
+  if (file.exists(paste0(training.dir, '/metamodel-settings.txt'))) {
+    old.settings <- utils::read.table(paste0(training.dir, '/metamodel-settings.txt'), sep = '\n') %>% as.data.frame()
     if (!identical(new.settings[-4, ], old.settings[-4, ])) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+        utils::write.table(new.settings, file = paste0(training.dir, '/metamodel-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
         stop('files could not be overwritten', call. = FALSE)
       }
     } else {
-      utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+      utils::write.table(new.settings, file = paste0(training.dir, '/metamodel-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
     }
   } else {
-    utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+    utils::write.table(new.settings, file = paste0(training.dir, '/metamodel-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
   # build sum of squared errors (SSE) loss function
