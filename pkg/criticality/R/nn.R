@@ -208,8 +208,6 @@ NN <- function(
 
   }
 
-  message('Metamodel loaded')
-
   return(list(metamodel, wt))
 
 }
