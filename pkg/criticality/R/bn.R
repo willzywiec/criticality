@@ -19,6 +19,7 @@
 #' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 #'
 #' BN(
+#'   dist = "gamma",
 #'   facility.data = "facility.csv",
 #'   ext.dir = ext.dir
 #' )
