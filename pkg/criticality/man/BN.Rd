@@ -22,10 +22,10 @@ This function creates a Bayesian network from pre-formatted nuclear facility dat
 }
 \examples{
 
-ext.dir <- paste0(tempdir(), "/criticality/extdata")
+ext.dir <- paste0(tempdir(), "/criticality/inst/extdata")
 dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
 
-extdata <- paste0(.libPaths()[1], "/criticality/extdata")
+extdata <- paste0(.libPaths()[1], "/criticality/inst/extdata")
 file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
 file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
 
