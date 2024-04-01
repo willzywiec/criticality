@@ -9,21 +9,6 @@
 #' @return A Bayesian network that models fissile material operations (op), controls (ctrl), 
 #'         and parameters that affect nuclear criticality safety
 #' @export
-#' @examples
-#'
-#' ext.dir <- paste0(tempdir(), "/criticality/extdata")
-#' dir.create(ext.dir, recursive = TRUE, showWarnings = FALSE)
-#'
-#' extdata <- paste0(.libPaths()[1], "/criticality/extdata")
-#' file.copy(paste0(extdata, "/facility.csv"), ext.dir, recursive = TRUE)
-#' file.copy(paste0(extdata, "/mcnp-dataset.RData"), ext.dir, recursive = TRUE)
-#'
-#' BN(
-#'   dist = "gamma",
-#'   facility.data = "facility.csv",
-#'   ext.dir = ext.dir
-#' )
-#'
 #' @import bnlearn
 #' @import dplyr
 #' @import evd
