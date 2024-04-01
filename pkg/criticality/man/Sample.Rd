@@ -9,7 +9,9 @@ Sample(
   code = "mcnp",
   cores = parallel::detectCores()/2,
   keff.cutoff = 0.9,
+  mass.cutoff = 100,
   metamodel,
+  rad.cutoff = 7,
   sample.size = 1e+09,
   ext.dir,
   risk.dir = NULL
@@ -24,7 +26,11 @@ Sample(
 
 \item{keff.cutoff}{keff cutoff value (e.g., 0.9)}
 
+\item{mass.cutoff}{mass cutoff value (e.g., 100)}
+
 \item{metamodel}{List of deep neural network metamodels and weights}
+
+\item{rad.cutoff}{radius cutoff value (e.g., 7)}
 
 \item{sample.size}{Number of samples used to calculate risk}
 

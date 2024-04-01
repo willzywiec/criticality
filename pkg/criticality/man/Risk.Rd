@@ -11,7 +11,9 @@ Risk(
   dist = "gamma",
   facility.data,
   keff.cutoff = 0.9,
+  mass.cutoff = 100,
   metamodel,
+  rad.cutoff = 7,
   risk.pool = 100,
   sample.size = 1e+09,
   usl = 0.95,
@@ -30,15 +32,19 @@ Risk(
 
 \item{facility.data}{.csv file name}
 
-\item{keff.cutoff}{keff cutoff value (e.g., keff >= 0.9)}
+\item{keff.cutoff}{keff cutoff value (e.g., 0.9)}
+
+\item{mass.cutoff}{mass cutoff value (e.g., 100)}
 
 \item{metamodel}{List of deep neural network metamodels and weights}
+
+\item{rad.cutoff}{radius cutoff value (e.g., 7)}
 
 \item{risk.pool}{Number of times risk is calculated}
 
 \item{sample.size}{Number of samples used to calculate risk}
 
-\item{usl}{Upper subcritical limit (e.g., keff >= 0.95)}
+\item{usl}{Upper subcritical limit (e.g., 0.95)}
 
 \item{ext.dir}{External directory (full path)}
 
@@ -70,6 +76,7 @@ try(if (config == TRUE) {
     cores = 1,
     facility.data = "facility.csv",
     keff.cutoff = 0.5,
+    mass.cutoff = 100,
     metamodel = NN(
       batch.size = 128,
       ensemble.size = 1,
@@ -77,6 +84,7 @@ try(if (config == TRUE) {
       layers = "256-256-16",
       replot = FALSE,
       ext.dir = ext.dir),
+    rad.cutoff = 7,
     risk.pool = 10,
     sample.size = 1e+04,
     ext.dir = ext.dir,

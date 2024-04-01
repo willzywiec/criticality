@@ -7,7 +7,9 @@
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
+#' @param mass.cutoff mass cutoff value (e.g., 100)
 #' @param metamodel List of deep neural network metamodels and weights
+#' @param rad.cutoff radius cutoff value (e.g., 7)
 #' @param sample.size Number of samples used to calculate risk
 #' @param ext.dir External directory (full path)
 #' @param risk.dir Risk directory
@@ -22,7 +24,9 @@ Sample <- function(
   code = 'mcnp',
   cores = parallel::detectCores() / 2,
   keff.cutoff = 0.9,
+  mass.cutoff = 100,
   metamodel,
+  rad.cutoff = 7,
   sample.size = 1e+09,
   ext.dir,
   risk.dir = NULL) {
@@ -38,51 +42,39 @@ Sample <- function(
   if (cores > 1) {
     if (cores > parallel::detectCores()) cores <- parallel::detectCores()
     cluster <- parallel::makeCluster(cores)
+  } else {
+    cluster <- parallel::makeCluster(1)
   }
 
-  if (cores > 1 && keff.cutoff > 0) {
-    bn.data <- cpdist(
+  if (mass.cutoff > 0 || rad.cutoff > 0) {
+    bn.risk <- cpdist(
       bn,
       nodes = names(bn),
-      evidence = (as.integer(mass) > 100) & (as.integer(rad) > 7),
-      batch = sample.size,
-      cluster = cluster,
-      n = sample.size) %>% stats::na.omit()
-  } else if (cores == 1 && keff.cutoff > 0) {
-    bn.data <- cpdist(
-      bn,
-      nodes = names(bn),
-      evidence = (as.integer(mass) > 100) & (as.integer(rad) > 7),
-      batch = sample.size,
-      n = sample.size) %>% stats::na.omit()
-  } else if (cores > 1) {
-    bn.data <- cpdist(
-      bn,
-      nodes = names(bn),
-      evidence = TRUE,
+      evidence = (as.integer(mass) > mass.cutoff) & (as.integer(rad) > rad.cutoff),
       batch = sample.size,
       cluster = cluster,
       n = sample.size) %>% stats::na.omit()
   } else {
-    bn.data <- cpdist(
+    bn.risk <- cpdist(
       bn,
       nodes = names(bn),
       evidence = TRUE,
       batch = sample.size,
+      cluster = cluster,
       n = sample.size) %>% stats::na.omit()
   }
 
-  if (cores > 1) parallel::stopCluster(cluster)
+  parallel::stopCluster(cluster)
 
-  bn.data[[3]] <- unlist(bn.data[[3]]) %>% as.character() %>% as.numeric() # mass
-  bn.data[[4]] <- unlist(bn.data[[4]])                                     # form
-  bn.data[[5]] <- unlist(bn.data[[5]])                                     # mod
-  bn.data[[6]] <- unlist(bn.data[[6]]) %>% as.character() %>% as.numeric() # rad
-  bn.data[[7]] <- unlist(bn.data[[7]])                                     # ref
-  bn.data[[8]] <- unlist(bn.data[[8]]) %>% as.character() %>% as.numeric() # thk
+  bn.risk[[3]] <- unlist(bn.risk[[3]]) %>% as.character() %>% as.numeric() # mass
+  bn.risk[[4]] <- unlist(bn.risk[[4]])                                     # form
+  bn.risk[[5]] <- unlist(bn.risk[[5]])                                     # mod
+  bn.risk[[6]] <- unlist(bn.risk[[6]]) %>% as.character() %>% as.numeric() # rad
+  bn.risk[[7]] <- unlist(bn.risk[[7]])                                     # ref
+  bn.risk[[8]] <- unlist(bn.risk[[8]]) %>% as.character() %>% as.numeric() # thk
 
   # set fissile material density (g/cc)
-  fiss.density <- as.character(bn.data$form)
+  fiss.density <- as.character(bn.risk$form)
   fiss.density[fiss.density == 'alpha'] <- 19.86
   fiss.density[fiss.density == 'delta'] <- 15.92
   fiss.density[fiss.density == 'puo2'] <- 11.5
@@ -91,27 +83,27 @@ Sample <- function(
   fiss.density <- as.numeric(fiss.density)
 
   # calculate vol (cc)
-  vol <- 4/3 * pi * bn.data$rad^3
+  vol <- 4/3 * pi * bn.risk$rad^3
 
   # fix mod, vol (cc), and rad (cm)
-  bn.data$mod[vol <= bn.data$mass / fiss.density] <- 'none'
-  vol[vol <= bn.data$mass / fiss.density] <- bn.data$mass[vol <= bn.data$mass / fiss.density] / fiss.density[vol <= bn.data$mass / fiss.density]
-  bn.data$rad <- (3/4 * vol / pi)^(1/3)
+  bn.risk$mod[vol <= bn.risk$mass / fiss.density] <- 'none'
+  vol[vol <= bn.risk$mass / fiss.density] <- bn.risk$mass[vol <= bn.risk$mass / fiss.density] / fiss.density[vol <= bn.risk$mass / fiss.density]
+  bn.risk$rad <- (3/4 * vol / pi)^(1/3)
 
   # fix ref and thk (cm)
-  bn.data$ref[bn.data$thk == 0] <- 'none'
-  bn.data$thk[bn.data$ref == 'none'] <- 0
+  bn.risk$ref[bn.risk$thk == 0] <- 'none'
+  bn.risk$thk[bn.risk$ref == 'none'] <- 0
 
   # calculate conc (g/cc)
-  bn.data$conc <- ifelse((vol == 0), 0, (bn.data$mass / vol))
+  bn.risk$conc <- ifelse((vol == 0), 0, (bn.risk$mass / vol))
 
   # set vol (cc)
-  bn.data$vol <- vol
+  bn.risk$vol <- vol
 
   bn.df <- Scale(
     code = code,
     dataset = dataset,
-    output = subset(bn.data, select = -c(op, ctrl)),
+    output = subset(bn.risk, select = -c(op, ctrl)),
     ext.dir = ext.dir)
 
 #
@@ -119,11 +111,11 @@ Sample <- function(
 #
   if (keff.cutoff > 0) {
 
-    bn.data$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
+    bn.risk$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
 
     dec.len <- 0
 
-    while (nrow(subset(bn.data, keff > keff.cutoff)) == 0) {
+    while (nrow(subset(bn.risk, keff > keff.cutoff)) == 0) {
       dec.len <- as.character(keff.cutoff) %>% strsplit('[.]') %>% unlist()
       dec.len <- nchar(dec.len[2])
       if (is.na(dec.len)) {
@@ -135,24 +127,24 @@ Sample <- function(
       }
     }
 
-    bn.df <- cbind(bn.df, bn.data$keff) %>% subset(bn.data$keff > keff.cutoff)
+    bn.df <- cbind(bn.df, bn.risk$keff) %>% subset(bn.risk$keff > keff.cutoff)
     bn.df <- bn.df[ , -ncol(bn.df)]
-    bn.data <- subset(bn.data, keff > keff.cutoff)
+    bn.risk <- subset(bn.risk, keff > keff.cutoff)
 
   }
 
-  if (nrow(bn.data) > 1) {
+  if (nrow(bn.risk) > 1) {
     if (typeof(metamodel[[2]]) == 'list') {
       keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
       for (i in 1:length(metamodel[[2]][[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
-      bn.data$keff <- rowSums(keff * metamodel[[2]][[1]])
+      bn.risk$keff <- rowSums(keff * metamodel[[2]][[1]])
     } else {
       keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
       for (i in 1:length(metamodel[[1]])) keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
-      bn.data$keff <- rowMeans(keff)
+      bn.risk$keff <- rowMeans(keff)
     }
   }
 
-  return(bn.data)
+  return(bn.risk)
 
 }
