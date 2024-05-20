@@ -4,7 +4,6 @@
 #'
 #' This function centers, scales, and one-hot encodes variables.
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
-#' @param dataset Training and test data
 #' @param output Processed output from Monte Carlo radiation transport code simulations
 #' @param ext.dir External directory (full path)
 #' @return A list of centered, scaled, and one-hot-encoded training and test data
@@ -15,7 +14,7 @@
 
 Scale <- function(
   code = 'mcnp',
-  dataset = NULL,
+  # dataset = NULL,
   output,
   ext.dir) {
 
@@ -37,7 +36,7 @@ Scale <- function(
   }
 
   # nullify one-factor variables and one-hot encode categorical variables
-  if (is.null(dataset)) {
+  if (!exists('dataset')) {
     null.output <- Nullify(output, labels)
     dummy <- caret::dummyVars(~ ., data = null.output, sep = '')
     training.data <- data.frame(stats::predict(dummy, newdata = null.output)) %>% filter(sd < 0.001)
@@ -56,7 +55,7 @@ Scale <- function(
   }
 
   # partition data
-  if (is.null(dataset)) {
+  if (!exists('dataset')) {
     test.data <- subset(training.data, mass > 200)
     test.data <- test.data[sample(nrow(test.data), round(nrow(training.data) * 0.2)), ]
     training.data <- training.data %>% anti_join(test.data) %>% suppressMessages()
@@ -67,7 +66,7 @@ Scale <- function(
 #
   labels <- c('mass', 'rad', 'thk', 'vol', 'conc') # missing 'ht' and 'hd'
 
-  if (is.null(dataset)) {
+  if (!exists('dataset')) {
     training.mean <- apply(training.data[labels], 2, mean)
     training.sd <- apply(training.data[labels], 2, sd)
   } else {
@@ -75,7 +74,7 @@ Scale <- function(
     training.sd <- dataset$training.sd
   }
 
-  if (is.null(dataset)) {
+  if (!exists('dataset')) {
     training.df <- training.data[ , 1:(ncol(training.data) - 2)]
     test.df <- test.data[ , 1:(ncol(test.data) - 2)]
   } else if (ncol(output) == ncol(dataset$output)) {
@@ -95,7 +94,7 @@ Scale <- function(
   # convert data frames to matrices (Keras requirement)
   training.df <- as.matrix(training.df)
 
-  if (is.null(dataset)) {
+  if (!exists('dataset')) {
     test.df <- as.matrix(test.df)
     dataset <- list(output, training.data, training.mean, training.sd, training.df, test.data, test.df)
     names(dataset) <- c('output', 'training.data', 'training.mean', 'training.sd', 'training.df', 'test.data', 'test.df')

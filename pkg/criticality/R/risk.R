@@ -8,10 +8,10 @@
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
 #' @param facility.data .csv file name
-#' @param keff.cutoff keff cutoff value (e.g., 0.9)
-#' @param mass.cutoff mass cutoff value (e.g., 100)
 #' @param metamodel List of deep neural network metamodels and weights
-#' @param rad.cutoff radius cutoff value (e.g., 7)
+#' @param keff.cutoff keff cutoff value (e.g., 0.9)
+#' @param mass.cutoff mass cutoff in grams (e.g., 100)
+#' @param rad.cutoff radius cutoff in cm (e.g., 7)
 #' @param risk.pool Number of times risk is calculated
 #' @param sample.size Number of samples used to calculate risk
 #' @param usl Upper subcritical limit (e.g., 0.95)
@@ -38,8 +38,6 @@
 #'     code = "mcnp",
 #'     cores = 1,
 #'     facility.data = "facility.csv",
-#'     keff.cutoff = 0.5,
-#'     mass.cutoff = 100,
 #'     metamodel = NN(
 #'       batch.size = 128,
 #'       ensemble.size = 1,
@@ -47,9 +45,12 @@
 #'       layers = "256-256-16",
 #'       replot = FALSE,
 #'       ext.dir = ext.dir),
+#'     keff.cutoff = 0.5,
+#'     mass.cutoff = 100,
 #'     rad.cutoff = 7,
 #'     risk.pool = 10,
 #'     sample.size = 1e+04,
+#'     usl = 0.95,
 #'     ext.dir = ext.dir,
 #'     training.dir = NULL
 #'   )
@@ -65,9 +66,9 @@ Risk <- function(
   cores = parallel::detectCores() / 2,
   dist = 'gamma',
   facility.data,
+  metamodel,
   keff.cutoff = 0.9,
   mass.cutoff = 100,
-  metamodel,
   rad.cutoff = 7,
   risk.pool = 100,
   sample.size = 1e+09,
@@ -130,7 +131,16 @@ Risk <- function(
     progress.bar <- utils::txtProgressBar(max = risk.pool, style = 3)
 
     for (i in 1:risk.pool) {
-      bn.risk[[i]] <- Sample(bn, code, cores, keff.cutoff, metamodel, sample.size, ext.dir, risk.dir) %>% suppressWarnings()
+      bn.risk[[i]] <- Sample(
+        bn,
+        code,
+        cores,
+        metamodel,
+        keff.cutoff,
+        mass.cutoff,
+        rad.cutoff,
+        sample.size,
+        ext.dir)
       risk[i] <- length(bn.risk[[i]]$keff[bn.risk[[i]]$keff >= usl]) / sample.size
       utils::setTxtProgressBar(progress.bar, i)
     }

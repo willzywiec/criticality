@@ -93,23 +93,23 @@ NN <- function(
 #
 # check metamodel settings
 #
-  if (file.exists(paste0(training.dir, '/metamodel-settings.txt'))) {
-    old.settings <- utils::read.table(paste0(training.dir, '/metamodel-settings.txt'), sep = '\n') %>% as.data.frame()
+  if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
+    old.settings <- utils::read.table(paste0(training.dir, '/model-settings.txt'), sep = '\n') %>% as.data.frame()
     if (!identical(new.settings[-4, ], old.settings[-4, ])) {
       if (overwrite == TRUE) {
         unlink(model.dir, recursive = TRUE)
         unlink(remodel.dir, recursive = TRUE)
-        utils::write.table(new.settings, file = paste0(training.dir, '/metamodel-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+        utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
         dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
         dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
       } else {
         stop('files could not be overwritten', call. = FALSE)
       }
     } else {
-      utils::write.table(new.settings, file = paste0(training.dir, '/metamodel-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+      utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
     }
   } else {
-    utils::write.table(new.settings, file = paste0(training.dir, '/metamodel-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+    utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
   }
 
   # build sum of squared errors (SSE) loss function
@@ -135,7 +135,6 @@ NN <- function(
       metamodel[[i]] <- load_model_hdf5(paste0(remodel.dir, '/', i, '-', min.wt[[1]][[i]], '.h5'), custom_objects = c(loss = loss))
       wt[i] <- min.wt[[2]][[i]]
     }
-
 #
 # train metamodel
 #
@@ -181,9 +180,8 @@ NN <- function(
         if (replot == TRUE) Plot(i = i, plot.dir = model.dir)
       }
     }
-
 #
-# refine metamodel (epochs / 10)
+# retrain metamodel (epochs / 10)
 #
     remodel.files <- list.files(path = remodel.dir, pattern = '\\.h5$')
 
