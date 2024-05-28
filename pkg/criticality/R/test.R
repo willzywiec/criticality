@@ -17,9 +17,9 @@ Test <- function(
   ensemble.size = 5,
   loss = 'sse',
   ext.dir,
-  training.dir) {
+  training.dir = NULL) {
 
-  if (missing(training.dir)) training.dir <- ext.dir
+  if (is.null(training.dir)) training.dir <- paste0(ext.dir, '/training')
 
   remodel.dir <- paste0(training.dir, '/remodel')
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)

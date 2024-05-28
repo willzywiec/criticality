@@ -10,8 +10,8 @@
 #' @param facility.data .csv file name
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
-#' @param mass.cutoff mass cutoff in grams (e.g., 100)
-#' @param rad.cutoff radius cutoff in cm (e.g., 7)
+#' @param mass.cutoff mass cutoff (grams)
+#' @param rad.cutoff radius cutoff (cm)
 #' @param risk.pool Number of times risk is calculated
 #' @param sample.size Number of samples used to calculate risk
 #' @param usl Upper subcritical limit (e.g., 0.95)
@@ -71,20 +71,23 @@ Risk <- function(
   mass.cutoff = 100,
   rad.cutoff = 7,
   risk.pool = 100,
-  sample.size = 1e+09,
+  sample.size = 1e+06,
   usl = 0.95,
   ext.dir,
   training.dir = NULL) {
 
-  if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
+  # if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
-  if (is.null(training.dir)) training.dir <- ext.dir
+  if (is.null(training.dir)) training.dir <- paste0(ext.dir, '/training')
 
-  risk.dir <- paste0(ext.dir, '/risk/', gsub('.csv', '', facility.data), '-', dist, '-', formatC(sample.size, format = 'e', digits = 0))
-
-  if (keff.cutoff > 0) {
-    risk.dir <- paste0(risk.dir, '-', keff.cutoff)
-  }
+  risk.dir <- paste0(
+    ext.dir, '/risk/',
+    gsub('.csv', '', facility.data), '-',
+    dist, '-',
+    formatC(sample.size, format = 'e', digits = 0), '-',
+    risk.pool, '-',
+    usl, '-',
+    as.numeric(Sys.time()))
 
   dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
 
@@ -92,6 +95,22 @@ Risk <- function(
   if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
     file.copy(c(paste0(training.dir, '/model-settings.txt')), paste0(risk.dir, '/model-settings.txt'), overwrite = TRUE)
   }
+
+  risk.settings <- data.frame(V1 = c(
+    'risk settings',
+    paste0('distribution: ', dist),
+    paste0('facility: ', gsub('.csv', '', facility.data)),
+    paste0('keff cutoff: ', keff.cutoff),
+    paste0('mass cutoff (g): ', mass.cutoff),
+    paste0('rad cutoff (cm): ', rad.cutoff),
+    paste0('risk pool: ', risk.pool),
+    paste0('sample size: ', sample.size),
+    paste0('upper subcritical limit: ', usl),
+    paste0('external directory: ', ext.dir),
+    paste0('training directory: ', training.dir),
+    paste0('risk directory: ', risk.dir)))
+
+  utils::write.table(risk.settings, file = paste0(risk.dir, '/risk-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
 
   # restrict sample size (~12 GB RAM)
   if (sample.size > 5e+08) {
@@ -132,15 +151,14 @@ Risk <- function(
 
     for (i in 1:risk.pool) {
       bn.risk[[i]] <- Sample(
-        bn,
-        code,
-        cores,
-        metamodel,
-        keff.cutoff,
-        mass.cutoff,
-        rad.cutoff,
-        sample.size,
-        ext.dir)
+        bn = bn,
+        cores = cores,
+        metamodel = metamodel,
+        keff.cutoff = keff.cutoff,
+        mass.cutoff = mass.cutoff,
+        rad.cutoff = rad.cutoff,
+        sample.size = sample.size,
+        ext.dir = ext.dir)
       risk[i] <- length(bn.risk[[i]]$keff[bn.risk[[i]]$keff >= usl]) / sample.size
       utils::setTxtProgressBar(progress.bar, i)
     }
@@ -163,7 +181,7 @@ Risk <- function(
 
   }
 
-  bn.risk <- bind_rows(bn.risk)
+  bn.risk <- dplyr::bind_rows(bn.risk)
 
   return(list(risk, bn.risk))
 

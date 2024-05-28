@@ -68,7 +68,7 @@ NN <- function(
 
   if (!exists('dataset')) dataset <- Tabulate(code, ext.dir)
 
-  if (is.null(training.dir)) training.dir <- ext.dir
+  if (is.null(training.dir)) training.dir <- paste0(ext.dir, '/training')
 
   model.dir <- paste0(training.dir, '/model')
   dir.create(model.dir, recursive = TRUE, showWarnings = FALSE)
@@ -77,7 +77,7 @@ NN <- function(
   dir.create(remodel.dir, recursive = TRUE, showWarnings = FALSE)
 
   new.settings <- data.frame(V1 = c(
-    'metamodel settings',
+    'model settings',
     paste0('batch size: ', batch.size),
     paste0('code: ', code),
     paste0('ensemble size: ', ensemble.size),

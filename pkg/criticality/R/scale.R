@@ -14,7 +14,6 @@
 
 Scale <- function(
   code = 'mcnp',
-  # dataset = NULL,
   output,
   ext.dir) {
 
