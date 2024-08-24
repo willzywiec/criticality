@@ -115,7 +115,7 @@ Risk <- function(
 #
   if (file.exists(paste0(risk.dir, '/risk.csv')) && length(utils::read.csv(paste0(risk.dir, '/risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]) >= risk.pool) {
 
-    bn.risk <- readRDS(paste0(risk.dir, '/bn-risk.RData'))
+    bn.dist <- readRDS(paste0(risk.dir, '/bn-risk.RData'))
     risk <- utils::read.csv(paste0(risk.dir, '/risk.csv'), fileEncoding = 'UTF-8-BOM')[ , 1]
 
     if (mean(risk) != 0) {
@@ -135,14 +135,14 @@ Risk <- function(
 
   } else {
 
-    bn.risk <- list()
+    bn.dist <- list()
     
     risk <- pooled.risk <- numeric()
 
     progress.bar <- utils::txtProgressBar(max = risk.pool, style = 3)
 
     for (i in 1:risk.pool) {
-      bn.risk[[i]] <- Sample(
+      bn.dist[[i]] <- Predict(
         bn = bn,
         cores = cores,
         metamodel = metamodel,
@@ -151,14 +151,14 @@ Risk <- function(
         rad.cutoff = rad.cutoff,
         sample.size = sample.size,
         ext.dir = ext.dir)
-      risk[i] <- length(bn.risk[[i]]$keff[bn.risk[[i]]$keff >= usl]) / sample.size
+      risk[i] <- length(bn.dist[[i]]$keff[bn.dist[[i]]$keff >= usl]) / sample.size
       utils::setTxtProgressBar(progress.bar, i)
     }
 
     close(progress.bar)
   
     utils::write.csv(as.data.frame(risk, col.names = 'risk'), file = paste0(risk.dir, '/risk.csv'), row.names = FALSE)
-    saveRDS(bn.risk, file = paste0(risk.dir, '/bn-risk.RData'))
+    saveRDS(bn.dist, file = paste0(risk.dir, '/bn-risk.RData'))
 
     if (mean(risk) != 0) {
       message('Risk = ', formatC(mean(risk), format = 'e', digits = 3))
@@ -173,8 +173,8 @@ Risk <- function(
 
   }
 
-  bn.risk <- dplyr::bind_rows(bn.risk)
+  bn.dist <- dplyr::bind_rows(bn.dist)
 
-  return(list(risk, bn.risk))
+  return(list(risk, bn.dist))
 
 }
