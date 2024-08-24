@@ -20,6 +20,8 @@ BN <- function(
   facility.data,
   ext.dir) {
 
+  facility <- gsub('.csv', '', facility.data)
+
   facility.data <- utils::read.csv(paste0(ext.dir, '/', facility.data))
 
   # set categorical parameters
@@ -174,7 +176,7 @@ BN <- function(
   
   bn <- custom.fit(dag, dist = bn)
 
-  saveRDS(bn, file = paste0(ext.dir, '/bn-', facility.data, '.RData'))
+  saveRDS(bn, file = paste0(ext.dir, '/', facility, '-', dist, '.RData'))
 
   return(bn)
 

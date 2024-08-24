@@ -47,22 +47,22 @@ Sample <- function(
 
   parallel::stopCluster(cluster)
 
-  cat('\nBN samples generated') # DELETE
+  cat('\nBN samples generated')
 
   bn.risk <- bn.risk %>% dplyr::filter(as.numeric(mass) > mass.cutoff & as.numeric(rad) > rad.cutoff)
 
   # convert factors to atomic vectors
   bn.risk$mass <- unlist(bn.risk$mass) %>% as.character() %>% as.numeric()
-  bn.risk$form <- unlist(bn.risk$form)
-  bn.risk$mod <- unlist(bn.risk$mod)
+  bn.risk$form <- unlist(bn.risk$form) %>% as.character()
+  bn.risk$mod <- unlist(bn.risk$mod) %>% as.character()
   bn.risk$rad <- unlist(bn.risk$rad) %>% as.character() %>% as.numeric()
-  bn.risk$ref <- unlist(bn.risk$ref)
+  bn.risk$ref <- unlist(bn.risk$ref) %>% as.character()
   bn.risk$thk <- unlist(bn.risk$thk) %>% as.character() %>% as.numeric()
 
-  cat('\nBN filtering complete (', nrow(bn.risk), ')', sep = '') # DELETE
+  cat('\nBN filtering complete (', nrow(bn.risk), ')', sep = '')
 
   # set fissile material density (g/cc)
-  fiss.density <- as.character(bn.risk$form)
+  fiss.density <- bn.risk$form
   fiss.density[fiss.density == 'alpha'] <- 19.86
   fiss.density[fiss.density == 'delta'] <- 15.92
   fiss.density[fiss.density == 'puo2'] <- 11.5
@@ -92,7 +92,7 @@ Sample <- function(
     output = bn.risk %>% dplyr::select(!c(op, ctrl)),
     ext.dir = ext.dir)
 
-  cat('\nBN processing complete') # DELETE
+  cat('\nBN processing complete')
 
 #
 # predict keff values
@@ -108,10 +108,10 @@ Sample <- function(
 
     bn.risk <- bn.risk %>% subset(keff > keff.cutoff)
 
-    new.len <- nrow(bn.risk) # DELETE
+    new.len <- nrow(bn.risk)
 
-    cat('\nInitial predictions complete (', old.len, ' --> ', new.len, ')', sep = '') # DELETE
-    cat('') # DELETE
+    cat('\nInitial predictions complete (', old.len, ' --> ', new.len, ')', sep = '')
+    cat('')
 
   }
 
@@ -120,16 +120,16 @@ Sample <- function(
       keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
       for (i in 1:length(metamodel[[2]][[1]])) {
         keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
-        cat('\nLooped predictions complete (', i, '/', length(metamodel[[2]][[1]]), ')', sep = '') # DELETE
-        cat('') # DELETE
+        cat('\nPredictions complete (', i, '/', length(metamodel[[2]][[1]]), ')', sep = '')
+        cat('')
       }
       bn.risk$keff <- rowSums(keff * metamodel[[2]][[1]])
     } else {
       keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
       for (i in 1:length(metamodel[[1]])) {
         keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
-        cat('\nLooped predictions complete (', i, '/', length(metamodel[[1]]), ')', sep = '') # DELETE
-        cat('') # DELETE
+        cat('\nPredictions complete (', i, '/', length(metamodel[[1]]), ')', sep = '')
+        cat('')
       }
       bn.risk$keff <- rowMeans(keff)
     }

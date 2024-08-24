@@ -7,7 +7,6 @@
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
-#' @param facility.data .csv file name
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param mass.cutoff mass cutoff (grams)
@@ -37,7 +36,6 @@
 #'       ext.dir = ext.dir),
 #'     code = "mcnp",
 #'     cores = 1,
-#'     facility.data = "facility.csv",
 #'     metamodel = NN(
 #'       batch.size = 128,
 #'       ensemble.size = 1,
@@ -65,7 +63,6 @@ Risk <- function(
   code = 'mcnp',
   cores = parallel::detectCores() / 2,
   dist = 'gamma',
-  facility.data,
   metamodel,
   keff.cutoff = 0.9,
   mass.cutoff = 100,
@@ -80,26 +77,21 @@ Risk <- function(
 
   if (is.null(training.dir)) training.dir <- paste0(ext.dir, '/training')
 
-  risk.dir <- paste0(
-    ext.dir, '/risk/',
-    gsub('.csv', '', facility.data), '-',
-    dist, '-',
-    formatC(sample.size, format = 'e', digits = 0), '-',
-    risk.pool, '-',
-    usl, '-',
-    as.numeric(Sys.time()))
+  time.stamp <- Sys.time() %>% as.character() %>% strsplit(split = ' ') %>% .[[1]]
+
+  date <- time.stamp[1]
+  time <- time.stamp[2] %>% strsplit(split = '[.]') %>% .[[1]] %>% .[1] %>% gsub(':', '.', .)
+
+  facility <- substitute(bn) %>% deparse()
+
+  risk.dir <- paste0(ext.dir, '/risk/', facility, '-', date, '-', time)
 
   dir.create(risk.dir, recursive = TRUE, showWarnings = FALSE)
-
-  # copy metamodel settings
-  if (file.exists(paste0(training.dir, '/model-settings.txt'))) {
-    file.copy(c(paste0(training.dir, '/model-settings.txt')), paste0(risk.dir, '/model-settings.txt'), overwrite = TRUE)
-  }
 
   risk.settings <- data.frame(V1 = c(
     'risk settings',
     paste0('distribution: ', dist),
-    paste0('facility: ', gsub('.csv', '', facility.data)),
+    paste0('facility: ', facility),
     paste0('keff cutoff: ', keff.cutoff),
     paste0('mass cutoff (g): ', mass.cutoff),
     paste0('rad cutoff (cm): ', rad.cutoff),
