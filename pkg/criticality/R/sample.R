@@ -103,10 +103,10 @@ Sample <- function(
 
     bn.risk$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
 
-    bn.df <- cbind(bn.df, bn.risk$keff) %>% subset(bn.risk$keff > keff.cutoff)
+    bn.df <- cbind(bn.df, bn.risk$keff) %>% subset(bn.risk$keff >= keff.cutoff)
     bn.df <- bn.df[ , -ncol(bn.df)]
 
-    bn.risk <- bn.risk %>% subset(keff > keff.cutoff)
+    bn.risk <- bn.risk %>% subset(keff >= keff.cutoff)
 
     new.len <- nrow(bn.risk)
 
