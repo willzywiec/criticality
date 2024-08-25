@@ -36,20 +36,20 @@ Predict <- function(
 #
   if (cores > parallel::detectCores()) cores <- parallel::detectCores()
 
-  # cluster <- parallel::makeCluster(cores)
-  
+  cluster <- parallel::makeCluster(cores)
+
   bn.dist <- bnlearn::cpdist(
     bn,
     nodes = names(bn),
-    evidence = eval(parse(text = paste0('as.integer(mass) > ', mass.cutoff))),
-    # cluster = cluster,
+    evidence = TRUE,
+    cluster = cluster,
     n = sample.size) %>% stats::na.omit()
 
-  # parallel::stopCluster(cluster)
+  parallel::stopCluster(cluster)
 
   cat('\nBN samples generated')
 
-  # bn.dist <- bn.dist %>% dplyr::filter(as.numeric(mass) > mass.cutoff & as.numeric(rad) > rad.cutoff)
+  bn.dist <- bn.dist %>% dplyr::filter(as.numeric(mass) > mass.cutoff & as.numeric(rad) > rad.cutoff)
 
   # convert factors to atomic vectors
   bn.dist$mass <- unlist(bn.dist$mass) %>% as.character() %>% as.numeric()
@@ -99,7 +99,7 @@ Predict <- function(
 #
   if (keff.cutoff > 0 & nrow(bn.dist) > 1) {
 
-    old.len <- nrow(bn.dist) # DELETE
+    old.nrow <- nrow(bn.dist)
 
     bn.dist$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
 
@@ -108,9 +108,9 @@ Predict <- function(
 
     bn.dist <- bn.dist %>% subset(keff >= keff.cutoff)
 
-    new.len <- nrow(bn.dist)
+    new.nrow <- nrow(bn.dist)
 
-    cat('\nInitial predictions complete (', old.len, ' --> ', new.len, ')', sep = '')
+    cat('\nInitial predictions complete (', old.nrow, ' --> ', new.nrow, ')', sep = '')
     cat('')
 
   }
