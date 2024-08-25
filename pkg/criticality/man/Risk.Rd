@@ -9,6 +9,7 @@ Risk(
   code = "mcnp",
   cores = parallel::detectCores()/2,
   dist = "gamma",
+  evidence = TRUE,
   metamodel,
   keff.cutoff = 0.9,
   mass.cutoff = 100,
@@ -28,6 +29,8 @@ Risk(
 \item{cores}{Number of CPU cores to use for generating Bayesian network samples}
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
+
+\item{evidence}{Optional conditional evidence that can be used to generate samples}
 
 \item{metamodel}{List of deep neural network metamodels and weights}
 
@@ -71,6 +74,7 @@ try(if (config == TRUE) {
       ext.dir = ext.dir),
     code = "mcnp",
     cores = 1,
+    evidence = TRUE,
     metamodel = NN(
       batch.size = 128,
       ensemble.size = 1,
