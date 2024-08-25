@@ -46,7 +46,7 @@ Predict <- function(
     bn.dist <- cpdist(
       bn,
       nodes = names(bn),
-      event = eval(parse(event)),
+      event = eval(parse(text = event)),
       cluster = cluster,
       n = sample.size) %>% stats::na.omit()
   }
