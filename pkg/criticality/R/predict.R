@@ -38,15 +38,13 @@ Predict <- function(
 #
   if (cores > parallel::detectCores()) cores <- parallel::detectCores()
 
-  cluster <- parallel::makeCluster(cores)
-
-  evidence = eval(parse(text = evidence))
+  # cluster <- parallel::makeCluster(cores)
   
   bn.dist <- cpdist(
     bn,
     nodes = names(bn),
-    evidence = evidence,
-    cluster = cluster,
+    evidence = eval(parse(text = evidence)),
+    # cluster = cluster,
     n = sample.size) %>% stats::na.omit()
 
   parallel::stopCluster(cluster)
