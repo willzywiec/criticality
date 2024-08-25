@@ -5,7 +5,6 @@
 #' This function samples the Bayesian network and generates keff predictions using a deep neural network metamodel.
 #' @param bn Bayesian network object
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
-#' @param evidence Optional conditional evidence that can be used to generate samples
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param mass.cutoff mass cutoff (grams)
@@ -22,7 +21,6 @@
 Predict <- function(
   bn,
   cores = parallel::detectCores() / 2,
-  evidence = TRUE,
   metamodel,
   keff.cutoff = 0.9,
   mass.cutoff = 100,
@@ -40,14 +38,14 @@ Predict <- function(
 
   # cluster <- parallel::makeCluster(cores)
   
-  bn.dist <- cpdist(
+  bn.dist <- bnlearn::cpdist(
     bn,
     nodes = names(bn),
-    evidence = eval(parse(text = evidence)),
+    evidence = eval(parse(text = paste0('as.integer(mass) > ', mass.cutoff))),
     # cluster = cluster,
     n = sample.size) %>% stats::na.omit()
 
-  parallel::stopCluster(cluster)
+  # parallel::stopCluster(cluster)
 
   cat('\nBN samples generated')
 

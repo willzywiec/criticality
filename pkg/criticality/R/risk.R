@@ -7,7 +7,6 @@
 #' @param code Monte Carlo radiation transport code (e.g., "cog", "mcnp")
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
 #' @param dist Truncated probability distribution (e.g., "gamma", "normal")
-#' @param evidence Optional conditional evidence that can be used to generate samples
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
 #' @param mass.cutoff mass cutoff (grams)
@@ -37,7 +36,6 @@
 #'       ext.dir = ext.dir),
 #'     code = "mcnp",
 #'     cores = 1,
-#'     evidence = TRUE,
 #'     metamodel = NN(
 #'       batch.size = 128,
 #'       ensemble.size = 1,
@@ -65,7 +63,6 @@ Risk <- function(
   code = 'mcnp',
   cores = parallel::detectCores() / 2,
   dist = 'gamma',
-  evidence = TRUE,
   metamodel,
   keff.cutoff = 0.9,
   mass.cutoff = 100,
@@ -148,7 +145,6 @@ Risk <- function(
       bn.dist[[i]] <- Predict(
         bn = bn,
         cores = cores,
-        evidence = evidence,
         metamodel = metamodel,
         keff.cutoff = keff.cutoff,
         mass.cutoff = mass.cutoff,
