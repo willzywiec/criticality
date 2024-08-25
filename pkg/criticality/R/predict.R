@@ -5,7 +5,6 @@
 #' This function samples the Bayesian network and generates keff predictions using a deep neural network metamodel.
 #' @param bn Bayesian network object
 #' @param cores Number of CPU cores to use for generating Bayesian network samples
-#' @param event Optional event that can be used to generate targeted samples
 #' @param evidence Optional conditional evidence that can be used to generate samples
 #' @param metamodel List of deep neural network metamodels and weights
 #' @param keff.cutoff keff cutoff value (e.g., 0.9)
@@ -23,7 +22,6 @@
 Predict <- function(
   bn,
   cores = parallel::detectCores() / 2,
-  event = TRUE,
   evidence = TRUE,
   metamodel,
   keff.cutoff = 0.9,
@@ -41,30 +39,19 @@ Predict <- function(
   if (cores > parallel::detectCores()) cores <- parallel::detectCores()
 
   cluster <- parallel::makeCluster(cores)
-
-  if (event != TRUE) {
-    bn.dist <- cpdist(
-      bn,
-      nodes = names(bn),
-      event = eval(parse(text = event)),
-      cluster = cluster,
-      n = sample.size) %>% stats::na.omit()
-  }
   
-  if (evidence != TRUE) {
-    bn.dist <- cpdist(
-      bn,
-      nodes = names(bn),
-      evidence = evidence,
-      cluster = cluster,
-      n = sample.size) %>% stats::na.omit()
-  }
+  bn.dist <- cpdist(
+    bn,
+    nodes = names(bn),
+    evidence = parse(text = as.character(evidence)) %>% eval(),
+    cluster = cluster,
+    n = sample.size) %>% stats::na.omit()
 
   parallel::stopCluster(cluster)
 
   cat('\nBN samples generated')
 
-  bn.dist <- bn.dist %>% dplyr::filter(as.numeric(mass) > mass.cutoff & as.numeric(rad) > rad.cutoff)
+  # bn.dist <- bn.dist %>% dplyr::filter(as.numeric(mass) > mass.cutoff & as.numeric(rad) > rad.cutoff)
 
   # convert factors to atomic vectors
   bn.dist$mass <- unlist(bn.dist$mass) %>% as.character() %>% as.numeric()

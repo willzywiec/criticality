@@ -7,7 +7,6 @@
 Predict(
   bn,
   cores = parallel::detectCores()/2,
-  event = TRUE,
   evidence = TRUE,
   metamodel,
   keff.cutoff = 0.9,
@@ -21,8 +20,6 @@ Predict(
 \item{bn}{Bayesian network object}
 
 \item{cores}{Number of CPU cores to use for generating Bayesian network samples}
-
-\item{event}{Optional event that can be used to generate targeted samples}
 
 \item{evidence}{Optional conditional evidence that can be used to generate samples}
 
