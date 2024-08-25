@@ -9,13 +9,12 @@ Risk(
   code = "mcnp",
   cores = parallel::detectCores()/2,
   dist = "gamma",
-  facility.data,
+  metamodel,
   keff.cutoff = 0.9,
   mass.cutoff = 100,
-  metamodel,
   rad.cutoff = 7,
   risk.pool = 100,
-  sample.size = 1e+09,
+  sample.size = 1e+06,
   usl = 0.95,
   ext.dir,
   training.dir = NULL
@@ -30,15 +29,13 @@ Risk(
 
 \item{dist}{Truncated probability distribution (e.g., "gamma", "normal")}
 
-\item{facility.data}{.csv file name}
+\item{metamodel}{List of deep neural network metamodels and weights}
 
 \item{keff.cutoff}{keff cutoff value (e.g., 0.9)}
 
-\item{mass.cutoff}{mass cutoff value (e.g., 100)}
+\item{mass.cutoff}{mass cutoff (grams)}
 
-\item{metamodel}{List of deep neural network metamodels and weights}
-
-\item{rad.cutoff}{radius cutoff value (e.g., 7)}
+\item{rad.cutoff}{radius cutoff (cm)}
 
 \item{risk.pool}{Number of times risk is calculated}
 
@@ -74,9 +71,6 @@ try(if (config == TRUE) {
       ext.dir = ext.dir),
     code = "mcnp",
     cores = 1,
-    facility.data = "facility.csv",
-    keff.cutoff = 0.5,
-    mass.cutoff = 100,
     metamodel = NN(
       batch.size = 128,
       ensemble.size = 1,
@@ -84,9 +78,12 @@ try(if (config == TRUE) {
       layers = "256-256-16",
       replot = FALSE,
       ext.dir = ext.dir),
+    keff.cutoff = 0.5,
+    mass.cutoff = 100,
     rad.cutoff = 7,
     risk.pool = 10,
     sample.size = 1e+04,
+    usl = 0.95,
     ext.dir = ext.dir,
     training.dir = NULL
   )
