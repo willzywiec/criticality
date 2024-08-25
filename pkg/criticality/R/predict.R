@@ -42,13 +42,23 @@ Predict <- function(
 
   cluster <- parallel::makeCluster(cores)
 
-  bn.dist <- cpdist(
-    bn,
-    nodes = names(bn),
-    event = event,
-    evidence = evidence,
-    cluster = cluster,
-    n = sample.size) %>% stats::na.omit()
+  if (event != TRUE) {
+    bn.dist <- cpdist(
+      bn,
+      nodes = names(bn),
+      event = event,
+      cluster = cluster,
+      n = sample.size) %>% stats::na.omit()
+  }
+  
+  if (evidence != TRUE) {
+    bn.dist <- cpdist(
+      bn,
+      nodes = names(bn),
+      evidence = evidence,
+      cluster = cluster,
+      n = sample.size) %>% stats::na.omit()
+  }
 
   parallel::stopCluster(cluster)
 
