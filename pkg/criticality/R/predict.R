@@ -98,21 +98,14 @@ Predict <- function(
 # predict keff values
 #
   if (keff.cutoff > 0 & nrow(bn.dist) > 1) {
-
     old.nrow <- nrow(bn.dist)
-
     bn.dist$keff <- metamodel[[1]][[1]] %>% stats::predict(bn.df, verbose = FALSE)
-
     bn.df <- cbind(bn.df, bn.dist$keff) %>% subset(bn.dist$keff >= keff.cutoff)
     bn.df <- bn.df[ , -ncol(bn.df)]
-
     bn.dist <- bn.dist %>% subset(keff >= keff.cutoff)
-
     new.nrow <- nrow(bn.dist)
-
     cat('\nInitial predictions complete (', old.nrow, ' --> ', new.nrow, ')', sep = '')
     cat('')
-
   }
 
   if (nrow(bn.dist) > 1) {
