@@ -116,23 +116,14 @@ Predict <- function(
   }
 
   if (nrow(bn.dist) > 1) {
-    if (typeof(metamodel[[2]]) == 'double') {
-      keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[2]][[1]]))
-      for (i in 1:length(metamodel[[2]][[1]])) {
-        keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
-        cat('\nPredictions complete (', i, '/', length(metamodel[[2]][[1]]), ')', sep = '')
-        cat('')
-      }
-      bn.dist$keff <- rowSums(keff * metamodel[[2]][[1]])
-    } else {
-      keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
-      for (i in 1:length(metamodel[[1]])) {
-        keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
-        cat('\nPredictions complete (', i, '/', length(metamodel[[1]]), ')', sep = '')
-        cat('')
-      }
-      bn.dist$keff <- rowMeans(keff)
+    keff <- matrix(nrow = nrow(bn.df), ncol = length(metamodel[[1]]))
+    for (i in 1:length(metamodel[[1]])) {
+      keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
+      keff[ , i] <- keff[ , i] * metamodel[[2]][[i]]
+      cat('\nPredictions complete (', i, ' of ', length(metamodel[[1]]), ' metamodels)', sep = '')
+      cat('')
     }
+    bn.dist$keff <- rowSums(keff)
   }
 
   return(bn.dist)
