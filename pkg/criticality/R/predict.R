@@ -113,7 +113,7 @@ Predict <- function(
     for (i in 1:length(metamodel[[1]])) {
       keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
       keff[ , i] <- keff[ , i] * metamodel[[2]][[i]]
-      cat('\nPredictions complete (', i, ' of ', length(metamodel[[1]]), ' metamodels)', sep = '')
+      cat('\nPredictions complete (', i, '/', length(metamodel[[1]]), ')\n', sep = '')
       cat('')
     }
     bn.dist$keff <- rowSums(keff)
