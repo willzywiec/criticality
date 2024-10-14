@@ -104,7 +104,7 @@ Predict <- function(
     bn.df <- bn.df[ , -ncol(bn.df)]
     bn.dist <- bn.dist %>% subset(keff >= keff.cutoff)
     new.nrow <- nrow(bn.dist)
-    cat('\nInitial predictions complete (', old.nrow, ' --> ', new.nrow, ')', sep = '')
+    cat('\nInitial predictions complete (', old.nrow, ' --> ', new.nrow, ')\n', sep = '')
   }
 
   if (nrow(bn.dist) > 1) {
@@ -113,9 +113,9 @@ Predict <- function(
       keff[ , i] <- metamodel[[1]][[i]] %>% stats::predict(bn.df, verbose = FALSE) %>% suppressWarnings()
       keff[ , i] <- keff[ , i] * metamodel[[2]][[i]]
       if (i < length(metamodel[[1]])) {
-        cat('\nPredictions complete (', i, '/', length(metamodel[[1]]), ')', sep = '')
+        cat('Predictions complete (', i, '/', length(metamodel[[1]]), ')', sep = '')
       } else {
-        cat('\nPredictions complete (', i, '/', length(metamodel[[1]]), ')\n', sep = '')
+        cat('Predictions complete (', i, '/', length(metamodel[[1]]), ')\n', sep = '')
       }
     }
     bn.dist$keff <- rowSums(keff)
