@@ -110,6 +110,7 @@ NN <- function(
     }
   } else {
     utils::write.table(new.settings, file = paste0(training.dir, '/model-settings.txt'), quote = FALSE, row.names = FALSE, col.names = FALSE)
+    old.settings <- new.settings # set 'old.settings' equal to 'new.settings' to load metamodel (if applicable)
   }
 
   # build sum of squared errors (SSE) loss function
@@ -121,7 +122,7 @@ NN <- function(
   if (
     file.exists(paste0(training.dir, '/metamodel.RData')) &&
     identical(new.settings[-4, ], old.settings[-4, ]) &&
-    ensemble.size == dim(utils::read.csv(paste0(training.dir, '/test-mae.csv')))[1] && # check that ensemble.size is equal to the number of rows in test-mae.csv
+    ensemble.size == dim(utils::read.csv(paste0(training.dir, '/test-mae.csv')))[1] && # check that 'ensemble.size' is equal to the number of rows in 'test-mae.csv'
     ensemble.size <= length(list.files(path = model.dir)[grep('.*h5$', list.files(path = model.dir))]) && # redundant check to ensure files haven't been deleted
     reweight == FALSE) {
 
