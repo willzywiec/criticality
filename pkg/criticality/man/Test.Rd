@@ -4,7 +4,7 @@
 \alias{Test}
 \title{Test Function}
 \usage{
-Test(dataset, ensemble.size = 5, loss = "sse", ext.dir, training.dir)
+Test(dataset, ensemble.size = 5, loss = "sse", ext.dir, training.dir = NULL)
 }
 \arguments{
 \item{dataset}{Training and test data}
