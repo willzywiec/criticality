@@ -85,4 +85,6 @@ Model <- function(
       metrics = c('mean_absolute_error'))
   }
 
+  return(model)
+
 }
