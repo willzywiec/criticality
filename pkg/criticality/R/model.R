@@ -28,19 +28,26 @@ Model <- function(
 
   if (length(layers) >= 2) {
     model <- model %>% layer_dense(units = layers[2], activation = 'relu')
-  } else if (length(layers) >= 3) {
+  }
+  if (length(layers) >= 3) {
     model <- model %>% layer_dense(units = layers[3], activation = 'relu')
-  } else if (length(layers) >= 4) {
+  }
+  if (length(layers) >= 4) {
     model <- model %>% layer_dense(units = layers[4], activation = 'relu')
-  } else if (length(layers) >= 5) {
+  }
+  if (length(layers) >= 5) {
     model <- model %>% layer_dense(units = layers[5], activation = 'relu')
-  } else if (length(layers) >= 6) {
+  }
+  if (length(layers) >= 6) {
     model <- model %>% layer_dense(units = layers[6], activation = 'relu')
-  } else if (length(layers) >= 7) {
+  }
+  if (length(layers) >= 7) {
     model <- model %>% layer_dense(units = layers[7], activation = 'relu')
-  } else if (length(layers) == 8) {
+  }
+  if (length(layers) >= 8) {
     model <- model %>% layer_dense(units = layers[8], activation = 'relu')
-  } else if (length(layers) == 9) {
+  }
+  if (length(layers) >= 9) {
     model <- model %>% layer_dense(units = layers[9], activation = 'relu')
   }
 
