@@ -56,11 +56,23 @@ once with a k-eff comparison against the reference deck before production use.
 Everything else — pitches, block/foil dimensions, materials (including the
 `grph.20t` thermal scattering card), and the measured densities — is preserved.
 
+## Generated decks
+
+`decks/` holds the full approach-to-critical series: nominal and measured
+decks for the benchmark 8x4 cross section at every stack height from 1 to 12
+layers, named `hb_<mode>_<height>_<width>_<length>.i` (matching the reference
+`12_8_4` convention). The named reference cases `3_8_4` and `12_8_4` are both
+included. Regenerate them all with:
+
+```bash
+python generate_all.py
+```
+
 ## Usage
 
 ```bash
-# Regenerate both reference decks (8x4x12) from the measured-density table
-python hbgen.py --densities densities.csv
+# Regenerate both decks at a single size (8x4x12) from the density table
+python hbgen.py --width 8 --length 4 --height 12 --densities densities.csv
 
 # A single nominal deck of a custom size
 python hbgen.py --width 8 --length 4 --height 6 --mode nominal -o small.i
@@ -80,8 +92,10 @@ text = generate_deck(8, 4, 12, mode="measured", densities=dens)
 ## Files
 
 * `hbgen.py` — the generator module (Python 3, standard library only).
+* `generate_all.py` — regenerates the full 1–12 layer deck series.
 * `densities.csv` — measured per-slot densities, parsed from the reference
   deck (`layer, col, row, rho_rf, rho_lf, rho_clad`).
 * `reference_indeck_12_8_4.sim` — the original full-stack deck, kept for
   comparison.
-* `decks/` — generated decks: `hb_nominal_8_4_12.i`, `hb_measured_8_4_12.i`.
+* `decks/` — the generated series (`hb_nominal_*` and `hb_measured_*`,
+  heights 1–12 at 8×4).

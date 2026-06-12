@@ -421,9 +421,10 @@ def main(argv=None) -> int:
         if args.output and len(modes) == 1:
             path = args.output
         else:
+            # height_width_length, matching the reference deck naming
             path = os.path.join(
                 args.outdir,
-                f"hb_{mode}_{args.width}_{args.length}_{args.height}.i")
+                f"hb_{mode}_{args.height}_{args.width}_{args.length}.i")
         with open(path, "w") as fh:
             fh.write(text)
         print(f"wrote {path} ({text.count(chr(10))} lines)")
